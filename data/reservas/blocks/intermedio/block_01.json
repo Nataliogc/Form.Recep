@@ -1,0 +1,242 @@
+[
+  {
+    "id": "101",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "¿Qué riesgo representa no adjuntar el bono en la facturación de una reserva de Keytel a crédito?",
+    "options": [
+      "Que el cliente se queje por la demora",
+      "Que la agencia rechace el pago por falta de justificante",
+      "Que el PMS genere un error de sistema",
+      "Que Housekeeping no limpie la habitación"
+    ],
+    "correct": "Que la agencia rechace el pago por falta de justificante",
+    "correct_letter": "B",
+    "why": "B",
+    "source": "Sin el bono adjunto, la agencia no tiene garantía del servicio prestado y puede negarse a pagar."
+  },
+  {
+    "id": "102",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "¿Por qué es crítico diferenciar entre Expedia Collect y Hotel Collect?",
+    "options": [
+      "Porque determina quién paga (el cliente o Expedia) y a quién se factura",
+      "Porque afecta al tipo de habitación asignada",
+      "Porque cambia la política de cancelación",
+      "Porque modifica la comisión del hotel"
+    ],
+    "correct": "Porque determina quién paga (el cliente o Expedia) y a quién se factura",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Confundir ambos tipos lleva a facturar al cliente cuando debe ser a Expedia, generando errores contables y pérdida de ingresos."
+  },
+  {
+    "id": "103",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "En una reserva de Serhs, ¿por qué es importante registrar la subagencia real en el PMS?",
+    "options": [
+      "Porque el bono puede venir de una agencia diferente a Serhs y la factura debe ir al pagador correcto",
+      "Porque el cliente lo solicita expresamente",
+      "Porque el sistema lo exige para imprimir el check-in",
+      "Porque afecta al cálculo del IVA"
+    ],
+    "correct": "Porque el bono puede venir de una agencia diferente a Serhs y la factura debe ir al pagador correcto",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Serhs actúa como paraguas; la factura debe ir a la agencia que figura en el bono (ej.: Alisios Tours), no a Serhs."
+  },
+  {
+    "id": "104",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "¿Qué debes hacer si una reserva GDS de Synxis incluye empresa y agencia?",
+    "options": [
+      "Registrar solo la empresa",
+      "Registrar solo la agencia",
+      "Registrar ambas en el formato “Empresa / Agencia”",
+      "Ignorar los datos y usar nombre del huésped"
+    ],
+    "correct": "Registrar ambas en el formato “Empresa / Agencia”",
+    "correct_letter": "C",
+    "why": "C",
+    "source": "El manual muestra ejemplos como “Mercadona / AVORIS Retail Division S.L.”, lo que permite trazar la cadena de responsabilidad."
+  },
+  {
+    "id": "105",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "¿Qué debes hacer si una reserva de HRS corresponde a una agencia externa (ej.: BCD Travel)?",
+    "options": [
+      "Facturar a HRS",
+      "Facturar al huésped",
+      "Facturar a la agencia externa con el bono como respaldo",
+      "No facturar hasta recibir confirmación"
+    ],
+    "correct": "Facturar a HRS",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Cuando el bono indica un pagador real, la factura debe ir a esa entidad, no a HRS."
+  },
+  {
+    "id": "106",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "¿Qué debes hacer si una reserva de Webhotel/Synergy incluye SPA?",
+    "options": [
+      "Enviar al cliente un correo de firma de SPA, omitiendo la referencia al bono",
+      "Esperar a que el huésped lo solicite en recepción",
+      "Cobrar el SPA como extra no incluido",
+      "Registrar solo en el PMS sin comunicación"
+    ],
+    "correct": "Enviar al cliente un correo de firma de SPA, omitiendo la referencia al bono",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "El manual indica que se debe enviar el correo de firma, pero eliminando la parte del bono para evitar confusiones."
+  },
+  {
+    "id": "107",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "¿Cuándo se debe cobrar una reserva de Booking.com con tarifa No Reembolsable (NRF)?",
+    "options": [
+      "Al hacer el check-in",
+      "24 horas antes de la llegada",
+      "En el momento en que se recibe la reserva",
+      "Una semana después de la salida"
+    ],
+    "correct": "En el momento en que se recibe la reserva",
+    "correct_letter": "C",
+    "why": "C",
+    "source": "Las tarifas NRF requieren cobro inmediato a la tarjeta virtual de Booking al recibir la reserva."
+  },
+  {
+    "id": "108",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "¿Qué debes hacer si una reserva de Booking.com con tarifa EBI se recibe con menos de 7 días para la llegada?",
+    "options": [
+      "Tratarla como reembolsable",
+      "Esperar al check-in para cobrarla",
+      "Cobrarla inmediatamente, ya que pierde la condición de reembolsable",
+      "Cancelar la reserva"
+    ],
+    "correct": "Cobrarla inmediatamente, ya que pierde la condición de reembolsable",
+    "correct_letter": "C",
+    "why": "C",
+    "source": "Si faltan menos de 7 días, la tarifa EBI se convierte en no reembolsable y debe cobrarse al instante."
+  },
+  {
+    "id": "109",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "¿Qué procedimiento se debe seguir ante un no-show en Booking.com?",
+    "options": [
+      "Esperar 24 horas para ver si el huésped llega",
+      "Solicitar el cobro por no-show a través del extranet de Booking",
+      "Cancelar la reserva sin más",
+      "Cobrar al número de tarjeta del huésped"
+    ],
+    "correct": "Esperar 24 horas para ver si el huésped llega",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Todas las reservas de Booking están garantizadas; si no se presenta, se debe solicitar el cobro por no-show vía extranet."
+  },
+  {
+    "id": "110",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "¿Qué comisión se aplica a las reservas de Viajes El Corte Inglés marcadas como PYME?",
+    "options": [
+      "0.15",
+      "0.18",
+      "0.19",
+      "0.2"
+    ],
+    "correct": "0.15",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Las tarifas PYME tienen comisión del 15%; las públicas, del 18%. El código de la reserva indica el tipo."
+  },
+  {
+    "id": "111",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "¿Cómo se factura una reserva de Keytel con pago directo?",
+    "options": [
+      "A nombre de Keytel en neto",
+      "A nombre del cliente en bruto",
+      "A nombre del hotel",
+      "Sin factura, solo recibo"
+    ],
+    "correct": "A nombre de Keytel en neto",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Cuando es pago directo, se factura al cliente en bruto, como una venta normal."
+  },
+  {
+    "id": "112",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "¿Por qué es importante solicitar el teléfono en el check-in si no viene en la reserva?",
+    "options": [
+      "Para enviar promociones futuras",
+      "Para poder contactar al huésped en caso de incidencias (ej.: averías, objetos olvidados)",
+      "Para cumplir con la ley de protección de datos",
+      "Para registrar en el libro de visitas"
+    ],
+    "correct": "Para poder contactar al huésped en caso de incidencias (ej.: averías, objetos olvidados)",
+    "correct_letter": "B",
+    "why": "B",
+    "source": "El teléfono es clave para gestionar incidencias durante la estancia o después del check-out."
+  },
+  {
+    "id": "113",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "¿Qué debes hacer si no recibes el bono de una reserva de W2M?",
+    "options": [
+      "Esperar al turno siguiente",
+      "Solicitarlo a la agencia antes de facturar",
+      "Cobrar al huésped como medida de seguridad",
+      "Facturar sin bono"
+    ],
+    "correct": "Esperar al turno siguiente",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Sin el bono, no hay garantía de crédito; se debe obtener antes de cerrar la factura."
+  },
+  {
+    "id": "114",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "¿Qué debes hacer si una reserva de Smartbox incluye tratamiento de spa?",
+    "options": [
+      "Esperar a que el huésped lo solicite en recepción",
+      "Enviar un correo al departamento de spa para su preparación",
+      "Cobrar el tratamiento como extra",
+      "Registrar solo en el PMS"
+    ],
+    "correct": "Esperar a que el huésped lo solicite en recepción",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "El manual exige notificar al spa para que prepare el servicio incluido en el bono."
+  },
+  {
+    "id": "115",
+    "categoria": "Reservas",
+    "level": "intermedio",
+    "text": "¿Por qué es necesario corregir el régimen en reservas de Weekendesk?",
+    "options": [
+      "Porque suelen entrar como “solo alojamiento” aunque el bono incluya más servicios",
+      "Porque el cliente siempre pide cambios",
+      "Porque el PMS no permite regímenes combinados",
+      "Porque afecta al cálculo de comisiones"
+    ],
+    "correct": "Porque suelen entrar como “solo alojamiento” aunque el bono incluya más servicios",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "El sistema no interpreta correctamente los servicios del bono; el recepcionista debe ajustar manualmente el régimen."
+  }
+]

@@ -1,0 +1,402 @@
+[
+  {
+    "id": "26",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Por qué es importante revisar el rack al inicio del turno?",
+    "options": [
+      "Para saber cuántos empleados hay",
+      "Para tener una visión global del inventario real y evitar overbooking",
+      "Para imprimir listados de nómina",
+      "Para saber qué habitaciones están decoradas"
+    ],
+    "correct": "Para saber cuántos empleados hay",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Confirmar el inventario real exige revisar el rack, inventory y restricciones... para obtener la visualización global indispensable."
+  },
+  {
+    "id": "27",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué debe hacer el turno de mañana si un huésped quiere hacer late check-out?",
+    "options": [
+      "Registrar la solicitud y coordinar con Housekeeping para la limpieza posterior",
+      "Decir que no es posible en ningún caso",
+      "Cobrar inmediatamente sin consultar política",
+      "Asignar otra habitación sin más"
+    ],
+    "correct": "Registrar la solicitud y coordinar con Housekeeping para la limpieza posterior",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Se debe gestionar según política y coordinar con limpieza para reorganizar tareas."
+  },
+  {
+    "id": "28",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Por qué se revisan las reservas \"por segunda vez\" en el turno de mañana?",
+    "options": [
+      "Porque el turno de noche ya lo hizo, y se confirma exactitud de datos",
+      "Porque el PMS se borra cada noche",
+      "Porque los huéspedes cambian de idea",
+      "Es un error del documento"
+    ],
+    "correct": "Porque el turno de noche ya lo hizo, y se confirma exactitud de datos",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Esto se revisa por segunda vez en el día, ya que el turno de noche también lo ha revisado."
+  },
+  {
+    "id": "29",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué implica \"evitar huecos difíciles de asignar\" al distribuir habitaciones?",
+    "options": [
+      "Asignar habitaciones consecutivas o por plantas para facilitar el trabajo de limpieza",
+      "Dejar habitaciones vacías entre ocupadas",
+      "Asignar solo habitaciones con vistas",
+      "No asignar habitaciones en la última planta"
+    ],
+    "correct": "Asignar habitaciones consecutivas o por plantas para facilitar el trabajo de limpieza",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Permite organizar el trabajo de Housekeeping por plantas y evitar desplazamientos innecesarios."
+  },
+  {
+    "id": "30",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué debe hacer el turno de tarde si un huésped amplía su estancia?",
+    "options": [
+      "Registrar el cambio en el PMS y actualizar la factura futura",
+      "Esperar al turno de mañana",
+      "No hacer nada si ya está pagado",
+      "Decirle que debe irse igual"
+    ],
+    "correct": "Registrar el cambio en el PMS y actualizar la factura futura",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Se debe actualizar el PMS inmediatamente para reflejar la nueva salida y cargos."
+  },
+  {
+    "id": "31",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Por qué es clave comunicar a A&B el número de huéspedes con pensión?",
+    "options": [
+      "Para que preparen la cantidad adecuada de comida y suministros",
+      "Porque los huéspedes pagan más",
+      "Por protocolo de limpieza",
+      "Para que abran más tiempo"
+    ],
+    "correct": "Para que preparen la cantidad adecuada de comida y suministros",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Informa sobre pensiones... ya que esto afecta directamente la planificación de las comidas y los suministros."
+  },
+  {
+    "id": "32",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué debe hacer el turno de noche con las llegadas después de imprimir el listado para Housekeeping?",
+    "options": [
+      "No hacer nada",
+      "Anótarlas a mano en el propio listado",
+      "Esperar al día siguiente",
+      "Imprimir otro listado completo"
+    ],
+    "correct": "Anótarlas a mano en el propio listado",
+    "correct_letter": "B",
+    "why": "B",
+    "source": "Atención: si se realiza alguna entrada nueva después de imprimir el listado, anótala a mano en el propio listado."
+  },
+  {
+    "id": "33",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué se debe verificar al facturar a una agencia (TTOO)?",
+    "options": [
+      "Que el huésped haya dejado propina",
+      "Que el bono, tarifa, fechas y saldo coincidan con la reserva",
+      "Que la habitación esté limpia",
+      "Que el huésped haya firmado el libro de visitas"
+    ],
+    "correct": "Que el bono, tarifa, fechas y saldo coincidan con la reserva",
+    "correct_letter": "B",
+    "why": "B",
+    "source": "Comprueba antes de confirmar factura: N.º de bono asociado, tarifa, régimen, fechas, saldo total exacto."
+  },
+  {
+    "id": "34",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Por qué se debe revisar el LOG CHANNEL al final del turno?",
+    "options": [
+      "Para detectar errores en garantías, releases o bonos que afecten a la facturación o disponibilidad",
+      "Por cumplir un trámite",
+      "Porque lo pide el gerente cada día",
+      "Para saber cuántos huéspedes han llegado"
+    ],
+    "correct": "Para detectar errores en garantías, releases o bonos que afecten a la facturación o disponibilidad",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Permite verificar que las reservas estén correctamente garantizadas según su canal y tarifa."
+  },
+  {
+    "id": "35",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué debe hacer el turno de mañana si un huésped llega temprano y su habitación no está lista?",
+    "options": [
+      "Decirle que espere en la calle",
+      "Ofrecer guardar equipaje y acceso a áreas comunes",
+      "Denegarle la entrada hasta que esté lista",
+      "Cobrar una noche extra"
+    ],
+    "correct": "Ofrecer guardar equipaje y acceso a áreas comunes",
+    "correct_letter": "B",
+    "why": "B",
+    "source": "Atender llegadas tempranas según política y disponibilidad; de no estar lista, ofrecer guardar equipaje y acceso a áreas comunes."
+  },
+  {
+    "id": "36",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué prioridad tiene el mantenimiento según el turno de mañana?",
+    "options": [
+      "Las averías de zonas comunes",
+      "Las averías de habitaciones ocupadas",
+      "Las pinturas",
+      "Las luces del parking"
+    ],
+    "correct": "Las averías de habitaciones ocupadas",
+    "correct_letter": "B",
+    "why": "B",
+    "source": "Lo primero que se debe realizar son las averías de las habitaciones ocupadas."
+  },
+  {
+    "id": "37",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué significa \"Rv. Org. Suite\" en observaciones?",
+    "options": [
+      "Que la reserva es de una suite organizada por la recepción",
+      "Que el huésped pidió una suite aunque la reserva es de otro tipo",
+      "Que es una habitación estándar",
+      "Que la suite está fuera de servicio"
+    ],
+    "correct": "Que el huésped pidió una suite aunque la reserva es de otro tipo",
+    "correct_letter": "B",
+    "why": "B",
+    "source": "No olvides poner en Observación: Cuadre orig: [tipo de habitación reservado original], por si las circunstancias cambian y necesitamos reubicar de nuevo la reserva a su tipología original."
+  },
+  {
+    "id": "38",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué debe hacer el turno de tarde con los grupos?",
+    "options": [
+      "Registrarlos en el PMS y coordinar con restaurante horarios y menús",
+      "Tratarlos como huéspedes individuales",
+      "No hacer nada especial",
+      "Esperar instrucciones del turno de noche"
+    ],
+    "correct": "Registrarlos en el PMS y coordinar con restaurante horarios y menús",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Registro de Grupos y \"comunicar MP/PC, coordinar horarios con sala y cocina\"."
+  },
+  {
+    "id": "39",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Por qué es importante el relevo verbal al final del turno?",
+    "options": [
+      "Para socializar con el compañero",
+      "Para asegurar que las incidencias pendientes se gestionen sin interrupción",
+      "Porque es obligatorio por ley",
+      "Para justificar horas extra"
+    ],
+    "correct": "Para asegurar que las incidencias pendientes se gestionen sin interrupción",
+    "correct_letter": "B",
+    "why": "B",
+    "source": "Informar al siguiente turno cualquier incidencia que haya quedado pendiente para que pueda darle seguimiento."
+  },
+  {
+    "id": "40",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué se debe hacer si un walk-in llega de noche en estado de embriaguez?",
+    "options": [
+      "Admitirlo sin más",
+      "Valorar admisión y negarla si hay riesgo",
+      "Asignar la peor habitación",
+      "Esperar a que se le pase"
+    ],
+    "correct": "Valorar admisión y negarla si hay riesgo",
+    "correct_letter": "B",
+    "why": "B",
+    "source": "Valorar admisión (p. ej., embriaguez o riesgo) antes de entregar llave."
+  },
+  {
+    "id": "41",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué implica \"cuadrar la caja\"?",
+    "options": [
+      "Contar solo el efectivo",
+      "Verificar que efectivo, tarjetas y movimientos coincidan con el PMS",
+      "Dejar el dinero en la caja sin más",
+      "Hacer un informe verbal"
+    ],
+    "correct": "Verificar que efectivo, tarjetas y movimientos coincidan con el PMS",
+    "correct_letter": "B",
+    "why": "B",
+    "source": "Verificando que el efectivo y los cobros con tarjeta coincidan y \"confirmar que coinciden con el PMS\"."
+  },
+  {
+    "id": "42",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué se debe hacer con las reservas que no cumplen requisitos a las 21:00?",
+    "options": [
+      "Esperar hasta las 23:00",
+      "Anularlas según política",
+      "Darles habitación igual",
+      "No hacer nada"
+    ],
+    "correct": "Esperar hasta las 23:00",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "A las 21:00, revisar las llegadas pendientes y confirmar que estén activas. Anular aquellas reservas que no cumplan los requisitos."
+  },
+  {
+    "id": "43",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué se debe hacer si un huésped se queja durante el turno de tarde?",
+    "options": [
+      "Registrar en sistema de incidencias y escalar si procede",
+      "Ignorarla si es menor",
+      "Decirle que hable con el turno de mañana",
+      "Escribirla en un papel suelto"
+    ],
+    "correct": "Registrar en sistema de incidencias y escalar si procede",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Registrar y gestionar quejas en el sistema de incidencias; escalar a dirección si procede."
+  },
+  {
+    "id": "44",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Por qué se debe mantener la agenda de novedades limpia?",
+    "options": [
+      "Para ahorrar papel",
+      "Para que solo se vea información relevante y actual (máx. 1 semana)",
+      "Porque lo pide el gerente",
+      "Todas son falsas"
+    ],
+    "correct": "Todas son falsas",
+    "correct_letter": "D",
+    "why": "D",
+    "source": "Mantener la agenda limpia: elimina o archiva todo lo que esté resuelto; para novedades, dejar un plazo de una semana."
+  },
+  {
+    "id": "45",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué se debe hacer con los no shows en el turno de noche?",
+    "options": [
+      "Cancelar sin más",
+      "Cargarlos antes del cierre según política de tarifa e informar en OTA si aplica",
+      "Darles habitación hasta las 2:00",
+      "Esperar al turno de mañana"
+    ],
+    "correct": "Cargarlos antes del cierre según política de tarifa e informar en OTA si aplica",
+    "correct_letter": "B",
+    "why": "B",
+    "source": "Cargar no shows antes del cierre según política de tarifa. Si es necesario, informar en la extranet de la OTA."
+  },
+  {
+    "id": "46",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué se debe hacer si hay una avería en una habitación ocupada?",
+    "options": [
+      "Esperar a que el huésped se queje",
+      "Priorizar su reparación y actualizar estado en PMS al resolverla",
+      "Decirle al huésped que espere al día siguiente",
+      "Bloquear la habitación sin más"
+    ],
+    "correct": "Priorizar su reparación y actualizar estado en PMS al resolverla",
+    "correct_letter": "B",
+    "why": "B",
+    "source": "La máxima prioridad... son las averías de las habitaciones ocupadas... actualizar el estado en el PMS al resolver."
+  },
+  {
+    "id": "47",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué se debe verificar al hacer check-in de un grupo?",
+    "options": [
+      "Que todos hablen el mismo idioma",
+      "Que los cargos aplicados estén correctos y seguir protocolo",
+      "Que tengan equipaje igual",
+      "Que no pidan desayuno"
+    ],
+    "correct": "Que los cargos aplicados estén correctos y seguir protocolo",
+    "correct_letter": "B",
+    "why": "B",
+    "source": "Grupos: revisar cargos aplicados y seguir el protocolo indicado."
+  },
+  {
+    "id": "48",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué se debe hacer con la previsión de desayunos en el turno de noche?",
+    "options": [
+      "No hacer nada",
+      "Anótarla a mano en el listado de pensiones para que F&B se prepare",
+      "Avisar solo si son más de 10",
+      "Esperar al turno de mañana"
+    ],
+    "correct": "Anótarla a mano en el listado de pensiones para que F&B se prepare",
+    "correct_letter": "B",
+    "why": "B",
+    "source": "Anota en este listado a mano la previsión de desayunos del día siguiente, así se van preparando."
+  },
+  {
+    "id": "49",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué se debe hacer si un huésped pide una cuna?",
+    "options": [
+      "Asignar habitación y comunicar a Housekeeping para montaje",
+      "Decir que no hay cunas",
+      "Esperar a que llegue el bebé",
+      "No registrar la solicitud"
+    ],
+    "correct": "Asignar habitación y comunicar a Housekeeping para montaje",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "A primera hora, debes programar... preparación de cunas. Es fundamental comunicar."
+  },
+  {
+    "id": "50",
+    "categoria": "Operativa Turnos",
+    "level": "intermedio",
+    "text": "¿Qué se debe hacer al final del turno de noche con las incidencias de mantenimiento?",
+    "options": [
+      "Olvidarlas",
+      "Registrarlas en el rack y comunicar para que se atiendan a primera hora",
+      "Esperar a que se reparen solas",
+      "Decirle al huésped que lo arregle"
+    ],
+    "correct": "Olvidarlas",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Incidencias de mantenimiento: se marcaron en rack y se comunicaron para 1.ª hora."
+  }
+]

@@ -1,0 +1,8 @@
+﻿# Windows/Office
+Thumbs.db
+~$*.xlsx
+# Python
+__pycache__/
+*.pyc
+# Datos generados (se pueden volver a generar)
+data/_tmp_read.xlsx

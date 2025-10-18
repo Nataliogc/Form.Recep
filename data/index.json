@@ -1,0 +1,48 @@
+{
+  "operativa_turnos": {
+    "name": "Operativa Turnos",
+    "levels": {
+      "avanzado": {
+        "agg": "operativa_turnos_avanzado.json",
+        "blocks_dir": "operativa_turnos/blocks/avanzado/",
+        "count": 25,
+        "block_size": 25
+      },
+      "basico": {
+        "agg": "operativa_turnos_basico.json",
+        "blocks_dir": "operativa_turnos/blocks/basico/",
+        "count": 25,
+        "block_size": 25
+      },
+      "intermedio": {
+        "agg": "operativa_turnos_intermedio.json",
+        "blocks_dir": "operativa_turnos/blocks/intermedio/",
+        "count": 25,
+        "block_size": 25
+      }
+    }
+  },
+  "reservas": {
+    "name": "Reservas",
+    "levels": {
+      "avanzado": {
+        "agg": "reservas_avanzado.json",
+        "blocks_dir": "reservas/blocks/avanzado/",
+        "count": 35,
+        "block_size": 25
+      },
+      "basico": {
+        "agg": "reservas_basico.json",
+        "blocks_dir": "reservas/blocks/basico/",
+        "count": 25,
+        "block_size": 25
+      },
+      "intermedio": {
+        "agg": "reservas_intermedio.json",
+        "blocks_dir": "reservas/blocks/intermedio/",
+        "count": 15,
+        "block_size": 25
+      }
+    }
+  }
+}
