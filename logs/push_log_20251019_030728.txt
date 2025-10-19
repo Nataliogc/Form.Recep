@@ -17,3 +17,35 @@ Log: logs\push_log_20251019_030728.txt
 [OK] Conectividad OK (ping).
 [Paso] Verificando acceso al remoto (git ls-remote)...
 [OK] Acceso al remoto verificado.
+warning: in the working copy of 'logs/push_log_20251019_025432.txt', LF will be replaced by CRLF the next time Git touches it
+[Paso] Commit con sign-off: Auto: actualizacion
+[main 2033845] Auto: actualizacion
+ 18 files changed, 1124 insertions(+), 338 deletions(-)
+ create mode 100644 JSON
+ create mode 100644 js/cloudflare-worker.js
+ create mode 100644 logs/push_log_20251019_025432.txt
+ create mode 100644 logs/push_log_20251019_030728.txt
+ create mode 100644 push_cambios_DCO.bat
+ create mode 100644 push_cambios_DCO_LOG.bat
+ create mode 100644 push_cambios_DCO_SIMPLE.bat
+ create mode 100644 test.bat
+[OK] Commit realizado con sign-off.
+[Paso] Sincronizando con remoto (pull --rebase)...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+[AVISO] Pull con advertencias (primer push o sin upstream). ContinÃºo.
+[Paso] Subiendo a GitHub (push)...
+To https://github.com/Nataliogc/Form.Recep.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/Nataliogc/Form.Recep.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+[ERROR] No se pudo hacer push. Revisa credenciales/permisos/red. Mira el log: logs\push_log_20251019_030728.txt
+ECHO est  desactivado.
+==========================================
+[ERROR] Hubo problemas durante el proceso.
+Revisa el log: logs\push_log_20251019_030728.txt
+==========================================
