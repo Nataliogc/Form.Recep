@@ -3,17 +3,17 @@
     "id": "1",
     "categoria": "Operativa Turnos",
     "level": "basico",
-    "text": "¿Cuál es el horario habitual del turno de mañana?",
+    "text": "¿A qué hora se recomienda que llegue el recepcionista para el turno de mañana?",
     "options": [
-      "06:00 a 14:00",
-      "07:00 a 15:00",
-      "08:00 a 16:00",
-      "07:30 a 15:30"
+      "06:45:00",
+      "06:50 – 06:55",
+      "07:00 en punto",
+      "Ninguna es correcta"
     ],
-    "correct": "07:00 a 15:00",
+    "correct": "06:50 – 06:55",
     "correct_letter": "B",
     "why": "B",
-    "source": "El documento 2.2 indica: \"El horario habitual es de 07:00 a 15:00\"."
+    "source": "El documento 2.2 indica: “El horario habitual es de 07:00 a 15:00”. Aunque se recomienda llegar entre 06:50 y 06:55 para el relevo y preparación, el turno oficial comienza a las 07:00.  El documento 2.2 indica: “El horario habitual es de 07:00 a 15:00”. Aunque se recomienda llegar entre 06:50 y 06:55 para el relevo y preparación, el turno oficial comienza a las 07:00h"
   },
   {
     "id": "2",
@@ -262,14 +262,14 @@
     "text": "¿Qué se revisa en el LOG CHANNEL al final del turno de tarde?",
     "options": [
       "Los mensajes de WhatsApp",
-      "Las garantías, release y bonos “asume crédito” acordes con tarifa y canal",
+      "Las garantías, reléase y bonos “asume crédito” acordes con tarifa y canal",
       "Los correos no leídos",
       "El estado del TPV"
     ],
-    "correct": "Las garantías, release y bonos “asume crédito” acordes con tarifa y canal",
+    "correct": "Las garantías, reléase y bonos “asume crédito” acordes con tarifa y canal",
     "correct_letter": "B",
     "why": "B",
-    "source": "Control visual del LOG CHANNEL filtrando actividad del turno y comprobando: garantías acordes con tarifa y canal, release, bonos “asume crédito”."
+    "source": "Control visual del LOG CHANNEL filtrando actividad del turno y comprobando: garantías acordes con tarifa y canal, reléase, bonos “asume crédito”."
   },
   {
     "id": "18",
@@ -323,7 +323,7 @@
     "id": "21",
     "categoria": "Operativa Turnos",
     "level": "basico",
-    "text": "¿Qué se debe hacer con las reservas fuera de release en el turno de mañana?",
+    "text": "¿Qué se debe hacer con las reservas fuera de reléase en el turno de mañana?",
     "options": [
       "Ignorarlas",
       "Hacer check-in igual",

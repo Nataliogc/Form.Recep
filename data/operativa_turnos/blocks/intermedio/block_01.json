@@ -10,9 +10,9 @@
       "Para imprimir listados de nómina",
       "Para saber qué habitaciones están decoradas"
     ],
-    "correct": "Para saber cuántos empleados hay",
-    "correct_letter": "A",
-    "why": "A",
+    "correct": "Para tener una visión global del inventario real y evitar overbooking",
+    "correct_letter": "B",
+    "why": "B",
     "source": "Confirmar el inventario real exige revisar el rack, inventory y restricciones... para obtener la visualización global indispensable."
   },
   {
@@ -266,9 +266,9 @@
       "Darles habitación igual",
       "No hacer nada"
     ],
-    "correct": "Esperar hasta las 23:00",
-    "correct_letter": "A",
-    "why": "A",
+    "correct": "Anularlas según política",
+    "correct_letter": "B",
+    "why": "B",
     "source": "A las 21:00, revisar las llegadas pendientes y confirmar que estén activas. Anular aquellas reservas que no cumplan los requisitos."
   },
   {
@@ -296,11 +296,11 @@
       "Para ahorrar papel",
       "Para que solo se vea información relevante y actual (máx. 1 semana)",
       "Porque lo pide el gerente",
-      "Todas son falsas"
+      "Por estética"
     ],
-    "correct": "Todas son falsas",
-    "correct_letter": "D",
-    "why": "D",
+    "correct": "Para que solo se vea información relevante y actual (máx. 1 semana)",
+    "correct_letter": "B",
+    "why": "B",
     "source": "Mantener la agenda limpia: elimina o archiva todo lo que esté resuelto; para novedades, dejar un plazo de una semana."
   },
   {
@@ -323,80 +323,80 @@
     "id": "46",
     "categoria": "Operativa Turnos",
     "level": "intermedio",
-    "text": "¿Qué se debe hacer si hay una avería en una habitación ocupada?",
+    "text": "Un huésped con reserva no garantizada no llega a las 21:00. ¿Qué debe hacer el turno de tarde?",
     "options": [
-      "Esperar a que el huésped se queje",
-      "Priorizar su reparación y actualizar estado en PMS al resolverla",
-      "Decirle al huésped que espere al día siguiente",
-      "Bloquear la habitación sin más"
+      "Esperar hasta las 23:00",
+      "Anular la reserva según política de reléase",
+      "Cobrar una noche igual",
+      "Asignar la habitación a un walk-in sin más"
     ],
-    "correct": "Priorizar su reparación y actualizar estado en PMS al resolverla",
+    "correct": "Anular la reserva según política de reléase",
     "correct_letter": "B",
     "why": "B",
-    "source": "La máxima prioridad... son las averías de las habitaciones ocupadas... actualizar el estado en el PMS al resolver."
+    "source": "A las 21:00, revisar llegadas pendientes... anular aquellas que no cumplan requisitos (ej.: no garantizadas tras reléase)."
   },
   {
     "id": "47",
     "categoria": "Operativa Turnos",
     "level": "intermedio",
-    "text": "¿Qué se debe verificar al hacer check-in de un grupo?",
+    "text": "¿Qué riesgo hay si no se actualiza el estado de una habitación reparada por mantenimiento?",
     "options": [
-      "Que todos hablen el mismo idioma",
-      "Que los cargos aplicados estén correctos y seguir protocolo",
-      "Que tengan equipaje igual",
-      "Que no pidan desayuno"
+      "Overbooking, asignación incorrecta o mala experiencia del huésped",
+      "No hay riesgo",
+      "Que el PMS se bloquee",
+      "Que el huésped no pague"
     ],
-    "correct": "Que los cargos aplicados estén correctos y seguir protocolo",
-    "correct_letter": "B",
-    "why": "B",
-    "source": "Grupos: revisar cargos aplicados y seguir el protocolo indicado."
+    "correct": "Overbooking, asignación incorrecta o mala experiencia del huésped",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Si no se actualiza en PMS, la habitación sigue como \"Fuera de Servicio\" y no se asigna, perdiendo ingresos o generando confusión."
   },
   {
     "id": "48",
     "categoria": "Operativa Turnos",
     "level": "intermedio",
-    "text": "¿Qué se debe hacer con la previsión de desayunos en el turno de noche?",
+    "text": "Un huésped pide factura a nombre de su empresa, pero pagó en efectivo. ¿Qué debe verificar el recepcionista?",
     "options": [
-      "No hacer nada",
-      "Anótarla a mano en el listado de pensiones para que F&B se prepare",
-      "Avisar solo si son más de 10",
-      "Esperar al turno de mañana"
+      "Que la empresa esté en la lista negra",
+      "Que tenga autorización válida (bono/email) y registrar ambos datos en PMS para cumplir con Hacienda",
+      "Que el huésped sea director",
+      "Dar la factura sin más"
     ],
-    "correct": "Anótarla a mano en el listado de pensiones para que F&B se prepare",
+    "correct": "Que tenga autorización válida (bono/email) y registrar ambos datos en PMS para cumplir con Hacienda",
     "correct_letter": "B",
     "why": "B",
-    "source": "Anota en este listado a mano la previsión de desayunos del día siguiente, así se van preparando."
+    "source": "Por ley fiscal, se debe verificar autorización para facturar a terceros, especialmente en efectivo."
   },
   {
     "id": "49",
     "categoria": "Operativa Turnos",
     "level": "intermedio",
-    "text": "¿Qué se debe hacer si un huésped pide una cuna?",
+    "text": "¿Por qué es crítico revisar las \"características extendidas\" (Sup, Cun) al asignar habitaciones?",
     "options": [
-      "Asignar habitación y comunicar a Housekeeping para montaje",
-      "Decir que no hay cunas",
-      "Esperar a que llegue el bebé",
-      "No registrar la solicitud"
+      "Porque si no se cumplen, genera insatisfacción y posibles quejas o cancelaciones",
+      "Porque el PMS se bloquea",
+      "Porque Housekeeping cobra extra",
+      "No es importante"
     ],
-    "correct": "Asignar habitación y comunicar a Housekeeping para montaje",
+    "correct": "Porque si no se cumplen, genera insatisfacción y posibles quejas o cancelaciones",
     "correct_letter": "A",
     "why": "A",
-    "source": "A primera hora, debes programar... preparación de cunas. Es fundamental comunicar."
+    "source": "Estas peticiones son parte del contrato con el huésped; no cumplirlas es una brecha de calidad."
   },
   {
     "id": "50",
     "categoria": "Operativa Turnos",
     "level": "intermedio",
-    "text": "¿Qué se debe hacer al final del turno de noche con las incidencias de mantenimiento?",
+    "text": "¿Qué debe hacer el turno de noche si recibe una llamada de emergencia médica?",
     "options": [
-      "Olvidarlas",
-      "Registrarlas en el rack y comunicar para que se atiendan a primera hora",
-      "Esperar a que se reparen solas",
-      "Decirle al huésped que lo arregle"
+      "Valorar conciencia/respiración, llamar 112 si hay riesgo vital, asistir solo si está capacitado y registrar",
+      "Avisar solo a gerencia",
+      "Esperar a que llegue el turno de mañana",
+      "Ignorar si es de madrugada"
     ],
-    "correct": "Olvidarlas",
+    "correct": "Valorar conciencia/respiración, llamar 112 si hay riesgo vital, asistir solo si está capacitado y registrar",
     "correct_letter": "A",
     "why": "A",
-    "source": "Incidencias de mantenimiento: se marcaron en rack y se comunicaron para 1.ª hora."
+    "source": "Protocolo médico: \"Si hay riesgo vital, 112 inmediato... Asistir con primeros auxilios solo si estás capacitado... Registrar\"."
   }
 ]

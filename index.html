@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Cuestionario · Turnos</title>
+<title>Cuestionario · Recepción</title>
 <style>
 :root{--bg:#f7f9fc;--card:#fff;--ink:#0f172a;--muted:#475569;--brand:#0b5faf;--brand2:#00b0ff;--shadow:0 10px 25px rgba(2,6,23,.08),0 3px 8px rgba(2,6,23,.05)}
 *{box-sizing:border-box}
@@ -51,7 +51,7 @@ button.ghost{background:transparent;color:#0b5faf;box-shadow:none}
 .answer.incorrect{border-color:#fecaca;background:#fff}
 .answer.correct .letter{background:#bbf7d0}
 
-/* Explicación (siempre sale, verde/rojo + fuente) */
+/* Explicación (siempre) */
 .explain{margin-top:10px;padding:12px;border-radius:12px;display:none;border:1px dashed currentColor;background:#fff}
 .explain.ok{color:#166534;background:#f0fdf4;border-color:#86efac}
 .explain.bad{color:#991b1b;background:#fef2f2;border-color:#fecaca}
@@ -62,7 +62,7 @@ table{width:100%;border-collapse:collapse}
 th,td{padding:10px 8px;border-bottom:1px solid #eef2f7;text-align:left;font-size:14px}
 th{font-weight:700;color:#334155}
 
-/* Meta pregunta */
+/* Meta */
 .qmeta{display:flex;align-items:center;gap:8px;margin:0 0 6px}
 .qid{font:12px/1 ui-monospace,Consolas,Menlo;background:#eef2ff;color:#3730a3;padding:3px 7px;border-radius:8px;border:1px solid #c7d2fe}
 
@@ -89,7 +89,7 @@ th{font-weight:700;color:#334155}
       <img src="img/logo_cumbria.png" alt="Cumbria Spa & Hotel">
     </div>
     <div>
-      <h1>Cuestionario · Turnos</h1>
+      <h1>Cuestionario · Recepción</h1>
       <p class="muted"><em>Formación interna para Recepción y Calidad</em></p>
       <div class="gold"></div>
     </div>
@@ -171,8 +171,8 @@ th{font-weight:700;color:#334155}
   </div>
 </div>
 
-<!-- ⚠️ v=2 para forzar recarga sin caché -->
-<script src="js/loader.js?v=2"></script>
-<script src="js/quiz.js?v=2"></script>
+<!-- ⚠️ v=3 para forzar recarga sin caché -->
+<script src="js/loader.js?v=3"></script>
+<script src="js/quiz.js?v=3"></script>
 </body>
 </html>

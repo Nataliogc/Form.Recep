@@ -3,86 +3,6 @@
     "id": "51",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
-    "text": "Un huésped con reserva no garantizada no llega a las 21:00. ¿Qué debe hacer el turno de tarde?",
-    "options": [
-      "Esperar hasta las 23:00",
-      "Anular la reserva según política de release",
-      "Cobrar una noche igual",
-      "Asignar la habitación a un walk-in sin más"
-    ],
-    "correct": "Anular la reserva según política de release",
-    "correct_letter": "B",
-    "why": "B",
-    "source": "A las 21:00, revisar llegadas pendientes... anular aquellas que no cumplan requisitos (ej.: no garantizadas tras release)."
-  },
-  {
-    "id": "52",
-    "categoria": "Operativa Turnos",
-    "level": "avanzado",
-    "text": "¿Qué riesgo hay si no se actualiza el estado de una habitación reparada por mantenimiento?",
-    "options": [
-      "Overbooking, asignación incorrecta o mala experiencia del huésped",
-      "No hay riesgo",
-      "Que el PMS se bloquee",
-      "Que el huésped no pague"
-    ],
-    "correct": "Overbooking, asignación incorrecta o mala experiencia del huésped",
-    "correct_letter": "A",
-    "why": "A",
-    "source": "Si no se actualiza en PMS, la habitación sigue como \"Fuera de Servicio\" y no se asigna, perdiendo ingresos o generando confusión."
-  },
-  {
-    "id": "53",
-    "categoria": "Operativa Turnos",
-    "level": "avanzado",
-    "text": "Un huésped pide factura a nombre de su empresa, pero pagó en efectivo. ¿Qué debe verificar el recepcionista?",
-    "options": [
-      "Que la empresa esté en la lista negra",
-      "Que tenga autorización válida (bono/email) y registrar ambos datos en PMS para cumplir con Hacienda",
-      "Que el huésped sea director",
-      "Dar la factura sin más"
-    ],
-    "correct": "Que tenga autorización válida (bono/email) y registrar ambos datos en PMS para cumplir con Hacienda",
-    "correct_letter": "B",
-    "why": "B",
-    "source": "Por ley fiscal, se debe verificar autorización para facturar a terceros, especialmente en efectivo."
-  },
-  {
-    "id": "54",
-    "categoria": "Operativa Turnos",
-    "level": "avanzado",
-    "text": "¿Por qué es crítico revisar las \"características extendidas\" (Sup, Cun) al asignar habitaciones?",
-    "options": [
-      "Porque si no se cumplen, genera insatisfacción y posibles quejas o cancelaciones",
-      "Porque el PMS se bloquea",
-      "Porque Housekeeping cobra extra",
-      "No es importante"
-    ],
-    "correct": "Porque si no se cumplen, genera insatisfacción y posibles quejas o cancelaciones",
-    "correct_letter": "A",
-    "why": "A",
-    "source": "Estas peticiones son parte del contrato con el huésped; no cumplirlas es una brecha de calidad."
-  },
-  {
-    "id": "55",
-    "categoria": "Operativa Turnos",
-    "level": "avanzado",
-    "text": "¿Qué debe hacer el turno de noche si recibe una llamada de emergencia médica?",
-    "options": [
-      "Valorar conciencia/respiración, llamar 112 si hay riesgo vital, asistir solo si está capacitado y registrar",
-      "Avisar solo a gerencia",
-      "Esperar a que llegue el turno de mañana",
-      "Ignorar si es de madrugada"
-    ],
-    "correct": "Valorar conciencia/respiración, llamar 112 si hay riesgo vital, asistir solo si está capacitado y registrar",
-    "correct_letter": "A",
-    "why": "A",
-    "source": "Protocolo médico: \"Si hay riesgo vital, 112 inmediato... Asistir con primeros auxilios solo si estás capacitado... Registrar\"."
-  },
-  {
-    "id": "56",
-    "categoria": "Operativa Turnos",
-    "level": "avanzado",
     "text": "¿Qué implica un error en el MR-HOSPE?",
     "options": [
       "Discrepancia entre ingresos reales y registrados, afectando auditoría y contabilidad",
@@ -96,7 +16,7 @@
     "source": "El MR-HOSPE es el informe de auditoría; si tiene errores, la contabilidad del día no cuadra."
   },
   {
-    "id": "57",
+    "id": "52",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "Un huésped se queja de ruido a las 2:00 AM. ¿Qué debe hacer el recepcionista de noche?",
@@ -112,7 +32,7 @@
     "source": "Protocolo: \"No confrontar; priorizar seguridad... dos avisos formales; al tercero, aviso a autoridades\"."
   },
   {
-    "id": "58",
+    "id": "53",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Por qué se debe archivar el cierre de caja en un sobre firmado?",
@@ -128,7 +48,7 @@
     "source": "Permite verificar operaciones, responsabilidades y resolver discrepancias posteriores."
   },
   {
-    "id": "59",
+    "id": "54",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de mañana si una habitación VIP tiene avería y llega un cliente importante?",
@@ -144,7 +64,7 @@
     "source": "Se debe aplicar criterio: resolver la incidencia o compensar al huésped para preservar la experiencia."
   },
   {
-    "id": "60",
+    "id": "55",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Qué se debe hacer si en el LOG CHANNEL se detecta que una reserva OTA no tiene garantía pero la tarifa lo exige?",
@@ -160,7 +80,7 @@
     "source": "Es un riesgo de no show no cubierto; se debe gestionar según política y proteger ingresos."
   },
   {
-    "id": "61",
+    "id": "56",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "Un grupo tiene bono \"asume crédito\", pero no se refleja en PMS. ¿Qué riesgo hay?",
@@ -176,7 +96,7 @@
     "source": "Los bonos \"asume crédito\" permiten cargar a habitación sin depósito; si no está en PMS, se puede cobrar indebidamente."
   },
   {
-    "id": "62",
+    "id": "57",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Por qué es importante que el turno de noche deje listados impresos para la mañana?",
@@ -192,7 +112,7 @@
     "source": "Deja la operativa lista... así evitas retrasos y recepción de día puede enfocarse en el servicio desde el primer minuto."
   },
   {
-    "id": "63",
+    "id": "58",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de tarde si un huésped pide ampliar estancia, pero no hay disponibilidad?",
@@ -208,7 +128,7 @@
     "source": "Se debe aplicar proactividad y resolución: buscar soluciones o escalar si es necesario."
   },
   {
-    "id": "64",
+    "id": "59",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Qué implica no registrar una incidencia de seguridad (ej.: altercado)?",
@@ -224,7 +144,7 @@
     "source": "El documento exige \"registro trazable para gerencia\" en protocolos de emergencia."
   },
   {
-    "id": "65",
+    "id": "60",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Qué debe verificar el turno de noche en las facturas a crédito de empresas?",
@@ -240,7 +160,7 @@
     "source": "Comprueba antes de confirmar factura: N.º de bono, comisiones, tarifa, régimen, fechas, saldo total exacto y soportes adjuntos."
   },
   {
-    "id": "66",
+    "id": "61",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "Un huésped llega de noche sin DNI. ¿Qué debe hacer el recepcionista?",
@@ -256,7 +176,7 @@
     "source": "Por ley de extranjería y seguridad, se debe verificar identidad con documento oficial antes de alojar."
   },
   {
-    "id": "67",
+    "id": "62",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de mañana si Housekeeping reporta que no puede limpiar habitaciones por falta de personal?",
@@ -272,7 +192,7 @@
     "source": "Es importante avisar a dirección para que tomen la decisión. Solo si estás autorizado, bloquea en el PMS."
   },
   {
-    "id": "68",
+    "id": "63",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Por qué se debe revisar el channel manager al inicio del turno de mañana?",
@@ -288,7 +208,7 @@
     "source": "La sincronización entre PMS y channel es crítica para la gestión de inventario en tiempo real."
   },
   {
-    "id": "69",
+    "id": "64",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de noche si hay un fallo eléctrico en una zona?",
@@ -304,7 +224,7 @@
     "source": "Protocolo de fallos técnicos: \"Detectar alcance... Priorizar y avisar... Mitigar... Registrar\"."
   },
   {
-    "id": "70",
+    "id": "65",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Qué se debe hacer si un huésped pide no registrar un cargo en su factura por discreción?",
@@ -320,10 +240,10 @@
     "source": "Por ley fiscal y política interna, todos los cargos deben registrarse; la discreción no exime del cumplimiento."
   },
   {
-    "id": "71",
+    "id": "66",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
-    "text": "¿Qué implica una \"reserva fuera de release\" no cobrada?",
+    "text": "¿Qué implica una \"reserva fuera de reléase\" no cobrada?",
     "options": [
       "Pérdida de ingresos garantizados por política de cancelación",
       "Que el huésped se va feliz",
@@ -336,7 +256,7 @@
     "source": "Las reservas fuera de plazo de cancelación deben cobrarse si no se cancelan a tiempo; no hacerlo es una pérdida económica."
   },
   {
-    "id": "72",
+    "id": "67",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Por qué es clave que el turno de tarde verifique el estado de limpieza en PMS antes del check-in?",
@@ -352,7 +272,7 @@
     "source": "Garantiza que el huésped reciba una habitación disponible y limpia, evitando malas experiencias."
   },
   {
-    "id": "73",
+    "id": "68",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de noche si un huésped pierde la llave?",
@@ -368,7 +288,7 @@
     "source": "Se debe resolver la incidencia de forma segura y documentarla."
   },
   {
-    "id": "74",
+    "id": "69",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Qué se debe hacer si en el cierre de caja hay un descuadre?",
@@ -384,7 +304,7 @@
     "source": "No te marches sin haber cuadrado la caja; si hay alguna discrepancia, averigua el motivo."
   },
   {
-    "id": "75",
+    "id": "70",
     "categoria": "Operativa Turnos",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de mañana si un huésped VIP tiene una petición especial no registrada en PMS?",
@@ -398,5 +318,85 @@
     "correct_letter": "A",
     "why": "A",
     "source": "Las peticiones especiales deben registrarse en PMS (\"notas de huésped\") para garantizar seguimiento y personalización."
+  },
+  {
+    "id": "71",
+    "categoria": "Operativa Turnos",
+    "level": "avanzado",
+    "text": "¿Qué debe hacer el turno de noche si una reserva de Hotelbeds no tiene teléfono?",
+    "options": [
+      "Solicitarlo al cliente en el check-in",
+      "Ignorarlo",
+      "Cancelar la reserva",
+      "Esperar a que lo envíe por email"
+    ],
+    "correct": "Solicitarlo al cliente en el check-in",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Comprobar si el teléfono del cliente aparece; si no, solicitarlo al hacer el check-in."
+  },
+  {
+    "id": "72",
+    "categoria": "Operativa Turnos",
+    "level": "avanzado",
+    "text": "¿Qué debe hacer el turno de tarde si una reserva de Keytel es \"pago directo\"?",
+    "options": [
+      "Facturar al cliente en bruto",
+      "Facturar a Keytel en neto",
+      "No facturar",
+      "Cancelar la reserva"
+    ],
+    "correct": "Facturar al cliente en bruto",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "En caso de Pago directo: Se factura al cliente (efectivo o tarjeta). 'en Bruto'"
+  },
+  {
+    "id": "73",
+    "categoria": "Operativa Turnos",
+    "level": "avanzado",
+    "text": "¿Qué debe hacer el turno de mañana si una reserva de Synxis GDS incluye empresa y agencia?",
+    "options": [
+      "Registrar solo la empresa",
+      "Registrar solo la agencia",
+      "Registrar ambos: \"Empresa / Agencia\"",
+      "Eliminar los datos"
+    ],
+    "correct": "Registrar ambos: \"Empresa / Agencia\"",
+    "correct_letter": "C",
+    "why": "C",
+    "source": "Ejemplo: 'Mercadona / AVORIS Retail Division S.L.'"
+  },
+  {
+    "id": "74",
+    "categoria": "Operativa Turnos",
+    "level": "avanzado",
+    "text": "¿Qué debe hacer el turno de noche si una reserva de Booking.com es un no-show y no hay tarjeta válida?",
+    "options": [
+      "Solicitar el cobro por no-show directamente a Booking.com a través del extranet",
+      "Cancelar sin más",
+      "No hacer nada",
+      "Cobrar al cliente por teléfono"
+    ],
+    "correct": "Solicitar el cobro por no-show directamente a Booking.com a través del extranet",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Todas las reservas de Booking están garantizadas... se debe solicitar el cobro por no-show directamente a Booking.com."
+  },
+  {
+    "id": "75",
+    "categoria": "Operativa Turnos",
+    "level": "avanzado",
+    "text": "¿Qué debe hacer el turno de mañana si una reserva de Traveltino no tiene bono adjunto?",
+    "options": [
+      "Solicitarlo a la agencia antes de facturar",
+      "Cobrar al cliente",
+      "Esperar al turno de mañana",
+      "Ignorarla"
+    ],
+    "correct": "Solicitarlo a la agencia antes de facturar",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Revisar si se ha recibido el bono... y si no, solicitarlo a la agencia."
   }
 ]
