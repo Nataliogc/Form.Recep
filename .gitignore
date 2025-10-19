@@ -6,3 +6,5 @@ __pycache__/
 *.pyc
 # Datos generados (se pueden volver a generar)
 data/_tmp_read.xlsx
+
+logs/
