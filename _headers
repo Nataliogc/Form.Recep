@@ -1,9 +1,7 @@
 # Cloudflare Pages headers
-# Cache agresivo para assets estáticos versionados
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
-# HTML: sin caché (controlado por ?v= y para ver cambios al instante)
 /*
   Cache-Control: public, max-age=0, must-revalidate
   X-Content-Type-Options: nosniff
