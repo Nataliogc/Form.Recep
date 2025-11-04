@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sesión de Crecimiento · Formación</title>
+<title>SesiÃ³n de Crecimiento Â· FormaciÃ³n</title>
 <style>
 :root{--bg:#f7f9fc;--card:#fff;--ink:#0f172a;--muted:#475569;--brand:#0b5faf;--brand2:#00b0ff;--shadow:0 10px 25px rgba(2,6,23,.08),0 3px 8px rgba(2,6,23,.05)}
 *{box-sizing:border-box}
@@ -59,11 +59,11 @@ th{font-weight:700;color:#334155}
 .finalmsg h4{margin:0 0 6px;font-size:18px;font-weight:700}
 .finalmsg p{margin:0}
 .finalmsg.ok{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#86efac;color:#14532d}
-.finalmsg.ok h4::before{content:"🌟 "}
+.finalmsg.ok h4::before{content:"ðŸŒŸ "}
 .finalmsg.warn{background:linear-gradient(135deg,#fffbe6,#fef9c3);border-color:#fde68a;color:#78350f}
-.finalmsg.warn h4::before{content:"💪 "}
+.finalmsg.warn h4::before{content:"ðŸ’ª "}
 .finalmsg.bad{background:linear-gradient(135deg,#fef2f2,#fee2e2);border-color:#fecaca;color:#7f1d1d}
-.finalmsg.bad h4::before{content:"❤️‍🔥 "}
+.finalmsg.bad h4::before{content:"â¤ï¸â€ðŸ”¥ "}
 </style>
 </head>
 <body>
@@ -74,7 +74,7 @@ th{font-weight:700;color:#334155}
       <img src="img/logo_cumbria.png" alt="Cumbria Spa & Hotel">
     </div>
     <div>
-      <h1>Sesión de Crecimiento · Formación</h1>
+      <h1>SesiÃ³n de Crecimiento Â· FormaciÃ³n</h1>
       <p class="muted"><em>Enfocada en la Excelencia del Servicio</em></p>
       <div class="gold"></div>
     </div>
@@ -84,55 +84,55 @@ th{font-weight:700;color:#334155}
 <div class="container">
   <!-- PORTADA -->
   <section class="card panel" id="introBlock" style="margin-bottom:18px">
-    <h3 style="margin:0 0 8px">¿Por qué realizamos estas pruebas?</h3>
+    <h3 style="margin:0 0 8px">Â¿Por quÃ© realizamos estas pruebas?</h3>
     <p><b>Sercotel Guadiana y Cumbria Spa&Hotel</b></p>
-    <p>Estas pruebas no son un examen para “aprobar o suspender”, sino una herramienta para crecer juntos.</p>
+    <p>Estas pruebas no son un examen para â€œaprobar o suspenderâ€, sino una herramienta para crecer juntos.</p>
   </section>
 
   <div class="grid">
     <aside class="card panel">
-      <h3 style="margin:0 0 8px">1) Identificación</h3>
+      <h3 style="margin:0 0 8px">1) IdentificaciÃ³n</h3>
       <p class="muted">Tu nombre es obligatorio para participar y aparecer en el ranking.</p>
       <input id="playerName" placeholder="Nombre y apellidos (obligatorio)">
       <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
 
       <h3 style="margin:0 0 8px">2) Departamento</h3>
-      <select id="deptSelect"><option value="">Selecciona departamento…</option></select>
+      <select id="deptSelect"><option value="">Selecciona departamentoâ€¦</option></select>
 
       <div style="height:8px"></div>
-      <h3 style="margin:0 0 8px">3) Módulo</h3>
-      <select id="moduleSelect"><option value="">Selecciona módulo…</option></select>
+      <h3 style="margin:0 0 8px">3) MÃ³dulo</h3>
+      <select id="moduleSelect"><option value="">Selecciona mÃ³duloâ€¦</option></select>
 
       <div style="height:8px"></div>
       <h3 style="margin:0 0 8px">4) Nivel</h3>
       <select id="levelSelect">
-        <option value="basico">Nivel Básico 🟢</option>
-        <option value="intermedio">Nivel Intermedio 🔹</option>
-        <option value="avanzado">Nivel Avanzado 🔴</option>
+        <option value="basico">Nivel BÃ¡sico ðŸŸ¢</option>
+        <option value="intermedio">Nivel Intermedio ðŸ”¹</option>
+        <option value="avanzado">Nivel Avanzado ðŸ”´</option>
       </select>
 
       <div style="display:flex;gap:8px;margin-top:12px"><button id="startBtn">Comenzar</button></div>
       <div id="status" class="muted" style="margin-top:8px;display:none"></div>
 
       <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
-      <h3>🏆 Ranking</h3>
-      <table><thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>Módulo</th><th>Punt.</th><th>Fecha</th></tr></thead><tbody id="lbBody"><tr><td colspan="6" class="muted">Sin resultados todavía.</td></tr></tbody></table>
+      <h3>ðŸ† Ranking</h3>
+      <table><thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>MÃ³dulo</th><th>Punt.</th><th>Fecha</th></tr></thead><tbody id="lbBody"><tr><td colspan="6" class="muted">Sin resultados todavÃ­a.</td></tr></tbody></table>
 
       <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
-      <h3>📈 Resumen (automático)</h3>
-      <table><thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>Módulo</th><th>Punt.</th><th>Fecha</th></tr></thead><tbody id="resumeBody"><tr><td colspan="6" class="muted">Sin participaciones aún.</td></tr></tbody></table>
+      <h3>ðŸ“ˆ Resumen (automÃ¡tico)</h3>
+      <table><thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>MÃ³dulo</th><th>Punt.</th><th>Fecha</th></tr></thead><tbody id="resumeBody"><tr><td colspan="6" class="muted">Sin participaciones aÃºn.</td></tr></tbody></table>
       <div style="margin-top:10px"><button id="exportBtn" class="ghost">Descargar Excel (CSV)</button></div>
     </aside>
 
     <main class="card panel">
-      <div class="pill basico" id="levelPill">Nivel Básico 🟢</div>
+      <div class="pill basico" id="levelPill">Nivel BÃ¡sico ðŸŸ¢</div>
       <div class="progress"><div class="bar" id="bar"></div></div>
-      <div class="muted" id="tally">0/0 · 0 aciertos · 0 fallos · 0%</div>
+      <div class="muted" id="tally">0/0 Â· 0 aciertos Â· 0 fallos Â· 0%</div>
       <hr style="border:0;border-top:1px solid #e5e7eb;margin:10px 0">
 
       <div id="live" style="display:none">
-        <div class="qmeta"><span class="qid" id="qId">#—</span></div>
-        <div class="question" id="qText">…</div>
+        <div class="qmeta"><span class="qid" id="qId">#â€”</span></div>
+        <div class="question" id="qText">â€¦</div>
         <div class="answers" id="answers"></div>
         <div class="explain" id="why"></div>
         <div id="finalMsg" class="finalmsg" style="display:none"></div>
@@ -145,7 +145,7 @@ th{font-weight:700;color:#334155}
   </div>
 </div>
 
-<!-- ⚠️ v=4 para forzar recarga sin caché -->
+<!-- âš ï¸ v=4 para forzar recarga sin cachÃ© -->
 <script src="js/loader.js?v=4"></script>
 <script src="js/quiz.js?v=4"></script>
 </body>
