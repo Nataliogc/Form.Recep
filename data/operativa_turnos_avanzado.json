@@ -2,6 +2,7 @@
   {
     "id": "51",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué implica un error en el MR-HOSPE?",
     "options": [
@@ -18,6 +19,7 @@
   {
     "id": "52",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "Un huésped se queja de ruido a las 2:00 AM. ¿Qué debe hacer el recepcionista de noche?",
     "options": [
@@ -34,6 +36,7 @@
   {
     "id": "53",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Por qué se debe archivar el cierre de caja en un sobre firmado?",
     "options": [
@@ -50,6 +53,7 @@
   {
     "id": "54",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de mañana si una habitación VIP tiene avería y llega un cliente importante?",
     "options": [
@@ -66,6 +70,7 @@
   {
     "id": "55",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué se debe hacer si en el LOG CHANNEL se detecta que una reserva OTA no tiene garantía pero la tarifa lo exige?",
     "options": [
@@ -82,6 +87,7 @@
   {
     "id": "56",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "Un grupo tiene bono \"asume crédito\", pero no se refleja en PMS. ¿Qué riesgo hay?",
     "options": [
@@ -98,6 +104,7 @@
   {
     "id": "57",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Por qué es importante que el turno de noche deje listados impresos para la mañana?",
     "options": [
@@ -114,6 +121,7 @@
   {
     "id": "58",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de tarde si un huésped pide ampliar estancia, pero no hay disponibilidad?",
     "options": [
@@ -130,6 +138,7 @@
   {
     "id": "59",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué implica no registrar una incidencia de seguridad (ej.: altercado)?",
     "options": [
@@ -146,6 +155,7 @@
   {
     "id": "60",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debe verificar el turno de noche en las facturas a crédito de empresas?",
     "options": [
@@ -162,6 +172,7 @@
   {
     "id": "61",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "Un huésped llega de noche sin DNI. ¿Qué debe hacer el recepcionista?",
     "options": [
@@ -178,6 +189,7 @@
   {
     "id": "62",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de mañana si Housekeeping reporta que no puede limpiar habitaciones por falta de personal?",
     "options": [
@@ -194,6 +206,7 @@
   {
     "id": "63",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Por qué se debe revisar el channel manager al inicio del turno de mañana?",
     "options": [
@@ -210,6 +223,7 @@
   {
     "id": "64",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de noche si hay un fallo eléctrico en una zona?",
     "options": [
@@ -226,6 +240,7 @@
   {
     "id": "65",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué se debe hacer si un huésped pide no registrar un cargo en su factura por discreción?",
     "options": [
@@ -242,6 +257,7 @@
   {
     "id": "66",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué implica una \"reserva fuera de reléase\" no cobrada?",
     "options": [
@@ -258,6 +274,7 @@
   {
     "id": "67",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Por qué es clave que el turno de tarde verifique el estado de limpieza en PMS antes del check-in?",
     "options": [
@@ -274,6 +291,7 @@
   {
     "id": "68",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de noche si un huésped pierde la llave?",
     "options": [
@@ -290,6 +308,7 @@
   {
     "id": "69",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué se debe hacer si en el cierre de caja hay un descuadre?",
     "options": [
@@ -306,6 +325,7 @@
   {
     "id": "70",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de mañana si un huésped VIP tiene una petición especial no registrada en PMS?",
     "options": [
@@ -322,6 +342,7 @@
   {
     "id": "71",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de noche si una reserva de Hotelbeds no tiene teléfono?",
     "options": [
@@ -338,6 +359,7 @@
   {
     "id": "72",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de tarde si una reserva de Keytel es \"pago directo\"?",
     "options": [
@@ -354,6 +376,7 @@
   {
     "id": "73",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de mañana si una reserva de Synxis GDS incluye empresa y agencia?",
     "options": [
@@ -370,6 +393,7 @@
   {
     "id": "74",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de noche si una reserva de Booking.com es un no-show y no hay tarjeta válida?",
     "options": [
@@ -386,6 +410,7 @@
   {
     "id": "75",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debe hacer el turno de mañana si una reserva de Traveltino no tiene bono adjunto?",
     "options": [

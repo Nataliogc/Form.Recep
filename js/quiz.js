@@ -1,236 +1,105 @@
-const $=(s)=>document.querySelector(s), $$=(s)=>Array.from(document.querySelectorAll(s));
-let S={name:"", cat:"", level:"basico", qs:[], i:0, c:0, w:0, answered:false};
+// Cambia a tu dominio de Pages si usas otro:
+const SUBMIT_URL = 'https://form-recep.pages.dev/api/submit';
 
-// === Worker / GitHub (TU URL real) ===
-const REMOTE_BASE        = "https://formrecep-worker.comunicaciones-d2b.workers.dev";
-const REMOTE_RESULTS_URL = `${REMOTE_BASE}/results`;
-const REMOTE_SUBMIT_URL  = `${REMOTE_BASE}/submit`;
-// Fallback público por si el worker no responde
-const PUBLIC_RESULTS_RAW = "https://raw.githubusercontent.com/Nataliogc/Form.Recep/main/data/results.json";
+let state = { questions: [], idx: 0, right: 0, wrong: 0, current: null, player: '', dept: '', moduleSlug: '', level: 'basico' };
+function $(id){ return document.getElementById(id); }
 
-const niceLevel = (k)=> k==='basico'?'Nivel Básico 🟢' : k==='intermedio'?'Nivel Intermedio 🔹' : 'Nivel Avanzado 🔴';
-const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
-const LETTERS=["A","B","C","D"];
-const cleanOpt = s => (s==null?"":String(s).trim()).replace(/^(nan|none|null)$/i,"");
-
-async function initUI(){
-  const saved=localStorage.getItem('quiz_player_name'); if(saved){S.name=saved; $('#playerName').value=saved;}
-  const idx=await loadIndex();
-  const modSel=$('#moduleSelect'); modSel.innerHTML='<option value="">Selecciona módulo…</option>';
-  if(Object.keys(idx).length===0){
-    modSel.innerHTML+='<option value="" disabled>(Aún no hay módulos: genera datos)</option>';
-  }else{
-    for(const catSlug of Object.keys(idx)){
-      const name=idx[catSlug]?.name||catSlug;
-      modSel.innerHTML+=`<option value="${catSlug}">${name}</option>`;
-    }
-  }
-  modSel.addEventListener('change', e=>{ S.cat=e.target.value; refreshLB(); });
-  $('#levelSelect').addEventListener('change', e=>{ S.level=e.target.value; updatePill(); refreshLB(); });
-  $('#playerName').addEventListener('input', e=> S.name=e.target.value.trim());
-  $('#startBtn').addEventListener('click', start);
-  $('#exportBtn').addEventListener('click', exportCSV);
-  updatePill(); refreshLB(); renderResume();
+async function loadPool(slug, level){
+  const res = await fetch(`data/${slug}_${level}.json`, {cache:'no-store'});
+  if (!res.ok) throw new Error('No se pudo cargar el pool de preguntas');
+  return await res.json();
 }
 
-function updatePill(){
-  const pill=$('#levelPill');
-  pill.classList.remove('basico','intermedio','avanzado');
-  pill.classList.add(S.level);
-  pill.textContent = niceLevel(S.level);
-}
-
-function upd(){
-  const t=S.qs.length||1;
-  $('#bar').style.width=Math.round(S.i/t*100)+'%';
-  const pct = S.i ? Math.round((S.c/S.i)*100) : 0;
-  $('#tally').textContent=`${S.i}/${t} · ${S.c} aciertos · ${S.w} fallos · ${pct}%`;
-}
-
-function render(){
-  const q=S.qs[S.i]; if(!q) return;
-  $('#finalMsg').style.display='none'; $('#finalMsg').className='finalmsg';
-  $('#qId').textContent = `#${q.id || "-"}`;
-  $('#qText').textContent = q.text;
-
-  const A=$('#answers'); A.innerHTML='';
-  (q.options||[]).map(cleanOpt).forEach((opt,idx)=>{
+function renderQuestion(){
+  const q = state.questions[state.idx]; state.current = q;
+  $('qId').textContent = `#${state.idx+1}`; $('qText').textContent = q.text;
+  const answers = $('answers'); answers.innerHTML = '';
+  const letters = ['A','B','C','D'];
+  q.options.forEach((opt,i)=>{
     if(!opt) return;
-    const L=document.createElement('label');
-    L.className='answer';
-    L.innerHTML = `
-      <input type="radio" name="ans">
-      <span class="letter">${LETTERS[idx]||""}</span>
-      <div>${opt}</div>
-    `;
-    L.onclick=()=>sel(opt,q);
-    A.appendChild(L);
+    const wrap = document.createElement('label'); wrap.className = 'answer';
+    const input = document.createElement('input'); input.type='radio'; input.name='ans'; input.value=letters[i];
+    const letter = document.createElement('span'); letter.className='letter'; letter.textContent = letters[i];
+    const text = document.createElement('span'); text.textContent = opt;
+    wrap.appendChild(input); wrap.appendChild(letter); wrap.appendChild(text);
+    wrap.addEventListener('click', ()=> selectAnswer(letters[i]));
+    answers.appendChild(wrap);
   });
-
-  const why=$('#why'); why.style.display='none'; why.className='explain';
-  $('#next').disabled=true;
-  $('#finish').style.display = (S.i>=S.qs.length-1)?'inline-block':'none';
-  upd();
+  $('why').style.display='none'; $('next').disabled=true; $('finish').style.display='none';
+  const progress = ((state.idx)/state.questions.length)*100;
+  $('bar').style.width = progress+'%';
+  $('tally').textContent = `${state.idx}/${state.questions.length} · ${state.right} aciertos · ${state.wrong} fallos · ${state.questions.length?Math.round(state.right/state.questions.length*100):0}%`;
 }
 
-function sel(opt,q){
-  if(S.answered) return;
-  S.answered=true;
-  const ok=(opt===q.correct);
-  if(ok) S.c++; else S.w++;
-
-  $$('#answers .answer').forEach(l=>{
-    const t=l.innerText.replace(/^[A-D]\s*/,'').trim();
-    if(t===q.correct) l.classList.add('correct'); else l.classList.add('incorrect');
+function selectAnswer(letter){
+  if (!$('answers').children.length) return;
+  const q = state.current;
+  const nodes = Array.from($('answers').children);
+  const correctLetter = q.correct_letter || ['A','B','C','D'][q.options.indexOf(q.correct)];
+  nodes.forEach(n=> n.classList.remove('correct','incorrect'));
+  nodes.forEach(n=>{
+    const input = n.querySelector('input'); if (!input) return;
+    if (input.value === correctLetter) n.classList.add('correct');
+    if (input.value === letter && letter !== correctLetter) n.classList.add('incorrect');
   });
-
-  // Explicación SIEMPRE visible + Fuente
-  const why=$('#why');
-  why.className='explain ' + (ok?'ok':'bad');
-  const fuente = q.source && q.source.trim() ? q.source.trim() : 'sin especificar';
-  const texto  = q.why && q.why.trim() ? q.why.trim() : (ok ? 'Correcto.' : 'Respuesta incorrecta.');
-  why.innerHTML = `${texto}<small><b>Fuente:</b> ${fuente}</small>`;
-  why.style.display='block';
-
-  const last=S.i>=S.qs.length-1;
-  $('#next').disabled=last;
-  $('#finish').style.display = last ? 'inline-block' : 'none';
-  upd();
+  if (letter === correctLetter) { state.right++; showExplain(true); }
+  else { state.wrong++; showExplain(false); }
+  $('next').disabled=false; const last = state.idx >= state.questions.length-1;
+  $('finish').style.display = last ? 'inline-block' : 'none';
+  $('tally').textContent = `${state.idx}/${state.questions.length} · ${state.right} aciertos · ${state.wrong} fallos · ${state.questions.length?Math.round(state.right/state.questions.length*100):0}%`;
 }
 
-function nextQ(){ if(!S.answered){alert('Selecciona una respuesta');return;} S.i++; S.answered=false; render(); }
-
-/* ===== Guardado y lectura REMOTOS ===== */
-async function remoteReadAll(){
-  try{
-    const r = await fetch(REMOTE_RESULTS_URL, {cache:'no-store'});
-    const j = await r.json();
-    if (j && j.ok && Array.isArray(j.data)) return j.data;
-  }catch(_){}
-  try{
-    const r = await fetch(PUBLIC_RESULTS_RAW, {cache:'no-store'});
-    if (r.ok) return await r.json();
-  }catch(_){}
-  return [];
+function showExplain(ok){
+  const box = $('why'); box.className = 'explain ' + (ok?'ok':'bad'); box.style.display = 'block';
+  box.innerHTML = `${ok?'<b>¡Correcto!</b>':'<b>No es correcto.</b>'} <small>${state.current.why||''}</small>`;
 }
-async function remoteAppend(entry){
+
+function nextQ(){ state.idx++; if (state.idx < state.questions.length) renderQuestion(); }
+
+async function finish(){
+  $('bar').style.width = '100%';
+  const pct = Math.round((state.right/state.questions.length)*100);
+  const box = $('finalMsg'); box.style.display='block';
+  let cls='ok', title='¡Muy bien!'; if (pct < 50) { cls='bad'; title='Toca reforzar'; } else if (pct < 80) { cls='warn'; title='¡Buen trabajo!'; }
+  box.className = 'finalmsg ' + cls; box.innerHTML = `<h4>${title}</h4><p>Has obtenido ${pct}% de acierto.</p>`;
   try{
-    const r = await fetch(REMOTE_SUBMIT_URL, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(entry)
+    await fetch(SUBMIT_URL, {
+      method:'POST', headers:{'content-type':'application/json'},
+      body: JSON.stringify({ name: state.player, dept: state.dept, module: state.moduleSlug, level: state.level, right: state.right, wrong: state.wrong, total: state.questions.length, pct })
     });
-    const j = await r.json();
-    return !!(j && j.ok);
-  }catch(_){
-    return false;
-  }
+  }catch(e){ console.error('No se pudo enviar el resultado', e); }
 }
-
-/* ===== Mensaje final bonito + remoto ===== */
-function finish(){
-  const total = S.qs.length || 1;
-  const pct   = Math.round((S.c/total)*100);
-
-  const entry={name:S.name,module:S.cat,level:S.level,score:pct,correct:S.c,wrong:S.w,date:new Date().toISOString()};
-
-  // Enviar al backend (no bloquea UI si falla)
-  remoteAppend(entry).then(ok=>{
-    if(!ok) console.warn("No se pudo guardar en remoto.");
-    refreshLB();    // recarga ranking remoto
-    renderResume(); // recarga resumen remoto
-  });
-
-  let msgHTML="", tipo="warn";
-  if(pct < 50){
-    tipo="bad";
-    msgHTML = `
-      <h4>Necesitas mejorar un poco más 💡</h4>
-      <p>Tranquilo, esto no es un examen — es una oportunidad para reforzar conocimientos.<br>
-      Repasa el módulo con calma, pregunta cualquier duda y verás cómo cada intento te acerca a la excelencia.</p>
-    `;
-  } else if(pct < 95){
-    tipo="warn";
-    msgHTML = `
-      <h4>¡Vas por muy buen camino! 🚀</h4>
-      <p>Aún hay detalles que puedes pulir, pero tu progreso es evidente.<br>
-      Con un poco más de práctica dominarás completamente este módulo.</p>
-    `;
-  } else if(pct >= 96){
-    tipo="ok";
-    msgHTML = `
-      <h4>¡Enhorabuena! 🌟</h4>
-      <p>Tu resultado refleja un gran compromiso y dominio del trabajo diario.<br>
-      Gracias por tu esfuerzo y por contribuir a la excelencia de nuestros hoteles.</p>
-    `;
-  } else {
-    tipo="warn";
-    msgHTML = `
-      <h4>Resultado excelente 👏</h4>
-      <p>Estás a las puertas de la excelencia. Un repaso final y lo tienes.</p>
-    `;
-  }
-
-  const box=$('#finalMsg');
-  box.className='finalmsg '+(tipo==='ok'?'ok':tipo==='bad'?'bad':'warn');
-  box.innerHTML = `
-    <div><b>Resultado:</b> ${pct}% · ${S.c}/${total} aciertos</div>
-    <div style="height:10px"></div>
-    ${msgHTML}
-  `;
-  box.style.display='block';
-  $('#finish').style.display='none';
-}
-
-/* Portada: ocultarla al empezar */
-function hideIntro(){ const b=$('#introBlock'); if(b) b.style.display='none'; }
 
 async function start(){
-  if(!S.name){alert('Debes escribir tu nombre');return;}
-  if(!S.cat){alert('Selecciona un módulo');return;}
-  localStorage.setItem('quiz_player_name', S.name);
-
+  const name = $('playerName').value.trim();
+  const dept = $('deptSelect').value.trim();
+  const catSlug = $('moduleSelect').value.trim();
+  const level = $('levelSelect').value.trim() || 'basico';
+  if (!name) { alert('Indica tu nombre'); return; }
+  if (!dept) { alert('Selecciona un departamento'); return; }
+  if (!catSlug) { alert('Selecciona un módulo'); return; }
+  state = { questions:[], idx:0, right:0, wrong:0, current:null, player:name, dept, moduleSlug:catSlug, level };
+  const pill = $('levelPill'); const names = { basico:'Nivel Básico 🟢', intermedio:'Nivel Intermedio 🔹', avanzado:'Nivel Avanzado 🔴' };
+  pill.textContent = names[level] || level; pill.className = 'pill ' + (level||'basico');
+  $('status').style.display='block'; $('status').textContent='Cargando preguntas…';
   try{
-    const pool=await loadPool(S.cat,S.level);
-    S.qs=shuffle([...pool]);
-  }catch(e){ alert('No se pudo cargar preguntas.\n\n'+e.message); return; }
-
-  hideIntro();
-  S.i=0; S.c=0; S.w=0; S.answered=false;
-  $('#live').style.display='block'; render(); upd();
+    state.questions = await loadPool(catSlug, level);
+    document.getElementById('introBlock').style.display='none';
+    document.getElementById('live').style.display='block';
+    $('status').style.display='none';
+    renderQuestion();
+  }catch(err){ console.error(err); $('status').textContent='No se pudieron cargar las preguntas.'; }
 }
 
-/* Ranking / resumen (remotos) */
-async function refreshLB(){
-  const body=$('#lbBody');
-  const arr=await remoteReadAll();
-  const filtered = arr
-    .filter(r => (!S.cat || r.module===S.cat) && (!S.level || r.level===S.level))
-    .sort((a,b)=> b.score-a.score || new Date(a.date)-new Date(b.date))
-    .slice(0,50);
-  if(!filtered.length){
-    body.innerHTML=`<tr><td colspan="5" class="muted">Sin resultados todavía.</td></tr>`;
-    return;
-  }
-  body.innerHTML = filtered.map((r,i)=>{ const d=new Date(r.date).toLocaleString('es-ES'); return `<tr><td>${i+1}</td><td>${r.name}</td><td>${r.module}</td><td><b>${r.score}</b></td><td class="muted">${d}</td></tr>`; }).join('');
-}
-
-async function renderResume(){
-  const arr=await remoteReadAll();
-  const tbody=$('#resumeBody'); if(!tbody) return;
-  if(!arr.length){ tbody.innerHTML=`<tr><td colspan="5" class="muted">Sin participaciones aún.</td></tr>`; return; }
-  const ordered = arr.sort((a,b)=> new Date(a.date)-new Date(b.date));
-  tbody.innerHTML = ordered.map((r,i)=>{ const d=new Date(r.date).toLocaleString('es-ES'); return `<tr><td>${i+1}</td><td>${r.name}</td><td>${r.module}</td><td>${r.score}</td><td class="muted">${d}</td></tr>`; }).join('');
-}
-
-function exportCSV(){ /* mantiene export local desde memoria remota */
-  remoteReadAll().then(arr=>{
-    const header=['Nombre','Módulo','Nivel','Puntuación','Aciertos','Fallos','Fecha'];
-    const rows=arr.map(r=>[r.name,r.module||'',r.level,r.score,r.correct??'',r.wrong??'',new Date(r.date).toLocaleString('es-ES')]);
-    const csv=header.join(';')+'\n'+rows.map(r=>r.join(';')).join('\n');
-    const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}); const a=document.createElement('a');
-    a.href=URL.createObjectURL(blob); a.download='resultados_quiz.csv'; a.click();
+function wire(){
+  document.getElementById('startBtn').addEventListener('click', start);
+  document.getElementById('exportBtn')?.addEventListener('click', ()=>{
+    const pct = state.questions.length ? Math.round(state.right/state.questions.length*100) : 0;
+    const row = `${state.player};${state.dept};${state.moduleSlug};${pct}%\n`;
+    const blob = new Blob([`Nombre;Dept.;Módulo;Punt.\n`+row], {type:'text/csv;charset=utf-8;'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = 'resultados.csv'; a.click(); URL.revokeObjectURL(a.href);
   });
 }
-
-document.addEventListener('DOMContentLoaded', initUI);
+window.addEventListener('DOMContentLoaded', wire);
+window.nextQ = nextQ; window.finish = finish;

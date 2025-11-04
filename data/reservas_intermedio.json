@@ -2,6 +2,7 @@
   {
     "id": "101",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué riesgo representa no adjuntar el bono en la facturación de una reserva de Keytel a crédito?",
     "options": [
@@ -18,6 +19,7 @@
   {
     "id": "102",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Por qué es crítico diferenciar entre Expedia Collect y Hotel Collect?",
     "options": [
@@ -34,6 +36,7 @@
   {
     "id": "103",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "En una reserva de Serhs, ¿por qué es importante registrar la subagencia real en el PMS?",
     "options": [
@@ -50,6 +53,7 @@
   {
     "id": "104",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué debes hacer si una reserva GDS de Synxis incluye empresa y agencia?",
     "options": [
@@ -66,6 +70,7 @@
   {
     "id": "105",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué debes hacer si una reserva de HRS corresponde a una agencia externa (ej.: BCD Travel)?",
     "options": [
@@ -82,6 +87,7 @@
   {
     "id": "106",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué debes hacer si una reserva de Webhotel/Synergy incluye SPA?",
     "options": [
@@ -98,6 +104,7 @@
   {
     "id": "107",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Cuándo se debe cobrar una reserva de Booking.com con tarifa No Reembolsable (NRF)?",
     "options": [
@@ -114,6 +121,7 @@
   {
     "id": "108",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué debes hacer si una reserva de Booking.com con tarifa EBI se recibe con menos de 7 días para la llegada?",
     "options": [
@@ -130,6 +138,7 @@
   {
     "id": "109",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué procedimiento se debe seguir ante un no-show en Booking.com?",
     "options": [
@@ -146,6 +155,7 @@
   {
     "id": "110",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué comisión se aplica a las reservas de Viajes El Corte Inglés marcadas como PYME?",
     "options": [
@@ -162,6 +172,7 @@
   {
     "id": "111",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Cómo se factura una reserva de Keytel con pago directo?",
     "options": [
@@ -178,6 +189,7 @@
   {
     "id": "112",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Por qué es importante solicitar el teléfono en el check-in si no viene en la reserva?",
     "options": [
@@ -194,6 +206,7 @@
   {
     "id": "113",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué debes hacer si no recibes el bono de una reserva de W2M?",
     "options": [
@@ -210,6 +223,7 @@
   {
     "id": "114",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué debes hacer si una reserva de Smartbox incluye tratamiento de spa?",
     "options": [
@@ -226,6 +240,7 @@
   {
     "id": "115",
     "categoria": "Reservas",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Por qué es necesario corregir el régimen en reservas de Weekendesk?",
     "options": [

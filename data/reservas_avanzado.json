@@ -2,6 +2,7 @@
   {
     "id": "116",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "Un cliente llega con un bono de Wonderbox. ¿Qué acción es obligatoria antes de crear la reserva?",
     "options": [
@@ -18,6 +19,7 @@
   {
     "id": "117",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué consecuencia tiene facturar a un cliente de Hotelbeds en lugar de a la agencia?",
     "options": [
@@ -34,6 +36,7 @@
   {
     "id": "118",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de HRS aparece como “HRS - GROUP” pero el bono indica otro pagador?",
     "options": [
@@ -50,6 +53,7 @@
   {
     "id": "119",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Por qué es esencial revisar las modificaciones posteriores en reservas de Keytel?",
     "options": [
@@ -66,6 +70,7 @@
   {
     "id": "120",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué implica no corregir el régimen en una reserva de Smartbox que incluye desayuno?",
     "options": [
@@ -82,6 +87,7 @@
   {
     "id": "121",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de Booking.com con tarifa EBI se recibe con 10 días de antelación?",
     "options": [
@@ -98,6 +104,7 @@
   {
     "id": "122",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué riesgo hay si no se fuerza SoulGuest en una reserva directa sin email?",
     "options": [
@@ -114,6 +121,7 @@
   {
     "id": "123",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de Webhotel/Synergy incluye una botella de vino como extra?",
     "options": [
@@ -130,6 +138,7 @@
   {
     "id": "124",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Por qué es importante registrar la subagencia en reservas de Serhs?",
     "options": [
@@ -146,6 +155,7 @@
   {
     "id": "125",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de Expedia Collect no tiene tarjeta virtual visible?",
     "options": [
@@ -162,6 +172,7 @@
   {
     "id": "126",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué significa que una reserva de Synxis sea “GDS Amadeus”?",
     "options": [
@@ -178,6 +189,7 @@
   {
     "id": "127",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de Bono Cumbria no tiene número de bono en recepción?",
     "options": [
@@ -194,6 +206,7 @@
   {
     "id": "128",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Por qué es crítico archivar el bono de Wonderbox junto a la factura?",
     "options": [
@@ -210,6 +223,7 @@
   {
     "id": "129",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de Traveltino no incluye comisión en el PMS?",
     "options": [
@@ -226,6 +240,7 @@
   {
     "id": "130",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué implica no registrar una petición especial (ej.: cuna) en el PMS?",
     "options": [
@@ -242,6 +257,7 @@
   {
     "id": "131",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de Weekendesk incluye cena romántica?",
     "options": [
@@ -258,6 +274,7 @@
   {
     "id": "132",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Por qué es importante que el número de bono de Smartbox esté en las observaciones del PMS?",
     "options": [
@@ -274,6 +291,7 @@
   {
     "id": "133",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de Webhotel/Synergy no está pagada y es No Reembolsable?",
     "options": [
@@ -290,6 +308,7 @@
   {
     "id": "134",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué riesgo hay si se cobra a un cliente de W2M en recepción?",
     "options": [
@@ -306,6 +325,7 @@
   {
     "id": "135",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de HRS es de pago directo pero no tiene tarjeta?",
     "options": [
@@ -322,6 +342,7 @@
   {
     "id": "136",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Por qué es esencial revisar el Log Channel al final del turno?",
     "options": [
@@ -338,6 +359,7 @@
   {
     "id": "137",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de Booking.com tiene apellidos incorrectos?",
     "options": [
@@ -354,6 +376,7 @@
   {
     "id": "138",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué implica no pulsar “Asume crédito” en una reserva de Smartbox?",
     "options": [
@@ -370,6 +393,7 @@
   {
     "id": "139",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de EgoExperiencias no tiene marca de cofre en el PMS?",
     "options": [
@@ -386,6 +410,7 @@
   {
     "id": "140",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Por qué es importante que las noches adicionales en Smartbox se registren solo como alojamiento?",
     "options": [
@@ -402,6 +427,7 @@
   {
     "id": "141",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de Viajes El Corte Inglés no tiene número de bono?",
     "options": [
@@ -418,6 +444,7 @@
   {
     "id": "142",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué consecuencia tiene facturar en bruto una reserva de Hotelbeds?",
     "options": [
@@ -434,6 +461,7 @@
   {
     "id": "143",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de Keytel tiene dos bonos adjuntos?",
     "options": [
@@ -450,6 +478,7 @@
   {
     "id": "144",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Por qué es importante que el desglose diario en Weekendesk coincida con el valor del bono?",
     "options": [
@@ -466,6 +495,7 @@
   {
     "id": "145",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de Serhs no especifica si es prepago o crédito?",
     "options": [
@@ -482,6 +512,7 @@
   {
     "id": "146",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué implica no archivar el bono de Traveltino?",
     "options": [
@@ -498,6 +529,7 @@
   {
     "id": "147",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de Webhotel/Synergy incluye flores pero no aparecen en el PMS?",
     "options": [
@@ -514,6 +546,7 @@
   {
     "id": "148",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Por qué es esencial verificar el tipo de tarifa en Booking.com al recibir la reserva?",
     "options": [
@@ -530,6 +563,7 @@
   {
     "id": "149",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué debes hacer si una reserva de Expedia Collect tiene una VCC caducada?",
     "options": [
@@ -546,6 +580,7 @@
   {
     "id": "150",
     "categoria": "Reservas",
+    "department": "General",
     "level": "avanzado",
     "text": "¿Qué riesgo hay si se factura a nombre de “Serhs” en lugar de la subagencia real?",
     "options": [
