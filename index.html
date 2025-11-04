@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Cuestionario · Recepción</title>
+<title>Sesión de Crecimiento · Formación</title>
 <style>
 :root{--bg:#f7f9fc;--card:#fff;--ink:#0f172a;--muted:#475569;--brand:#0b5faf;--brand2:#00b0ff;--shadow:0 10px 25px rgba(2,6,23,.08),0 3px 8px rgba(2,6,23,.05)}
 *{box-sizing:border-box}
@@ -21,56 +21,41 @@ header{background:#fff;box-shadow:var(--shadow);padding:18px 16px;margin-bottom:
 .panel{padding:18px}
 .muted{color:#475569}
 
-/* Nivel pill */
 .pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 10px;font-size:12px}
 .pill.basico{background:#e8fff1;color:#14532d}
 .pill.intermedio{background:#eef2ff;color:#1e3a8a}
 .pill.avanzado{background:#fff1f2;color:#7f1d1d}
 
-/* Inputs */
 input,select{width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:12px;background:#fff;font-size:15px}
 button{border:0;border-radius:12px;padding:10px 14px;font-weight:700;background:#0b5faf;color:#fff;box-shadow:var(--shadow);cursor:pointer}
 button.secondary{background:#e5e7eb;color:#111827;box-shadow:none}
 button.ghost{background:transparent;color:#0b5faf;box-shadow:none}
 
-/* Progreso */
 .progress{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:6px 0 12px}
 .bar{height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand2));transition:width .25s}
 
-/* Pregunta + respuestas alineadas izquierda */
 .question{font-size:20px;font-weight:800;margin:0 0 10px}
 .answers{display:grid;gap:10px}
-.answer{
-  display:grid; grid-template-columns:22px 28px 1fr; align-items:center;
-  gap:12px; border:1px solid #e5e7eb; border-radius:14px; padding:12px;
-  background:#fff; cursor:pointer; text-align:left;
-}
+.answer{display:grid; grid-template-columns:22px 28px 1fr; align-items:center;gap:12px; border:1px solid #e5e7eb; border-radius:14px; padding:12px;background:#fff; cursor:pointer; text-align:left}
 .answer input{width:18px;height:18px;margin:0}
 .letter{min-width:28px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;border-radius:999px;background:#e2e8f0;font-size:12px}
 .answer.correct{border-color:#16a34a;background:#f0fdf4}
 .answer.incorrect{border-color:#fecaca;background:#fff}
 .answer.correct .letter{background:#bbf7d0}
 
-/* Explicación (siempre) */
 .explain{margin-top:10px;padding:12px;border-radius:12px;display:none;border:1px dashed currentColor;background:#fff}
 .explain.ok{color:#166534;background:#f0fdf4;border-color:#86efac}
 .explain.bad{color:#991b1b;background:#fef2f2;border-color:#fecaca}
 .explain small{display:block;color:#334155;opacity:.95;margin-top:6px}
 
-/* Tablas */
 table{width:100%;border-collapse:collapse}
 th,td{padding:10px 8px;border-bottom:1px solid #eef2f7;text-align:left;font-size:14px}
 th{font-weight:700;color:#334155}
 
-/* Meta */
 .qmeta{display:flex;align-items:center;gap:8px;margin:0 0 6px}
 .qid{font:12px/1 ui-monospace,Consolas,Menlo;background:#eef2ff;color:#3730a3;padding:3px 7px;border-radius:8px;border:1px solid #c7d2fe}
 
-/* Cuadro de resultado final – bonito */
-.finalmsg{
-  margin-top:20px;padding:20px;border-radius:16px;border:1px solid #e5e7eb;background:#fff;
-  font-size:16px;line-height:1.5;box-shadow:0 4px 15px rgba(0,0,0,.05);transition:all .3s ease
-}
+.finalmsg{margin-top:20px;padding:20px;border-radius:16px;border:1px solid #e5e7eb;background:#fff;font-size:16px;line-height:1.5;box-shadow:0 4px 15px rgba(0,0,0,.05);transition:all .3s ease}
 .finalmsg h4{margin:0 0 6px;font-size:18px;font-weight:700}
 .finalmsg p{margin:0}
 .finalmsg.ok{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#86efac;color:#14532d}
@@ -89,37 +74,19 @@ th{font-weight:700;color:#334155}
       <img src="img/logo_cumbria.png" alt="Cumbria Spa & Hotel">
     </div>
     <div>
-      <h1>Cuestionario · Recepción</h1>
-      <p class="muted"><em>Formación interna para Recepción y Calidad</em></p>
+      <h1>Sesión de Crecimiento · Formación</h1>
+      <p class="muted"><em>Enfocada en la Excelencia del Servicio</em></p>
       <div class="gold"></div>
     </div>
   </div>
 </header>
 
 <div class="container">
-
-  <!-- PORTADA (solo al inicio) -->
+  <!-- PORTADA -->
   <section class="card panel" id="introBlock" style="margin-bottom:18px">
     <h3 style="margin:0 0 8px">¿Por qué realizamos estas pruebas?</h3>
     <p><b>Sercotel Guadiana y Cumbria Spa&Hotel</b></p>
     <p>Estas pruebas no son un examen para “aprobar o suspender”, sino una herramienta para crecer juntos.</p>
-    <div style="display:grid;grid-template-columns:24px 1fr;gap:8px;align-items:start">
-      <div>🔍</div>
-      <div>
-        <p style="margin:.2rem 0"><b>¿Qué buscamos?</b></p>
-        <ul style="margin:.3rem 0 .8rem">
-          <li><b>Refuerzo del conocimiento clave</b>: atención al huésped, uso del PMS, seguridad, etc.</li>
-          <li><b>Estándares comunes</b> entre Guadiana y Cumbria, sea cual sea el turno.</li>
-          <li><b>Detección de mejoras</b>: formación y apoyo donde haga falta.</li>
-          <li><b>Reconocer buenas prácticas</b> que elevan la experiencia del huésped.</li>
-          <li><b>Cultura de excelencia</b>: la excelencia es un hábito y cada detalle cuenta.</li>
-        </ul>
-        <div style="padding:10px;border:1px dashed #cbd5e1;border-radius:12px;background:#f8fafc">
-          <b>Mensaje al equipo:</b> “No se trata de memorizar: recordamos por qué lo hacemos
-          y cómo impacta en nuestros huéspedes. ¡Gracias por vuestro compromiso!”
-        </div>
-      </div>
-    </div>
   </section>
 
   <div class="grid">
@@ -129,24 +96,31 @@ th{font-weight:700;color:#334155}
       <input id="playerName" placeholder="Nombre y apellidos (obligatorio)">
       <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
 
-      <h3 style="margin:0 0 8px">2) Módulo y nivel</h3>
-      <select id="moduleSelect"><option value="">Selecciona módulo…</option></select>
+      <h3 style="margin:0 0 8px">2) Departamento</h3>
+      <select id="deptSelect"><option value="">Selecciona departamento…</option></select>
+
       <div style="height:8px"></div>
+      <h3 style="margin:0 0 8px">3) Módulo</h3>
+      <select id="moduleSelect"><option value="">Selecciona módulo…</option></select>
+
+      <div style="height:8px"></div>
+      <h3 style="margin:0 0 8px">4) Nivel</h3>
       <select id="levelSelect">
         <option value="basico">Nivel Básico 🟢</option>
         <option value="intermedio">Nivel Intermedio 🔹</option>
         <option value="avanzado">Nivel Avanzado 🔴</option>
       </select>
+
       <div style="display:flex;gap:8px;margin-top:12px"><button id="startBtn">Comenzar</button></div>
       <div id="status" class="muted" style="margin-top:8px;display:none"></div>
 
       <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
       <h3>🏆 Ranking</h3>
-      <table><thead><tr><th>#</th><th>Nombre</th><th>Módulo</th><th>Punt.</th><th>Fecha</th></tr></thead><tbody id="lbBody"><tr><td colspan="5" class="muted">Sin resultados todavía.</td></tr></tbody></table>
+      <table><thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>Módulo</th><th>Punt.</th><th>Fecha</th></tr></thead><tbody id="lbBody"><tr><td colspan="6" class="muted">Sin resultados todavía.</td></tr></tbody></table>
 
       <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
       <h3>📈 Resumen (automático)</h3>
-      <table><thead><tr><th>#</th><th>Nombre</th><th>Módulo</th><th>Punt.</th><th>Fecha</th></tr></thead><tbody id="resumeBody"><tr><td colspan="5" class="muted">Sin participaciones aún.</td></tr></tbody></table>
+      <table><thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>Módulo</th><th>Punt.</th><th>Fecha</th></tr></thead><tbody id="resumeBody"><tr><td colspan="6" class="muted">Sin participaciones aún.</td></tr></tbody></table>
       <div style="margin-top:10px"><button id="exportBtn" class="ghost">Descargar Excel (CSV)</button></div>
     </aside>
 
@@ -171,8 +145,8 @@ th{font-weight:700;color:#334155}
   </div>
 </div>
 
-<!-- ⚠️ v=3 para forzar recarga sin caché -->
-<script src="js/loader.js?v=20251104_150258"></script>
-<script src="js/quiz.js?v=20251104_150258"></script>
+<!-- ⚠️ v=4 para forzar recarga sin caché -->
+<script src="js/loader.js?v=4"></script>
+<script src="js/quiz.js?v=4"></script>
 </body>
 </html>
