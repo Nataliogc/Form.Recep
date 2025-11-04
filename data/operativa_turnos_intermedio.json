@@ -2,6 +2,7 @@
   {
     "id": "26",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Por qué es importante revisar el rack al inicio del turno?",
     "options": [
@@ -18,6 +19,7 @@
   {
     "id": "27",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué debe hacer el turno de mañana si un huésped quiere hacer late check-out?",
     "options": [
@@ -34,6 +36,7 @@
   {
     "id": "28",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Por qué se revisan las reservas \"por segunda vez\" en el turno de mañana?",
     "options": [
@@ -50,6 +53,7 @@
   {
     "id": "29",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué implica \"evitar huecos difíciles de asignar\" al distribuir habitaciones?",
     "options": [
@@ -66,6 +70,7 @@
   {
     "id": "30",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué debe hacer el turno de tarde si un huésped amplía su estancia?",
     "options": [
@@ -82,6 +87,7 @@
   {
     "id": "31",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Por qué es clave comunicar a A&B el número de huéspedes con pensión?",
     "options": [
@@ -98,6 +104,7 @@
   {
     "id": "32",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué debe hacer el turno de noche con las llegadas después de imprimir el listado para Housekeeping?",
     "options": [
@@ -114,6 +121,7 @@
   {
     "id": "33",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué se debe verificar al facturar a una agencia (TTOO)?",
     "options": [
@@ -130,6 +138,7 @@
   {
     "id": "34",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Por qué se debe revisar el LOG CHANNEL al final del turno?",
     "options": [
@@ -146,6 +155,7 @@
   {
     "id": "35",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué debe hacer el turno de mañana si un huésped llega temprano y su habitación no está lista?",
     "options": [
@@ -162,6 +172,7 @@
   {
     "id": "36",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué prioridad tiene el mantenimiento según el turno de mañana?",
     "options": [
@@ -178,6 +189,7 @@
   {
     "id": "37",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué significa \"Rv. Org. Suite\" en observaciones?",
     "options": [
@@ -194,6 +206,7 @@
   {
     "id": "38",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué debe hacer el turno de tarde con los grupos?",
     "options": [
@@ -210,6 +223,7 @@
   {
     "id": "39",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Por qué es importante el relevo verbal al final del turno?",
     "options": [
@@ -226,6 +240,7 @@
   {
     "id": "40",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué se debe hacer si un walk-in llega de noche en estado de embriaguez?",
     "options": [
@@ -242,6 +257,7 @@
   {
     "id": "41",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué implica \"cuadrar la caja\"?",
     "options": [
@@ -258,6 +274,7 @@
   {
     "id": "42",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué se debe hacer con las reservas que no cumplen requisitos a las 21:00?",
     "options": [
@@ -274,6 +291,7 @@
   {
     "id": "43",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué se debe hacer si un huésped se queja durante el turno de tarde?",
     "options": [
@@ -290,6 +308,7 @@
   {
     "id": "44",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Por qué se debe mantener la agenda de novedades limpia?",
     "options": [
@@ -306,6 +325,7 @@
   {
     "id": "45",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué se debe hacer con los no shows en el turno de noche?",
     "options": [
@@ -322,6 +342,7 @@
   {
     "id": "46",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "Un huésped con reserva no garantizada no llega a las 21:00. ¿Qué debe hacer el turno de tarde?",
     "options": [
@@ -338,6 +359,7 @@
   {
     "id": "47",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué riesgo hay si no se actualiza el estado de una habitación reparada por mantenimiento?",
     "options": [
@@ -354,6 +376,7 @@
   {
     "id": "48",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "Un huésped pide factura a nombre de su empresa, pero pagó en efectivo. ¿Qué debe verificar el recepcionista?",
     "options": [
@@ -370,6 +393,7 @@
   {
     "id": "49",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Por qué es crítico revisar las \"características extendidas\" (Sup, Cun) al asignar habitaciones?",
     "options": [
@@ -386,6 +410,7 @@
   {
     "id": "50",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "intermedio",
     "text": "¿Qué debe hacer el turno de noche si recibe una llamada de emergencia médica?",
     "options": [

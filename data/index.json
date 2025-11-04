@@ -1,6 +1,19 @@
 {
+  "errores_comunes": {
+    "name": "Errores Comunes",
+    "dept": "General",
+    "levels": {
+      "avanzado": {
+        "agg": "errores_comunes_avanzado.json",
+        "blocks_dir": "errores_comunes/blocks/avanzado/",
+        "count": 30,
+        "block_size": 25
+      }
+    }
+  },
   "operativa_turnos": {
     "name": "Operativa Turnos",
+    "dept": "General",
     "levels": {
       "avanzado": {
         "agg": "operativa_turnos_avanzado.json",
@@ -24,6 +37,7 @@
   },
   "reservas": {
     "name": "Reservas",
+    "dept": "General",
     "levels": {
       "avanzado": {
         "agg": "reservas_avanzado.json",

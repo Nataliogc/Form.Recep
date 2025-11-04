@@ -2,6 +2,7 @@
   {
     "id": "1",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿A qué hora se recomienda que llegue el recepcionista para el turno de mañana?",
     "options": [
@@ -18,6 +19,7 @@
   {
     "id": "2",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué debe hacer el recepcionista al inicio del turno de mañana?",
     "options": [
@@ -34,6 +36,7 @@
   {
     "id": "3",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué listados se imprimen al inicio del turno de mañana?",
     "options": [
@@ -50,6 +53,7 @@
   {
     "id": "4",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué significa \"FdS\" en los manuales?",
     "options": [
@@ -66,6 +70,7 @@
   {
     "id": "5",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Está permitido coger dinero de la caja dejando un vale?",
     "options": [
@@ -82,6 +87,7 @@
   {
     "id": "6",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué se debe hacer al finalizar el turno de tarde?",
     "options": [
@@ -98,6 +104,7 @@
   {
     "id": "7",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué es un \"walk-in\"?",
     "options": [
@@ -114,6 +121,7 @@
   {
     "id": "8",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿A qué hora se revisan las llegadas pendientes en el turno de tarde?",
     "options": [
@@ -130,6 +138,7 @@
   {
     "id": "9",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué debe hacer el turno de noche antes del cierre?",
     "options": [
@@ -146,6 +155,7 @@
   {
     "id": "10",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué se imprime para Housekeeping en el turno de noche?",
     "options": [
@@ -162,6 +172,7 @@
   {
     "id": "11",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué se debe verificar al hacer check-in nocturno?",
     "options": [
@@ -178,6 +189,7 @@
   {
     "id": "12",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué significa \"Sup\" en las observaciones de una reserva?",
     "options": [
@@ -194,6 +206,7 @@
   {
     "id": "13",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Quién debe ser informado de la llegada de un cliente VIP?",
     "options": [
@@ -210,6 +223,7 @@
   {
     "id": "14",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué se debe hacer con las facturas a crédito en el turno de noche?",
     "options": [
@@ -226,6 +240,7 @@
   {
     "id": "15",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué se debe hacer si un huésped pide late check-out?",
     "options": [
@@ -242,6 +257,7 @@
   {
     "id": "16",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué se debe hacer con los objetos perdidos de habitaciones con salida del día?",
     "options": [
@@ -258,6 +274,7 @@
   {
     "id": "17",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué se revisa en el LOG CHANNEL al final del turno de tarde?",
     "options": [
@@ -274,6 +291,7 @@
   {
     "id": "18",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué debe hacer el turno de mañana con las salidas?",
     "options": [
@@ -290,6 +308,7 @@
   {
     "id": "19",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué se debe hacer al asignar habitaciones en el turno de mañana?",
     "options": [
@@ -306,6 +325,7 @@
   {
     "id": "20",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué se debe hacer si el personal de limpieza no puede limpiar todas las habitaciones?",
     "options": [
@@ -322,6 +342,7 @@
   {
     "id": "21",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué se debe hacer con las reservas fuera de reléase en el turno de mañana?",
     "options": [
@@ -338,6 +359,7 @@
   {
     "id": "22",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué se debe hacer al finalizar el turno de noche?",
     "options": [
@@ -354,6 +376,7 @@
   {
     "id": "23",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué se debe revisar en el MR-HOSPE al final de los turnos?",
     "options": [
@@ -370,6 +393,7 @@
   {
     "id": "24",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué se debe hacer si hay un incendio?",
     "options": [
@@ -386,6 +410,7 @@
   {
     "id": "25",
     "categoria": "Operativa Turnos",
+    "department": "General",
     "level": "basico",
     "text": "¿Qué se debe hacer con los correos electrónicos durante el turno?",
     "options": [
