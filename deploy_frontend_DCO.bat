@@ -1,32 +1,13 @@
 @echo off
 chcp 65001 >nul
 setlocal EnableExtensions EnableDelayedExpansion
-
 set "ROOT=%~dp0"
-set "TOOLS=%ROOT%tools"
-set "EXCEL=%ROOT%plantilla_preguntas_unica.xlsx"
 set "BRANCH=main"
-
-REM Detecta Python
-set "PYCMD=py -3"
-%PYCMD% -c "print('ok')" 1>nul 2>nul || ( set "PYCMD=python" )
-%PYCMD% -c "print('ok')" 1>nul 2>nul || ( echo Python no encontrado & exit /b 1 )
-
-REM Generar data/ si hay Excel
-if exist "%EXCEL%" (
-  pushd "%TOOLS%"
-  %PYCMD% "xlsx_to_json_single_FIXED.py" --xlsx "%EXCEL%"
-  if errorlevel 1 ( echo Error generando JSON & popd & exit /b 1 )
-  popd
-)
-
-REM Commit + push (DCO)
-git -C "%ROOT%" fetch origin
-git -C "%ROOT%" checkout %BRANCH% 2>nul
-git -C "%ROOT%" pull --rebase origin %BRANCH%
+set "VER=%date:~-4%%date:~3,2%%date:~0,2%_%time:~0,2%%time:~3,2%%time:~6,2%"
+set "VER=!VER: =0!"
+powershell -NoProfile -Command "(Get-Content '%ROOT%index.html') -replace '\?v=\d+','?v=%VER%' | Set-Content '%ROOT%index.html'"
 git -C "%ROOT%" add -A
-git -C "%ROOT%" commit -s -m "chore: publish (%date% %time%)" 1>nul 2>nul
+git -C "%ROOT%" commit -s -m "chore: bump assets v=%VER%" 1>nul 2>nul
 git -C "%ROOT%" push origin %BRANCH%
-
-echo Hecho. Revisa GitHub Pages.
-exit /b 0
+echo https://nataliogc.github.io/Form.Recep/?v=%VER%
+pause
