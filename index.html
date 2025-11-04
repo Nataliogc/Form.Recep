@@ -1,4 +1,141 @@
-﻿<script>
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Formación · Excelencia en el Servicio</title>
+<style>
+:root{
+  --bg:#f7f9fc;--card:#fff;--ink:#0f172a;--muted:#475569;
+  --brand:#0b5faf;--brand2:#00b0ff;
+  --shadow:0 10px 25px rgba(2,6,23,.08),0 3px 8px rgba(2,6,23,.05)
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+header{background:#fff;box-shadow:var(--shadow);padding:18px 16px;margin-bottom:18px}
+.intro{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:16px}
+.intro h1{margin:0 0 6px;font-size:28px;color:#0f3a77}
+.gold{height:8px;background:linear-gradient(90deg,#c08a2e,#f0c24b,#00b0ff);border-radius:6px;margin-top:12px}
+
+.container{max-width:1100px;margin:0 auto;padding:0 16px 30px}
+.grid{display:grid;grid-template-columns:320px 1fr;gap:20px}
+@media(max-width:980px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:18px;box-shadow:var(--shadow)}
+.panel{padding:18px}
+.muted{color:#475569}
+
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 10px;font-size:12px}
+.pill.basico{background:#e8fff1;color:#14532d}
+.pill.intermedio{background:#eef2ff;color:#1e3a8a}
+.pill.avanzado{background:#fff1f2;color:#7f1d1d}
+
+input,select{width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:12px;background:#fff;font-size:15px}
+button{border:0;border-radius:12px;padding:10px 14px;font-weight:700;background:#0b5faf;color:#fff;box-shadow:var(--shadow);cursor:pointer}
+button.secondary{background:#e5e7eb;color:#111827;box-shadow:none}
+button.ghost{background:transparent;color:#0b5faf;box-shadow:none}
+
+.progress{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:6px 0 12px}
+.bar{height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand2));transition:width .25s}
+
+.question{font-size:20px;font-weight:800;margin:0 0 10px}
+.answers{display:grid;gap:10px}
+.answer{
+  display:grid; grid-template-columns:22px 28px 1fr; align-items:center;
+  gap:12px; border:1px solid #e5e7eb; border-radius:14px; padding:12px;
+  background:#fff; cursor:pointer; text-align:left;
+}
+.answer input{width:18px;height:18px;margin:0}
+.letter{min-width:28px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;border-radius:999px;background:#e2e8f0;font-size:12px}
+.answer.correct{border-color:#16a34a;background:#f0fdf4}
+.answer.incorrect{border-color:#fecaca;background:#fff}
+.answer.correct .letter{background:#bbf7d0}
+
+.explain{margin-top:10px;padding:12px;border-radius:12px;display:none;border:1px dashed currentColor;background:#fff}
+.explain.ok{color:#166534;background:#f0fdf4;border-color:#86efac}
+.explain.bad{color:#991b1b;background:#fef2f2;border-color:#fecaca}
+.explain small{display:block;color:#334155;opacity:.95;margin-top:6px}
+
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px 8px;border-bottom:1px solid #eef2f7;text-align:left;font-size:14px}
+th{font-weight:700;color:#334155}
+
+.qmeta{display:flex;align-items:center;gap:8px;margin:0 0 6px}
+.qid{font:12px/1 ui-monospace,Consolas,Menlo;background:#eef2ff;color:#3730a3;padding:3px 7px;border-radius:8px;border:1px solid #c7d2fe}
+.finalmsg{margin-top:20px;padding:20px;border-radius:16px;border:1px solid #e5e7eb;background:#fff;font-size:16px;line-height:1.5;box-shadow:0 4px 15px rgba(0,0,0,.05)}
+.finalmsg.ok{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#86efac;color:#14532d}
+.finalmsg.warn{background:linear-gradient(135deg,#fffbe6,#fef9c3);border-color:#fde68a;color:#78350f}
+.finalmsg.bad{background:linear-gradient(135deg,#fef2f2,#fee2e2);border-color:#fecaca;color:#7f1d1d}
+</style>
+</head>
+<body>
+<header>
+  <div class="intro">
+    <div>
+      <h1>Formación · Excelencia en el Servicio</h1>
+      <div class="gold"></div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="grid">
+    <aside class="card panel">
+      <h3 style="margin:0 0 8px">1) Identificación</h3>
+      <p class="muted">Tu nombre es obligatorio para participar y aparecer en el ranking.</p>
+      <input id="playerName" placeholder="Nombre y apellidos (obligatorio)">
+      <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
+
+      <h3 style="margin:0 0 8px">2) Departamento</h3>
+      <select id="deptSelect"><option value="">Todos los departamentos</option></select>
+
+      <div style="height:8px"></div>
+      <h3 style="margin:0 0 8px">3) Módulo</h3>
+      <select id="moduleSelect"><option value="">Selecciona módulo…</option></select>
+
+      <div style="height:8px"></div>
+      <h3 style="margin:0 0 8px">4) Nivel</h3>
+      <select id="levelSelect">
+        <option value="basico">Nivel Básico 🟢</option>
+        <option value="intermedio">Nivel Intermedio 🔹</option>
+        <option value="avanzado">Nivel Avanzado 🔴</option>
+      </select>
+
+      <div style="display:flex;gap:8px;margin-top:12px"><button id="startBtn">Comenzar</button></div>
+      <div id="status" class="muted" style="margin-top:8px;display:none"></div>
+
+      <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
+      <h3>🏆 Ranking</h3>
+      <table>
+        <thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>Módulo</th><th>Punt.</th><th>Fecha</th></tr></thead>
+        <tbody id="lbBody"><tr><td colspan="6" class="muted">Sin resultados todavía.</td></tr></tbody>
+      </table>
+
+      <div style="margin-top:10px"><button id="exportBtn" class="ghost">Descargar Excel (CSV)</button></div>
+    </aside>
+
+    <main class="card panel">
+      <div class="pill basico" id="levelPill">Nivel Básico 🟢</div>
+      <div class="progress"><div class="bar" id="bar"></div></div>
+      <div class="muted" id="tally">0/0 · 0 aciertos · 0 fallos · 0%</div>
+      <hr style="border:0;border-top:1px solid #e5e7eb;margin:10px 0">
+
+      <div id="live" style="display:none">
+        <div class="qmeta"><span class="qid" id="qId">#—</span></div>
+        <div class="question" id="qText">…</div>
+        <div class="answers" id="answers"></div>
+        <div class="explain" id="why"></div>
+        <div id="finalMsg" class="finalmsg" style="display:none"></div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button id="next" class="secondary" disabled>Siguiente</button>
+          <button id="finish" class="ghost" style="display:none">Finalizar</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
 const INDEX_PATH = "./data/index.json";
 const AGG_BASE = "./data/";
 
@@ -17,16 +154,15 @@ async function loadIndex(){
       .map(([k,v]) => [k, v.name || k])
   );
   const modSel = $("#moduleSelect");
-  modSel.innerHTML = '<option value="">Selecciona mÃ³duloâ€¦</option>' +
+  modSel.innerHTML = '<option value="">Selecciona módulo…</option>' +
     Object.entries(moduleMap).map(([k,name])=>`<option value="${k}">${name}</option>`).join("");
-  // Al cambiar mÃ³dulo o nivel, precargo el agg y saco departamentos reales (solo activos)
   modSel.addEventListener("change", preloadAggAndDepartments);
   $("#levelSelect").addEventListener("change", preloadAggAndDepartments);
 }
 loadIndex().catch(e=>{
   console.error(e);
   $("#status").style.display="block";
-  $("#status").textContent="No se pudo cargar el Ã­ndice de datos.";
+  $("#status").textContent="No se pudo cargar el índice de datos.";
 });
 
 async function preloadAggAndDepartments(){
@@ -43,7 +179,7 @@ async function preloadAggAndDepartments(){
       const flag = q.activo ?? q.active ?? q.is_active ?? q.M ?? 1;
       return String(flag).trim() === "1";
     });
-    // Departamentos desde DTO/Departamento/Dept/department
+    // Departamentos
     const getDept = q => (q.dto ?? q.departamento ?? q.dept ?? q.department ?? "General").toString().trim();
     const uniq = Array.from(new Set(activos.map(getDept))).filter(Boolean);
     $("#deptSelect").innerHTML =
@@ -58,8 +194,8 @@ $("#levelSelect").addEventListener("change", e=>{
   const v = e.target.value;
   $("#levelPill").className = "pill " + v;
   $("#levelPill").textContent =
-    v==="intermedio" ? "Nivel Intermedio ðŸ”¹" :
-    v==="avanzado"   ? "Nivel Avanzado ðŸ”´"   : "Nivel BÃ¡sico ðŸŸ¢";
+    v==="intermedio" ? "Nivel Intermedio 🔹" :
+    v==="avanzado"   ? "Nivel Avanzado 🔴"   : "Nivel Básico 🟢";
 });
 $("#startBtn").addEventListener("click", start);
 $("#next").addEventListener("click", nextQ);
@@ -73,19 +209,17 @@ async function start(){
   if(!name){ alert("Escribe tu nombre y apellidos."); return; }
   const mod = $("#moduleSelect").value;
   const lvl = $("#levelSelect").value;
-  if(!mod){ alert("Selecciona un mÃ³dulo."); return; }
+  if(!mod){ alert("Selecciona un módulo."); return; }
   const info = INDEX?.[mod]?.levels?.[lvl];
   if(!info){ alert("No hay preguntas para este nivel."); return; }
-  // Carga dataset si no estaba precargado
   if(!currentData.length){
     try{ const res = await fetch(AGG_BASE + info.agg); currentData = await res.json(); }
     catch(e){ alert("No se pudo cargar el archivo de preguntas: " + e); return; }
   }
   const deptChosen = $("#deptSelect").value.trim();
 
-  // NormalizaciÃ³n campo a campo (ID, dept, texto, opciones, correcta, explicaciÃ³n, activo)
   const normalize = (q) => {
-    const id = pick(q,"id","ID","Id","n","num","numero","NÃºmero") ?? null;
+    const id = pick(q,"id","ID","Id","n","num","numero","Número") ?? null;
     const dept = (pick(q,"dto","departamento","dept","department") ?? "General").toString().trim();
     const text = pick(q,"text","pregunta","question","q","enunciado") ?? "";
     const opts_raw = pick(q,"options","respuestas","answers","opciones");
@@ -93,12 +227,12 @@ async function start(){
     let corr = pick(q,"correct","sol","solucion","resultado","answer","Correcta");
     if(typeof corr==="string"){
       const s = corr.trim().toUpperCase();
-      if(/^[A-Z]$/.test(s)) corr = s.charCodeAt(0)-65;       // A=>0
-      else if(/^\d+$/.test(s)) corr = parseInt(s,10);        // 0..n
+      if(/^[A-Z]$/.test(s)) corr = s.charCodeAt(0)-65;
+      else if(/^\d+$/.test(s)) corr = parseInt(s,10);
       else corr = 0;
     }
     if(typeof corr!=="number") corr = 0;
-    const exp = pick(q,"explain","explicacion","explicaciÃ³n","why","razon","L") ?? "";
+    const exp = pick(q,"explain","explicacion","explicación","why","razon","L") ?? "";
     const act = pick(q,"activo","active","is_active","M");
     const activo = (act==null) ? 1 : String(act).trim()==="1";
     return { id, dept, text, options, correct: corr, explain: exp, activo };
@@ -120,7 +254,7 @@ function renderQ(){
   const q = QUESTIONS[pos];
   const total = QUESTIONS.length;
   $("#bar").style.width = `${Math.round((pos/total)*100)}%`;
-  $("#tally").textContent = `${pos}/${total} Â· ${hits} aciertos Â· ${fails} fallos Â· ${total?Math.round((hits/total)*100):0}%`;
+  $("#tally").textContent = `${pos}/${total} · ${hits} aciertos · ${fails} fallos · ${total?Math.round((hits/total)*100):0}%`;
   $("#qId").textContent = `#${(q.id!=null)?q.id:(pos+1)}`;
   $("#qText").textContent = q.text || "(Pregunta)";
 
@@ -140,13 +274,12 @@ function renderQ(){
       currentAnswer = i;
       $$("#answers .answer").forEach(r=>r.classList.remove("correct","incorrect"));
       row.classList.add(i===correctIdx?"correct":"incorrect");
-      // ExplicaciÃ³n (columna L)
       const why = $("#why");
       const hasExp = (q.explain && String(q.explain).trim().length);
       if(hasExp){
         why.style.display="block";
         why.className = "explain " + (i===correctIdx?"ok":"bad");
-        why.innerHTML = (i===correctIdx?"âœ… Correcto":"âŒ No es correcto") + `<small>${q.explain}</small>`;
+        why.innerHTML = (i===correctIdx?"✅ Correcto":"❌ No es correcto") + `<small>${q.explain}</small>`;
       }else{
         why.style.display="none";
         why.className = "explain";
@@ -171,8 +304,8 @@ function finishQuiz(){
   const box = $("#finalMsg");
   box.style.display = "block";
   box.className = "finalmsg " + (pct>=85?"ok":pct>=60?"warn":"bad");
-  box.innerHTML = `<h4>Resultado</h4><p>${hits}/${total} aciertos Â· ${pct}%</p>`;
-  const rec = { name: $("#playerName").value.trim(), dept: $("#deptSelect").value || "â€”", module: ($("#moduleSelect").selectedOptions[0]?.textContent)||"â€”", score: pct, date: new Date().toISOString() };
+  box.innerHTML = `<h4>Resultado</h4><p>${hits}/${total} aciertos · ${pct}%</p>`;
+  const rec = { name: $("#playerName").value.trim(), dept: $("#deptSelect").value || "—", module: ($("#moduleSelect").selectedOptions[0]?.textContent)||"—", score: pct, date: new Date().toISOString() };
   const key = "quiz_ranking_v1";
   const list = JSON.parse(localStorage.getItem(key)||"[]");
   list.push(rec);
@@ -185,13 +318,13 @@ function paintRanking(){
   const key = "quiz_ranking_v1";
   const list = JSON.parse(localStorage.getItem(key)||"[]");
   const tbody = $("#lbBody");
-  if(!list.length){ tbody.innerHTML = `<tr><td colspan="6" class="muted">Sin resultados todavÃ­a.</td></tr>`; return; }
+  if(!list.length){ tbody.innerHTML = `<tr><td colspan="6" class="muted">Sin resultados todavía.</td></tr>`; return; }
   tbody.innerHTML = list.map((r,i)=>`
     <tr>
       <td>${i+1}</td>
       <td>${r.name}</td>
-      <td>${r.dept||"â€”"}</td>
-      <td>${r.module||"â€”"}</td>
+      <td>${r.dept||"—"}</td>
+      <td>${r.module||"—"}</td>
       <td>${r.score}%</td>
       <td>${fmtDate(r.date)}</td>
     </tr>
@@ -203,7 +336,7 @@ function exportCSV(){
   const key = "quiz_ranking_v1";
   const list = JSON.parse(localStorage.getItem(key)||"[]");
   if(!list.length){ alert("No hay datos en el ranking."); return; }
-  const head = ["#", "Nombre", "Dept.", "MÃ³dulo", "PuntuaciÃ³n", "Fecha"];
+  const head = ["#", "Nombre", "Dept.", "Módulo", "Puntuación", "Fecha"];
   const rows = list.map((r,i)=>[i+1, r.name, r.dept||"", r.module||"", r.score, fmtDate(r.date)]);
   const csv = [head, ...rows].map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(",")).join("\r\n");
   const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
@@ -213,3 +346,5 @@ function exportCSV(){
   document.body.appendChild(a); a.click(); a.remove();
 }
 </script>
+</body>
+</html>
