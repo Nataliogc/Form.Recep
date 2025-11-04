@@ -1,7 +1,10 @@
 {
   "errores_comunes": {
     "name": "Errores Comunes",
+<<<<<<< HEAD
     "dept": "General",
+=======
+>>>>>>> 4c1c1a0 (Auto: actualizacion)
     "levels": {
       "avanzado": {
         "agg": "errores_comunes_avanzado.json",
