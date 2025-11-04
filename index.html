@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cuestionario Â· FormaciÃ³n Interna</title>
-  <link rel="stylesheet" href="css/style.css?v=8" />
+  <title>Cuestionario · Formación Interna</title>
+  <link rel="stylesheet" href="css/style.css?v=20251104_044524_043118" />
 </head>
 <body>
 <header>
@@ -14,8 +14,8 @@
       <img src="img/logo_cumbria.png" alt="Cumbria Spa & Hotel">
     </div>
     <div class="headcopy">
-      <h1>Cuestionario Â· RecepciÃ³n</h1>
-      <p class="muted"><em>Hoteles de Calidad en Ciudad Real Â· FormaciÃ³n continua</em></p>
+      <h1>Cuestionario · Recepción</h1>
+      <p class="muted"><em>Hoteles de Calidad en Ciudad Real · Formación continua</em></p>
       <div class="gold"></div>
     </div>
   </div>
@@ -23,60 +23,60 @@
 
 <div class="container">
   <section class="card panel" id="introBlock" style="margin-bottom:18px">
-    <h3 style="margin:0 0 8px">Â¿Por quÃ© realizamos estas pruebas?</h3>
-    <p>Estas pruebas no son un examen para â€œaprobar o suspenderâ€. Son una herramienta para <b>detectar mejoras</b>, fijar <b>buenas prÃ¡cticas</b> y alinear criterios.</p>
+    <h3 style="margin:0 0 8px">¿Por qué realizamos estas pruebas?</h3>
+    <p>Herramienta para <b>detectar mejoras</b>, fijar <b>buenas prácticas</b> y alinear criterios.</p>
   </section>
 
   <div class="grid">
     <aside class="card panel">
-      <h3>1) IdentificaciÃ³n</h3>
+      <h3>1) Identificación</h3>
       <p class="muted">Tu nombre es necesario para ranking y registro.</p>
       <input id="playerName" placeholder="Nombre y apellidos (obligatorio)">
       <hr class="sep">
 
       <h3>2) Departamento</h3>
-      <select id="deptSelect"><option value="">Selecciona departamentoâ€¦</option></select>
+      <select id="deptSelect"><option value="">Selecciona departamento…</option></select>
 
       <div class="sp8"></div>
-      <h3>3) MÃ³dulo</h3>
-      <select id="moduleSelect"><option value="">Selecciona mÃ³duloâ€¦</option></select>
+      <h3>3) Módulo</h3>
+      <select id="moduleSelect"><option value="">Selecciona módulo…</option></select>
 
       <div class="sp8"></div>
       <h3>4) Nivel</h3>
       <select id="levelSelect">
-        <option value="basico">Nivel BÃ¡sico ğŸŸ¢</option>
-        <option value="intermedio">Nivel Intermedio ğŸ”¹</option>
-        <option value="avanzado">Nivel Avanzado ğŸ”´</option>
+        <option value="basico">Nivel Básico ??</option>
+        <option value="intermedio">Nivel Intermedio ??</option>
+        <option value="avanzado">Nivel Avanzado ??</option>
       </select>
 
       <div class="btns"><button id="startBtn">Comenzar</button></div>
       <div id="status" class="muted" style="display:none"></div>
 
       <hr class="sep">
-      <h3>ğŸ† Ranking</h3>
+      <h3>?? Ranking</h3>
       <table>
-        <thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>MÃ³dulo</th><th>Punt.</th><th>Fecha</th></tr></thead>
-        <tbody id="lbBody"><tr><td colspan="6" class="muted">Sin resultados todavÃ­a.</td></tr></tbody>
+        <thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>Módulo</th><th>Punt.</th><th>Fecha</th></tr></thead>
+        <tbody id="lbBody"><tr><td colspan="6" class="muted">Sin resultados todavía.</td></tr></tbody>
       </table>
 
       <hr class="sep">
-      <h3>ğŸ“ˆ Resumen (automÃ¡tico)</h3>
+      <h3>?? Resumen (automático)</h3>
       <table>
-        <thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>MÃ³dulo</th><th>Punt.</th><th>Fecha</th></tr></thead>
-        <tbody id="resumeBody"><tr><td colspan="6" class="muted">Sin participaciones aÃºn.</td></tr></tbody>
+        <thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>Módulo</th><th>Punt.</th><th>Fecha</th></tr></thead>
+        <tbody id="resumeBody"><tr><td colspan="6" class="muted">Sin participaciones aún.</td></tr></tbody>
       </table>
       <div class="sp10"><button id="exportBtn" class="ghost">Descargar Excel (CSV)</button></div>
     </aside>
 
     <main class="card panel">
-      <div class="pill basico" id="levelPill">Nivel BÃ¡sico ğŸŸ¢</div>
+      <div class="pill basico" id="levelPill">Nivel Básico ??</div>
       <div class="progress"><div class="bar" id="bar"></div></div>
-      <div class="muted" id="tally">0/0 Â· 0 aciertos Â· 0 fallos Â· 0%</div>
+      <div class="muted" id="tally">0/0 · 0 aciertos · 0 fallos · 0%</div>
       <hr class="sep small">
 
       <div id="live" style="display:none">
-        <div class="qmeta"><span class="qid" id="qId">#â€”</span></div>
-        <div class="question" id="qText">â€¦</div>
+        <div class="qmeta"><span class="qid" id="qId">#—</span></div>
+        <div class="question" id="qText">…</div>
         <div class="answers" id="answers"></div>
         <div class="explain" id="why"></div>
         <div id="finalMsg" class="finalmsg" style="display:none"></div>
@@ -89,7 +89,7 @@
   </div>
 </div>
 
-<script src="js/loader.js?v=8" defer></script>
-<script src="js/quiz.js?v=8" defer></script>
+<script src="js/loader.js?v=20251104_044524_043118" defer></script>
+<script src="js/quiz.js?v=20251104_044524_043118" defer></script>
 </body>
 </html>
