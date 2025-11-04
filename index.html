@@ -3,15 +3,19 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SesiÃ³n de Crecimiento Â· FormaciÃ³n</title>
+<title>Formación · Excelencia en el Servicio</title>
 <style>
-:root{--bg:#f7f9fc;--card:#fff;--ink:#0f172a;--muted:#475569;--brand:#0b5faf;--brand2:#00b0ff;--shadow:0 10px 25px rgba(2,6,23,.08),0 3px 8px rgba(2,6,23,.05)}
+:root{
+  --bg:#f7f9fc;--card:#fff;--ink:#0f172a;--muted:#475569;
+  --brand:#0b5faf;--brand2:#00b0ff;
+  --shadow:0 10px 25px rgba(2,6,23,.08),0 3px 8px rgba(2,6,23,.05)
+}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
 header{background:#fff;box-shadow:var(--shadow);padding:18px 16px;margin-bottom:18px}
 .intro{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:16px}
 .intro img{height:56px;margin-right:10px}
-.intro h1{margin:0 0 6px;font-size:28px;color:#004f6e}
+.intro h1{margin:0 0 6px;font-size:28px;color:#0f3a77}
 .gold{height:8px;background:linear-gradient(90deg,#c08a2e,#f0c24b,#00b0ff);border-radius:6px;margin-top:12px}
 
 .container{max-width:1100px;margin:0 auto;padding:0 16px 30px}
@@ -36,7 +40,11 @@ button.ghost{background:transparent;color:#0b5faf;box-shadow:none}
 
 .question{font-size:20px;font-weight:800;margin:0 0 10px}
 .answers{display:grid;gap:10px}
-.answer{display:grid; grid-template-columns:22px 28px 1fr; align-items:center;gap:12px; border:1px solid #e5e7eb; border-radius:14px; padding:12px;background:#fff; cursor:pointer; text-align:left}
+.answer{
+  display:grid; grid-template-columns:22px 28px 1fr; align-items:center;
+  gap:12px; border:1px solid #e5e7eb; border-radius:14px; padding:12px;
+  background:#fff; cursor:pointer; text-align:left;
+}
 .answer input{width:18px;height:18px;margin:0}
 .letter{min-width:28px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;border-radius:999px;background:#e2e8f0;font-size:12px}
 .answer.correct{border-color:#16a34a;background:#f0fdf4}
@@ -55,26 +63,23 @@ th{font-weight:700;color:#334155}
 .qmeta{display:flex;align-items:center;gap:8px;margin:0 0 6px}
 .qid{font:12px/1 ui-monospace,Consolas,Menlo;background:#eef2ff;color:#3730a3;padding:3px 7px;border-radius:8px;border:1px solid #c7d2fe}
 
-.finalmsg{margin-top:20px;padding:20px;border-radius:16px;border:1px solid #e5e7eb;background:#fff;font-size:16px;line-height:1.5;box-shadow:0 4px 15px rgba(0,0,0,.05);transition:all .3s ease}
+.finalmsg{margin-top:20px;padding:20px;border-radius:16px;border:1px solid #e5e7eb;background:#fff;font-size:16px;line-height:1.5;box-shadow:0 4px 15px rgba(0,0,0,.05)}
 .finalmsg h4{margin:0 0 6px;font-size:18px;font-weight:700}
-.finalmsg p{margin:0}
 .finalmsg.ok{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#86efac;color:#14532d}
-.finalmsg.ok h4::before{content:"ðŸŒŸ "}
 .finalmsg.warn{background:linear-gradient(135deg,#fffbe6,#fef9c3);border-color:#fde68a;color:#78350f}
-.finalmsg.warn h4::before{content:"ðŸ’ª "}
 .finalmsg.bad{background:linear-gradient(135deg,#fef2f2,#fee2e2);border-color:#fecaca;color:#7f1d1d}
-.finalmsg.bad h4::before{content:"â¤ï¸â€ðŸ”¥ "}
 </style>
 </head>
 <body>
 <header>
   <div class="intro">
     <div>
-      <img src="img/logo_guadiana.png" alt="Hotel Sercotel Guadiana">
-      <img src="img/logo_cumbria.png" alt="Cumbria Spa & Hotel">
+      <!-- Opcionales: quita si no usas logos -->
+      <img src="img/logo_guadiana.png" alt="Hotel Sercotel Guadiana" onerror="this.remove()">
+      <img src="img/logo_cumbria.png" alt="Cumbria Spa & Hotel" onerror="this.remove()">
     </div>
     <div>
-      <h1>SesiÃ³n de Crecimiento Â· FormaciÃ³n</h1>
+      <h1>Formación · Excelencia en el Servicio</h1>
       <p class="muted"><em>Enfocada en la Excelencia del Servicio</em></p>
       <div class="gold"></div>
     </div>
@@ -84,69 +89,286 @@ th{font-weight:700;color:#334155}
 <div class="container">
   <!-- PORTADA -->
   <section class="card panel" id="introBlock" style="margin-bottom:18px">
-    <h3 style="margin:0 0 8px">Â¿Por quÃ© realizamos estas pruebas?</h3>
+    <h3 style="margin:0 0 8px">¿Por qué realizamos estas pruebas?</h3>
     <p><b>Sercotel Guadiana y Cumbria Spa&Hotel</b></p>
-    <p>Estas pruebas no son un examen para â€œaprobar o suspenderâ€, sino una herramienta para crecer juntos.</p>
+    <p>Estas pruebas no son un examen para “aprobar o suspender”, sino una herramienta para crecer juntos.</p>
   </section>
 
   <div class="grid">
     <aside class="card panel">
-      <h3 style="margin:0 0 8px">1) IdentificaciÃ³n</h3>
+      <h3 style="margin:0 0 8px">1) Identificación</h3>
       <p class="muted">Tu nombre es obligatorio para participar y aparecer en el ranking.</p>
       <input id="playerName" placeholder="Nombre y apellidos (obligatorio)">
       <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
 
       <h3 style="margin:0 0 8px">2) Departamento</h3>
-      <select id="deptSelect"><option value="">Selecciona departamentoâ€¦</option></select>
+      <select id="deptSelect"><option value="">Todos los departamentos</option></select>
 
       <div style="height:8px"></div>
-      <h3 style="margin:0 0 8px">3) MÃ³dulo</h3>
-      <select id="moduleSelect"><option value="">Selecciona mÃ³duloâ€¦</option></select>
+      <h3 style="margin:0 0 8px">3) Módulo</h3>
+      <select id="moduleSelect"><option value="">Selecciona módulo…</option></select>
 
       <div style="height:8px"></div>
       <h3 style="margin:0 0 8px">4) Nivel</h3>
       <select id="levelSelect">
-        <option value="basico">Nivel BÃ¡sico ðŸŸ¢</option>
-        <option value="intermedio">Nivel Intermedio ðŸ”¹</option>
-        <option value="avanzado">Nivel Avanzado ðŸ”´</option>
+        <option value="basico">Nivel Básico 🟢</option>
+        <option value="intermedio">Nivel Intermedio 🔹</option>
+        <option value="avanzado">Nivel Avanzado 🔴</option>
       </select>
 
       <div style="display:flex;gap:8px;margin-top:12px"><button id="startBtn">Comenzar</button></div>
       <div id="status" class="muted" style="margin-top:8px;display:none"></div>
 
       <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
-      <h3>ðŸ† Ranking</h3>
-      <table><thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>MÃ³dulo</th><th>Punt.</th><th>Fecha</th></tr></thead><tbody id="lbBody"><tr><td colspan="6" class="muted">Sin resultados todavÃ­a.</td></tr></tbody></table>
+      <h3>🏆 Ranking</h3>
+      <table>
+        <thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>Módulo</th><th>Punt.</th><th>Fecha</th></tr></thead>
+        <tbody id="lbBody"><tr><td colspan="6" class="muted">Sin resultados todavía.</td></tr></tbody>
+      </table>
 
-      <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
-      <h3>ðŸ“ˆ Resumen (automÃ¡tico)</h3>
-      <table><thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>MÃ³dulo</th><th>Punt.</th><th>Fecha</th></tr></thead><tbody id="resumeBody"><tr><td colspan="6" class="muted">Sin participaciones aÃºn.</td></tr></tbody></table>
       <div style="margin-top:10px"><button id="exportBtn" class="ghost">Descargar Excel (CSV)</button></div>
     </aside>
 
     <main class="card panel">
-      <div class="pill basico" id="levelPill">Nivel BÃ¡sico ðŸŸ¢</div>
+      <div class="pill basico" id="levelPill">Nivel Básico 🟢</div>
       <div class="progress"><div class="bar" id="bar"></div></div>
-      <div class="muted" id="tally">0/0 Â· 0 aciertos Â· 0 fallos Â· 0%</div>
+      <div class="muted" id="tally">0/0 · 0 aciertos · 0 fallos · 0%</div>
       <hr style="border:0;border-top:1px solid #e5e7eb;margin:10px 0">
 
       <div id="live" style="display:none">
-        <div class="qmeta"><span class="qid" id="qId">#â€”</span></div>
-        <div class="question" id="qText">â€¦</div>
+        <div class="qmeta"><span class="qid" id="qId">#—</span></div>
+        <div class="question" id="qText">…</div>
         <div class="answers" id="answers"></div>
         <div class="explain" id="why"></div>
         <div id="finalMsg" class="finalmsg" style="display:none"></div>
         <div style="display:flex;gap:8px;margin-top:12px">
-          <button id="next" class="secondary" onclick="nextQ()" disabled>Siguiente</button>
-          <button id="finish" class="ghost" onclick="finish()" style="display:none">Finalizar</button>
+          <button id="next" class="secondary" disabled>Siguiente</button>
+          <button id="finish" class="ghost" style="display:none">Finalizar</button>
         </div>
       </div>
     </main>
   </div>
 </div>
 
-<!-- âš ï¸ v=4 para forzar recarga sin cachÃ© -->
-<script src="js/loader.js?v=4"></script>
-<script src="js/quiz.js?v=4"></script>
+<script>
+/* ====== CONFIG ====== */
+const INDEX_PATH = "./data/index.json"; // índice global (módulos, niveles, departments)
+const AGG_BASE   = "./data/";           // base para los .json agregados
+
+/* ====== HELPERS ====== */
+const $ = sel => document.querySelector(sel);
+const $$ = sel => Array.from(document.querySelectorAll(sel));
+const fmtDate = d => new Date(d).toLocaleString('es-ES');
+const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
+const toLetter = i => String.fromCharCode(65+i);
+
+/* ====== STATE ====== */
+let INDEX = null;
+let QUESTIONS = [];
+let pos = 0, hits = 0, fails = 0;
+let currentAnswer = null;
+
+/* ====== UI FILL ====== */
+async function loadIndex(){
+  const res = await fetch(INDEX_PATH);
+  INDEX = await res.json();
+
+  // Departamentos (admite "departments" o "Departments")
+  const depts = INDEX.departments || INDEX.Departments || [];
+  const deptSel = $("#deptSelect");
+  deptSel.innerHTML = '<option value="">Todos los departamentos</option>' +
+    depts.map(d=>`<option value="${d}">${d}</option>`).join("");
+
+  // Módulos (mapa {key:name})
+  const moduleMap = Object.fromEntries(
+    Object.entries(INDEX).filter(([k,v]) => v && v.levels)
+      .map(([k,v]) => [k, v.name || k])
+  );
+  const modSel = $("#moduleSelect");
+  modSel.innerHTML = '<option value="">Selecciona módulo…</option>' +
+    Object.entries(moduleMap).map(([k,name])=>`<option value="${k}">${name}</option>`).join("");
+}
+loadIndex().catch(e=>{
+  console.error(e);
+  $("#status").style.display="block";
+  $("#status").textContent="No se pudo cargar el índice de datos.";
+});
+
+$("#levelSelect").addEventListener("change", e=>{
+  const v = e.target.value;
+  $("#levelPill").className = "pill " + v;
+  $("#levelPill").textContent =
+    v==="intermedio" ? "Nivel Intermedio 🔹" :
+    v==="avanzado"   ? "Nivel Avanzado 🔴"   : "Nivel Básico 🟢";
+});
+
+$("#startBtn").addEventListener("click", start);
+$("#next").addEventListener("click", nextQ);
+$("#finish").addEventListener("click", finishQuiz);
+$("#exportBtn").addEventListener("click", exportCSV);
+
+/* ====== QUIZ ENGINE ====== */
+async function start(){
+  const name = $("#playerName").value.trim();
+  if(!name){ alert("Escribe tu nombre y apellidos."); return; }
+  const mod = $("#moduleSelect").value;
+  const lvl = $("#levelSelect").value;
+  if(!mod){ alert("Selecciona un módulo."); return; }
+  const info = INDEX?.[mod]?.levels?.[lvl];
+  if(!info){ alert("No hay preguntas para este nivel."); return; }
+
+  // Carga del agregado
+  try{
+    const res = await fetch(AGG_BASE + info.agg);
+    const all = await res.json();
+
+    // Filtro por departamento si procede
+    const dto = $("#deptSelect").value.trim();
+    QUESTIONS = dto ? all.filter(q => (q.dto||"").trim()===dto) : all;
+
+    if(!Array.isArray(QUESTIONS) || QUESTIONS.length===0){
+      alert("No hay preguntas para el filtro seleccionado."); return;
+    }
+  }catch(e){
+    alert("No se pudo cargar el archivo de preguntas: " + e); return;
+  }
+
+  // Reset
+  pos = 0; hits=0; fails=0; currentAnswer=null;
+  $("#live").style.display="block";
+  $("#introBlock").style.display="none";
+  renderQ();
+}
+
+function normalizeCorrect(q){
+  // Soporta correct: 0..n  ó  "A|B|C..."
+  let c = q.correct;
+  if(typeof c === "string"){
+    c = c.trim().toUpperCase().charCodeAt(0) - 65; // A=>0
+  }
+  if(typeof c !== "number") c = 0;
+  return clamp(c,0,(q.options||[]).length-1);
+}
+
+function renderQ(){
+  const q = QUESTIONS[pos];
+  const total = QUESTIONS.length;
+  const bar = $("#bar");
+  bar.style.width = `${Math.round((pos/total)*100)}%`;
+  $("#tally").textContent = `${pos}/${total} · ${hits} aciertos · ${fails} fallos · ${total?Math.round((hits/total)*100):0}%`;
+  $("#qId").textContent = `#${pos+1}`;
+  $("#qText").textContent = q.text || "(Pregunta)";
+
+  const answers = $("#answers");
+  answers.innerHTML = "";
+  const correctIdx = normalizeCorrect(q);
+  (q.options||[]).forEach((opt, i)=>{
+    const row = document.createElement("label");
+    row.className = "answer";
+    row.innerHTML = `
+      <input type="radio" name="ans">
+      <span class="letter">${toLetter(i)}</span>
+      <span>${opt}</span>
+    `;
+    row.addEventListener("click", ()=>{
+      if(currentAnswer!==null) return; // bloquea doble click
+      currentAnswer = i;
+      // Marca
+      $$("#answers .answer").forEach(r=>r.classList.remove("correct","incorrect"));
+      row.classList.add(i===correctIdx?"correct":"incorrect");
+      // Explicación
+      const why = $("#why");
+      if(q.explain){
+        why.style.display="block";
+        why.className = "explain " + (i===correctIdx?"ok":"bad");
+        why.innerHTML = (i===correctIdx?"✅ Correcto":"❌ No es correcto") +
+          (q.explain?`<small>${q.explain}</small>`:"");
+      }else{
+        why.style.display="none";
+        why.className = "explain";
+        why.textContent = "";
+      }
+      // Botones
+      $("#next").disabled = false;
+      if(pos === QUESTIONS.length-1){
+        $("#finish").style.display="inline-block";
+      }
+      // Score
+      if(i===correctIdx) hits++; else fails++;
+    });
+    answers.appendChild(row);
+  });
+
+  $("#next").disabled = true;
+  $("#finish").style.display = "none";
+}
+
+function nextQ(){
+  if(currentAnswer===null) return;
+  currentAnswer=null;
+  pos++;
+  if(pos>=QUESTIONS.length){ finishQuiz(); return; }
+  renderQ();
+}
+
+function finishQuiz(){
+  const total = QUESTIONS.length;
+  const pct = total? Math.round((hits/total)*100) : 0;
+  const box = $("#finalMsg");
+  box.style.display = "block";
+  box.className = "finalmsg " + (pct>=85?"ok":pct>=60?"warn":"bad");
+  box.innerHTML = `<h4>Resultado</h4><p>${hits}/${total} aciertos · ${pct}%</p>`;
+
+  // Guardar en ranking
+  const rec = {
+    name: $("#playerName").value.trim(),
+    dept: $("#deptSelect").value || "—",
+    module: ($("#moduleSelect").selectedOptions[0]?.textContent)||"—",
+    score: pct,
+    date: new Date().toISOString()
+  };
+  const key = "quiz_ranking_v1";
+  const list = JSON.parse(localStorage.getItem(key)||"[]");
+  list.push(rec);
+  list.sort((a,b)=>b.score - a.score || new Date(b.date)-new Date(a.date));
+  localStorage.setItem(key, JSON.stringify(list.slice(0,100)));
+  paintRanking();
+}
+
+function paintRanking(){
+  const key = "quiz_ranking_v1";
+  const list = JSON.parse(localStorage.getItem(key)||"[]");
+  const tbody = $("#lbBody");
+  if(!list.length){
+    tbody.innerHTML = `<tr><td colspan="6" class="muted">Sin resultados todavía.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = list.map((r,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td>${r.name}</td>
+      <td>${r.dept||"—"}</td>
+      <td>${r.module||"—"}</td>
+      <td>${r.score}%</td>
+      <td>${fmtDate(r.date)}</td>
+    </tr>
+  `).join("");
+}
+paintRanking();
+
+function exportCSV(){
+  const key = "quiz_ranking_v1";
+  const list = JSON.parse(localStorage.getItem(key)||"[]");
+  if(!list.length){ alert("No hay datos en el ranking."); return; }
+  const head = ["#", "Nombre", "Dept.", "Módulo", "Puntuación", "Fecha"];
+  const rows = list.map((r,i)=>[i+1, r.name, r.dept||"", r.module||"", r.score, fmtDate(r.date)]);
+  const csv = [head, ...rows].map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(",")).join("\r\n");
+  const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "ranking_quiz.csv";
+  document.body.appendChild(a); a.click(); a.remove();
+}
+</script>
 </body>
 </html>
