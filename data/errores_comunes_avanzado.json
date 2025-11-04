@@ -2,10 +2,7 @@
   {
     "id": "152",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Cuál es el riesgo principal de modificar el localizador antes de que sincronice el channel manager?",
     "options": [
@@ -22,10 +19,7 @@
   {
     "id": "153",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Qué debe hacerse antes de cerrar turno si existen reservas 'No Show' en sistema pero con huella de acceso SPA?",
     "options": [
@@ -42,10 +36,7 @@
   {
     "id": "154",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "En reservas corporativas con pago directo, ¿cuándo procede solicitar prepago?",
     "options": [
@@ -62,10 +53,7 @@
   {
     "id": "155",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Qué ocurre si una tarifa EBI se marca como 'Pago en hotel'?",
     "options": [
@@ -82,10 +70,7 @@
   {
     "id": "156",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Cuál es el procedimiento al detectar una reserva duplicada en PMS?",
     "options": [
@@ -102,10 +87,7 @@
   {
     "id": "157",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Qué implica no marcar correctamente 'SP' en reservas Keytel con Spa?",
     "options": [
@@ -122,10 +104,7 @@
   {
     "id": "158",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "Si una agencia solicita cambio de nombre en reserva garantizada, ¿qué se debe hacer?",
     "options": [
@@ -142,10 +121,7 @@
   {
     "id": "159",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Qué riesgo existe si una habitación triple se asigna como doble por error?",
     "options": [
@@ -162,10 +138,7 @@
   {
     "id": "160",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Qué debe verificarse al convertir una reserva OTA a directa por solicitud del cliente?",
     "options": [
@@ -182,10 +155,7 @@
   {
     "id": "161",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Cuál es el control clave en reservas NR al final del día?",
     "options": [
@@ -202,10 +172,7 @@
   {
     "id": "162",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Qué hacer si channel cancela pero la reserva sigue activa en PMS?",
     "options": [
@@ -222,10 +189,7 @@
   {
     "id": "163",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Qué campo es obligatorio en bonos físicos?",
     "options": [
@@ -242,10 +206,7 @@
   {
     "id": "164",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "En una reserva de grupo, ¿cuándo puede modificarse la distribución de habitaciones?",
     "options": [
@@ -262,10 +223,7 @@
   {
     "id": "165",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Qué se debe comprobar al registrar prepago manual?",
     "options": [
@@ -282,10 +240,7 @@
   {
     "id": "166",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "Uso correcto del campo 'Cargos' en PMS con Keytel Spa:",
     "options": [
@@ -302,10 +257,7 @@
   {
     "id": "167",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Qué hacer si el cliente presenta bono sin código válido?",
     "options": [
@@ -322,10 +274,7 @@
   {
     "id": "168",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "Control crítico de reservas con tarjeta rechazada:",
     "options": [
@@ -342,10 +291,7 @@
   {
     "id": "169",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Cómo actuar ante error 'tarifa no aplicable al mercado'?",
     "options": [
@@ -362,10 +308,7 @@
   {
     "id": "170",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Qué revisar al aplicar tarifa corporativa dinámica TravelPerk?",
     "options": [
@@ -382,10 +325,7 @@
   {
     "id": "171",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Cuál es el riesgo de no registrar 'bono requerido' en reservas Bono Spa?",
     "options": [
@@ -402,10 +342,7 @@
   {
     "id": "172",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "Acción si cliente dice 'agencia me dijo que estaba pagado' pero no hay prepago:",
     "options": [
@@ -422,10 +359,7 @@
   {
     "id": "173",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "Al cambiar fechas en PMS manualmente:",
     "options": [
@@ -442,10 +376,7 @@
   {
     "id": "174",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Qué revisar en reservas con niños en OTA?",
     "options": [
@@ -462,10 +393,7 @@
   {
     "id": "175",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Cuándo generar cargo manual de Spa en PMS?",
     "options": [
@@ -482,10 +410,7 @@
   {
     "id": "176",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "Reserva VIP canal Sercotel Rewards:",
     "options": [
@@ -502,10 +427,7 @@
   {
     "id": "177",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "¿Qué debe revisarse al hacer downgrade de Suite a Doble?",
     "options": [
@@ -522,10 +444,7 @@
   {
     "id": "178",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "Errores recurrentes 'no se encontró la reserva' suelen venir de:",
     "options": [
@@ -542,10 +461,7 @@
   {
     "id": "179",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "Control obligatorio últimas 48h grupos:",
     "options": [
@@ -562,10 +478,7 @@
   {
     "id": "180",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "Si cliente solicita factura con CIF distinto al pagador:",
     "options": [
@@ -582,10 +495,7 @@
   {
     "id": "181",
     "categoria": "Errores Comunes",
-<<<<<<< HEAD
     "department": "General",
-=======
->>>>>>> 4c1c1a0 (Auto: actualizacion)
     "level": "avanzado",
     "text": "Al detectar overbooking real:",
     "options": [

@@ -1,44 +1,48 @@
+:: build_and_deploy_DCO.bat
 @echo off
-chcp 65001 >nul
-setlocal EnableExtensions EnableDelayedExpansion
-set "ROOT=%~dp0"
-set "XLSX=%ROOT%plantilla_preguntas_unica.xlsx"
-if not exist "%XLSX%" (
-  echo [ERROR] No encuentro %XLSX%
-  pause & exit /b 1
+setlocal ENABLEDELAYEDEXPANSION
+
+:: === CONFIG ===
+set "REPO=C:\Users\comun\Documents\Web Test"
+set "PY=python"
+set "MSG=build: regenerate pools + index.json (DCO)"
+
+:: 0) Ir al repo (evita -C con comillas)
+pushd "%REPO%" || (echo [ERR] No existe %REPO% & exit /b 1)
+
+:: 1) Generar JSON desde Excel (opcional; comenta si no lo usas)
+if exist "tools\xlsx_to_json_single_FIXED.py" (
+  echo [INFO] Generando pools/index desde Excel...
+  "%PY%" "tools\xlsx_to_json_single_FIXED.py" || (echo [ERR] Python fallo & popd & exit /b 1)
+) else (
+  echo [WARN] No existe tools\xlsx_to_json_single_FIXED.py, salto paso Python
 )
 
-:: Pausa OneDrive si lo usas (opcional)
-:: taskkill /IM OneDrive.exe /F >nul 2>nul
+:: 2) Git: asegurar repo OK
+git rev-parse --is-inside-work-tree >NUL 2>&1 || (echo [ERR] No es un repo Git & popd & exit /b 1)
 
-:: 1) Generar data/
-py -m pip install --upgrade pandas openpyxl
-py "%ROOT%tools\xlsx_to_json_single_FIXED.py" --xlsx "%XLSX%" || goto :err
+:: Limpiar bloqueos anteriores
+if exist ".git\index.lock" del /q ".git\index.lock"
+if exist ".git\rebase-apply" rmdir /s /q ".git\rebase-apply"
+if exist ".git\rebase-merge" rmdir /s /q ".git\rebase-merge"
 
-:: 2) Bump version en index para cache-busting
-for /f "tokens=1-4 delims=/ " %%a in ('date /t') do set D=%%d%%b%%c
-for /f "tokens=1-2 delims=: " %%a in ("%time%") do set T=%%a%%b
-set VER=%D%_%T%
-set VER=%VER: =0%
-powershell -NoProfile -Command "(Get-Content '%ROOT%index.html') -replace '\?v=\d+','?v=%VER%' | Set-Content '%ROOT%index.html'"
+:: 3) Traer remoto y quedar en main actualizada
+git fetch origin || (echo [ERR] fetch & popd & exit /b 1)
+git switch main || git switch -c main origin/main || (echo [ERR] switch main & popd & exit /b 1)
+git pull --rebase origin main || (echo [ERR] pull --rebase & popd & exit /b 1)
 
-:: 3) Git push
-del /f /q "%ROOT%\.git\index.lock" 2>nul
-git -C "%ROOT%" fetch origin
-git -C "%ROOT%" switch main || git -C "%ROOT%" switch -c main origin/main
-git -C "%ROOT%" pull --rebase origin main
-git -C "%ROOT%" add -A
-git -C "%ROOT%" commit -s -m "build: data regenerated + v=%VER%" 1>nul 2>nul
-git -C "%ROOT%" push origin main || goto :err
+:: 4) Añadir cambios y commitear con DCO
+git add -A
+git diff --cached --quiet && (
+  echo [INFO] No hay cambios que subir.
+) || (
+  git commit -s -m "%MSG%" || (echo [ERR] commit & popd & exit /b 1)
+)
 
-echo.
-echo ✅ Publicado: https://nataliogc.github.io/Form.Recep/?v=%VER%
-echo (Recuerda tener el binding RESULTS en Cloudflare Pages)
-pause
+:: 5) Publicar
+git push origin main || (echo [ERR] push & popd & exit /b 1)
+
+echo [OK] Deploy a GitHub Pages lanzado. Forzar recarga con Ctrl+F5 en:
+echo      https://nataliogc.github.io/Form.Recep/?v=%DATE:~6,4%%DATE:~3,2%%DATE:~0,2%_%TIME:~0,2%%TIME:~3,2%
+popd
 exit /b 0
-
-:err
-echo.
-echo ❌ Algo falló. Revisa los mensajes anteriores.
-pause
-exit /b 1
