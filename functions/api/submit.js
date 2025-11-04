@@ -1,36 +1,40 @@
-﻿const ALLOWED_ORIGINS = [
-  "https://nataliogc.github.io",
-  "https://nataliogc.github.io/Form.Recep"
-];
+﻿// functions/api/submit.js
 
-function corsHeaders(origin) {
-  return {
-    "Access-Control-Allow-Origin": origin,
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "content-type",
-    "Access-Control-Max-Age": "86400",
-    "Content-Type": "application/json"
-  };
-}
+const cors = {
+  "access-control-allow-origin": "*",
+  "access-control-allow-headers": "content-type",
+  "access-control-allow-methods": "POST, OPTIONS",
+  "content-type": "application/json",
+};
 
-export async function onRequest({ request, env }) {
-  const reqOrigin = request.headers.get("Origin") || "";
-  const origin = ALLOWED_ORIGINS.includes(reqOrigin) ? reqOrigin : "https://nataliogc.github.io";
+export const onRequestOptions = async () => new Response(null, { headers: cors });
 
-  if (request.method === "OPTIONS") return new Response(null, { headers: corsHeaders(origin) });
-  if (request.method !== "POST") return new Response(JSON.stringify({ ok:false, error:"Use POST" }), { status:405, headers: corsHeaders(origin) });
-
+export const onRequestPost = async ({ request, env }) => {
   try {
-    const body = await request.json();
-    await env.RESULTS.writeDataPoint({
-      blobs:   [ body.name || "", body.dept || "", body.module || "" ],
-      doubles: [ Number(body.pct||0), Number(body.right||0), Number(body.wrong||0), Number(body.total||0) ],
-      indexes: [ body.level || "basico" ]
+    const data = await request.json();
+    const payload = {
+      name: String(data?.name || ""),
+      dept: String(data?.dept || ""),
+      module: String(data?.module || ""),
+      level: String(data?.level || ""),
+      right: Number(data?.right || 0),
+      wrong: Number(data?.wrong || 0),
+      total: Number(data?.total || 0),
+      pct: Number(data?.pct || 0),
+      ts: new Date().toISOString(),
+    };
+
+    // Guardado opcional en KV (Pages → Settings → Functions → KV bindings: RESULTS)
+    if (env.RESULTS && typeof env.RESULTS.put === "function") {
+      const key = `result:${payload.ts}:${crypto.randomUUID()}`;
+      await env.RESULTS.put(key, JSON.stringify(payload));
+    }
+
+    return new Response(JSON.stringify({ ok: true }), { headers: cors });
+  } catch (err) {
+    return new Response(JSON.stringify({ ok: false, error: String(err) }), {
+      headers: cors,
+      status: 400,
     });
-    return new Response(JSON.stringify({ ok:true }), { headers: corsHeaders(origin) });
-  } catch (e) {
-    return new Response(JSON.stringify({ ok:false, error:String(e) }), { status:400, headers: corsHeaders(origin) });
   }
-}
-export const onRequestPost = onRequest;
-export const onRequestOptions = onRequest;
+};
