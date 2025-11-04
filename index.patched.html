@@ -172,7 +172,74 @@ th{font-weight:700;color:#334155}
 </div>
 
 <!-- ⚠️ v=3 para forzar recarga sin caché -->
-<script src="js/loader.js?v=20251104_150258"></script>
-<script src="js/quiz.js?v=20251104_150258"></script>
+
+<!-- PATCH: helper script to fix data path, header text, department select and remove duplicate ranking -->
+<script>
+  // === Config editable ===
+  const CABECERA_TITULO = "Formación · Excelencia en el Servicio"; // <- cambia aquí el texto de cabecera
+  const DATA_INDEX_PATH = "./data/index.json"; // ruta relativa segura para file:/// y http(s)://
+
+  // === 1) Fix fetch('/data/...') => './data/...' para evitar CORS al abrir con doble clic ===
+  (function(){
+    const origFetch = window.fetch;
+    window.fetch = function(resource, init){
+      try{
+        if (typeof resource === "string" && resource.startsWith("/data/")) {
+          resource = "./" + resource.replace(/^\//,"");
+        }
+      }catch(e){}
+      return origFetch(resource, init);
+    };
+  })();
+
+  // === 2) Ajuste de cabecera (cambia el H1 principal si existe) ===
+  document.addEventListener("DOMContentLoaded", () => {
+    const h1 = document.querySelector("h1, .post-header h1, header h1");
+    if (h1 && CABECERA_TITULO) h1.textContent = CABECERA_TITULO;
+
+    // === 3) Eliminar bloque duplicado de Ranking/Resumen si existe un segundo ranking ===
+    // Buscamos un H3 con texto 'Resumen (automático)' y removemos su contenedor más cercano (card/panel/section)
+    const headings = Array.from(document.querySelectorAll("h3"));
+    const resumen = headings.find(h => /Resumen \(automático\)/i.test(h.textContent || ""));
+    if (resumen) {
+      let n = resumen;
+      while (n && n.parentElement && !/card|panel|section|aside/i.test(n.className||"")) n = n.parentElement;
+      (n || resumen).remove();
+    }
+
+    // === 4) Insertar selector de Departamento bajo el bloque de Módulo/Nivel ===
+    // Buscamos el primer select del módulo para ubicar el depto a continuación
+    const moduleSelect = document.querySelector("select");
+    if (moduleSelect) {
+      const wrapper = document.createElement("div");
+      wrapper.style.marginTop = "10px";
+      wrapper.innerHTML = `
+        <label for="deptSelect" style="display:block;font-weight:600;margin:10px 0 6px">Departamento</label>
+        <select id="deptSelect" class="input" style="width:100%">
+          <option value="">Todos los departamentos</option>
+        </select>`;
+      moduleSelect.parentElement.insertAdjacentElement("afterend", wrapper);
+
+      // Cargar departamentos desde index.json (ruta segura)
+      fetch(DATA_INDEX_PATH).then(r=>r.json()).then(idx => {
+        const depts = idx.departments || idx.Departments || [];
+        const sel = document.getElementById("deptSelect");
+        if (sel && Array.isArray(depts)) {
+          sel.innerHTML = '<option value="">Todos los departamentos</option>' +
+            depts.map(d => `<option value="${d}">${d}</option>`).join("");
+        }
+        // Exponer filtro global para que lo use quiz.js si quiere
+        sel && sel.addEventListener("change", () => {
+          window.__QUIZ_SELECTED_DTO__ = sel.value || "";
+        });
+      }).catch(err => {
+        console.warn("No se pudo leer departamentos:", err);
+      });
+    }
+  });
+</script>
+<!-- /PATCH -->
+<script src="js/loader.js?v=3"></script>
+<script src="js/quiz.js?v=3"></script>
 </body>
 </html>

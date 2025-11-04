@@ -1,0 +1,162 @@
+[
+  {
+    "id": "141",
+    "categoria": "Reservas",
+    "level": "avanzado",
+    "text": "¿Qué debes hacer si una reserva de Viajes El Corte Inglés no tiene número de bono?",
+    "options": [
+      "Solicitarlo a la agencia antes de facturar",
+      "Cobrar al cliente",
+      "Facturar sin bono",
+      "Esperar al turno de mañana"
+    ],
+    "correct": "Solicitarlo a la agencia antes de facturar",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "El bono es la garantía; sin él, no se puede facturar a crédito."
+  },
+  {
+    "id": "142",
+    "categoria": "Reservas",
+    "level": "avanzado",
+    "text": "¿Qué consecuencia tiene facturar en bruto una reserva de Hotelbeds?",
+    "options": [
+      "Que el hotel declare ingresos mayores de los reales y pague más impuestos",
+      "Que el cliente reciba factura incorrecta",
+      "Que Housekeeping no limpie",
+      "Que el PMS se bloquee"
+    ],
+    "correct": "Que el hotel declare ingresos mayores de los reales y pague más impuestos",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Hotelbeds paga en neto; facturar en bruto distorsiona la contabilidad y genera discrepancias fiscales."
+  },
+  {
+    "id": "143",
+    "categoria": "Reservas",
+    "level": "avanzado",
+    "text": "¿Qué debes hacer si una reserva de Keytel tiene dos bonos adjuntos?",
+    "options": [
+      "Usar el más reciente y archivar ambos",
+      "Usar el primero que llegó",
+      "Ignorar los bonos y facturar al cliente",
+      "Cancelar la reserva"
+    ],
+    "correct": "Usar el más reciente y archivar ambos",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Las modificaciones posteriores son comunes; se debe usar el bono actualizado y conservar el historial."
+  },
+  {
+    "id": "144",
+    "categoria": "Reservas",
+    "level": "avanzado",
+    "text": "¿Por qué es importante que el desglose diario en Weekendesk coincida con el valor del bono?",
+    "options": [
+      "Porque es un requisito para la auditoría interna y externa",
+      "Porque el cliente lo exige",
+      "Porque el PMS lo requiere para cerrar",
+      "Que afecta a la comisión del recepcionista"
+    ],
+    "correct": "Porque es un requisito para la auditoría interna y externa",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "El total del desglose debe coincidir exactamente con el valor del bono; de lo contrario, se detecta como error en auditoría."
+  },
+  {
+    "id": "145",
+    "categoria": "Reservas",
+    "level": "avanzado",
+    "text": "¿Qué debes hacer si una reserva de Serhs no especifica si es prepago o crédito?",
+    "options": [
+      "Revisar el bono o contactar con la agencia para confirmar",
+      "Asignar como prepago por defecto",
+      "Asignar como crédito por defecto",
+      "Cancelar la reserva"
+    ],
+    "correct": "Revisar el bono o contactar con la agencia para confirmar",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "La forma de pago determina la facturación; si no está clara, se debe confirmar antes de proceder."
+  },
+  {
+    "id": "146",
+    "categoria": "Reservas",
+    "level": "avanzado",
+    "text": "¿Qué implica no archivar el bono de Traveltino?",
+    "options": [
+      "Que la agencia rechace la factura por falta de documentación",
+      "Que el cliente no pueda salir del hotel",
+      "Que el PMS genere un error",
+      "Que Housekeeping no limpie"
+    ],
+    "correct": "Que la agencia rechace la factura por falta de documentación",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Sin el bono, no hay prueba de la garantía ni del acuerdo comercial; la agencia puede negarse a pagar."
+  },
+  {
+    "id": "147",
+    "categoria": "Reservas",
+    "level": "avanzado",
+    "text": "¿Qué debes hacer si una reserva de Webhotel/Synergy incluye flores pero no aparecen en el PMS?",
+    "options": [
+      "Añadir manualmente el cargo para que el desglose coincida con lo contratado",
+      "Esperar a que el sistema lo actualice",
+      "Cobrar en el check-out",
+      "Regalar las flores"
+    ],
+    "correct": "Añadir manualmente el cargo para que el desglose coincida con lo contratado",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Los extras deben reflejarse en el PMS; si no aparecen, se añaden manualmente para mantener la coherencia contable."
+  },
+  {
+    "id": "148",
+    "categoria": "Reservas",
+    "level": "avanzado",
+    "text": "¿Por qué es esencial verificar el tipo de tarifa en Booking.com al recibir la reserva?",
+    "options": [
+      "Porque determina cuándo y cómo se debe cobrar, y si hay riesgo de no-show",
+      "Que afecta a la asignación de habitación",
+      "Que modifica la comisión del hotel",
+      "Que cambia el régimen de desayuno"
+    ],
+    "correct": "Porque determina cuándo y cómo se debe cobrar, y si hay riesgo de no-show",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "La política de cobro (inmediato, 7 días antes, etc.) depende directamente del tipo de tarifa (NRF, EBI, AGWEB)."
+  },
+  {
+    "id": "149",
+    "categoria": "Reservas",
+    "level": "avanzado",
+    "text": "¿Qué debes hacer si una reserva de Expedia Collect tiene una VCC caducada?",
+    "options": [
+      "Contactar con Expedia para obtener una nueva",
+      "Cobrar al cliente en recepción",
+      "Facturar igual a Expedia",
+      "Esperar a que el sistema la actualice"
+    ],
+    "correct": "Contactar con Expedia para obtener una nueva",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "Sin VCC válida, no se puede cobrar; se debe resolver con Expedia antes de la llegada para evitar pérdidas."
+  },
+  {
+    "id": "150",
+    "categoria": "Reservas",
+    "level": "avanzado",
+    "text": "¿Qué riesgo hay si se factura a nombre de “Serhs” en lugar de la subagencia real?",
+    "options": [
+      "Que la subagencia no reconozca la factura y no pague",
+      "Que el cliente se queje",
+      "Que el PMS se bloquee",
+      "Que Housekeeping no limpie"
+    ],
+    "correct": "Que la subagencia no reconozca la factura y no pague",
+    "correct_letter": "A",
+    "why": "A",
+    "source": "La factura debe ir al pagador real; si se emite a Serhs, la subagencia puede rechazarla, retrasando o impidiendo el cobro."
+  }
+]
