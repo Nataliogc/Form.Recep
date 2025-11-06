@@ -1,0 +1,38 @@
+[
+  {
+    "ID": 1,
+    "dto": "Recepción",
+    "pregunta": "¿Qué hacer si el PMS muestra overbooking real?",
+    "A": "Cerrar recepción",
+    "B": "Aplicar protocolo: recolocación, coste asumido, upgrade y comunicación transparente",
+    "C": "Evitar comunicar al cliente",
+    "D": "Cancelar reservas aleatoriamente",
+    "Correcta": "B",
+    "L": "Se debe reubicar a cargo del hotel asumiendo costes cuando proceda, con comunicación clara y honesta.",
+    "M": 1
+  },
+  {
+    "ID": 2,
+    "dto": "Pisos",
+    "pregunta": "Ante una no-show confirmada, ¿a quién se debe avisar?",
+    "A": "A nadie, se ignora",
+    "B": "Solo mantenimiento",
+    "C": "Recepción y gobernanta para liberar y replanificar",
+    "D": "Restaurante",
+    "Correcta": "C",
+    "L": "La coordinación Recepción–Pisos evita bloqueos innecesarios y acelera la disponibilidad real.",
+    "M": 1
+  },
+  {
+    "ID": 3,
+    "dto": "Mantenimiento",
+    "pregunta": "Si detectamos fuga leve en cisterna ocupada:",
+    "A": "Esperar al check-out",
+    "B": "Cerrar habitación sin avisar",
+    "C": "Informar a recepción, programar intervención con el huésped y registrar incidencia",
+    "D": "Anular la reserva",
+    "Correcta": "C",
+    "L": "Se programa intervención coordinada minimizando impacto en cliente y ocupación.",
+    "M": 1
+  }
+]

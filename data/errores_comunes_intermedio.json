@@ -1,0 +1,26 @@
+[
+  {
+    "ID": 11,
+    "dto": "Recepción",
+    "pregunta": "Tarjeta garantizada con caducidad vencida:",
+    "A": "Aceptar sin más",
+    "B": "Solicitar nuevo medio de garantía o depósito según protocolo",
+    "C": "Cancelar de inmediato",
+    "D": "Cobrar en efectivo a la llegada sin avisar",
+    "Correcta": "B",
+    "L": "El protocolo exige garantía válida antes de la fecha de opción o depósito no reembolsable.",
+    "M": 1
+  },
+  {
+    "ID": 12,
+    "dto": "Pisos",
+    "pregunta": "Check-in temprano confirmado por recepción:",
+    "A": "Ignorarlo",
+    "B": "Priorizar limpieza y coordinar el estado con recepción",
+    "C": "Bloquear la planta",
+    "D": "Cobrar suplemento sin comunicar",
+    "Correcta": "B",
+    "L": "La priorización de limpieza evita esperas y mejora satisfacción en llegadas tempranas.",
+    "M": 1
+  }
+]
