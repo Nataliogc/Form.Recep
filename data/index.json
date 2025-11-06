@@ -1,10 +1,38 @@
 {
+  "operativa_turnos": {
+    "name": "Operativa Turnos",
+    "levels": {
+      "basico": {
+        "agg": "operativa_turnos_basico.json"
+      },
+      "intermedio": {
+        "agg": "operativa_turnos_intermedio.json"
+      },
+      "avanzado": {
+        "agg": "operativa_turnos_avanzado.json"
+      }
+    }
+  },
+  "reservas": {
+    "name": "Reservas",
+    "levels": {
+      "basico": {
+        "agg": "reservas_basico.json"
+      },
+      "intermedio": {
+        "agg": "reservas_intermedio.json"
+      },
+      "avanzado": {
+        "agg": "reservas_avanzado.json"
+      }
+    }
+  },
   "errores_comunes": {
     "name": "Errores Comunes",
     "levels": {
-      "basico":     { "agg": "errores_comunes_basico.json" },
-      "intermedio": { "agg": "errores_comunes_intermedio.json" },
-      "avanzado":   { "agg": "errores_comunes_avanzado.json" }
+      "avanzado": {
+        "agg": "errores_comunes_avanzado.json"
+      }
     }
   }
 }
