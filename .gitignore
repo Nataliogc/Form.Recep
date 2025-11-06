@@ -8,3 +8,7 @@ __pycache__/
 data/_tmp_read.xlsx
 
 logs/
+
+# Permitir data/json para el quiz
+!data/
+!data/*.json
