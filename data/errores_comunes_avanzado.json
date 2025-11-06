@@ -1,14 +1,3 @@
-[
-  {
-    "ID": 21,
-    "dto": "Recepción",
-    "pregunta": "Disputa de cargo en reserva de agencia con comisión:",
-    "A": "Devolver todo sin revisar",
-    "B": "Revisar voucher, cargos en PMS y política; documentar y comunicar a la agencia",
-    "C": "Cargar doble la comisión",
-    "D": "Cerrar la reserva",
-    "Correcta": "B",
-    "L": "Comprobar condiciones del voucher y cargos reales, registrar trazabilidad y comunicar resolución.",
-    "M": 1
-  }
+﻿[
+  {"ID":21,"dto":"Recepción","pregunta":"Disputa de cargo en reserva de agencia con comisión:","A":"Devolver todo sin revisar","B":"Revisar voucher, cargos en PMS y política; documentar y comunicar a la agencia","C":"Cargar doble la comisión","D":"Cerrar la reserva","Correcta":"B","L":"Comprobar condiciones del voucher y cargos reales, registrar trazabilidad y comunicar resolución.","M":1}
 ]
