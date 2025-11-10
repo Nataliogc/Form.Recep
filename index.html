@@ -1,350 +1,184 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Formación · Excelencia en el Servicio</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sesión de Crecimiento · Formación</title>
 <style>
-:root{
-  --bg:#f7f9fc;--card:#fff;--ink:#0f172a;--muted:#475569;
-  --brand:#0b5faf;--brand2:#00b0ff;
-  --shadow:0 10px 25px rgba(2,6,23,.08),0 3px 8px rgba(2,6,23,.05)
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
-header{background:#fff;box-shadow:var(--shadow);padding:18px 16px;margin-bottom:18px}
-.intro{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:16px}
-.intro h1{margin:0 0 6px;font-size:28px;color:#0f3a77}
-.gold{height:8px;background:linear-gradient(90deg,#c08a2e,#f0c24b,#00b0ff);border-radius:6px;margin-top:12px}
-
-.container{max-width:1100px;margin:0 auto;padding:0 16px 30px}
-.grid{display:grid;grid-template-columns:320px 1fr;gap:20px}
-@media(max-width:980px){.grid{grid-template-columns:1fr}}
-.card{background:#fff;border-radius:18px;box-shadow:var(--shadow)}
-.panel{padding:18px}
-.muted{color:#475569}
-
-.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 10px;font-size:12px}
-.pill.basico{background:#e8fff1;color:#14532d}
-.pill.intermedio{background:#eef2ff;color:#1e3a8a}
-.pill.avanzado{background:#fff1f2;color:#7f1d1d}
-
-input,select{width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:12px;background:#fff;font-size:15px}
-button{border:0;border-radius:12px;padding:10px 14px;font-weight:700;background:#0b5faf;color:#fff;box-shadow:var(--shadow);cursor:pointer}
-button.secondary{background:#e5e7eb;color:#111827;box-shadow:none}
-button.ghost{background:transparent;color:#0b5faf;box-shadow:none}
-
-.progress{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:6px 0 12px}
-.bar{height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand2));transition:width .25s}
-
-.question{font-size:20px;font-weight:800;margin:0 0 10px}
-.answers{display:grid;gap:10px}
-.answer{
-  display:grid; grid-template-columns:22px 28px 1fr; align-items:center;
-  gap:12px; border:1px solid #e5e7eb; border-radius:14px; padding:12px;
-  background:#fff; cursor:pointer; text-align:left;
-}
-.answer input{width:18px;height:18px;margin:0}
-.letter{min-width:28px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;border-radius:999px;background:#e2e8f0;font-size:12px}
-.answer.correct{border-color:#16a34a;background:#f0fdf4}
-.answer.incorrect{border-color:#fecaca;background:#fff}
-.answer.correct .letter{background:#bbf7d0}
-
-.explain{margin-top:10px;padding:12px;border-radius:12px;display:none;border:1px dashed currentColor;background:#fff}
-.explain.ok{color:#166534;background:#f0fdf4;border-color:#86efac}
-.explain.bad{color:#991b1b;background:#fef2f2;border-color:#fecaca}
-.explain small{display:block;color:#334155;opacity:.95;margin-top:6px}
-
-table{width:100%;border-collapse:collapse}
-th,td{padding:10px 8px;border-bottom:1px solid #eef2f7;text-align:left;font-size:14px}
-th{font-weight:700;color:#334155}
-
-.qmeta{display:flex;align-items:center;gap:8px;margin:0 0 6px}
-.qid{font:12px/1 ui-monospace,Consolas,Menlo;background:#eef2ff;color:#3730a3;padding:3px 7px;border-radius:8px;border:1px solid #c7d2fe}
-.finalmsg{margin-top:20px;padding:20px;border-radius:16px;border:1px solid #e5e7eb;background:#fff;font-size:16px;line-height:1.5;box-shadow:0 4px 15px rgba(0,0,0,.05)}
-.finalmsg.ok{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#86efac;color:#14532d}
-.finalmsg.warn{background:linear-gradient(135deg,#fffbe6,#fef9c3);border-color:#fde68a;color:#78350f}
-.finalmsg.bad{background:linear-gradient(135deg,#fef2f2,#fee2e2);border-color:#fecaca;color:#7f1d1d}
+  :root{ --ink:#0f172a; --muted:#64748b; --bg:#f6f7fb; --card:#ffffff; --gold:#A58C5F; --accent:#0ea5e9; --ok:#16a34a; --ko:#b91c1c; }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+  .wrap{max-width:1200px;margin:28px auto;padding:0 18px}
+  .header{background:var(--card);border:1px solid #e5e7eb;border-radius:16px;padding:16px;display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;box-shadow:0 2px 6px rgba(15,23,42,.04)}
+  h1{margin:0;font-weight:800;letter-spacing:.2px;font-size:26px;color:#0b355a}
+  .subtitle{margin-top:2px;color:#0f3a77;font-style:italic}
+  .logos{display:flex;gap:18px;align-items:center}
+  .logos img{height:42px;object-fit:contain}
+  .rule{height:10px;border-radius:999px;background:linear-gradient(90deg,var(--gold),#c8b27f,#60a5fa,#22d3ee);margin-top:8px}
+  .grid{display:grid;grid-template-columns:360px 1fr;gap:18px;margin-top:18px}
+  @media (max-width:980px){.grid{grid-template-columns:1fr} h1{font-size:22px}}
+  .card{background:var(--card);border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 2px 6px rgba(15,23,42,.04)}
+  .panel{padding:16px}
+  label{display:block;font-weight:600;margin:10px 0 6px}
+  select,input[type=text]{width:100%;padding:11px;border:1px solid #d0d7e2;border-radius:12px;background:#fff}
+  button{padding:11px 14px;border-radius:12px;border:1px solid #d0d7e2;background:#0b1324;color:#fff;font-weight:700;cursor:pointer}
+  button:disabled{opacity:.5;cursor:not-allowed}
+  .muted{color:var(--muted);font-size:14px}
+  .progress{height:10px;background:#edf2f7;border-radius:999px;overflow:hidden;margin:8px 0 12px}
+  .bar{height:100%;width:0;background:linear-gradient(90deg,#10b981,#059669)}
+  .opt{display:block;padding:12px 14px;border:1px solid #e5e7eb;border-radius:14px;margin:10px 0;cursor:pointer;background:#fff}
+  .opt.correct{border-color:var(--ok);background:#ecfdf5}
+  .opt.wrong{border-color:var(--ko);background:#fef2f2}
+  .why{margin-top:10px;padding:12px 14px;border-left:4px solid var(--accent);background:#eff9ff;border-radius:10px;font-weight:600}
+  table{width:100%;border-collapse:collapse} th,td{border-bottom:1px solid #e5e7eb;padding:8px;text-align:left}
+  .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef2ff;border:1px solid #c7d2fe;color:#1d2a74;font-weight:700}
+  .rowflex{display:flex;gap:12px;flex-wrap:wrap}
+  .hint{font-size:12px;color:#475569;margin-top:6px}
 </style>
 </head>
 <body>
-<header>
-  <div class="intro">
+<div class="wrap">
+  <!-- Cabecera corporativa -->
+  <section class="header">
     <div>
-      <h1>Formación · Excelencia en el Servicio</h1>
-      <div class="gold"></div>
+      <h1>Sesión de Crecimiento · Formación</h1>
+      <div class="subtitle">Enfocada en la Excelencia del Servicio</div>
+      <div class="rule"></div>
     </div>
-  </div>
-</header>
+    <div class="logos"><img id="logoG" alt="Sercotel Guadiana" src="./img/logo-guadiana.svg" onerror="this.src='./img/logo-guadiana.png'"></div>
+    <div class="logos"><img id="logoC" alt="Cumbria" src="./img/logo-cumbria.svg" onerror="this.src='./img/logo-cumbria.png'"></div>
+  </section>
 
-<div class="container">
   <div class="grid">
     <aside class="card panel">
-      <h3 style="margin:0 0 8px">1) Identificación</h3>
-      <p class="muted">Tu nombre es obligatorio para participar y aparecer en el ranking.</p>
-      <input id="playerName" placeholder="Nombre y apellidos (obligatorio)">
+      <div class="pill">1) Filtros</div>
+      <label for="dept" style="margin-top:6px">Departamento (DTO)</label>
+      <select id="dept"><option value="">Todos</option></select>
+
+      <div class="rowflex">
+        <div style="flex:1;min-width:160px">
+          <label for="mod">Módulo</label>
+          <select id="mod"><option value="">—</option></select>
+        </div>
+        <div style="flex:1;min-width:160px">
+          <label for="lvl">Nivel</label>
+          <select id="lvl"></select>
+        </div>
+      </div>
+      <div id="availHint" class="hint"></div>
+
+      <div style="margin-top:8px">
+        <label style="display:flex;align-items:center;gap:8px">
+          <input type="checkbox" id="exam30"> <span>Modo examen (30 aleatorias)</span>
+        </label>
+      </div>
+
       <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
-
-      <h3 style="margin:0 0 8px">2) Departamento</h3>
-      <select id="deptSelect"><option value="">Todos los departamentos</option></select>
-
-      <div style="height:8px"></div>
-      <h3 style="margin:0 0 8px">3) Módulo</h3>
-      <select id="moduleSelect"><option value="">Selecciona módulo…</option></select>
-
-      <div style="height:8px"></div>
-      <h3 style="margin:0 0 8px">4) Nivel</h3>
-      <select id="levelSelect">
-        <option value="basico">Nivel Básico 🟢</option>
-        <option value="intermedio">Nivel Intermedio 🔹</option>
-        <option value="avanzado">Nivel Avanzado 🔴</option>
-      </select>
-
-      <div style="display:flex;gap:8px;margin-top:12px"><button id="startBtn">Comenzar</button></div>
-      <div id="status" class="muted" style="margin-top:8px;display:none"></div>
+      <div class="pill">2) Identificación</div>
+      <input id="who" type="text" placeholder="Nombre y apellidos (obligatorio)">
+      <div style="margin-top:10px"><button id="start" disabled>Empezar test</button></div>
 
       <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
-      <h3>🏆 Ranking</h3>
-      <table>
-        <thead><tr><th>#</th><th>Nombre</th><th>Dept.</th><th>Módulo</th><th>Punt.</th><th>Fecha</th></tr></thead>
-        <tbody id="lbBody"><tr><td colspan="6" class="muted">Sin resultados todavía.</td></tr></tbody>
-      </table>
-
-      <div style="margin-top:10px"><button id="exportBtn" class="ghost">Descargar Excel (CSV)</button></div>
+      <h3 style="margin:0 0 8px">Ranking</h3>
+      <table id="rank"><thead><tr><th>#</th><th>Nombre</th><th>Módulo</th><th>Nivel</th><th class="right">Aciertos</th><th class="right">% Acierto</th></tr></thead><tbody><tr><td colspan="6" class="muted">Sin resultados todavía.</td></tr></tbody></table>
     </aside>
 
     <main class="card panel">
-      <div class="pill basico" id="levelPill">Nivel Básico 🟢</div>
       <div class="progress"><div class="bar" id="bar"></div></div>
-      <div class="muted" id="tally">0/0 · 0 aciertos · 0 fallos · 0%</div>
-      <hr style="border:0;border-top:1px solid #e5e7eb;margin:10px 0">
-
-      <div id="live" style="display:none">
-        <div class="qmeta"><span class="qid" id="qId">#—</span></div>
-        <div class="question" id="qText">…</div>
-        <div class="answers" id="answers"></div>
-        <div class="explain" id="why"></div>
-        <div id="finalMsg" class="finalmsg" style="display:none"></div>
-        <div style="display:flex;gap:8px;margin-top:12px">
-          <button id="next" class="secondary" disabled>Siguiente</button>
-          <button id="finish" class="ghost" style="display:none">Finalizar</button>
-        </div>
-      </div>
+      <div id="tally" class="muted">0/0 · 0 aciertos · 0 fallos</div>
+      <div id="stage"></div>
     </main>
   </div>
 </div>
 
 <script>
-const INDEX_PATH = "./data/index.json";
-const AGG_BASE = "./data/";
+/* ---------- CSV: rutas válidas para GitHub Pages ---------- */
+const CSV_CANDIDATES = (() => {
+  const base = location.pathname.replace(/\/[^/]*$/, '');      // /Form.Recep
+  return [
+    `${base}/data/plantilla_preguntas_unica.csv`,
+    './data/plantilla_preguntas_unica.csv',
+    'data/plantilla_preguntas_unica.csv'
+  ];
+})();
 
+/* ===== Estado / utilidades ===== */
+let QUESTIONS=[]; let CURRENT=[]; let idx=0, ok=0, bad=0;
 const $ = s => document.querySelector(s);
-const $$ = s => Array.from(document.querySelectorAll(s));
-const fmtDate = d => new Date(d).toLocaleString('es-ES');
-const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
+const dept=$("#dept"), mod=$("#mod"), lvl=$("#lvl"), who=$("#who"), startBtn=$("#start");
+const stage=$("#stage"), bar=$("#bar"), tally=$("#tally"), rankTbl=document.querySelector('#rank tbody'), examBox=$("#exam30");
+const ls={get(){try{return JSON.parse(localStorage.getItem('quiz_rank')||'[]')}catch(_){return[]}},set(x){localStorage.setItem('quiz_rank',JSON.stringify(x))}};
+function progress(){ const p=CURRENT.length?Math.round((idx/CURRENT.length)*100):0; bar.style.width=p+'%'; tally.textContent=`${idx}/${CURRENT.length} · ${ok} aciertos · ${bad} fallos`; }
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function refreshRank(){ const rows=ls.get().sort((a,b)=>b.score-a.score).slice(0,25); rankTbl.innerHTML=rows.length?'':'<tr><td colspan="6" class="muted">Sin resultados todavía.</td></tr>'; rows.forEach((r,i)=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td>${i+1}</td><td>${r.name}</td><td>${r.module}</td><td>${r.level}</td><td class="right">${r.hits}/${r.total}</td><td class="right">${Math.round(r.hits*100/r.total)}%</td>`; rankTbl.appendChild(tr); }); }
 
-let INDEX=null, QUESTIONS=[], pos=0, hits=0, fails=0, currentAnswer=null, currentData=[];
-
-async function loadIndex(){
-  const res = await fetch(INDEX_PATH);
-  INDEX = await res.json();
-  const moduleMap = Object.fromEntries(
-    Object.entries(INDEX).filter(([k,v]) => v && v.levels)
-      .map(([k,v]) => [k, v.name || k])
-  );
-  const modSel = $("#moduleSelect");
-  modSel.innerHTML = '<option value="">Selecciona módulo…</option>' +
-    Object.entries(moduleMap).map(([k,name])=>`<option value="${k}">${name}</option>`).join("");
-  modSel.addEventListener("change", preloadAggAndDepartments);
-  $("#levelSelect").addEventListener("change", preloadAggAndDepartments);
+/* ==== CSV helpers ==== */
+function decodeSmart(buf){ let text=new TextDecoder('utf-8',{fatal:false}).decode(buf); const bads=(text.match(/\uFFFD/g)||[]).length; if(bads>5){ try{text=new TextDecoder('windows-1252').decode(buf);}catch(_){}} return text; }
+function detectDelimiter(sample){ const counts={',':0,';':0,'\t':0}; let q=false; for(let i=0;i<sample.length&&i<2000;i++){const c=sample[i],n=sample[i+1]; if(c=='"'){ if(n=='"'){i++;} else {q=!q;} continue;} if(!q && counts[c]!=null) counts[c]++; if(c=='\n') break;} let best=',',max=-1; for(const k in counts){ if(counts[k]>max){max=counts[k];best=k;} } return best; }
+function splitRow(line,delim){ const res=[]; let cur='',q=false; for(let i=0;i<line.length;i++){const c=line[i],n=line[i+1]; if(q){ if(c=='"'&&n=='"'){cur+='"';i++;} else if(c=='"'){q=false;} else{cur+=c;} } else { if(c=='"'){q=true;} else if(c===delim){res.push(cur);cur='';} else {cur+=c;} } } res.push(cur); return res; }
+function parseCSV(text){ const delim=detectDelimiter(text); const rows=text.split(/\r?\n/).filter(l=>l.trim().length); if(!rows.length) return []; const head=splitRow(rows.shift(), delim).map(h=>(h||'').trim().toLowerCase()); return rows.map(line=>{ const cols=splitRow(line,delim); const obj={}; head.forEach((h,i)=>obj[h]=(cols[i]??'')); return obj; }); }
+function normalize(arr){
+  const pick=(o,ks)=>{for(const k of ks){ if(k in o && String(o[k]).trim()!=='') return String(o[k]); } return '';}
+  return arr.map(r=>{
+    const o={}; Object.keys(r).forEach(k=>o[k.toLowerCase()]=r[k]);
+    const dto=pick(o,['dto','departamento','dpto','depto','depart.','departamento (dto)']);
+    const mod=pick(o,['modulo','módulo','module','mod','tema','bloque','unidad','categoria','categoría']);
+    const level=pick(o,['nivel','nivél','level']).toLowerCase();
+    const text=pick(o,['text','texto','pregunta','enunciado']);
+    const A=pick(o,['a']), B=pick(o,['b']), C=pick(o,['c']), D=pick(o,['d']);
+    let corr=pick(o,['correct_letter','correct','letra_correcta','respuesta_correcta','respuesta']).toUpperCase().match(/[A-D]/)?.[0]||'';
+    const why=pick(o,['why','explicacion','explicación','comentario','nota']);
+    const activo=pick(o,['activo','activa','enabled']);
+    return { id:(pick(o,['id'])||'').trim()||undefined, dto:(dto||'').trim(), mod:(mod||'').trim(), level, text, A,B,C,D, correct:corr, why, activo };
+  }).filter(r=> r.text && (r.activo==='' || r.activo==='1' || (r.activo||'').toString().toLowerCase()==='true'));
 }
-loadIndex().catch(e=>{
-  console.error(e);
-  $("#status").style.display="block";
-  $("#status").textContent="No se pudo cargar el índice de datos.";
-});
 
-async function preloadAggAndDepartments(){
-  const mod = $("#moduleSelect").value;
-  const lvl = $("#levelSelect").value;
-  const info = INDEX?.[mod]?.levels?.[lvl];
-  if(!mod || !info){ return; }
-  try{
-    const res = await fetch(AGG_BASE + info.agg);
-    const all = await res.json();
-    currentData = Array.isArray(all) ? all : [];
-    // Activo (columna M): 1=activo, 0=inactivo
-    const activos = currentData.filter(q => {
-      const flag = q.activo ?? q.active ?? q.is_active ?? q.M ?? 1;
-      return String(flag).trim() === "1";
-    });
-    // Departamentos
-    const getDept = q => (q.dto ?? q.departamento ?? q.dept ?? q.department ?? "General").toString().trim();
-    const uniq = Array.from(new Set(activos.map(getDept))).filter(Boolean);
-    $("#deptSelect").innerHTML =
-      '<option value="">Todos los departamentos</option>' +
-      uniq.map(d=>`<option value="${d}">${d}</option>`).join("");
-  }catch(e){
-    console.warn("No se pudo precargar agg:", e);
+/* ===== Filtros/UI ===== */
+function rowsFor(d,m,l){ let r=QUESTIONS.slice(); if(d) r=r.filter(x=>(x.dto||'').trim()===d); if(m) r=r.filter(x=>(x.mod||'').trim()===m); if(l) r=r.filter(x=>(x.level||'').toLowerCase()===l.toLowerCase()); return r; }
+function buildFilters(){
+  const depts=[...new Set(QUESTIONS.map(x=>(x.dto||'').trim()).filter(Boolean))].sort();
+  dept.innerHTML='<option value="">Todos</option>'+depts.map(d=>`<option>${d}</option>`).join('');
+  const mods=[...new Set(QUESTIONS.map(x=>(x.mod||'').trim()).filter(Boolean))].sort();
+  mod.innerHTML='<option value="">—</option>'+mods.map(m=>`<option>${m}</option>`).join('');
+  const names={basico:'Básico',intermedio:'Intermedio',avanzado:'Avanzado'}, order=['basico','intermedio','avanzado'];
+  const byLvl=new Map(); QUESTIONS.forEach(r=>{const k=(r.level||'').trim().toLowerCase(); if(k) byLvl.set(k,(byLvl.get(k)||0)+1);});
+  lvl.innerHTML=order.map(k=>`<option value="${k}">${names[k]} (${byLvl.get(k)||0})</option>`).join('');
+  updateAvailability();
+}
+function updateAvailability(){ const available=rowsFor((dept.value||''),(mod.value||''),(lvl.value||'')).length; $('#availHint').textContent=`Preguntas disponibles: ${available}`; startBtn.disabled=!who.value || available===0; }
+
+/* ===== Juego ===== */
+function start(){ let pool=rowsFor((dept.value||''),(mod.value||''),(lvl.value||'')); if(!pool.length){ alert('No hay preguntas con esos filtros.'); return; } if($('#exam30').checked){ pool=shuffle(pool.slice()).slice(0,Math.min(30,pool.length)); } CURRENT=pool; idx=0; ok=0; bad=0; show(); }
+function show(){ stage.innerHTML=''; if(idx>=CURRENT.length){ const done=document.createElement('div'); done.innerHTML=`<h3>Test completado</h3><p><strong>${who.value}</strong> — ${mod.value||'-'} · ${(lvl.value||'').toUpperCase()}</p><p>Resultado: <strong>${ok}/${CURRENT.length}</strong> (${Math.round(ok*100/CURRENT.length)}%)</p>`; stage.appendChild(done); const rows=ls.get(); rows.push({name:who.value,module:mod.value||'-',level:lvl.value||'-',hits:ok,total:CURRENT.length,score:ok}); ls.set(rows); refreshRank(); return; } const q=CURRENT[idx]; const sec=document.createElement('section'); const h=document.createElement('h3'); h.innerHTML=`${idx+1}. ${q.text}`; h.style.margin='6px 0 8px'; h.style.fontSize='22px'; sec.appendChild(h); ['A','B','C','D'].forEach(K=>{ const t=q[K]; if(!t||!String(t).trim()) return; const btn=document.createElement('div'); btn.className='opt'; btn.dataset.key=K; btn.innerHTML=`<strong>${K}.</strong> ${t}`; btn.onclick=()=>{ Array.from(sec.querySelectorAll('.opt')).forEach(el=> el.onclick=null); const CL=(q.correct||'').toString().toUpperCase().match(/[A-D]/)?.[0]||''; if(K===CL){ btn.classList.add('correct'); ok++; } else { btn.classList.add('wrong'); const c=sec.querySelector(\`.opt[data-key="\${CL}"]\`); if(c) c.classList.add('correct'); bad++; } const next=document.createElement('button'); next.textContent='Siguiente ▶'; next.style.marginTop='10px'; next.onclick=()=>{ idx++; progress(); show(); }; sec.appendChild(next); }; sec.appendChild(btn); }); stage.appendChild(sec); progress(); }
+
+/* ===== Carga con múltiples rutas y diagnóstico en consola ===== */
+async function fetchFirst(urls){
+  for(const u of urls){
+    try{
+      const res = await fetch(u + (u.includes('?')?'&':'?') + 'v=' + Date.now(), {cache:'no-store'});
+      if(res.ok){ const buf = await res.arrayBuffer(); return decodeSmart(buf); }
+      console.warn('[CSV 404]', u, res.status);
+    }catch(e){ console.warn('[CSV ERR]', u, e); }
   }
+  throw new Error('CSV no encontrado en ninguna ruta candidata');
+}
+async function autoLoad(){
+  const text = await fetchFirst(CSV_CANDIDATES);
+  const arr  = parseCSV(text);
+  QUESTIONS  = normalize(arr);
+  buildFilters();
 }
 
-$("#levelSelect").addEventListener("change", e=>{
-  const v = e.target.value;
-  $("#levelPill").className = "pill " + v;
-  $("#levelPill").textContent =
-    v==="intermedio" ? "Nivel Intermedio 🔹" :
-    v==="avanzado"   ? "Nivel Avanzado 🔴"   : "Nivel Básico 🟢";
+/* ===== Eventos ===== */
+dept.addEventListener('change', ()=>{ buildFilters(); });
+mod.addEventListener('change',  ()=>{ updateAvailability(); });
+lvl.addEventListener('change',  ()=>{ updateAvailability(); });
+who.addEventListener('input',   updateAvailability);
+document.getElementById('start').addEventListener('click', start);
+refreshRank();
+autoLoad().catch(err=>{
+  console.error(err);
+  alert('No se pudo cargar automáticamente el CSV (revisa ruta y nombre exactos en /data).');
 });
-$("#startBtn").addEventListener("click", start);
-$("#next").addEventListener("click", nextQ);
-$("#finish").addEventListener("click", finishQuiz);
-$("#exportBtn").addEventListener("click", exportCSV);
-
-function pick(o, ...keys){ for(const k of keys){ if(o && k in o && o[k]!=null) return o[k]; } return null; }
-
-async function start(){
-  const name = $("#playerName").value.trim();
-  if(!name){ alert("Escribe tu nombre y apellidos."); return; }
-  const mod = $("#moduleSelect").value;
-  const lvl = $("#levelSelect").value;
-  if(!mod){ alert("Selecciona un módulo."); return; }
-  const info = INDEX?.[mod]?.levels?.[lvl];
-  if(!info){ alert("No hay preguntas para este nivel."); return; }
-  if(!currentData.length){
-    try{ const res = await fetch(AGG_BASE + info.agg); currentData = await res.json(); }
-    catch(e){ alert("No se pudo cargar el archivo de preguntas: " + e); return; }
-  }
-  const deptChosen = $("#deptSelect").value.trim();
-
-  const normalize = (q) => {
-    const id = pick(q,"id","ID","Id","n","num","numero","Número") ?? null;
-    const dept = (pick(q,"dto","departamento","dept","department") ?? "General").toString().trim();
-    const text = pick(q,"text","pregunta","question","q","enunciado") ?? "";
-    const opts_raw = pick(q,"options","respuestas","answers","opciones");
-    let options = Array.isArray(opts_raw) ? opts_raw : [q.A,q.B,q.C,q.D,q.E,q.F].filter(v=>v!=null);
-    let corr = pick(q,"correct","sol","solucion","resultado","answer","Correcta");
-    if(typeof corr==="string"){
-      const s = corr.trim().toUpperCase();
-      if(/^[A-Z]$/.test(s)) corr = s.charCodeAt(0)-65;
-      else if(/^\d+$/.test(s)) corr = parseInt(s,10);
-      else corr = 0;
-    }
-    if(typeof corr!=="number") corr = 0;
-    const exp = pick(q,"explain","explicacion","explicación","why","razon","L") ?? "";
-    const act = pick(q,"activo","active","is_active","M");
-    const activo = (act==null) ? 1 : String(act).trim()==="1";
-    return { id, dept, text, options, correct: corr, explain: exp, activo };
-  };
-
-  let norm = (Array.isArray(currentData)? currentData: []).map(normalize).filter(q=>q.activo);
-  if(deptChosen) norm = norm.filter(q => q.dept===deptChosen);
-  if(!norm.length){ alert("No hay preguntas activas para el filtro seleccionado."); return; }
-  QUESTIONS = norm;
-
-  pos=0; hits=0; fails=0; currentAnswer=null;
-  $("#live").style.display="block";
-  renderQ();
-}
-
-function normalizeCorrect(q){ return clamp(q.correct ?? 0,0,(q.options||[]).length-1); }
-
-function renderQ(){
-  const q = QUESTIONS[pos];
-  const total = QUESTIONS.length;
-  $("#bar").style.width = `${Math.round((pos/total)*100)}%`;
-  $("#tally").textContent = `${pos}/${total} · ${hits} aciertos · ${fails} fallos · ${total?Math.round((hits/total)*100):0}%`;
-  $("#qId").textContent = `#${(q.id!=null)?q.id:(pos+1)}`;
-  $("#qText").textContent = q.text || "(Pregunta)";
-
-  const answers = $("#answers");
-  answers.innerHTML = "";
-  const correctIdx = normalizeCorrect(q);
-  (q.options||[]).forEach((opt, i)=>{
-    const row = document.createElement("label");
-    row.className = "answer";
-    row.innerHTML = `
-      <input type="radio" name="ans">
-      <span class="letter">${String.fromCharCode(65+i)}</span>
-      <span>${opt}</span>
-    `;
-    row.addEventListener("click", ()=>{
-      if(currentAnswer!==null) return;
-      currentAnswer = i;
-      $$("#answers .answer").forEach(r=>r.classList.remove("correct","incorrect"));
-      row.classList.add(i===correctIdx?"correct":"incorrect");
-      const why = $("#why");
-      const hasExp = (q.explain && String(q.explain).trim().length);
-      if(hasExp){
-        why.style.display="block";
-        why.className = "explain " + (i===correctIdx?"ok":"bad");
-        why.innerHTML = (i===correctIdx?"✅ Correcto":"❌ No es correcto") + `<small>${q.explain}</small>`;
-      }else{
-        why.style.display="none";
-        why.className = "explain";
-        why.textContent = "";
-      }
-      $("#next").disabled = false;
-      if(pos === QUESTIONS.length-1){ $("#finish").style.display="inline-block"; }
-      if(i===correctIdx) hits++; else fails++;
-    });
-    answers.appendChild(row);
-  });
-
-  $("#next").disabled = true;
-  $("#finish").style.display = "none";
-}
-
-function nextQ(){ if(currentAnswer===null) return; currentAnswer=null; pos++; if(pos>=QUESTIONS.length){ finishQuiz(); return; } renderQ(); }
-
-function finishQuiz(){
-  const total = QUESTIONS.length;
-  const pct = total? Math.round((hits/total)*100) : 0;
-  const box = $("#finalMsg");
-  box.style.display = "block";
-  box.className = "finalmsg " + (pct>=85?"ok":pct>=60?"warn":"bad");
-  box.innerHTML = `<h4>Resultado</h4><p>${hits}/${total} aciertos · ${pct}%</p>`;
-  const rec = { name: $("#playerName").value.trim(), dept: $("#deptSelect").value || "—", module: ($("#moduleSelect").selectedOptions[0]?.textContent)||"—", score: pct, date: new Date().toISOString() };
-  const key = "quiz_ranking_v1";
-  const list = JSON.parse(localStorage.getItem(key)||"[]");
-  list.push(rec);
-  list.sort((a,b)=>b.score - a.score || new Date(b.date)-new Date(a.date));
-  localStorage.setItem(key, JSON.stringify(list.slice(0,100)));
-  paintRanking();
-}
-
-function paintRanking(){
-  const key = "quiz_ranking_v1";
-  const list = JSON.parse(localStorage.getItem(key)||"[]");
-  const tbody = $("#lbBody");
-  if(!list.length){ tbody.innerHTML = `<tr><td colspan="6" class="muted">Sin resultados todavía.</td></tr>`; return; }
-  tbody.innerHTML = list.map((r,i)=>`
-    <tr>
-      <td>${i+1}</td>
-      <td>${r.name}</td>
-      <td>${r.dept||"—"}</td>
-      <td>${r.module||"—"}</td>
-      <td>${r.score}%</td>
-      <td>${fmtDate(r.date)}</td>
-    </tr>
-  `).join("");
-}
-paintRanking();
-
-function exportCSV(){
-  const key = "quiz_ranking_v1";
-  const list = JSON.parse(localStorage.getItem(key)||"[]");
-  if(!list.length){ alert("No hay datos en el ranking."); return; }
-  const head = ["#", "Nombre", "Dept.", "Módulo", "Puntuación", "Fecha"];
-  const rows = list.map((r,i)=>[i+1, r.name, r.dept||"", r.module||"", r.score, fmtDate(r.date)]);
-  const csv = [head, ...rows].map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(",")).join("\r\n");
-  const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "ranking_quiz.csv";
-  document.body.appendChild(a); a.click(); a.remove();
-}
 </script>
 </body>
 </html>
