@@ -5,69 +5,75 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sesión de Crecimiento · Formación</title>
 
-<!-- Fuentes -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<!-- Estilos -->
 <style>
 :root{
-  --ink:#0f172a; --muted:#667085; --bg:#f6f7fb; --card:#fff;
-  --border:#e6e7eb; --primary:#0b61d6; --ok:#16a34a; --ko:#dc2626;
-  --pill:#eef2ff; --chip:#f1f5f9; --ring: rgba(11,97,214,.12);
+  --bg:#f6f7fb; --card:#fff; --ink:#0f172a; --muted:#667085; --border:#e6e7eb;
+  --primary:#0b61d6; --ring:rgba(11,97,214,.14); --ok:#16a34a; --ko:#dc2626;
+  --chip:#f1f5f9; --pill:#eef2ff; --pill-border:#dfe5ff;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;}
-.wrap{max-width:1150px;margin:28px auto;padding:0 18px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 6px 30px rgba(15,23,42,.05)}
-.header{padding:18px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
-.brand{display:flex;gap:16px;align-items:center}
-.brand img{height:42px;object-fit:contain;filter: saturate(.92)}
-h1{margin:2px 0 0;font-size:28px;font-weight:800;letter-spacing:.2px}
-.subtitle{color:#134aa6;margin-top:2px;font-style:italic}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
 
-.toolbar{display:grid;grid-template-columns:repeat(4,minmax(200px,1fr)) auto;gap:14px;margin-top:12px}
-label{font-size:12px;color:var(--muted);display:block;margin:0 0 6px}
-select,input[type="text"]{width:100%;padding:12px 12px;border:1px solid var(--border);border-radius:12px;background:#fff;outline:none}
+.wrap{max-width:1250px;margin:28px auto;padding:0 18px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 10px 35px rgba(15,23,42,.04)}
+.header{padding:18px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+.brand{display:flex;gap:18px;align-items:center}
+.brand img{height:42px;object-fit:contain;filter:saturate(.9)}
+h1{margin:2px 0 0;font-size:28px;font-weight:800;letter-spacing:.2px}
+.subtitle{color:#144aa7;margin-top:2px;font-style:italic}
+
+/* Layout principal */
+.grid{display:grid;grid-template-columns:360px 1fr;gap:18px;margin-top:18px}
+@media (max-width: 980px){ .grid{grid-template-columns:1fr} }
+
+/* Sidebar / pasos */
+.sidebar{padding:16px}
+.step{display:flex;align-items:center;gap:10px;margin:8px 0 12px}
+.step .num{background:#eef2ff;border:1px solid var(--pill-border);color:#0b3b8f;border-radius:999px;padding:4px 12px;font-weight:800}
+.help{font-size:14px;color:var(--muted)}
+label{font-size:12px;color:var(--muted);display:block;margin:10px 0 6px}
+select,input{width:100%;padding:12px;border:1px solid var(--border);border-radius:12px;background:#fff;outline:none}
 select:focus,input:focus{box-shadow:0 0 0 6px var(--ring);border-color:#c7d7f7}
-button{padding:12px 16px;border-radius:12px;border:1px solid var(--border);background:#fff;cursor:pointer;font-weight:600}
+button{padding:12px 16px;border-radius:12px;border:1px solid var(--border);background:#fff;cursor:pointer;font-weight:700}
 button.primary{background:var(--primary);color:#fff;border:0}
 button:disabled{opacity:.55;cursor:not-allowed}
-
-.panel{margin-top:18px;padding:16px}
-.kpis{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
-.kpi{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:var(--chip);font-size:13px}
+.kpis{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.kpi{background:var(--chip);border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-size:13px}
 .kpi b{font-weight:800}
 
-.main{margin-top:16px;padding:18px}
+/* Content / preguntas */
+.content{padding:16px}
 .progress{height:10px;background:#eef2ff;border-radius:999px;overflow:hidden}
 .progress>div{height:100%;width:0;background:#80aaff;transition:width .2s ease}
 .meta{display:flex;gap:10px;align-items:center;margin:10px 0 8px;color:var(--muted);font-size:14px}
-.badge{display:inline-flex;align-items:center;gap:6px;background:var(--pill);border:1px solid #dfe5ff;border-radius:999px;padding:4px 10px;font-size:12px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--pill);border:1px solid var(--pill-border);border-radius:999px;padding:4px 10px;font-size:12px}
 .badge b{font-weight:800}
-
-.qcard{padding:8px 0}
-.qid{font-size:12px;color:var(--muted);letter-spacing:.4px;margin-bottom:4px}
-.qtitle{font-size:22px;font-weight:800;margin:4px 0 8px}
-.answers{display:grid;gap:10px;margin-top:12px}
+.qbox{padding:6px 0}
+.qhead{display:flex;align-items:baseline;gap:8px}
+.qnum{font-weight:800;font-size:20px}
+.qid{font-size:12px;color:var(--muted)}
+.qtitle{font-size:22px;font-weight:800;margin:6px 0 10px}
+.answers{display:grid;gap:10px;margin-top:8px}
 .ans{padding:12px;border:1px solid var(--border);border-radius:12px;background:#fff;cursor:pointer;display:flex;gap:10px;align-items:flex-start}
 .ans b{display:inline-block;min-width:22px}
 .ans:hover{border-color:#d7d9df;background:#fcfcff}
 .ans.correct{background:#ecfdf5;border-color:#86efac}
-.ans.wrong{background:#fef2f2;border-color:#fecaca}
-.explain{margin-top:12px;padding:12px;border:1px dashed #cbd5e1;border-radius:12px;background:#fbfdff}
-.controls{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
+.ans.wrong{background:#fef2f2;border-color:#fca5a5}
+.explain{margin-top:12px;padding:12px;border:1px dashed #cbd5e1;border-radius:12px;background:#f8fbff}
+.controls{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+.center{display:flex;align-items:center;justify-content:center;padding:46px 10px;color:var(--muted)}
 .footer{margin:26px auto 10px;color:var(--muted);font-size:12px;text-align:center}
-
-.center{display:flex;align-items:center;justify-content:center;padding:40px 10px;color:var(--muted)}
-.hidden{display:none}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <!-- CABECERA -->
+
+  <!-- Header -->
   <div class="card header">
     <div class="brand">
       <img src="./img/logo-guadiana.png" alt="Guadiana" onerror="this.style.display='none'">
@@ -76,47 +82,70 @@ button:disabled{opacity:.55;cursor:not-allowed}
     <div>
       <h1>Sesión de Crecimiento · Formación</h1>
       <div class="subtitle">Cuestionario dinámico por departamento, módulo y nivel</div>
+    </div>
+  </div>
 
-      <!-- FILTROS -->
-      <div class="toolbar">
-        <div><label for="dept">Departamento</label><select id="dept"><option value="">—</option></select></div>
-        <div><label for="mod">Módulo</label><select id="mod"><option value="">—</option></select></div>
-        <div><label for="lvl">Nivel</label><select id="lvl"><option value="">—</option><option>Básico</option><option>Intermedio</option><option>Avanzado</option></select></div>
-        <div><label for="who">Participante</label><input id="who" type="text" placeholder="Nombre y apellidos"></div>
-        <div style="display:flex;align-items:end"><button id="btnStart" class="primary" disabled>Iniciar</button></div>
+  <!-- Layout principal -->
+  <div class="grid">
+    <!-- Sidebar -->
+    <aside class="card sidebar">
+      <div class="step"><span class="num">1</span><b>Estado</b></div>
+      <div class="help">Preguntas cargadas: <b id="loaded">0</b></div>
+
+      <div class="step"><span class="num">2</span><b>Filtros</b></div>
+      <label for="dept">Departamento (DTO)</label>
+      <select id="dept"><option value="">Todos</option></select>
+
+      <label for="mod">Módulo</label>
+      <select id="mod"><option value="">Todos</option></select>
+
+      <label for="lvl">Nivel</label>
+      <select id="lvl">
+        <option value="">—</option>
+        <option>Básico</option>
+        <option>Intermedio</option>
+        <option>Avanzado</option>
+      </select>
+      <div class="kpis" id="kpis"></div>
+
+      <div class="step"><span class="num">3</span><b>Nombre y empezar</b></div>
+      <input id="who" type="text" placeholder="Nombre y apellidos (obligatorio)">
+      <div style="margin-top:12px;display:flex;gap:10px">
+        <button id="btnStart" class="primary" disabled>Empezar test</button>
       </div>
-    </div>
-  </div>
 
-  <!-- PANEL INFO -->
-  <div class="card panel" id="panelInfo">
-    <div class="muted" style="font-size:14px">Selecciona **Departamento → Módulo → Nivel** para ver el número de preguntas disponible y poder iniciar.</div>
-    <div class="kpis" id="kpis">
-      <!-- Se rellenan con Básico (N) · Intermedio (M) · Avanzado (K) -->
-    </div>
-  </div>
+      <hr style="margin:16px 0;border:none;border-top:1px dashed var(--border)">
+      <div style="font-size:14px">
+        <b>¿Por qué realizamos estas pruebas?</b>
+        <ul style="margin:6px 0 0 18px;padding:0">
+          <li>Refuerzo del conocimiento clave</li>
+          <li>Estándares comunes entre hoteles</li>
+          <li>Detección de áreas de mejora</li>
+          <li>Reconocer buenas prácticas</li>
+        </ul>
+      </div>
+    </aside>
 
-  <!-- CONTENIDO -->
-  <div class="card main" id="mainCard">
-    <!-- Barra progreso -->
-    <div class="progress"><div id="bar"></div></div>
-    <div class="meta">
-      <span class="badge" id="metaPos">0/0</span>
-      <span class="badge" id="metaScore"><b>0</b> aciertos · <b>0</b> fallos</span>
-      <span class="badge" id="metaTags"></span>
-    </div>
+    <!-- Contenido -->
+    <section class="card content">
+      <div class="progress"><div id="bar"></div></div>
+      <div class="meta">
+        <span class="badge" id="metaPos">0/0</span>
+        <span class="badge" id="metaScore"><b>0</b> aciertos · <b>0</b> fallos</span>
+        <span class="badge" id="metaTags"></span>
+      </div>
 
-    <!-- Contenedor pregunta -->
-    <div id="holder" class="qcard center">
-      Elige filtros y pulsa <b>Iniciar</b> para comenzar.
-    </div>
+      <div id="holder" class="qbox center">
+        Elige <b>Departamento → Módulo → Nivel</b>, escribe tu nombre y pulsa <b>Empezar test</b>.
+      </div>
+    </section>
   </div>
 
   <div class="footer">© Formación interna · Sercotel Guadiana y Cumbria Spa&Hotel</div>
 </div>
 
 <script>
-/* ==================== RUTAS / CARGA ==================== */
+/* ========= CARGA (CSV en Pages / data.js en local y fallback) ========= */
 const CSV_CANDIDATES = [
   './data/plantilla_preguntas_unica.csv',
   'data/plantilla_preguntas_unica.csv'
@@ -195,7 +224,7 @@ function loadQUIZFallback(){
           level:(q.nivel||'').toLowerCase(), text:q.texto||q.text||'',
           A:q.A,B:q.B,C:q.C,D:q.D, correct:(q.correct_letter||q.correct||'').toString().toUpperCase(), why:q.why||''
         })).filter(x=>x.text);
-        console.info('[FALLBACK] Cargado data.js:', RAW.length);
+        console.info('[FALLBACK] data.js:', RAW.length);
         resolve();
       } else reject(new Error('window.QUIZ vacío'));
     };
@@ -204,150 +233,146 @@ function loadQUIZFallback(){
   });
 }
 
-/* ==================== ESTADO / UI ==================== */
-let RAW=[], QUESTIONS=[], filtered=[], idx=0;
+/* ========= Estado & elementos ========= */
+let RAW=[], filtered=[], idx=0;
 let correct=new Set(), wrong=new Set();
 
 const $ = s => document.querySelector(s);
-const dept=$("#dept"), mod=$("#mod"), lvl=$("#lvl"), who=$("#who");
-const btnStart=$("#btnStart"), holder=$("#holder"), bar=$("#bar");
-const metaPos=$("#metaPos"), metaScore=$("#metaScore"), metaTags=$("#metaTags");
-const kpis=$("#kpis");
+const loaded=$("#loaded"), dept=$("#dept"), mod=$("#mod"), lvl=$("#lvl"), who=$("#who");
+const btnStart=$("#btnStart"), kpis=$("#kpis");
+const holder=$("#holder"), bar=$("#bar"), metaPos=$("#metaPos"), metaScore=$("#metaScore"), metaTags=$("#metaTags");
 
 function uniq(a){return [...new Set(a.filter(Boolean))]}
 
+/* ========= Filtros + KPIs ========= */
+function rebuildFilters(){
+  const depts = uniq(RAW.map(x=>x.dto));
+  const mods  = uniq(RAW.map(x=>x.mod));
+  dept.innerHTML='<option value="">Todos</option>'+depts.map(v=>`<option>${v}</option>`).join('');
+  mod.innerHTML ='<option value="">Todos</option>'+mods.map(v=>`<option>${v}</option>`).join('');
+  lvl.value=""; who.value=""; btnStart.disabled=true;
+  updateKPIs();
+}
 function updateKPIs(){
   const d=dept.value||'', m=mod.value||'';
   const base = RAW.filter(q => (d? q.dto===d : true) && (m? q.mod===m : true));
   const b = base.filter(q=>q.level==='básico').length;
   const i = base.filter(q=>q.level==='intermedio').length;
   const a = base.filter(q=>q.level==='avanzado').length;
-  kpis.innerHTML = `
-    <span class="kpi">Básico: <b>${b}</b></span>
-    <span class="kpi">Intermedio: <b>${i}</b></span>
-    <span class="kpi">Avanzado: <b>${a}</b></span>
-  `;
-  // habilitar iniciar cuando hay dept+mod+lvl y existan preguntas
+  kpis.innerHTML = `<span class="kpi">Básico: <b>${b}</b></span>
+                    <span class="kpi">Intermedio: <b>${i}</b></span>
+                    <span class="kpi">Avanzado: <b>${a}</b></span>`;
+  // etiquetas con conteo en el propio select de nivel
+  [...lvl.options].forEach(o=>{
+    const v=o.value.toLowerCase();
+    if(!v) return;
+    const n = v==='básico'?b : v==='intermedio'?i : a;
+    o.textContent = o.value + ` (${n})`;
+  });
   const exists = base.filter(q=> (lvl.value? q.level===lvl.value.toLowerCase() : true)).length;
-  btnStart.disabled = !(dept.value && mod.value && lvl.value && exists);
+  btnStart.disabled = !(dept.value && mod.value && lvl.value && who.value.trim() && exists);
 }
+dept.onchange=updateKPIs; mod.onchange=updateKPIs; lvl.onchange=updateKPIs; who.oninput=updateKPIs;
 
-function buildFilters(){
-  // Dept / Mod
-  const depts = uniq(RAW.map(x=>x.dto));
-  const mods  = uniq(RAW.map(x=>x.mod));
-  dept.innerHTML='<option value="">—</option>'+depts.map(v=>`<option>${v}</option>`).join('');
-  mod.innerHTML ='<option value="">—</option>'+mods.map(v=>`<option>${v}</option>`).join('');
-  lvl.value=""; who.value=""; btnStart.disabled=true;
-  updateKPIs();
-}
-
-dept.onchange = ()=>updateKPIs();
-mod.onchange  = ()=>updateKPIs();
-lvl.onchange  = ()=>updateKPIs();
-
+/* ========= Render pregunta ========= */
 function setProgress(){
   const pct=filtered.length?((idx+1)/filtered.length)*100:0;
   bar.style.width=pct.toFixed(1)+"%";
   metaPos.textContent = `${filtered.length? (idx+1):0}/${filtered.length||0}`;
   metaScore.innerHTML = `<b>${correct.size}</b> aciertos · <b>${wrong.size}</b> fallos`;
 }
-function paintQuestion(){
+function paint(){
   if(!filtered.length){
-    holder.className="qcard center";
-    holder.innerHTML = 'No hay preguntas para esa combinación de filtros.';
-    metaTags.textContent = '';
-    setProgress(); return;
+    holder.className="qbox center";
+    holder.innerHTML='No hay preguntas para esa combinación de filtros.';
+    metaTags.textContent=''; setProgress(); return;
   }
-  const q = filtered[idx];
-  holder.className="qcard";
+  const q=filtered[idx];
+  holder.className="qbox";
   metaTags.innerHTML = `
     <span class="badge">${q.dto||'—'}</span>
     <span class="badge">${q.mod||'—'}</span>
     <span class="badge">${(q.level||'').charAt(0).toUpperCase()+ (q.level||'').slice(1)}</span>
   `;
   holder.innerHTML = `
-    <div class="qid">ID: ${q.id ?? (idx+1)}</div>
+    <div class="qhead"><div class="qnum">${idx+1}.</div><div class="qid">[#${q.id ?? (idx+1)}]</div></div>
     <div class="qtitle">${q.text}</div>
     <div class="answers" id="answers">
       ${['A','B','C','D'].map(L=>`<div class="ans" data-letter="${L}"><b>${L}.</b> ${q[L]||''}</div>`).join('')}
     </div>
-    <div class="explain hidden" id="explain">${q.why ? ('<b>Explicación:</b> '+q.why) : ''}</div>
+    <div class="explain hidden" id="explain">${q.why?('<b>Explicación:</b> '+q.why):''}</div>
     <div class="controls">
-      <button id="btnPrev" ${idx===0?'disabled':''}>Atrás</button>
-      <button id="btnNext" disabled>Siguiente</button>
+      <button id="prev" ${idx===0?'disabled':''}>Atrás</button>
+      <button id="next" disabled>Siguiente</button>
     </div>
   `;
   setProgress();
 
-  const answers=[...document.querySelectorAll('.ans')];
-  const btnNext=$("#btnNext"), btnPrev=$("#btnPrev"), exp=$("#explain");
-  let responded = false;
-
+  const list=[...document.querySelectorAll('.ans')];
+  const next=$("#next"), prev=$("#prev"), exp=$("#explain");
+  let answered=false;
   function reveal(letter){
-    if(responded) return;
-    responded = true;
-    const corr = (q.correct||'').toUpperCase();
-    answers.forEach(el=>{
-      const l = el.dataset.letter;
-      if(l===corr){ el.classList.add('correct'); }
-      if(letter && l===letter && l!==corr){ el.classList.add('wrong'); }
+    if(answered) return;
+    answered=true;
+    const corr=(q.correct||'').toUpperCase();
+    list.forEach(el=>{
+      const l=el.dataset.letter;
+      if(l===corr) el.classList.add('correct');
+      if(letter && l===letter && l!==corr) el.classList.add('wrong');
     });
-    if(exp && exp.textContent.trim()){ exp.classList.remove('hidden'); }
-    btnNext.disabled = false; // solo permitimos avanzar tras ver la corrección
-    if(letter === corr){ correct.add(q.id ?? idx); } else { wrong.add(q.id ?? idx); }
+    if(exp && exp.textContent.trim()) exp.classList.remove('hidden');
+    next.disabled=false;
+    if(letter===corr) correct.add(q.id ?? idx); else wrong.add(q.id ?? idx);
     setProgress();
   }
-
-  answers.forEach(el=> el.onclick = ()=>reveal(el.dataset.letter) );
-  btnPrev.onclick = ()=>{ if(idx>0){ idx--; paintQuestion(); } };
-  btnNext.onclick = ()=>{ if(idx<filtered.length-1){ idx++; paintQuestion(); } else { showSummary(); } };
+  list.forEach(el=> el.onclick=()=>reveal(el.dataset.letter));
+  prev.onclick = ()=>{ if(idx>0){ idx--; paint(); } };
+  next.onclick = ()=>{ if(idx<filtered.length-1){ idx++; paint(); } else { showSummary(); } };
 }
-
 function showSummary(){
-  holder.className="qcard center";
+  holder.className="qbox center";
   holder.innerHTML = `
     <div>
       <h3 style="margin:6px 0 10px">Resumen</h3>
       <p class="muted">Aciertos: <b>${correct.size}</b> · Fallos: <b>${wrong.size}</b> · Total: <b>${filtered.length}</b></p>
       <div class="controls" style="justify-content:center">
-        <button id="btnReview">Revisar solo falladas</button>
-        <button id="btnAgain" class="primary">Empezar de nuevo</button>
+        <button id="review">Revisar solo falladas</button>
+        <button id="again" class="primary">Empezar de nuevo</button>
       </div>
     </div>`;
-  $("#btnReview").onclick = ()=>{
-    const set = new Set([...wrong]);
+  $("#review").onclick=()=>{
+    const set=new Set([...wrong]);
     filtered = filtered.filter((q,i)=> set.has(q.id ?? i));
-    idx=0; correct.clear(); wrong.clear(); paintQuestion();
+    idx=0; correct.clear(); wrong.clear(); paint();
   };
-  $("#btnAgain").onclick = ()=>{
+  $("#again").onclick=()=>{
     idx=0; correct.clear(); wrong.clear();
-    holder.innerHTML='Elige filtros y pulsa <b>Iniciar</b> para comenzar.'; holder.className="qcard center";
-    btnStart.disabled = !(dept.value && mod.value && lvl.value);
+    holder.className="qbox center";
+    holder.innerHTML='Elige <b>Departamento → Módulo → Nivel</b>, escribe tu nombre y pulsa <b>Empezar test</b>.';
     setProgress();
   };
 }
 
-btnStart.onclick = ()=>{
+/* ========= Iniciar ========= */
+$("#btnStart").onclick=()=>{
   const d=dept.value||'', m=mod.value||'', lv=(lvl.value||'').toLowerCase();
-  filtered = RAW.filter(q=> (d? q.dto===d:true) && (m? q.mod===m:true) && (lv? q.level===lv:true));
-  idx=0; correct.clear(); wrong.clear(); paintQuestion();
+  filtered = RAW.filter(q=> (d? q.dto===d : true) && (m? q.mod===m : true) && (lv? q.level===lv : true));
+  idx=0; correct.clear(); wrong.clear(); paint();
 };
 
-/* ==================== AUTOLOAD (CSV + fallback data.js) ==================== */
+/* ========= Boot ========= */
 (async function boot(){
   const IS_LOCAL = location.protocol === 'file:';
   try{
-    if(IS_LOCAL) throw new Error('Local file:// → usar data.js');
+    if(IS_LOCAL) throw new Error('file:// → usar data.js');
     const text = await fetchFirst(CSV_CANDIDATES);
     RAW = normalize(parseCSV(text));
     if(!RAW.length) throw new Error('CSV vacío');
-    console.info('[CSV] preguntas:', RAW.length);
   }catch(e){
-    console.warn('[BOOT] CSV falló o local, usando data.js', e);
     await loadQUIZFallback();
   }
-  buildFilters();
+  loaded.textContent = RAW.length;
+  rebuildFilters();
 })();
 </script>
 </body>
