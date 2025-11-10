@@ -1,20 +1,7 @@
 ﻿// Autogenerado a partir de plantilla_preguntas_unica.csv
 window.QUIZ = {
-    "count":  180,
+    "count":  179,
     "questions":  [
-                      {
-                          "id":  1,
-                          "departamento":  "Recepción",
-                          "categoria":  "",
-                          "nivel":  "Avanzado",
-                          "texto":  "¿A qué hora se recomienda que llegue el recepcionista para el turno de mañana?",
-                          "A":  "06:45:00",
-                          "B":  "Ninguna es correcta",
-                          "C":  "07:00 en punto",
-                          "D":  "06:50 – 06:55",
-                          "correct_letter":  "D",
-                          "why":  "El documento 2.2 indica: “El horario habitual es de 07:00 a 15:00”. Aunque se recomienda llegar entre 06:50 y 06:55 para el relevo y preparación, el turno oficial comienza a las 07:00.  El documento 2.2 indica: “El horario habitual es de 07:00 a 15:00”. Aunque se recomienda llegar entre 06:50 y 06:55 para el relevo y preparación, el turno oficial comienza a las 07:00h"
-                      },
                       {
                           "id":  2,
                           "departamento":  "Recepción",
@@ -1978,13 +1965,13 @@ Comunicación clara: El huésped debe recibir confirmación formal, con hora lí
                           "departamento":  "Recepción",
                           "categoria":  "",
                           "nivel":  "Avanzado",
-                          "texto":  "¿Cuál es el riesgo principal de modificar el localizador antes de que sincronice el channel manager?",
-                          "A":  "El channel no reconoce la reserva y puede cancelar la original",
-                          "B":  "El PMS crea una reserva duplicada",
-                          "C":  "El cliente pierde la tarifa promocional",
-                          "D":  "El email del cliente es eliminado",
-                          "correct_letter":  "A",
-                          "why":  "Modificar el localizador antes de la sincronización rompe la relación PMS-channel, provocando cancelaciones erróneas."
+                          "texto":  "¿Qué debe evitarse en reservas procedentes de Smartbox, El Corte Inglés, GDS u otros canales externos?",
+                          "A":  "Confirmar la reserva sin revisar el canal de origen",
+                          "B":  "Modificar manualmente el número de localizador antes de la noche anterior a la llegada",
+                          "C":  "Anotar cambios comunicados por el cliente en comentarios internos",
+                          "D":  "Revisar reservas con mensaje “No se encontró la reserva”",
+                          "correct_letter":  "B",
+                          "why":  "No debe modificarse el número de localizador hasta la noche anterior a la llegada. Si el cliente realiza cambios (como fechas o tipo de bono), el sistema necesita reconocer automáticamente las actualizaciones o anulaciones. Alterar el localizador antes de ese momento rompe el enlace con el canal y puede provocar cancelaciones erróneas."
                       },
                       {
                           "id":  156,
