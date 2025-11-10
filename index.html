@@ -18,6 +18,7 @@
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+.hidden{display:none}
 
 .wrap{max-width:1250px;margin:28px auto;padding:0 18px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 10px 35px rgba(15,23,42,.04)}
@@ -100,14 +101,12 @@ button:disabled{opacity:.55;cursor:not-allowed}
       <select id="mod"><option value="">Todos</option></select>
 
       <label for="lvl">Nivel</label>
-      <!-- opciones con data-base (para no acumular contadores) -->
       <select id="lvl">
         <option value="">—</option>
         <option value="básico"      data-base="Básico">Básico</option>
         <option value="intermedio"  data-base="Intermedio">Intermedio</option>
         <option value="avanzado"    data-base="Avanzado">Avanzado</option>
       </select>
-
       <div class="kpis" id="kpis"></div>
 
       <div class="step"><span class="num">3</span><b>Nombre y empezar</b></div>
@@ -147,12 +146,15 @@ button:disabled{opacity:.55;cursor:not-allowed}
 </div>
 
 <script>
-/* ========= CARGA (CSV en Pages / data.js en local y fallback) ========= */
+/* ========= CONFIG ========= */
 const CSV_CANDIDATES = [
   './data/plantilla_preguntas_unica.csv',
   'data/plantilla_preguntas_unica.csv'
 ];
+let startTime = 0;
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbxcDbGxITbhQDDZrnahyFlGl_vP6r5EkJGz-1BEwNKc6iJo3oWQ6cvjBsjwQqW6tFFUvQ/exec";
 
+/* ========= HELPERS CSV ========= */
 function decodeSmart(buf){
   try{ return new TextDecoder('utf-8',{fatal:false}).decode(buf);}catch(_){}
   try{ return new TextDecoder('windows-1252').decode(buf);}catch(_){}
@@ -202,7 +204,6 @@ function normalize(arr){
     return {id:(pick(o,['id'])||'').trim()||undefined, dto:(dto||'').trim(), mod:(mod||'').trim(), level, text, A,B,C,D, correct:corr, why, activo};
   }).filter(r => r.text && (r.activo==='' || r.activo==='1' || String(r.activo).toLowerCase()==='true'));
 }
-
 function fetchFirst(urls){
   return new Promise(async (resolve,reject)=>{
     for(const u of urls){
@@ -226,7 +227,6 @@ function loadQUIZFallback(){
           level:(q.nivel||'').toLowerCase(), text:q.texto||q.text||'',
           A:q.A,B:q.B,C:q.C,D:q.D, correct:(q.correct_letter||q.correct||'').toString().toUpperCase(), why:q.why||''
         })).filter(x=>x.text);
-        console.info('[FALLBACK] data.js:', RAW.length);
         resolve();
       } else reject(new Error('window.QUIZ vacío'));
     };
@@ -235,7 +235,7 @@ function loadQUIZFallback(){
   });
 }
 
-/* ========= Estado & elementos ========= */
+/* ========= ESTADO ========= */
 let RAW=[], filtered=[], idx=0;
 let correct=new Set(), wrong=new Set();
 
@@ -243,68 +243,41 @@ const $ = s => document.querySelector(s);
 const loaded=$("#loaded"), dept=$("#dept"), mod=$("#mod"), lvl=$("#lvl"), who=$("#who");
 const btnStart=$("#btnStart"), kpis=$("#kpis");
 const holder=$("#holder"), bar=$("#bar"), metaPos=$("#metaPos"), metaScore=$("#metaScore"), metaTags=$("#metaTags");
-
 function uniq(a){return [...new Set(a.filter(Boolean))]}
 
-/* ========= Filtros + KPIs ========= */
+/* ========= FILTROS + KPIs ========= */
 function rebuildFilters(){
   const depts = uniq(RAW.map(x=>x.dto));
   const mods  = uniq(RAW.map(x=>x.mod));
 
-  dept.innerHTML = '<option value="">Todos</option>'
-                 + depts.map(v=>`<option>${v}</option>`).join('');
+  dept.innerHTML = '<option value="">Todos</option>'+depts.map(v=>`<option>${v}</option>`).join('');
+  mod.innerHTML  = '<option value="">Todos</option>'+mods.map(v=>`<option>${v}</option>`).join('');
 
-  mod.innerHTML  = '<option value="">Todos</option>'
-                 + mods.map(v=>`<option>${v}</option>`).join('');
-
-  // reset de estado
-  dept.value=""; mod.value=""; lvl.value=""; who.value="";
-  btnStart.disabled = true;
-
-  // restaurar etiquetas base del selector de nivel (evita concatenaciones)
-  [...lvl.options].forEach(o=>{
-    const base = o.getAttribute('data-base');
-    if(base) o.textContent = base;
-  });
-
+  dept.value=""; mod.value=""; lvl.value=""; who.value=""; btnStart.disabled = true;
+  [...lvl.options].forEach(o=>{ const b=o.getAttribute('data-base'); if(b) o.textContent=b; });
   updateKPIs();
 }
-
 function updateKPIs(){
-  const d = (dept.value || '');
-  const m = (mod.value  || '');
-
-  const base = RAW.filter(q => (d ? q.dto===d : true) && (m ? q.mod===m : true));
-  const cntB = base.filter(q => q.level==='básico').length;
-  const cntI = base.filter(q => q.level==='intermedio').length;
-  const cntA = base.filter(q => q.level==='avanzado').length;
-
-  // KPIs bajo el selector
-  kpis.innerHTML =
-    `<span class="kpi">Básico: <b>${cntB}</b></span>
-     <span class="kpi">Intermedio: <b>${cntI}</b></span>
-     <span class="kpi">Avanzado: <b>${cntA}</b></span>`;
-
-  // Etiquetas del <select> NIVEL SIN acumular
+  const d=dept.value||'', m=mod.value||'';
+  const base = RAW.filter(q => (d? q.dto===d : true) && (m? q.mod===m : true));
+  const cntB = base.filter(q=>q.level==='básico').length;
+  const cntI = base.filter(q=>q.level==='intermedio').length;
+  const cntA = base.filter(q=>q.level==='avanzado').length;
+  kpis.innerHTML = `<span class="kpi">Básico: <b>${cntB}</b></span>
+                    <span class="kpi">Intermedio: <b>${cntI}</b></span>
+                    <span class="kpi">Avanzado: <b>${cntA}</b></span>`;
   [...lvl.options].forEach(o=>{
-    const baseText = o.getAttribute('data-base');
-    if(!baseText) return; // opción "—"
-    let n = 0;
-    if(o.value==='básico')      n = cntB;
-    if(o.value==='intermedio')  n = cntI;
-    if(o.value==='avanzado')    n = cntA;
+    const baseText = o.getAttribute('data-base'); if(!baseText) return;
+    let n=0; if(o.value==='básico') n=cntB; if(o.value==='intermedio') n=cntI; if(o.value==='avanzado') n=cntA;
     o.textContent = `${baseText} (${n})`;
   });
-
-  // Habilitar Empezar solo si hay preguntas y nombre
-  const lv = (lvl.value || '').toLowerCase();
-  const exists = base.filter(q => lv ? q.level===lv : true).length;
-  const hasName = !!who.value.trim();
-  btnStart.disabled = !(dept.value && mod.value && lv && hasName && exists > 0);
+  const lv=(lvl.value||'').toLowerCase();
+  const exists = base.filter(q => lv? q.level===lv : true).length;
+  btnStart.disabled = !(dept.value && mod.value && lv && who.value.trim() && exists>0);
 }
 dept.onchange=updateKPIs; mod.onchange=updateKPIs; lvl.onchange=updateKPIs; who.oninput=updateKPIs;
 
-/* ========= Progreso + pintado ========= */
+/* ========= PROGRESO + PINTADO ========= */
 function setProgress(){
   const pct=filtered.length?((idx+1)/filtered.length)*100:0;
   bar.style.width=pct.toFixed(1)+"%";
@@ -330,7 +303,7 @@ function paint(){
     <div class="answers" id="answers">
       ${['A','B','C','D'].map(L=>`<div class="ans" data-letter="${L}"><b>${L}.</b> ${q[L]||''}</div>`).join('')}
     </div>
-    <div class="explain hidden" id="explain">${q.why?('<b>Explicación:</b> '+q.why):''}</div>
+    <div class="explain hidden" id="explain"></div>
     <div class="controls">
       <button id="prev" ${idx===0?'disabled':''}>Atrás</button>
       <button id="next" disabled>Siguiente</button>
@@ -342,15 +315,17 @@ function paint(){
   const next=$("#next"), prev=$("#prev"), exp=$("#explain");
   let answered=false;
   function reveal(letter){
-    if(answered) return;
-    answered=true;
+    if(answered) return; answered=true;
     const corr=(q.correct||'').toUpperCase();
     list.forEach(el=>{
       const l=el.dataset.letter;
       if(l===corr) el.classList.add('correct');
       if(letter && l===letter && l!==corr) el.classList.add('wrong');
     });
-    if(exp && exp.textContent.trim()) exp.classList.remove('hidden');
+    const textoCorrecta = q[corr] ? ` ${q[corr]}` : '';
+    const textoWhy = q.why ? `<br><b>Explicación:</b> ${q.why}` : '';
+    exp.innerHTML = `<b>Respuesta correcta:</b> ${corr}.${textoCorrecta}${textoWhy}`;
+    exp.classList.remove('hidden');
     next.disabled=false;
     if(letter===corr) correct.add(q.id ?? idx); else wrong.add(q.id ?? idx);
     setProgress();
@@ -359,7 +334,34 @@ function paint(){
   prev.onclick = ()=>{ if(idx>0){ idx--; paint(); } };
   next.onclick = ()=>{ if(idx<filtered.length-1){ idx++; paint(); } else { showSummary(); } };
 }
+
+/* ========= ENVÍO RESULTADOS A SHEET ========= */
+function sendResultToSheet(payload){
+  const headers = { "Content-Type": "application/json" };
+  try {
+    return fetch(SHEET_ENDPOINT, { method:"POST", headers, body:JSON.stringify(payload), mode:"no-cors" })
+      .catch(()=> navigator.sendBeacon(SHEET_ENDPOINT, JSON.stringify(payload)));
+  } catch(e){
+    try{ navigator.sendBeacon(SHEET_ENDPOINT, JSON.stringify(payload)); }catch(_){}
+  }
+}
+
+/* ========= RESUMEN ========= */
 function showSummary(){
+  const dur = Math.round((Date.now() - startTime) / 1000);
+  const detalleFallos = filtered.map((q,i)=> (wrong.has(q.id ?? i) ? (q.id ?? i) : null)).filter(Boolean);
+  const payload = {
+    nombre:(who.value||"").trim(),
+    dto:(dept.value||""),
+    modulo:(mod.value||""),
+    nivel:(lvl.value||""),
+    total:filtered.length, aciertos:correct.size, fallos:wrong.size,
+    porcentaje: filtered.length? Math.round((correct.size/filtered.length)*100) : 0,
+    duracion_seg: dur, detalle_fallos: detalleFallos,
+    user_agent: navigator.userAgent, sitio: location.href
+  };
+  sendResultToSheet(payload);
+
   holder.className="qbox center";
   holder.innerHTML = `
     <div>
@@ -383,14 +385,14 @@ function showSummary(){
   };
 }
 
-/* ========= Iniciar ========= */
+/* ========= INICIO ========= */
 $("#btnStart").onclick=()=>{
+  startTime = Date.now();
   const d=dept.value||'', m=mod.value||'', lv=(lvl.value||'').toLowerCase();
   filtered = RAW.filter(q=> (d? q.dto===d : true) && (m? q.mod===m : true) && (lv? q.level===lv : true));
   idx=0; correct.clear(); wrong.clear(); paint();
 };
 
-/* ========= Boot ========= */
 (async function boot(){
   const IS_LOCAL = location.protocol === 'file:';
   try{
@@ -398,9 +400,7 @@ $("#btnStart").onclick=()=>{
     const text = await fetchFirst(CSV_CANDIDATES);
     RAW = normalize(parseCSV(text));
     if(!RAW.length) throw new Error('CSV vacío');
-  }catch(e){
-    await loadQUIZFallback();
-  }
+  }catch(e){ await loadQUIZFallback(); }
   loaded.textContent = RAW.length;
   rebuildFilters();
 })();
