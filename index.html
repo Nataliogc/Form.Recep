@@ -4,181 +4,251 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sesión de Crecimiento · Formación</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{ --ink:#0f172a; --muted:#64748b; --bg:#f6f7fb; --card:#ffffff; --gold:#A58C5F; --accent:#0ea5e9; --ok:#16a34a; --ko:#b91c1c; }
+  :root{ --ink:#0f172a; --muted:#64748b; --bg:#f6f7fb; --card:#ffffff; --border:#e5e7eb; --gold:#A58C5F; --accent:#0ea5e9; --ok:#16a34a; --ko:#b91c1c; }
   *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
   .wrap{max-width:1200px;margin:28px auto;padding:0 18px}
-  .header{background:var(--card);border:1px solid #e5e7eb;border-radius:16px;padding:16px;display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;box-shadow:0 2px 6px rgba(15,23,42,.04)}
+  .header{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 18px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;box-shadow:0 2px 6px rgba(15,23,42,.04)}
+  .brand{display:flex;gap:12px;align-items:center}
+  .brand img{height:38px;object-fit:contain}
   h1{margin:0;font-weight:800;letter-spacing:.2px;font-size:26px;color:#0b355a}
   .subtitle{margin-top:2px;color:#0f3a77;font-style:italic}
-  .logos{display:flex;gap:18px;align-items:center}
-  .logos img{height:42px;object-fit:contain}
-  .rule{height:10px;border-radius:999px;background:linear-gradient(90deg,var(--gold),#c8b27f,#60a5fa,#22d3ee);margin-top:8px}
-  .grid{display:grid;grid-template-columns:360px 1fr;gap:18px;margin-top:18px}
-  @media (max-width:980px){.grid{grid-template-columns:1fr} h1{font-size:22px}}
-  .card{background:var(--card);border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 2px 6px rgba(15,23,42,.04)}
-  .panel{padding:16px}
-  label{display:block;font-weight:600;margin:10px 0 6px}
-  select,input[type=text]{width:100%;padding:11px;border:1px solid #d0d7e2;border-radius:12px;background:#fff}
-  button{padding:11px 14px;border-radius:12px;border:1px solid #d0d7e2;background:#0b1324;color:#fff;font-weight:700;cursor:pointer}
-  button:disabled{opacity:.5;cursor:not-allowed}
-  .muted{color:var(--muted);font-size:14px}
-  .progress{height:10px;background:#edf2f7;border-radius:999px;overflow:hidden;margin:8px 0 12px}
-  .bar{height:100%;width:0;background:linear-gradient(90deg,#10b981,#059669)}
-  .opt{display:block;padding:12px 14px;border:1px solid #e5e7eb;border-radius:14px;margin:10px 0;cursor:pointer;background:#fff}
-  .opt.correct{border-color:var(--ok);background:#ecfdf5}
-  .opt.wrong{border-color:var(--ko);background:#fef2f2}
-  .why{margin-top:10px;padding:12px 14px;border-left:4px solid var(--accent);background:#eff9ff;border-radius:10px;font-weight:600}
-  table{width:100%;border-collapse:collapse} th,td{border-bottom:1px solid #e5e7eb;padding:8px;text-align:left}
-  .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef2ff;border:1px solid #c7d2fe;color:#1d2a74;font-weight:700}
-  .rowflex{display:flex;gap:12px;flex-wrap:wrap}
-  .hint{font-size:12px;color:#475569;margin-top:6px}
+  .toolbar{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr)) auto;gap:12px;margin-top:10px}
+  label{font-size:12px;color:var(--muted);display:block;margin-bottom:6px}
+  select,input[type="text"]{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:#fff}
+  button{padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:#fff;cursor:pointer}
+  button.primary{background:#0b61d6;color:#fff;border:0}
+  .grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
+  .card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px}
+  .muted{color:var(--muted)}
+  #progress{height:10px;background:#eef2ff;border-radius:999px;overflow:hidden}
+  #bar{height:100%;width:0%}
+  .barok{background:#22c55e}
+  .answers{display:grid;gap:8px;margin-top:10px}
+  .ans{padding:10px 12px;border:1px solid var(--border);border-radius:10px;cursor:pointer;background:#fff}
+  .ans.correct{background:#ecfdf5;border-color:#34d399}
+  .ans.wrong{background:#fef2f2;border-color:#fca5a5}
+  .hidden{display:none}
+  .footer{margin-top:28px;color:var(--muted);font-size:12px;text-align:center}
+  .badget{display:inline-block;padding:2px 8px;border-radius:999px;background:#f1f5f9;border:1px solid var(--border);margin-right:6px;font-size:12px}
+  .rowflex{display:flex;gap:12px}
+  .rowflex>*{flex:1}
+  .pill{display:inline-block;padding:4px 8px;border-radius:999px;border:1px solid var(--border);background:#fafafa;font-size:12px;margin-right:6px}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <!-- Cabecera corporativa -->
-  <section class="header">
-    <div>
-      <h1>Sesión de Crecimiento · Formación</h1>
-      <div class="subtitle">Enfocada en la Excelencia del Servicio</div>
-      <div class="rule"></div>
+  <div class="wrap">
+    <div class="header card">
+      <div class="brand">
+        <img src="./img/logo-guadiana.png" alt="Guadiana" onerror="this.style.display='none'">
+        <img src="./img/logo-cumbria.png" alt="Cumbria" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <h1>Sesión de Crecimiento · Formación</h1>
+        <div class="subtitle">Cuestionario dinámico por departamento, módulo y nivel</div>
+        <div class="toolbar">
+          <div><label for="dept">Departamento</label><select id="dept"><option value="">—</option></select></div>
+          <div><label for="mod">Módulo</label><select id="mod"><option value="">—</option></select></div>
+          <div><label for="lvl">Nivel</label><select id="lvl"><option value="">—</option><option>Básico</option><option>Intermedio</option><option>Avanzado</option></select></div>
+          <div><label for="who">Participante</label><input id="who" type="text" placeholder="Nombre y apellidos"></div>
+          <div style="display:flex;align-items:end"><button id="start" class="primary">Iniciar</button></div>
+        </div>
+      </div>
     </div>
-    <div class="logos"><img id="logoG" alt="Sercotel Guadiana" src="./img/logo-guadiana.svg" onerror="this.src='./img/logo-guadiana.png'"></div>
-    <div class="logos"><img id="logoC" alt="Cumbria" src="./img/logo-cumbria.svg" onerror="this.src='./img/logo-cumbria.png'"></div>
-  </section>
 
-  <div class="grid">
-    <aside class="card panel">
-      <div class="pill">1) Filtros</div>
-      <label for="dept" style="margin-top:6px">Departamento (DTO)</label>
-      <select id="dept"><option value="">Todos</option></select>
-
-      <div class="rowflex">
-        <div style="flex:1;min-width:160px">
-          <label for="mod">Módulo</label>
-          <select id="mod"><option value="">—</option></select>
-        </div>
-        <div style="flex:1;min-width:160px">
-          <label for="lvl">Nivel</label>
-          <select id="lvl"></select>
+    <div class="grid">
+      <div class="card">
+        <div id="progress"><div id="bar" class="barok"></div></div>
+        <div id="tally" class="muted">0/0 · 0 aciertos · 0 fallos</div>
+        <div id="stage"></div>
+        <div id="summary" class="hidden">
+          <h3>Resumen</h3>
+          <p><span class="pill" id="ok">0</span> aciertos · <span class="pill" id="ko">0</span> fallos · <span class="pill" id="total">0</span> preguntas</p>
+          <button id="btnReview">Revisar fallos</button>
+          <button id="btnAgain">Empezar de nuevo</button>
         </div>
       </div>
-      <div id="availHint" class="hint"></div>
+    </div>
 
-      <div style="margin-top:8px">
-        <label style="display:flex;align-items:center;gap:8px">
-          <input type="checkbox" id="exam30"> <span>Modo examen (30 aleatorias)</span>
-        </label>
-      </div>
-
-      <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
-      <div class="pill">2) Identificación</div>
-      <input id="who" type="text" placeholder="Nombre y apellidos (obligatorio)">
-      <div style="margin-top:10px"><button id="start" disabled>Empezar test</button></div>
-
-      <hr style="border:0;border-top:1px solid #e5e7eb;margin:14px 0">
-      <h3 style="margin:0 0 8px">Ranking</h3>
-      <table id="rank"><thead><tr><th>#</th><th>Nombre</th><th>Módulo</th><th>Nivel</th><th class="right">Aciertos</th><th class="right">% Acierto</th></tr></thead><tbody><tr><td colspan="6" class="muted">Sin resultados todavía.</td></tr></tbody></table>
-    </aside>
-
-    <main class="card panel">
-      <div class="progress"><div class="bar" id="bar"></div></div>
-      <div id="tally" class="muted">0/0 · 0 aciertos · 0 fallos</div>
-      <div id="stage"></div>
-    </main>
+    <div class="footer">© Formación interna · GitHub Pages</div>
   </div>
-</div>
 
 <script>
-/* ---------- CSV: rutas válidas para GitHub Pages ---------- */
-const CSV_CANDIDATES = (() => {
-  const base = location.pathname.replace(/\/[^/]*$/, '');      // /Form.Recep
-  return [
-    `${base}/data/plantilla_preguntas_unica.csv`,
-    './data/plantilla_preguntas_unica.csv',
-    'data/plantilla_preguntas_unica.csv'
-  ];
-})();
+/* ==================== RUTAS CSV ==================== */
+const CSV_CANDIDATES = [
+  './data/plantilla_preguntas_unica.csv',
+  'data/plantilla_preguntas_unica.csv'
+];
 
-/* ===== Estado / utilidades ===== */
-let QUESTIONS=[]; let CURRENT=[]; let idx=0, ok=0, bad=0;
-const $ = s => document.querySelector(s);
-const dept=$("#dept"), mod=$("#mod"), lvl=$("#lvl"), who=$("#who"), startBtn=$("#start");
-const stage=$("#stage"), bar=$("#bar"), tally=$("#tally"), rankTbl=document.querySelector('#rank tbody'), examBox=$("#exam30");
-const ls={get(){try{return JSON.parse(localStorage.getItem('quiz_rank')||'[]')}catch(_){return[]}},set(x){localStorage.setItem('quiz_rank',JSON.stringify(x))}};
-function progress(){ const p=CURRENT.length?Math.round((idx/CURRENT.length)*100):0; bar.style.width=p+'%'; tally.textContent=`${idx}/${CURRENT.length} · ${ok} aciertos · ${bad} fallos`; }
-function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function refreshRank(){ const rows=ls.get().sort((a,b)=>b.score-a.score).slice(0,25); rankTbl.innerHTML=rows.length?'':'<tr><td colspan="6" class="muted">Sin resultados todavía.</td></tr>'; rows.forEach((r,i)=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td>${i+1}</td><td>${r.name}</td><td>${r.module}</td><td>${r.level}</td><td class="right">${r.hits}/${r.total}</td><td class="right">${Math.round(r.hits*100/r.total)}%</td>`; rankTbl.appendChild(tr); }); }
-
-/* ==== CSV helpers ==== */
-function decodeSmart(buf){ let text=new TextDecoder('utf-8',{fatal:false}).decode(buf); const bads=(text.match(/\uFFFD/g)||[]).length; if(bads>5){ try{text=new TextDecoder('windows-1252').decode(buf);}catch(_){}} return text; }
-function detectDelimiter(sample){ const counts={',':0,';':0,'\t':0}; let q=false; for(let i=0;i<sample.length&&i<2000;i++){const c=sample[i],n=sample[i+1]; if(c=='"'){ if(n=='"'){i++;} else {q=!q;} continue;} if(!q && counts[c]!=null) counts[c]++; if(c=='\n') break;} let best=',',max=-1; for(const k in counts){ if(counts[k]>max){max=counts[k];best=k;} } return best; }
-function splitRow(line,delim){ const res=[]; let cur='',q=false; for(let i=0;i<line.length;i++){const c=line[i],n=line[i+1]; if(q){ if(c=='"'&&n=='"'){cur+='"';i++;} else if(c=='"'){q=false;} else{cur+=c;} } else { if(c=='"'){q=true;} else if(c===delim){res.push(cur);cur='';} else {cur+=c;} } } res.push(cur); return res; }
-function parseCSV(text){ const delim=detectDelimiter(text); const rows=text.split(/\r?\n/).filter(l=>l.trim().length); if(!rows.length) return []; const head=splitRow(rows.shift(), delim).map(h=>(h||'').trim().toLowerCase()); return rows.map(line=>{ const cols=splitRow(line,delim); const obj={}; head.forEach((h,i)=>obj[h]=(cols[i]??'')); return obj; }); }
+/* ==================== UTILS CSV ==================== */
+function decodeSmart(buf){
+  try{ return new TextDecoder('utf-8',{fatal:false}).decode(buf); }catch(_){}
+  try{ return new TextDecoder('windows-1252').decode(buf);}catch(_){}
+  return '';
+}
+function detectDelimiter(sample){
+  const counts={',':0,';':0,'\t':0,'|':0};
+  const lines=sample.split(/\r?\n/).slice(0,5);
+  for(const l of lines){ for(const k in counts){ counts[k]+= (l.split(k).length-1); } }
+  let max=-1, best=','; for(const k in counts){ if(counts[k]>max){max=counts[k];best=k;} }
+  return best;
+}
+function splitRow(line,delim){
+  const res=[]; let cur='',q=false;
+  for(let i=0;i<line.length;i++){
+    const c=line[i], n=line[i+1];
+    if(c==='\"'){ q=!q; continue; }
+    if(!q && c===delim){ res.push(cur); cur=''; continue; }
+    if(!q && c==='\r' && n==='\n'){ i++; res.push(cur); return res; }
+    if(!q && (c==='\n' || c==='\r')){ res.push(cur); return res; }
+    cur+=c;
+  }
+  res.push(cur); return res;
+}
+function parseCSV(text){
+  const delim = detectDelimiter(text);
+  const lines = text.split(/\r?\n/).filter(x=>x.trim()!=='');
+  const head  = splitRow(lines[0],delim).map(h=>h.trim().toLowerCase());
+  return lines.slice(1).map(ln=>{
+    const cols = splitRow(ln,delim);
+    const obj = {};
+    head.forEach((h,i)=> obj[h] = (cols[i]??'').trim());
+    return obj;
+  });
+}
 function normalize(arr){
-  const pick=(o,ks)=>{for(const k of ks){ if(k in o && String(o[k]).trim()!=='') return String(o[k]); } return '';}
+  const pick=(o,ks)=>{for(const k of ks){ if(k in o && String(o[k]).trim()!=='') return String(o[k]); } return '';};
   return arr.map(r=>{
     const o={}; Object.keys(r).forEach(k=>o[k.toLowerCase()]=r[k]);
-    const dto=pick(o,['dto','departamento','dpto','depto','depart.','departamento (dto)']);
-    const mod=pick(o,['modulo','módulo','module','mod','tema','bloque','unidad','categoria','categoría']);
-    const level=pick(o,['nivel','nivél','level']).toLowerCase();
-    const text=pick(o,['text','texto','pregunta','enunciado']);
+    const dto   = pick(o,['dto','departamento','dpto','depto','depart.','departamento (dto)']);
+    const mod   = pick(o,['modulo','módulo','module','mod','tema','bloque','unidad','categoria','categoría']);
+    const level = pick(o,['nivel','nivél','level']).toLowerCase();
+    const text  = pick(o,['text','texto','pregunta','enunciado']);
     const A=pick(o,['a']), B=pick(o,['b']), C=pick(o,['c']), D=pick(o,['d']);
-    let corr=pick(o,['correct_letter','correct','letra_correcta','respuesta_correcta','respuesta']).toUpperCase().match(/[A-D]/)?.[0]||'';
-    const why=pick(o,['why','explicacion','explicación','comentario','nota']);
-    const activo=pick(o,['activo','activa','enabled']);
-    return { id:(pick(o,['id'])||'').trim()||undefined, dto:(dto||'').trim(), mod:(mod||'').trim(), level, text, A,B,C,D, correct:corr, why, activo };
-  }).filter(r=> r.text && (r.activo==='' || r.activo==='1' || (r.activo||'').toString().toLowerCase()==='true'));
+    let corr = (pick(o,['correct_letter','correct','letra_correcta','respuesta_correcta','respuesta'])||'').toUpperCase().match(/[A-D]/)?.[0]||'';
+    const why = pick(o,['why','explicacion','explicación','comentario','nota']);
+    const activo = pick(o,['activo','activa','enabled']);
+    return {id:(pick(o,['id'])||'').trim()||undefined, dto:(dto||'').trim(), mod:(mod||'').trim(), level, text, A,B,C,D, correct:corr, why, activo};
+  }).filter(r => r.text && (r.activo==='' || r.activo==='1' || String(r.activo).toLowerCase()==='true'));
 }
 
-/* ===== Filtros/UI ===== */
-function rowsFor(d,m,l){ let r=QUESTIONS.slice(); if(d) r=r.filter(x=>(x.dto||'').trim()===d); if(m) r=r.filter(x=>(x.mod||'').trim()===m); if(l) r=r.filter(x=>(x.level||'').toLowerCase()===l.toLowerCase()); return r; }
+/* ==================== FALLBACK data.js ==================== */
+function loadQUIZFallback(){
+  return new Promise((resolve,reject)=>{
+    const s=document.createElement('script');
+    s.src='./data/data.js?v=' + Date.now();
+    s.onload=()=>{
+      if(window.QUIZ && Array.isArray(window.QUIZ.questions) && window.QUIZ.questions.length){
+        QUESTIONS = window.QUIZ.questions.map(q=>({
+          id:q.id, dto:q.departamento||q.dto||'', mod:q.categoria||q.mod||'',
+          level:(q.nivel||'').toLowerCase(), text:q.texto||q.text||'',
+          A:q.A, B:q.B, C:q.C, D:q.D, correct:(q.correct_letter||q.correct||'').toString().toUpperCase(), why:q.why||''
+        })).filter(r=>r.text);
+        console.info('[FALLBACK] Cargado desde data.js:', QUESTIONS.length);
+        resolve();
+      } else { reject(new Error('window.QUIZ vacío')); }
+    };
+    s.onerror=()=>reject(new Error('No se pudo cargar data.js'));
+    document.head.appendChild(s);
+  });
+}
+
+/* ==================== ESTADO & UI ==================== */
+let QUESTIONS=[], filtered=[], idx=0, correct=new Set(), wrong=new Set();
+const $=s=>document.querySelector(s);
+const dept=$("#dept"), mod=$("#mod"), lvl=$("#lvl"), who=$("#who"), stage=$("#stage");
+const bar=$("#bar"), tally=$("#tally"), okEl=$("#ok"), koEl=$("#ko"), totalEl=$("#total");
+const summary=$("#summary"), btnReview=$("#btnReview"), btnAgain=$("#btnAgain");
+
+function uniq(arr){ return [...new Set(arr.filter(Boolean))]; }
+function progress(){ const pct=filtered.length?((idx+1)/filtered.length)*100:0; bar.style.width=pct.toFixed(1)+"%"; }
+function render(){
+  if(!filtered.length){ stage.innerHTML='<p class="muted">No hay preguntas con los filtros actuales.</p>'; tally.textContent='0/0 · 0 aciertos · 0 fallos'; bar.style.width='0%'; return; }
+  const q=filtered[idx]; progress(); tally.textContent=`${idx+1}/${filtered.length} · ${correct.size} aciertos · ${wrong.size} fallos`;
+  stage.innerHTML = `
+    <div class="badget">${q.dto||'—'}</div>
+    <div class="badget">${q.mod||'—'}</div>
+    <div class="badget">${(q.level||'').charAt(0).toUpperCase()+ (q.level||'').slice(1)}</div>
+    <h3 style="margin:8px 0 6px">${q.text}</h3>
+    <div class="answers">
+      ${['A','B','C','D'].map(L=>`<div class="ans" data-letter="${L}"><b>${L}.</b> ${q[L]||''}</div>`).join('')}
+    </div>
+  `;
+  stage.querySelectorAll('.ans').forEach(el=>{
+    el.onclick=()=>{
+      const letter=el.dataset.letter, corr=String(q.correct||'').toUpperCase();
+      const list=[...stage.querySelectorAll('.ans')];
+      list.forEach(x=>x.classList.remove('correct','wrong'));
+      list.forEach(x=>{ if(x.dataset.letter===corr) x.classList.add('correct'); });
+      if(letter===corr){ correct.add(q.id ?? idx); } else { wrong.add(q.id ?? idx); el.classList.add('wrong'); }
+      setTimeout(()=>{ if(idx<filtered.length-1){ idx++; render(); } else { showSummary(); } }, 300);
+    };
+  });
+}
+function showSummary(){
+  stage.innerHTML=''; summary.classList.remove('hidden');
+  okEl.textContent=correct.size; koEl.textContent=wrong.size; totalEl.textContent=filtered.length;
+}
+btnReview.onclick=()=>{
+  const set=new Set([...wrong]); filtered = filtered.filter((q,i)=> set.has(q.id ?? i));
+  idx=0; correct.clear(); wrong.clear(); summary.classList.add('hidden'); render();
+};
+btnAgain.onclick=()=>{
+  summary.classList.add('hidden'); buildFilters();
+};
+
+/* ==================== FILTROS ==================== */
 function buildFilters(){
-  const depts=[...new Set(QUESTIONS.map(x=>(x.dto||'').trim()).filter(Boolean))].sort();
-  dept.innerHTML='<option value="">Todos</option>'+depts.map(d=>`<option>${d}</option>`).join('');
-  const mods=[...new Set(QUESTIONS.map(x=>(x.mod||'').trim()).filter(Boolean))].sort();
-  mod.innerHTML='<option value="">—</option>'+mods.map(m=>`<option>${m}</option>`).join('');
-  const names={basico:'Básico',intermedio:'Intermedio',avanzado:'Avanzado'}, order=['basico','intermedio','avanzado'];
-  const byLvl=new Map(); QUESTIONS.forEach(r=>{const k=(r.level||'').trim().toLowerCase(); if(k) byLvl.set(k,(byLvl.get(k)||0)+1);});
-  lvl.innerHTML=order.map(k=>`<option value="${k}">${names[k]} (${byLvl.get(k)||0})</option>`).join('');
-  updateAvailability();
+  filtered=[...QUESTIONS];
+  const depts=uniq(filtered.map(x=>x.dto)), mods=uniq(filtered.map(x=>x.mod));
+  dept.innerHTML='<option value="">—</option>'+depts.map(v=>`<option>${v}</option>`).join('');
+  mod.innerHTML ='<option value="">—</option>'+mods.map(v=>`<option>${v}</option>`).join('');
+  lvl.value=''; dept.value=''; mod.value=''; idx=0; correct.clear(); wrong.clear();
+  render();
 }
-function updateAvailability(){ const available=rowsFor((dept.value||''),(mod.value||''),(lvl.value||'')).length; $('#availHint').textContent=`Preguntas disponibles: ${available}`; startBtn.disabled=!who.value || available===0; }
+dept.onchange=()=>{ applyFilters(); };
+mod.onchange =()=>{ applyFilters(); };
+lvl.onchange =()=>{ applyFilters(); };
+function applyFilters(){
+  const d=dept.value||'', m=mod.value||'', lv=(lvl.value||'').toLowerCase();
+  filtered = QUESTIONS.filter(q=> (d? q.dto===d : true) && (m? q.mod===m : true) && (lv? q.level===lv: true) );
+  idx=0; correct.clear(); wrong.clear(); render();
+}
 
-/* ===== Juego ===== */
-function start(){ let pool=rowsFor((dept.value||''),(mod.value||''),(lvl.value||'')); if(!pool.length){ alert('No hay preguntas con esos filtros.'); return; } if($('#exam30').checked){ pool=shuffle(pool.slice()).slice(0,Math.min(30,pool.length)); } CURRENT=pool; idx=0; ok=0; bad=0; show(); }
-function show(){ stage.innerHTML=''; if(idx>=CURRENT.length){ const done=document.createElement('div'); done.innerHTML=`<h3>Test completado</h3><p><strong>${who.value}</strong> — ${mod.value||'-'} · ${(lvl.value||'').toUpperCase()}</p><p>Resultado: <strong>${ok}/${CURRENT.length}</strong> (${Math.round(ok*100/CURRENT.length)}%)</p>`; stage.appendChild(done); const rows=ls.get(); rows.push({name:who.value,module:mod.value||'-',level:lvl.value||'-',hits:ok,total:CURRENT.length,score:ok}); ls.set(rows); refreshRank(); return; } const q=CURRENT[idx]; const sec=document.createElement('section'); const h=document.createElement('h3'); h.innerHTML=`${idx+1}. ${q.text}`; h.style.margin='6px 0 8px'; h.style.fontSize='22px'; sec.appendChild(h); ['A','B','C','D'].forEach(K=>{ const t=q[K]; if(!t||!String(t).trim()) return; const btn=document.createElement('div'); btn.className='opt'; btn.dataset.key=K; btn.innerHTML=`<strong>${K}.</strong> ${t}`; btn.onclick=()=>{ Array.from(sec.querySelectorAll('.opt')).forEach(el=> el.onclick=null); const CL=(q.correct||'').toString().toUpperCase().match(/[A-D]/)?.[0]||''; if(K===CL){ btn.classList.add('correct'); ok++; } else { btn.classList.add('wrong'); const c=sec.querySelector(\`.opt[data-key="\${CL}"]\`); if(c) c.classList.add('correct'); bad++; } const next=document.createElement('button'); next.textContent='Siguiente ▶'; next.style.marginTop='10px'; next.onclick=()=>{ idx++; progress(); show(); }; sec.appendChild(next); }; sec.appendChild(btn); }); stage.appendChild(sec); progress(); }
-
-/* ===== Carga con múltiples rutas y diagnóstico en consola ===== */
+/* ==================== AUTO-CARGA ==================== */
 async function fetchFirst(urls){
-  for(const u of urls){
+  for (const u of urls){
     try{
-      const res = await fetch(u + (u.includes('?')?'&':'?') + 'v=' + Date.now(), {cache:'no-store'});
+      const res = await fetch(u + (u.includes('?')?'&':'?') + 'v=' + Date.now(), { cache:'no-store' });
       if(res.ok){ const buf = await res.arrayBuffer(); return decodeSmart(buf); }
       console.warn('[CSV 404]', u, res.status);
     }catch(e){ console.warn('[CSV ERR]', u, e); }
   }
-  throw new Error('CSV no encontrado en ninguna ruta candidata');
+  throw new Error('CSV no encontrado');
 }
 async function autoLoad(){
-  const text = await fetchFirst(CSV_CANDIDATES);
-  const arr  = parseCSV(text);
-  QUESTIONS  = normalize(arr);
+  try{
+    const text = await fetchFirst(CSV_CANDIDATES);
+    const arr  = parseCSV(text);
+    QUESTIONS  = normalize(arr);
+    console.info('[CSV] Preguntas cargadas:', QUESTIONS.length);
+    if(!QUESTIONS.length){ await loadQUIZFallback(); }
+  }catch(err){
+    console.warn('[AUTOLOAD] CSV falló, intento fallback data.js', err);
+    await loadQUIZFallback().catch(e=>{
+      console.error('[FALLBACK] data.js también falló', e);
+      alert('No se pudieron cargar preguntas. Revisa la ruta /data del CSV o data.js');
+    });
+  }
   buildFilters();
 }
-
-/* ===== Eventos ===== */
-dept.addEventListener('change', ()=>{ buildFilters(); });
-mod.addEventListener('change',  ()=>{ updateAvailability(); });
-lvl.addEventListener('change',  ()=>{ updateAvailability(); });
-who.addEventListener('input',   updateAvailability);
-document.getElementById('start').addEventListener('click', start);
-refreshRank();
-autoLoad().catch(err=>{
-  console.error(err);
-  alert('No se pudo cargar automáticamente el CSV (revisa ruta y nombre exactos en /data).');
-});
+autoLoad();
 </script>
 </body>
 </html>
