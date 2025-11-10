@@ -4,97 +4,132 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sesión de Crecimiento · Formación</title>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-<meta http-equiv="Pragma" content="no-cache"/>
-<meta http-equiv="Expires" content="0"/>
+
+<!-- Fuentes -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Estilos -->
 <style>
-  :root{ --ink:#0f172a; --muted:#64748b; --bg:#f6f7fb; --card:#ffffff; --border:#e5e7eb; --gold:#A58C5F; --accent:#0ea5e9; --ok:#16a34a; --ko:#b91c1c; }
-  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
-  .wrap{max-width:1200px;margin:28px auto;padding:0 18px}
-  .header{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 18px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;box-shadow:0 2px 6px rgba(15,23,42,.04)}
-  .brand{display:flex;gap:12px;align-items:center}
-  .brand img{height:38px;object-fit:contain}
-  h1{margin:0;font-weight:800;letter-spacing:.2px;font-size:26px;color:#0b355a}
-  .subtitle{margin-top:2px;color:#0f3a77;font-style:italic}
-  .toolbar{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr)) auto;gap:12px;margin-top:10px}
-  label{font-size:12px;color:var(--muted);display:block;margin-bottom:6px}
-  select,input[type="text"]{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:#fff}
-  button{padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:#fff;cursor:pointer}
-  button.primary{background:#0b61d6;color:#fff;border:0}
-  .grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
-  .card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px}
-  .muted{color:var(--muted)}
-  #progress{height:10px;background:#eef2ff;border-radius:999px;overflow:hidden}
-  #bar{height:100%;width:0%}
-  .barok{background:#22c55e}
-  .answers{display:grid;gap:8px;margin-top:10px}
-  .ans{padding:10px 12px;border:1px solid var(--border);border-radius:10px;cursor:pointer;background:#fff}
-  .ans.correct{background:#ecfdf5;border-color:#34d399}
-  .ans.wrong{background:#fef2f2;border-color:#fca5a5}
-  .hidden{display:none}
-  .footer{margin-top:28px;color:var(--muted);font-size:12px;text-align:center}
-  .badget{display:inline-block;padding:2px 8px;border-radius:999px;background:#f1f5f9;border:1px solid var(--border);margin-right:6px;font-size:12px}
-  .rowflex{display:flex;gap:12px}
-  .rowflex>*{flex:1}
-  .pill{display:inline-block;padding:4px 8px;border-radius:999px;border:1px solid var(--border);background:#fafafa;font-size:12px;margin-right:6px}
+:root{
+  --ink:#0f172a; --muted:#667085; --bg:#f6f7fb; --card:#fff;
+  --border:#e6e7eb; --primary:#0b61d6; --ok:#16a34a; --ko:#dc2626;
+  --pill:#eef2ff; --chip:#f1f5f9; --ring: rgba(11,97,214,.12);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;}
+.wrap{max-width:1150px;margin:28px auto;padding:0 18px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 6px 30px rgba(15,23,42,.05)}
+.header{padding:18px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+.brand{display:flex;gap:16px;align-items:center}
+.brand img{height:42px;object-fit:contain;filter: saturate(.92)}
+h1{margin:2px 0 0;font-size:28px;font-weight:800;letter-spacing:.2px}
+.subtitle{color:#134aa6;margin-top:2px;font-style:italic}
+
+.toolbar{display:grid;grid-template-columns:repeat(4,minmax(200px,1fr)) auto;gap:14px;margin-top:12px}
+label{font-size:12px;color:var(--muted);display:block;margin:0 0 6px}
+select,input[type="text"]{width:100%;padding:12px 12px;border:1px solid var(--border);border-radius:12px;background:#fff;outline:none}
+select:focus,input:focus{box-shadow:0 0 0 6px var(--ring);border-color:#c7d7f7}
+button{padding:12px 16px;border-radius:12px;border:1px solid var(--border);background:#fff;cursor:pointer;font-weight:600}
+button.primary{background:var(--primary);color:#fff;border:0}
+button:disabled{opacity:.55;cursor:not-allowed}
+
+.panel{margin-top:18px;padding:16px}
+.kpis{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.kpi{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:var(--chip);font-size:13px}
+.kpi b{font-weight:800}
+
+.main{margin-top:16px;padding:18px}
+.progress{height:10px;background:#eef2ff;border-radius:999px;overflow:hidden}
+.progress>div{height:100%;width:0;background:#80aaff;transition:width .2s ease}
+.meta{display:flex;gap:10px;align-items:center;margin:10px 0 8px;color:var(--muted);font-size:14px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--pill);border:1px solid #dfe5ff;border-radius:999px;padding:4px 10px;font-size:12px}
+.badge b{font-weight:800}
+
+.qcard{padding:8px 0}
+.qid{font-size:12px;color:var(--muted);letter-spacing:.4px;margin-bottom:4px}
+.qtitle{font-size:22px;font-weight:800;margin:4px 0 8px}
+.answers{display:grid;gap:10px;margin-top:12px}
+.ans{padding:12px;border:1px solid var(--border);border-radius:12px;background:#fff;cursor:pointer;display:flex;gap:10px;align-items:flex-start}
+.ans b{display:inline-block;min-width:22px}
+.ans:hover{border-color:#d7d9df;background:#fcfcff}
+.ans.correct{background:#ecfdf5;border-color:#86efac}
+.ans.wrong{background:#fef2f2;border-color:#fecaca}
+.explain{margin-top:12px;padding:12px;border:1px dashed #cbd5e1;border-radius:12px;background:#fbfdff}
+.controls{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
+.footer{margin:26px auto 10px;color:var(--muted);font-size:12px;text-align:center}
+
+.center{display:flex;align-items:center;justify-content:center;padding:40px 10px;color:var(--muted)}
+.hidden{display:none}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="header card">
-      <div class="brand">
-        <img src="./img/logo-guadiana.png" alt="Guadiana" onerror="this.style.display='none'">
-        <img src="./img/logo-cumbria.png" alt="Cumbria" onerror="this.style.display='none'">
-      </div>
-      <div>
-        <h1>Sesión de Crecimiento · Formación</h1>
-        <div class="subtitle">Cuestionario dinámico por departamento, módulo y nivel</div>
-        <div class="toolbar">
-          <div><label for="dept">Departamento</label><select id="dept"><option value="">—</option></select></div>
-          <div><label for="mod">Módulo</label><select id="mod"><option value="">—</option></select></div>
-          <div><label for="lvl">Nivel</label><select id="lvl"><option value="">—</option><option>Básico</option><option>Intermedio</option><option>Avanzado</option></select></div>
-          <div><label for="who">Participante</label><input id="who" type="text" placeholder="Nombre y apellidos"></div>
-          <div style="display:flex;align-items:end"><button id="start" class="primary">Iniciar</button></div>
-        </div>
+<div class="wrap">
+  <!-- CABECERA -->
+  <div class="card header">
+    <div class="brand">
+      <img src="./img/logo-guadiana.png" alt="Guadiana" onerror="this.style.display='none'">
+      <img src="./img/logo-cumbria.png" alt="Cumbria" onerror="this.style.display='none'">
+    </div>
+    <div>
+      <h1>Sesión de Crecimiento · Formación</h1>
+      <div class="subtitle">Cuestionario dinámico por departamento, módulo y nivel</div>
+
+      <!-- FILTROS -->
+      <div class="toolbar">
+        <div><label for="dept">Departamento</label><select id="dept"><option value="">—</option></select></div>
+        <div><label for="mod">Módulo</label><select id="mod"><option value="">—</option></select></div>
+        <div><label for="lvl">Nivel</label><select id="lvl"><option value="">—</option><option>Básico</option><option>Intermedio</option><option>Avanzado</option></select></div>
+        <div><label for="who">Participante</label><input id="who" type="text" placeholder="Nombre y apellidos"></div>
+        <div style="display:flex;align-items:end"><button id="btnStart" class="primary" disabled>Iniciar</button></div>
       </div>
     </div>
-
-    <div class="grid">
-      <div class="card">
-        <div id="progress"><div id="bar" class="barok"></div></div>
-        <div id="tally" class="muted">0/0 · 0 aciertos · 0 fallos</div>
-        <div id="stage"></div>
-        <div id="summary" class="hidden">
-          <h3>Resumen</h3>
-          <p><span class="pill" id="ok">0</span> aciertos · <span class="pill" id="ko">0</span> fallos · <span class="pill" id="total">0</span> preguntas</p>
-          <button id="btnReview">Revisar fallos</button>
-          <button id="btnAgain">Empezar de nuevo</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer">© Formación interna · Sercotel Guadiana y Cumbria Spa&hotel</div>
   </div>
 
+  <!-- PANEL INFO -->
+  <div class="card panel" id="panelInfo">
+    <div class="muted" style="font-size:14px">Selecciona **Departamento → Módulo → Nivel** para ver el número de preguntas disponible y poder iniciar.</div>
+    <div class="kpis" id="kpis">
+      <!-- Se rellenan con Básico (N) · Intermedio (M) · Avanzado (K) -->
+    </div>
+  </div>
+
+  <!-- CONTENIDO -->
+  <div class="card main" id="mainCard">
+    <!-- Barra progreso -->
+    <div class="progress"><div id="bar"></div></div>
+    <div class="meta">
+      <span class="badge" id="metaPos">0/0</span>
+      <span class="badge" id="metaScore"><b>0</b> aciertos · <b>0</b> fallos</span>
+      <span class="badge" id="metaTags"></span>
+    </div>
+
+    <!-- Contenedor pregunta -->
+    <div id="holder" class="qcard center">
+      Elige filtros y pulsa <b>Iniciar</b> para comenzar.
+    </div>
+  </div>
+
+  <div class="footer">© Formación interna · Sercotel Guadiana y Cumbria Spa&Hotel</div>
+</div>
+
 <script>
-/* ==================== RUTAS CSV ==================== */
+/* ==================== RUTAS / CARGA ==================== */
 const CSV_CANDIDATES = [
   './data/plantilla_preguntas_unica.csv',
   'data/plantilla_preguntas_unica.csv'
 ];
 
-/* ==================== UTILS CSV ==================== */
 function decodeSmart(buf){
-  try{ return new TextDecoder('utf-8',{fatal:false}).decode(buf); }catch(_){}
+  try{ return new TextDecoder('utf-8',{fatal:false}).decode(buf);}catch(_){}
   try{ return new TextDecoder('windows-1252').decode(buf);}catch(_){}
   return '';
 }
 function detectDelimiter(sample){
   const counts={',':0,';':0,'\t':0,'|':0};
-  const lines=sample.split(/\r?\n/).slice(0,5);
+  const lines=sample.split(/\r?\n/).slice(0,6);
   for(const l of lines){ for(const k in counts){ counts[k]+= (l.split(k).length-1); } }
   let max=-1, best=','; for(const k in counts){ if(counts[k]>max){max=counts[k];best=k;} }
   return best;
@@ -117,8 +152,7 @@ function parseCSV(text){
   const head  = splitRow(lines[0],delim).map(h=>h.trim().toLowerCase());
   return lines.slice(1).map(ln=>{
     const cols = splitRow(ln,delim);
-    const obj = {};
-    head.forEach((h,i)=> obj[h] = (cols[i]??'').trim());
+    const obj = {}; head.forEach((h,i)=> obj[h] = (cols[i]??'').trim());
     return obj;
   });
 }
@@ -138,117 +172,183 @@ function normalize(arr){
   }).filter(r => r.text && (r.activo==='' || r.activo==='1' || String(r.activo).toLowerCase()==='true'));
 }
 
-/* ==================== FALLBACK data.js ==================== */
+function fetchFirst(urls){
+  return new Promise(async (resolve,reject)=>{
+    for(const u of urls){
+      try{
+        const res = await fetch(u + (u.includes('?')?'&':'?') + 'v=' + Date.now(), {cache:'no-store'});
+        if(res.ok){ const buf = await res.arrayBuffer(); resolve(decodeSmart(buf)); return; }
+        console.warn('[CSV 404]', u, res.status);
+      }catch(e){ console.warn('[CSV ERR]', u, e); }
+    }
+    reject(new Error('CSV no encontrado'));
+  });
+}
 function loadQUIZFallback(){
   return new Promise((resolve,reject)=>{
     const s=document.createElement('script');
     s.src='./data/data.js?v=' + Date.now();
     s.onload=()=>{
       if(window.QUIZ && Array.isArray(window.QUIZ.questions) && window.QUIZ.questions.length){
-        QUESTIONS = window.QUIZ.questions.map(q=>({
+        RAW = window.QUIZ.questions.map(q=>({
           id:q.id, dto:q.departamento||q.dto||'', mod:q.categoria||q.mod||'',
           level:(q.nivel||'').toLowerCase(), text:q.texto||q.text||'',
-          A:q.A, B:q.B, C:q.C, D:q.D, correct:(q.correct_letter||q.correct||'').toString().toUpperCase(), why:q.why||''
-        })).filter(r=>r.text);
-        console.info('[FALLBACK] Cargado desde data.js:', QUESTIONS.length);
+          A:q.A,B:q.B,C:q.C,D:q.D, correct:(q.correct_letter||q.correct||'').toString().toUpperCase(), why:q.why||''
+        })).filter(x=>x.text);
+        console.info('[FALLBACK] Cargado data.js:', RAW.length);
         resolve();
-      } else { reject(new Error('window.QUIZ vacío')); }
+      } else reject(new Error('window.QUIZ vacío'));
     };
     s.onerror=()=>reject(new Error('No se pudo cargar data.js'));
     document.head.appendChild(s);
   });
 }
 
-/* ==================== ESTADO & UI ==================== */
-let QUESTIONS=[], filtered=[], idx=0, correct=new Set(), wrong=new Set();
-const $=s=>document.querySelector(s);
-const dept=$("#dept"), mod=$("#mod"), lvl=$("#lvl"), who=$("#who"), stage=$("#stage");
-const bar=$("#bar"), tally=$("#tally"), okEl=$("#ok"), koEl=$("#ko"), totalEl=$("#total");
-const summary=$("#summary"), btnReview=$("#btnReview"), btnAgain=$("#btnAgain");
+/* ==================== ESTADO / UI ==================== */
+let RAW=[], QUESTIONS=[], filtered=[], idx=0;
+let correct=new Set(), wrong=new Set();
 
-function uniq(arr){ return [...new Set(arr.filter(Boolean))]; }
-function progress(){ const pct=filtered.length?((idx+1)/filtered.length)*100:0; bar.style.width=pct.toFixed(1)+"%"; }
-function render(){
-  if(!filtered.length){ stage.innerHTML='<p class="muted">No hay preguntas con los filtros actuales.</p>'; tally.textContent='0/0 · 0 aciertos · 0 fallos'; bar.style.width='0%'; return; }
-  const q=filtered[idx]; progress(); tally.textContent=`${idx+1}/${filtered.length} · ${correct.size} aciertos · ${wrong.size} fallos`;
-  stage.innerHTML = `
-    <div class="badget">${q.dto||'—'}</div>
-    <div class="badget">${q.mod||'—'}</div>
-    <div class="badget">${(q.level||'').charAt(0).toUpperCase()+ (q.level||'').slice(1)}</div>
-    <h3 style="margin:8px 0 6px">${q.text}</h3>
-    <div class="answers">
-      ${['A','B','C','D'].map(L=>`<div class="ans" data-letter="${L}"><b>${L}.</b> ${q[L]||''}</div>`).join('')}
-    </div>
+const $ = s => document.querySelector(s);
+const dept=$("#dept"), mod=$("#mod"), lvl=$("#lvl"), who=$("#who");
+const btnStart=$("#btnStart"), holder=$("#holder"), bar=$("#bar");
+const metaPos=$("#metaPos"), metaScore=$("#metaScore"), metaTags=$("#metaTags");
+const kpis=$("#kpis");
+
+function uniq(a){return [...new Set(a.filter(Boolean))]}
+
+function updateKPIs(){
+  const d=dept.value||'', m=mod.value||'';
+  const base = RAW.filter(q => (d? q.dto===d : true) && (m? q.mod===m : true));
+  const b = base.filter(q=>q.level==='básico').length;
+  const i = base.filter(q=>q.level==='intermedio').length;
+  const a = base.filter(q=>q.level==='avanzado').length;
+  kpis.innerHTML = `
+    <span class="kpi">Básico: <b>${b}</b></span>
+    <span class="kpi">Intermedio: <b>${i}</b></span>
+    <span class="kpi">Avanzado: <b>${a}</b></span>
   `;
-  stage.querySelectorAll('.ans').forEach(el=>{
-    el.onclick=()=>{
-      const letter=el.dataset.letter, corr=String(q.correct||'').toUpperCase();
-      const list=[...stage.querySelectorAll('.ans')];
-      list.forEach(x=>x.classList.remove('correct','wrong'));
-      list.forEach(x=>{ if(x.dataset.letter===corr) x.classList.add('correct'); });
-      if(letter===corr){ correct.add(q.id ?? idx); } else { wrong.add(q.id ?? idx); el.classList.add('wrong'); }
-      setTimeout(()=>{ if(idx<filtered.length-1){ idx++; render(); } else { showSummary(); } }, 300);
-    };
-  });
+  // habilitar iniciar cuando hay dept+mod+lvl y existan preguntas
+  const exists = base.filter(q=> (lvl.value? q.level===lvl.value.toLowerCase() : true)).length;
+  btnStart.disabled = !(dept.value && mod.value && lvl.value && exists);
 }
-function showSummary(){
-  stage.innerHTML=''; summary.classList.remove('hidden');
-  okEl.textContent=correct.size; koEl.textContent=wrong.size; totalEl.textContent=filtered.length;
-}
-btnReview.onclick=()=>{
-  const set=new Set([...wrong]); filtered = filtered.filter((q,i)=> set.has(q.id ?? i));
-  idx=0; correct.clear(); wrong.clear(); summary.classList.add('hidden'); render();
-};
-btnAgain.onclick=()=>{
-  summary.classList.add('hidden'); buildFilters();
-};
 
-/* ==================== FILTROS ==================== */
 function buildFilters(){
-  filtered=[...QUESTIONS];
-  const depts=uniq(filtered.map(x=>x.dto)), mods=uniq(filtered.map(x=>x.mod));
+  // Dept / Mod
+  const depts = uniq(RAW.map(x=>x.dto));
+  const mods  = uniq(RAW.map(x=>x.mod));
   dept.innerHTML='<option value="">—</option>'+depts.map(v=>`<option>${v}</option>`).join('');
   mod.innerHTML ='<option value="">—</option>'+mods.map(v=>`<option>${v}</option>`).join('');
-  lvl.value=''; dept.value=''; mod.value=''; idx=0; correct.clear(); wrong.clear();
-  render();
-}
-dept.onchange=()=>{ applyFilters(); };
-mod.onchange =()=>{ applyFilters(); };
-lvl.onchange =()=>{ applyFilters(); };
-function applyFilters(){
-  const d=dept.value||'', m=mod.value||'', lv=(lvl.value||'').toLowerCase();
-  filtered = QUESTIONS.filter(q=> (d? q.dto===d : true) && (m? q.mod===m : true) && (lv? q.level===lv: true) );
-  idx=0; correct.clear(); wrong.clear(); render();
+  lvl.value=""; who.value=""; btnStart.disabled=true;
+  updateKPIs();
 }
 
-/* ==================== AUTO-CARGA ==================== */
-async function fetchFirst(urls){
-  for (const u of urls){
-    try{
-      const res = await fetch(u + (u.includes('?')?'&':'?') + 'v=' + Date.now(), { cache:'no-store' });
-      if(res.ok){ const buf = await res.arrayBuffer(); return decodeSmart(buf); }
-      console.warn('[CSV 404]', u, res.status);
-    }catch(e){ console.warn('[CSV ERR]', u, e); }
-  }
-  throw new Error('CSV no encontrado');
+dept.onchange = ()=>updateKPIs();
+mod.onchange  = ()=>updateKPIs();
+lvl.onchange  = ()=>updateKPIs();
+
+function setProgress(){
+  const pct=filtered.length?((idx+1)/filtered.length)*100:0;
+  bar.style.width=pct.toFixed(1)+"%";
+  metaPos.textContent = `${filtered.length? (idx+1):0}/${filtered.length||0}`;
+  metaScore.innerHTML = `<b>${correct.size}</b> aciertos · <b>${wrong.size}</b> fallos`;
 }
-async function autoLoad(){
-  try{
-    const text = await fetchFirst(CSV_CANDIDATES);
-    const arr  = parseCSV(text);
-    QUESTIONS  = normalize(arr);
-    console.info('[CSV] Preguntas cargadas:', QUESTIONS.length);
-    if(!QUESTIONS.length){ await loadQUIZFallback(); }
-  }catch(err){
-    console.warn('[AUTOLOAD] CSV falló, intento fallback data.js', err);
-    await loadQUIZFallback().catch(e=>{
-      console.error('[FALLBACK] data.js también falló', e);
-      alert('No se pudieron cargar preguntas. Revisa la ruta /data del CSV o data.js');
+function paintQuestion(){
+  if(!filtered.length){
+    holder.className="qcard center";
+    holder.innerHTML = 'No hay preguntas para esa combinación de filtros.';
+    metaTags.textContent = '';
+    setProgress(); return;
+  }
+  const q = filtered[idx];
+  holder.className="qcard";
+  metaTags.innerHTML = `
+    <span class="badge">${q.dto||'—'}</span>
+    <span class="badge">${q.mod||'—'}</span>
+    <span class="badge">${(q.level||'').charAt(0).toUpperCase()+ (q.level||'').slice(1)}</span>
+  `;
+  holder.innerHTML = `
+    <div class="qid">ID: ${q.id ?? (idx+1)}</div>
+    <div class="qtitle">${q.text}</div>
+    <div class="answers" id="answers">
+      ${['A','B','C','D'].map(L=>`<div class="ans" data-letter="${L}"><b>${L}.</b> ${q[L]||''}</div>`).join('')}
+    </div>
+    <div class="explain hidden" id="explain">${q.why ? ('<b>Explicación:</b> '+q.why) : ''}</div>
+    <div class="controls">
+      <button id="btnPrev" ${idx===0?'disabled':''}>Atrás</button>
+      <button id="btnNext" disabled>Siguiente</button>
+    </div>
+  `;
+  setProgress();
+
+  const answers=[...document.querySelectorAll('.ans')];
+  const btnNext=$("#btnNext"), btnPrev=$("#btnPrev"), exp=$("#explain");
+  let responded = false;
+
+  function reveal(letter){
+    if(responded) return;
+    responded = true;
+    const corr = (q.correct||'').toUpperCase();
+    answers.forEach(el=>{
+      const l = el.dataset.letter;
+      if(l===corr){ el.classList.add('correct'); }
+      if(letter && l===letter && l!==corr){ el.classList.add('wrong'); }
     });
+    if(exp && exp.textContent.trim()){ exp.classList.remove('hidden'); }
+    btnNext.disabled = false; // solo permitimos avanzar tras ver la corrección
+    if(letter === corr){ correct.add(q.id ?? idx); } else { wrong.add(q.id ?? idx); }
+    setProgress();
+  }
+
+  answers.forEach(el=> el.onclick = ()=>reveal(el.dataset.letter) );
+  btnPrev.onclick = ()=>{ if(idx>0){ idx--; paintQuestion(); } };
+  btnNext.onclick = ()=>{ if(idx<filtered.length-1){ idx++; paintQuestion(); } else { showSummary(); } };
+}
+
+function showSummary(){
+  holder.className="qcard center";
+  holder.innerHTML = `
+    <div>
+      <h3 style="margin:6px 0 10px">Resumen</h3>
+      <p class="muted">Aciertos: <b>${correct.size}</b> · Fallos: <b>${wrong.size}</b> · Total: <b>${filtered.length}</b></p>
+      <div class="controls" style="justify-content:center">
+        <button id="btnReview">Revisar solo falladas</button>
+        <button id="btnAgain" class="primary">Empezar de nuevo</button>
+      </div>
+    </div>`;
+  $("#btnReview").onclick = ()=>{
+    const set = new Set([...wrong]);
+    filtered = filtered.filter((q,i)=> set.has(q.id ?? i));
+    idx=0; correct.clear(); wrong.clear(); paintQuestion();
+  };
+  $("#btnAgain").onclick = ()=>{
+    idx=0; correct.clear(); wrong.clear();
+    holder.innerHTML='Elige filtros y pulsa <b>Iniciar</b> para comenzar.'; holder.className="qcard center";
+    btnStart.disabled = !(dept.value && mod.value && lvl.value);
+    setProgress();
+  };
+}
+
+btnStart.onclick = ()=>{
+  const d=dept.value||'', m=mod.value||'', lv=(lvl.value||'').toLowerCase();
+  filtered = RAW.filter(q=> (d? q.dto===d:true) && (m? q.mod===m:true) && (lv? q.level===lv:true));
+  idx=0; correct.clear(); wrong.clear(); paintQuestion();
+};
+
+/* ==================== AUTOLOAD (CSV + fallback data.js) ==================== */
+(async function boot(){
+  const IS_LOCAL = location.protocol === 'file:';
+  try{
+    if(IS_LOCAL) throw new Error('Local file:// → usar data.js');
+    const text = await fetchFirst(CSV_CANDIDATES);
+    RAW = normalize(parseCSV(text));
+    if(!RAW.length) throw new Error('CSV vacío');
+    console.info('[CSV] preguntas:', RAW.length);
+  }catch(e){
+    console.warn('[BOOT] CSV falló o local, usando data.js', e);
+    await loadQUIZFallback();
   }
   buildFilters();
-}
-autoLoad();
+})();
 </script>
 </body>
 </html>
