@@ -100,12 +100,14 @@ button:disabled{opacity:.55;cursor:not-allowed}
       <select id="mod"><option value="">Todos</option></select>
 
       <label for="lvl">Nivel</label>
+      <!-- opciones con data-base (para no acumular contadores) -->
       <select id="lvl">
         <option value="">—</option>
-        <option>Básico</option>
-        <option>Intermedio</option>
-        <option>Avanzado</option>
+        <option value="básico"      data-base="Básico">Básico</option>
+        <option value="intermedio"  data-base="Intermedio">Intermedio</option>
+        <option value="avanzado"    data-base="Avanzado">Avanzado</option>
       </select>
+
       <div class="kpis" id="kpis"></div>
 
       <div class="step"><span class="num">3</span><b>Nombre y empezar</b></div>
@@ -248,33 +250,61 @@ function uniq(a){return [...new Set(a.filter(Boolean))]}
 function rebuildFilters(){
   const depts = uniq(RAW.map(x=>x.dto));
   const mods  = uniq(RAW.map(x=>x.mod));
-  dept.innerHTML='<option value="">Todos</option>'+depts.map(v=>`<option>${v}</option>`).join('');
-  mod.innerHTML ='<option value="">Todos</option>'+mods.map(v=>`<option>${v}</option>`).join('');
-  lvl.value=""; who.value=""; btnStart.disabled=true;
+
+  dept.innerHTML = '<option value="">Todos</option>'
+                 + depts.map(v=>`<option>${v}</option>`).join('');
+
+  mod.innerHTML  = '<option value="">Todos</option>'
+                 + mods.map(v=>`<option>${v}</option>`).join('');
+
+  // reset de estado
+  dept.value=""; mod.value=""; lvl.value=""; who.value="";
+  btnStart.disabled = true;
+
+  // restaurar etiquetas base del selector de nivel (evita concatenaciones)
+  [...lvl.options].forEach(o=>{
+    const base = o.getAttribute('data-base');
+    if(base) o.textContent = base;
+  });
+
   updateKPIs();
 }
+
 function updateKPIs(){
-  const d=dept.value||'', m=mod.value||'';
-  const base = RAW.filter(q => (d? q.dto===d : true) && (m? q.mod===m : true));
-  const b = base.filter(q=>q.level==='básico').length;
-  const i = base.filter(q=>q.level==='intermedio').length;
-  const a = base.filter(q=>q.level==='avanzado').length;
-  kpis.innerHTML = `<span class="kpi">Básico: <b>${b}</b></span>
-                    <span class="kpi">Intermedio: <b>${i}</b></span>
-                    <span class="kpi">Avanzado: <b>${a}</b></span>`;
-  // etiquetas con conteo en el propio select de nivel
+  const d = (dept.value || '');
+  const m = (mod.value  || '');
+
+  const base = RAW.filter(q => (d ? q.dto===d : true) && (m ? q.mod===m : true));
+  const cntB = base.filter(q => q.level==='básico').length;
+  const cntI = base.filter(q => q.level==='intermedio').length;
+  const cntA = base.filter(q => q.level==='avanzado').length;
+
+  // KPIs bajo el selector
+  kpis.innerHTML =
+    `<span class="kpi">Básico: <b>${cntB}</b></span>
+     <span class="kpi">Intermedio: <b>${cntI}</b></span>
+     <span class="kpi">Avanzado: <b>${cntA}</b></span>`;
+
+  // Etiquetas del <select> NIVEL SIN acumular
   [...lvl.options].forEach(o=>{
-    const v=o.value.toLowerCase();
-    if(!v) return;
-    const n = v==='básico'?b : v==='intermedio'?i : a;
-    o.textContent = o.value + ` (${n})`;
+    const baseText = o.getAttribute('data-base');
+    if(!baseText) return; // opción "—"
+    let n = 0;
+    if(o.value==='básico')      n = cntB;
+    if(o.value==='intermedio')  n = cntI;
+    if(o.value==='avanzado')    n = cntA;
+    o.textContent = `${baseText} (${n})`;
   });
-  const exists = base.filter(q=> (lvl.value? q.level===lvl.value.toLowerCase() : true)).length;
-  btnStart.disabled = !(dept.value && mod.value && lvl.value && who.value.trim() && exists);
+
+  // Habilitar Empezar solo si hay preguntas y nombre
+  const lv = (lvl.value || '').toLowerCase();
+  const exists = base.filter(q => lv ? q.level===lv : true).length;
+  const hasName = !!who.value.trim();
+  btnStart.disabled = !(dept.value && mod.value && lv && hasName && exists > 0);
 }
 dept.onchange=updateKPIs; mod.onchange=updateKPIs; lvl.onchange=updateKPIs; who.oninput=updateKPIs;
 
-/* ========= Render pregunta ========= */
+/* ========= Progreso + pintado ========= */
 function setProgress(){
   const pct=filtered.length?((idx+1)/filtered.length)*100:0;
   bar.style.width=pct.toFixed(1)+"%";

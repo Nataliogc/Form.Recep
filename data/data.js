@@ -696,7 +696,7 @@ Comunicación clara: El huésped debe recibir confirmación formal, con hora lí
                           "B":  "Cancelar la reserva inmediatamente",
                           "C":  "Verificar en canal, aplicar política de no show si aplica y notificar a OTA si es necesario",
                           "D":  "Esperar a que el huésped llegue",
-                          "correct_letter":  "B",
+                          "correct_letter":  "C",
                           "why":  "Es un riesgo de no show no cubierto; se debe gestionar según política y proteger ingresos."
                       },
                       {
