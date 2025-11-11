@@ -55,6 +55,13 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .controls{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
 .footer{margin:26px auto 10px;color:var(--muted);font-size:12px;text-align:center}
 .small{font-size:12px;color:var(--muted)}
+/* Mensajes finales */
+.note{margin:12px 0;padding:12px;border-radius:12px;border:1px solid #e6e7eb;background:#fafcff}
+.note.danger{border-color:#fecaca;background:#fff5f5}
+.note.warn{border-color:#fde68a;background:#fffbeb}
+.note.ok{border-color:#bbf7d0;background:#f0fdf4}
+.note b{display:block;margin-bottom:6px}
+/* Diagnóstico */
 .diag{margin-top:10px;padding:10px;border:1px dashed #cbd5e1;border-radius:10px;background:#fcfdff;text-align:left;white-space:pre-wrap}
 .diag b{color:#0b3b8f}
 </style>
@@ -130,16 +137,15 @@ button:disabled{opacity:.55;cursor:not-allowed}
 </div>
 
 <script>
-/* ========= CONFIG ========= */
+/* ======= CONFIG ======= */
 const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycby-ICzBZDkBH8agMpQa8OwSp_B1rC2tAXMMwQnKF0WSFqMoC6WQMk556_ztqmTizcn3oQ/exec";
 const CSV_CANDIDATES = [
   './data/plantilla_preguntas_unica.csv',
   'data/plantilla_preguntas_unica.csv',
   '/data/plantilla_preguntas_unica.csv'
 ];
-let startTime = 0;
 
-/* ========= UTILS ========= */
+/* ======= helpers & refs ======= */
 const $ = s => document.querySelector(s);
 const loaded=$("#loaded"), dept=$("#dept"), mod=$("#mod"), who=$("#who"), btnStart=$("#btnStart");
 const holder=$("#holder"), bar=$("#bar"), metaPos=$("#metaPos"), metaScore=$("#metaScore"), metaTags=$("#metaTags");
@@ -147,27 +153,27 @@ const loadwarn=$("#loadwarn"), diag=$("#diag");
 function log(...a){ console.log('[DATA]',...a); }
 function showDiag(msg){ diag.classList.remove('hidden'); diag.innerHTML = msg; }
 function showWarn(msg){ loadwarn.classList.remove('hidden'); loadwarn.textContent = msg; }
+function uniq(a){return [...new Set(a.filter(Boolean))]}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
-/* ========= CSV helpers ========= */
+/* ======= CSV ======= */
 function decodeSmart(buf){ try{return new TextDecoder('utf-8',{fatal:false}).decode(buf);}catch(_){}
   try{return new TextDecoder('windows-1252').decode(buf);}catch(_){}
   return ''; }
-function detectDelimiter(sample){
-  const counts={',':0,';':0,'\t':0,'|':0};
-  const lines=sample.split(/\r?\n/).slice(0,6);
-  for(const l of lines){ for(const k in counts){ counts[k]+= (l.split(k).length-1); } }
-  let max=-1,b=','; for(const k in counts){ if(counts[k]>max){max=counts[k];b=k;} } return b;
-}
+function detectDelimiter(sample){ const c={',':0,';':0,'\t':0,'|':0};
+  const ls=sample.split(/\r?\n/).slice(0,6);
+  for(const l of ls){ for(const k in c){ c[k]+= (l.split(k).length-1);} }
+  let m=-1,b=','; for(const k in c){ if(c[k]>m){m=c[k];b=k;} } return b; }
 function splitRow(line,delim){
-  const res=[]; let cur='',q=false;
+  const out=[]; let cur='',q=false;
   for(let i=0;i<line.length;i++){
-    const c=line[i],n=line[i+1];
-    if(c==='\"'){q=!q;continue;}
-    if(!q && c===delim){res.push(cur);cur='';continue;}
-    if(!q && c==='\r' && n==='\n'){i++;res.push(cur);return res;}
-    if(!q && (c==='\n'||c==='\r')){res.push(cur);return res;}
-    cur+=c;
-  } res.push(cur); return res;
+    const ch=line[i],n=line[i+1];
+    if(ch==='\"'){q=!q;continue;}
+    if(!q && ch===delim){out.push(cur);cur='';continue;}
+    if(!q && ch==='\r' && n==='\n'){i++;out.push(cur);return out;}
+    if(!q && (ch==='\n'||ch==='\r')){out.push(cur);return out;}
+    cur+=ch;
+  } out.push(cur); return out;
 }
 function parseCSV(text){
   const d=detectDelimiter(text);
@@ -227,7 +233,7 @@ function loadQUIZFallback(){
   });
 }
 
-/* ========= Historial (no repetir) ========= */
+/* ======= historial no-repetir ======= */
 const LS_KEY='quiz_historial_por_modulo_v1';
 function keyFor(dto,mod){return (dto||'').trim()+'||'+(mod||'').trim();}
 function loadHistory(){ try{return JSON.parse(localStorage.getItem(LS_KEY)||'{}');}catch(_){return{};} }
@@ -235,16 +241,8 @@ function saveHistory(h){ try{localStorage.setItem(LS_KEY,JSON.stringify(h));}cat
 function getUsedIds(dto,mod){const k=keyFor(dto,mod);const h=loadHistory();return new Set(Array.isArray(h[k])?h[k]:[]);}
 function pushUsedIds(dto,mod,ids){const k=keyFor(dto,mod);const h=loadHistory();const arr=new Set(Array.isArray(h[k])?h[k]:[]);ids.forEach(id=>arr.add(id));h[k]=Array.from(arr).slice(-500);saveHistory(h);}
 
-/* ========= Estado del test ========= */
-let RAW=[], filtered=[], idx=0; let correct=new Set(), wrong=new Set();
-function uniq(a){return [...new Set(a.filter(Boolean))]}
-function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function rebuildFilters(){
-  const depts=uniq(RAW.map(x=>x.dto)); const mods=uniq(RAW.map(x=>x.mod));
-  dept.innerHTML='<option value="">Todos</option>'+depts.map(v=>`<option>${v}</option>`).join('');
-  mod.innerHTML='<option value="">Todos</option>'+mods.map(v=>`<option>${v}</option>`).join('');
-  dept.value=""; mod.value=""; who.value=""; btnStart.disabled=true; updateKPIs();
-}
+/* ======= estado test ======= */
+let RAW=[], filtered=[], idx=0; let correct=new Set(), wrong=new Set(); let startTime=0;
 function updateKPIs(){
   const d=dept.value||'', m=mod.value||''; const base=RAW.filter(q=>(d? q.dto===d:true)&&(m? q.mod===m:true));
   const used=getUsedIds(d,m); const avail=base.filter(q=>!used.has(q.id)).length;
@@ -280,27 +278,59 @@ function paint(){
   prev.onclick=()=>{if(idx>0){idx--;paint();}}; next.onclick=()=>{if(idx<filtered.length-1){idx++;paint();}else{showSummary();}};
 }
 
+/* ======= envío y resumen con mensajes por % ======= */
 function sendResultToSheet(p){const h={"Content-Type":"application/json"};try{return fetch(SHEET_ENDPOINT,{method:"POST",headers:h,body:JSON.stringify(p),mode:"no-cors"}).catch(()=>navigator.sendBeacon(SHEET_ENDPOINT,JSON.stringify(p)));}catch(e){try{navigator.sendBeacon(SHEET_ENDPOINT,JSON.stringify(p));}catch(_){}}}
+function resultMessage(percent){
+  if (percent < 60) {
+    return {
+      cls: 'danger',
+      title: 'Toca repasar',
+      body: 'El resultado está por debajo del 60%. Te recomendamos revisar el blog de procedimientos y los módulos con mayor número de fallos. Repite el test en 48–72 horas: la excelencia se entrena cada día.'
+    };
+  } else if (percent < 90) {
+    return {
+      cls: 'warn',
+      title: 'Vamos bien, pero hay margen de mejora',
+      body: 'Buen avance (60–89%). Usa “Revisar solo falladas”, anota dudas y contrástalas con el equipo. Un repaso focalizado te llevará rápidamente por encima del 90%.'
+    };
+  } else {
+    return {
+      cls: 'ok',
+      title: '¡Excelente!',
+      body: 'Más del 90% demuestra dominio y constancia. Gracias a tu esfuerzo, cada día reforzamos la calidad del hotel. Mantén la regularidad, ayuda a compañeros en dudas puntuales y propone mejoras cuando detectes oportunidades.'
+    };
+  }
+}
 function showSummary(){
-  const d=dept.value||'', m=mod.value||''; pushUsedIds(d,m,filtered.map(q=>q.id));
-  const dur=Math.round((Date.now()-startTime)/1000); const detalleFallos=filtered.map(q=> (wrong.has(q.id)?q.id:null)).filter(Boolean);
-  const payload={nombre:(who.value||"").trim(),dto:d,modulo:m,nivel:"",total:filtered.length,aciertos:correct.size,fallos:wrong.size,porcentaje:filtered.length?Math.round((correct.size/filtered.length)*100):0,duracion_seg:dur,detalle_fallos:detalleFallos,user_agent:navigator.userAgent,sitio:location.href};
+  const d=dept.value||'', m=mod.value||'';
+  pushUsedIds(d,m,filtered.map(q=>q.id));
+  const dur=Math.round((Date.now()-startTime)/1000);
+  const detalleFallos=filtered.map(q=> (wrong.has(q.id)?q.id:null)).filter(Boolean);
+  const total=filtered.length, aciertos=correct.size, fallos=wrong.size;
+  const pct = total ? Math.round((aciertos/total)*100) : 0;
+  const msg = resultMessage(pct);
+
+  const payload={nombre:(who.value||"").trim(),dto:d,modulo:m,nivel:"",total,aciertos,fallos,porcentaje:pct,duracion_seg:dur,detalle_fallos:detalleFallos,user_agent:navigator.userAgent,sitio:location.href};
   sendResultToSheet(payload);
-  holder.className="qbox center"; holder.innerHTML=`<div><h3 style="margin:6px 0 10px">Resumen</h3><p class="muted">Aciertos: <b>${correct.size}</b> · Fallos: <b>${wrong.size}</b> · Total: <b>${filtered.length}</b></p><div class="controls" style="justify-content:center"><button id="review">Revisar solo falladas</button><button id="again" class="primary">Empezar de nuevo</button></div></div>`;
+
+  holder.className="qbox center";
+  holder.innerHTML=`<div style="max-width:720px;text-align:left">
+      <h3 style="margin:6px 0 10px">Resumen</h3>
+      <p class="muted">Aciertos: <b>${aciertos}</b> · Fallos: <b>${fallos}</b> · Total: <b>${total}</b> · <b>${pct}%</b></p>
+      <div class="note ${msg.cls}">
+        <b>${msg.title}</b>
+        ${msg.body}
+      </div>
+      <div class="controls" style="justify-content:center">
+        <button id="review">Revisar solo falladas</button>
+        <button id="again" class="primary">Empezar de nuevo</button>
+      </div>
+    </div>`;
   $("#review").onclick=()=>{const set=new Set([...wrong]); filtered=filtered.filter(q=>set.has(q.id)); idx=0; correct.clear(); wrong.clear(); paint();};
   $("#again").onclick=()=>{idx=0;correct.clear();wrong.clear(); holder.className='qbox center'; holder.innerHTML=document.querySelector('.hero').outerHTML; setProgress();};
 }
 
-btnStart.onclick=()=>{
-  startTime=Date.now();
-  const d=dept.value||'', m=mod.value||'';
-  const pool=RAW.filter(q=>(d? q.dto===d:true)&&(m? q.mod===m:true));
-  const used=getUsedIds(d,m); const unused=pool.filter(q=>!used.has(q.id));
-  let sample=[]; if(unused.length>=30){sample=shuffle(unused).slice(0,30);} else { sample=shuffle(unused).concat(shuffle(pool.filter(q=>used.has(q.id)))).slice(0,Math.min(30,pool.length)); }
-  filtered=sample; idx=0; correct.clear(); wrong.clear(); paint();
-};
-
-/* ========= Boot con diagnóstico ========= */
+/* ======= boot con diagnóstico ======= */
 (async function boot(){
   const IS_LOCAL = location.protocol==='file:';
   try{
@@ -310,39 +340,22 @@ btnStart.onclick=()=>{
     RAW = normalize(parsed);
     log('CSV OK. Filas:', parsed.length, 'Normalizadas:', RAW.length);
     if(!RAW.length){ throw new Error('CSV cargado pero 0 preguntas normalizadas (cabeceras distintas?)'); }
-    showWarn('Cargando desde CSV.');
-    diag.classList.add('hidden');
+    showWarn('Cargando desde CSV.'); diag.classList.add('hidden');
   }catch(e){
     showWarn(IS_LOCAL ? 'Modo local: usando data.js (fallback).' : 'CSV no disponible: usando data.js (fallback).');
-    showDiag(`🛠 Diagnóstico:\n- Motivo: ${e.message}\n- Rutas CSV probadas:\n${CSV_CANDIDATES.map(x=>'  • '+x).join('\n')}\n- Si usas GitHub Pages, confirma que /data/plantilla_preguntas_unica.csv existe.\n- En local (file://), fetch está bloqueado por el navegador y se usa data.js.`);
-    try{
-      await loadQUIZFallback();
-    }catch(err){
-      showDiag(diag.textContent + `\n\n❌ Fallback data.js fallido:\n- ${err.message}\n- Comprueba: /data/data.js y que defina window.QUIZ.questions[].`);
-    }
+    showDiag(`🛠 Diagnóstico:\n- Motivo: ${e.message}\n- Rutas CSV probadas:\n${CSV_CANDIDATES.map(x=>'  • '+x).join('\n')}\n- Si usas GitHub Pages, confirma que /data/plantilla_preguntas_unica.csv existe.\n- En local (file://), fetch está bloqueado y se usa data.js.`);
+    try{ await loadQUIZFallback(); }
+    catch(err){ showDiag(diag.textContent + `\n\n❌ Fallback data.js fallido:\n- ${err.message}\n- Comprueba: /data/data.js y que defina window.QUIZ.questions[].`); }
   }
+
   loaded.textContent = RAW.length || 0;
 
   const depts=[...new Set(RAW.map(x=>x.dto))].filter(Boolean);
   const mods=[...new Set(RAW.map(x=>x.mod))].filter(Boolean);
   dept.innerHTML='<option value="">Todos</option>'+depts.map(v=>`<option>${v}</option>`).join('');
   mod.innerHTML='<option value="">Todos</option>'+mods.map(v=>`<option>${v}</option>`).join('');
-  (function updateKPIs(){ const d=dept.value||'', m=mod.value||''; const base=RAW.filter(q=>(d? q.dto===d:true)&&(m? q.mod===m:true));
-    const used=getUsedIds(d,m); const avail=base.filter(q=>!used.has(q.id)).length;
-    $("#kpis").innerHTML=`<span class="kpi">Banco: <b>${base.length}</b></span>
-                          <span class="kpi">Disponibles: <b>${avail}</b></span>
-                          <span class="kpi">Se usarán: <b>${Math.min(30,base.length)}</b></span>`;
-    btnStart.disabled=!(dept.value && mod.value && who.value.trim() && base.length>0);
-  })();
-  dept.onchange=()=>{ const base=RAW.filter(q=>(dept.value? q.dto===dept.value:true)&&(mod.value? q.mod===mod.value:true));
-    const used=getUsedIds(dept.value||'',mod.value||''); const avail=base.filter(q=>!used.has(q.id)).length;
-    $("#kpis").innerHTML=`<span class="kpi">Banco: <b>${base.length}</b></span>
-                          <span class="kpi">Disponibles: <b>${avail}</b></span>
-                          <span class="kpi">Se usarán: <b>${Math.min(30,base.length)}</b></span>`;
-    btnStart.disabled=!(dept.value && mod.value && who.value.trim() && base.length>0);
-  };
-  mod.onchange=dept.onchange;
-  who.oninput=dept.onchange;
+
+  updateKPIs();
 })();
 </script>
 </body>
