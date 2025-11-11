@@ -168,7 +168,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
 
 <script>
 /* ===== Config ===== */
-const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbw0zjfjTf_XzNLLCN6aVe17WiwyMgoY7N3Rz6Bx3NySrf3Q5N1wLVxdLxswWrGOdwFHmA/exec";
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycby-ICzBZDkBH8agMpQa8OwSp_B1rC2tAXMMwQnKF0WSFqMoC6WQMk556_ztqmTizcn3oQ/exec";
 const CSV_CANDIDATES = [
   './data/plantilla_preguntas_unica.csv',
   'data/plantilla_preguntas_unica.csv',
@@ -338,22 +338,8 @@ function showSummary(){
   const total=filtered.length, aciertos=correct.size, fallos=wrong.size;
   const pct = total ? Math.round((aciertos/total)*100) : 0;
   const msg = resultMessage(pct);
-
-  // >>> payload alineado con Apps Script (sin user_agent/sitio, con ids_preguntas)
-  const payload={
-    nombre:(who.value||"").trim(),
-    dto:d,
-    modulo:m,
-    nivel:"",
-    total,
-    aciertos,
-    fallos,
-    duracion_seg:dur,
-    ids_preguntas: filtered.map(q=>q.id),
-    detalle_fallos: detalleFallos
-  };
+  const payload={nombre:(who.value||"").trim(),dto:d,modulo:m,nivel:"",total,aciertos,fallos,porcentaje:pct,duracion_seg:dur,detalle_fallos:detalleFallos,user_agent:navigator.userAgent,sitio:location.href};
   sendResultToSheet(payload);
-
   holder.className="qbox center";
   holder.innerHTML=`<div style="max-width:720px;text-align:left">
       <h3 style="margin:6px 0 10px">Resumen</h3>
