@@ -284,6 +284,32 @@ function updateKPIs(){
 dept.onchange=()=>{ buildModuleOptionsFor(dept.value||''); updateKPIs(); };
 mod.onchange=updateKPIs;
 who.oninput=updateKPIs;
+// --- Iniciar test ---
+btnStart.onclick = () => {
+  const d = dept.value || '';
+  const m = mod.value || '';
+
+  // Banco según filtros
+  const base = RAW.filter(q => (d ? q.dto === d : true) && (m ? q.mod === m : true));
+  if (!base.length) {
+    alert('No hay preguntas para esa combinación.');
+    return;
+  }
+
+  // Evitar repetidas; si no queda ninguna disponible, usamos todo el banco
+  const used = getUsedIds(d, m);
+  let pool = base.filter(q => !used.has(q.id));
+  if (pool.length === 0) pool = base;              // <-- fallback si Disponibles: 0
+
+  // Selección aleatoria (30 máx)
+  const take = Math.min(30, pool.length);
+  filtered = shuffle(pool).slice(0, take);
+
+  // Reset de estado y a jugar
+  idx = 0; correct.clear(); wrong.clear();
+  startTime = Date.now();
+  paint();
+};
 
 function setProgress(){const pct=filtered.length?((idx+1)/filtered.length)*100:0; bar.style.width=pct.toFixed(1)+'%';
   metaPos.textContent=`${filtered.length?(idx+1):0}/${filtered.length||0}`; metaScore.innerHTML=`<b>${correct.size}</b> aciertos · <b>${wrong.size}</b> fallos`; }
