@@ -4,38 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sesión de Crecimiento · Formación</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
 <style>
-:root{
-  --bg:#f6f7fb; --card:#fff; --ink:#0f172a; --muted:#667085; --border:#e6e7eb;
-  --primary:#0b61d6; --ring:rgba(11,97,214,.14); --ok:#16a34a; --ko:#dc2626;
-  --chip:#f1f5f9; --pill:#eef2ff; --pill-border:#dfe5ff;
-}
-*{box-sizing:border-box}
-html,body{height:100%}
+:root{--bg:#f6f7fb;--card:#fff;--ink:#0f172a;--muted:#667085;--border:#e6e7eb;--primary:#0b61d6;--ring:rgba(11,97,214,.14);}
+*{box-sizing:border-box} html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
 .hidden{display:none}
-
 .wrap{max-width:1250px;margin:28px auto;padding:0 18px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 10px 35px rgba(15,23,42,.04)}
 .header{padding:18px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
 .brand{display:flex;gap:18px;align-items:center}
-.brand img{height:42px;object-fit:contain;filter:saturate(.9)}
+.brand img{height:42px;object-fit:contain}
 h1{margin:2px 0 0;font-size:28px;font-weight:800;letter-spacing:.2px}
 .subtitle{color:#144aa7;margin-top:2px;font-style:italic}
-
-/* Layout principal */
 .grid{display:grid;grid-template-columns:360px 1fr;gap:18px;margin-top:18px}
-@media (max-width: 980px){ .grid{grid-template-columns:1fr} }
-
-/* Sidebar / pasos */
+@media (max-width:980px){.grid{grid-template-columns:1fr}}
 .sidebar{padding:16px}
 .step{display:flex;align-items:center;gap:10px;margin:8px 0 12px}
-.step .num{background:#eef2ff;border:1px solid var(--pill-border);color:#0b3b8f;border-radius:999px;padding:4px 12px;font-weight:800}
+.step .num{background:#eef2ff;border:1px solid #dfe5ff;color:#0b3b8f;border-radius:999px;padding:4px 12px;font-weight:800}
 .help{font-size:14px;color:var(--muted)}
 label{font-size:12px;color:var(--muted);display:block;margin:10px 0 6px}
 select,input{width:100%;padding:12px;border:1px solid var(--border);border-radius:12px;background:#fff;outline:none}
@@ -44,37 +32,33 @@ button{padding:12px 16px;border-radius:12px;border:1px solid var(--border);backg
 button.primary{background:var(--primary);color:#fff;border:0}
 button:disabled{opacity:.55;cursor:not-allowed}
 .kpis{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.kpi{background:var(--chip);border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-size:13px}
-.kpi b{font-weight:800}
-
-/* Content / preguntas */
+.kpi{background:#f1f5f9;border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-size:13px}
 .content{padding:16px}
 .progress{height:10px;background:#eef2ff;border-radius:999px;overflow:hidden}
 .progress>div{height:100%;width:0;background:#80aaff;transition:width .2s ease}
 .meta{display:flex;gap:10px;align-items:center;margin:10px 0 8px;color:var(--muted);font-size:14px}
-.badge{display:inline-flex;align-items:center;gap:6px;background:var(--pill);border:1px solid var(--pill-border);border-radius:999px;padding:4px 10px;font-size:12px}
-.badge b{font-weight:800}
+.badge{display:inline-flex;align-items:center;gap:6px;background:#eef2ff;border:1px solid #dfe5ff;border-radius:999px;padding:4px 10px;font-size:12px}
 .qbox{padding:6px 0}
+.center{display:flex;align-items:center;justify-content:center;padding:28px 10px;color:var(--muted);text-align:center}
+.hero{display:flex;flex-direction:column;align-items:center;gap:14px}
+.hero img{max-width:220px;height:auto;opacity:.9}
 .qhead{display:flex;align-items:baseline;gap:8px}
 .qnum{font-weight:800;font-size:20px}
 .qid{font-size:12px;color:var(--muted)}
 .qtitle{font-size:22px;font-weight:800;margin:6px 0 10px}
 .answers{display:grid;gap:10px;margin-top:8px}
 .ans{padding:12px;border:1px solid var(--border);border-radius:12px;background:#fff;cursor:pointer;display:flex;gap:10px;align-items:flex-start}
-.ans b{display:inline-block;min-width:22px}
 .ans:hover{border-color:#d7d9df;background:#fcfcff}
 .ans.correct{background:#ecfdf5;border-color:#86efac}
 .ans.wrong{background:#fef2f2;border-color:#fca5a5}
 .explain{margin-top:12px;padding:12px;border:1px dashed #cbd5e1;border-radius:12px;background:#f8fbff}
 .controls{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
-.center{display:flex;align-items:center;justify-content:center;padding:46px 10px;color:var(--muted)}
 .footer{margin:26px auto 10px;color:var(--muted);font-size:12px;text-align:center}
+.small{font-size:12px;color:var(--muted)}
 </style>
 </head>
 <body>
 <div class="wrap">
-
-  <!-- Header -->
   <div class="card header">
     <div class="brand">
       <img src="./img/logo-guadiana.png" alt="Guadiana" onerror="this.style.display='none'">
@@ -86,9 +70,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
     </div>
   </div>
 
-  <!-- Layout principal -->
   <div class="grid">
-    <!-- Sidebar -->
     <aside class="card sidebar">
       <div class="step"><span class="num">1</span><b>Estado</b></div>
       <div class="help">Preguntas cargadas: <b id="loaded">0</b></div>
@@ -120,7 +102,6 @@ button:disabled{opacity:.55;cursor:not-allowed}
       </div>
     </aside>
 
-    <!-- Contenido -->
     <section class="card content">
       <div class="progress"><div id="bar"></div></div>
       <div class="meta">
@@ -129,8 +110,16 @@ button:disabled{opacity:.55;cursor:not-allowed}
         <span class="badge" id="metaTags"></span>
       </div>
 
+      <!-- HERO antes de iniciar -->
       <div id="holder" class="qbox center">
-        Elige <b>Departamento → Módulo</b>, escribe tu nombre y pulsa <b>Empezar test</b>. Se seleccionarán <b>30 preguntas</b> aleatorias del módulo, evitando repetir las ya vistas.
+        <div class="hero">
+          <img src="./img/empty.png" alt="Test" onerror="this.src='img/empty.png'">
+          <div>
+            <b>Elige Departamento → Módulo</b>, escribe tu nombre y pulsa <b>Empezar test</b>.<br>
+            Se seleccionarán <b>30 preguntas</b> aleatorias del módulo evitando repetir las ya vistas.
+          </div>
+          <div id="loadwarn" class="small hidden"></div>
+        </div>
       </div>
     </section>
   </div>
@@ -139,340 +128,185 @@ button:disabled{opacity:.55;cursor:not-allowed}
 </div>
 
 <script>
-/* ========= CONFIG ========= */
+/* ====== CONFIG ====== */
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycby-ICzBZDkBH8agMpQa8OwSp_B1rC2tAXMMwQnKF0WSFqMoC6WQMk556_ztqmTizcn3oQ/exec";
+/* CSV candidatos (variantes de ruta para Pages) */
 const CSV_CANDIDATES = [
   './data/plantilla_preguntas_unica.csv',
-  'data/plantilla_preguntas_unica.csv'
+  'data/plantilla_preguntas_unica.csv',
+  '/data/plantilla_preguntas_unica.csv',
+  location.pathname.replace(/\\/[^/]*$/, '') + '/data/plantilla_preguntas_unica.csv'
 ];
 let startTime = 0;
-const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycby-ICzBZDkBH8agMpQa8OwSp_B1rC2tAXMMwQnKF0WSFqMoC6WQMk556_ztqmTizcn3oQ/exec";
 
-/* ========= HELPERS CSV ========= */
-function decodeSmart(buf){
-  try{ return new TextDecoder('utf-8',{fatal:false}).decode(buf);}catch(_){}
-  try{ return new TextDecoder('windows-1252').decode(buf);}catch(_){}
-  return '';
-}
+/* ====== CSV helpers ====== */
+function decodeSmart(buf){ try{return new TextDecoder('utf-8',{fatal:false}).decode(buf);}catch(_){}
+  try{return new TextDecoder('windows-1252').decode(buf);}catch(_){}
+  return ''; }
 function detectDelimiter(sample){
   const counts={',':0,';':0,'\t':0,'|':0};
   const lines=sample.split(/\r?\n/).slice(0,6);
   for(const l of lines){ for(const k in counts){ counts[k]+= (l.split(k).length-1); } }
-  let max=-1, best=','; for(const k in counts){ if(counts[k]>max){max=counts[k];best=k;} }
-  return best;
+  let max=-1,b=','; for(const k in counts){ if(counts[k]>max){max=counts[k];b=k;} } return b;
 }
 function splitRow(line,delim){
   const res=[]; let cur='',q=false;
   for(let i=0;i<line.length;i++){
-    const c=line[i], n=line[i+1];
-    if(c==='\"'){ q=!q; continue; }
-    if(!q && c===delim){ res.push(cur); cur=''; continue; }
-    if(!q && c==='\r' && n==='\n'){ i++; res.push(cur); return res; }
-    if(!q && (c==='\n' || c==='\r')){ res.push(cur); return res; }
+    const c=line[i],n=line[i+1];
+    if(c==='\"'){q=!q;continue;}
+    if(!q && c===delim){res.push(cur);cur='';continue;}
+    if(!q && c==='\r' && n==='\n'){i++;res.push(cur);return res;}
+    if(!q && (c==='\n'||c==='\r')){res.push(cur);return res;}
     cur+=c;
-  }
-  res.push(cur); return res;
+  } res.push(cur); return res;
 }
 function parseCSV(text){
-  const delim = detectDelimiter(text);
-  const lines = text.split(/\r?\n/).filter(x=>x.trim()!=='');
-  const head  = splitRow(lines[0],delim).map(h=>h.trim().toLowerCase());
-  return lines.slice(1).map(ln=>{
-    const cols = splitRow(ln,delim);
-    const obj = {}; head.forEach((h,i)=> obj[h] = (cols[i]??'').trim());
-    return obj;
-  });
+  const d=detectDelimiter(text);
+  const lines=text.split(/\r?\n/).filter(x=>x.trim()!=='');
+  const head=splitRow(lines[0],d).map(h=>h.trim().toLowerCase());
+  return lines.slice(1).map(ln=>{ const cols=splitRow(ln,d); const o={};
+    head.forEach((h,i)=>o[h]=(cols[i]??'').trim()); return o; });
 }
 function normalize(arr){
-  const pick=(o,ks)=>{for(const k of ks){ if(k in o && String(o[k]).trim()!=='') return String(o[k]); } return '';};
-  const djb2 = s => { let h=5381; for(let i=0;i<s.length;i++){ h=((h<<5)+h) + s.charCodeAt(i); } return (h>>>0).toString(36); };
-
+  const pick=(o,ks)=>{for(const k of ks){if(k in o && String(o[k]).trim()!=='') return String(o[k]);}return'';};
+  const djb2=s=>{let h=5381;for(let i=0;i<s.length;i++){h=((h<<5)+h)+s.charCodeAt(i);}return(h>>>0).toString(36);};
   return arr.map(r=>{
     const o={}; Object.keys(r).forEach(k=>o[k.toLowerCase()]=r[k]);
-    const dto   = pick(o,['dto','departamento','dpto','depto','depart.','departamento (dto)']).trim();
-    const mod   = pick(o,['modulo','módulo','module','mod','tema','bloque','unidad','categoria','categoría']).trim();
-    const level = pick(o,['nivel','nivél','level']).toLowerCase();
-    const text  = pick(o,['text','texto','pregunta','enunciado']).trim();
-    const A=pick(o,['a']), B=pick(o,['b']), C=pick(o,['c']), D=pick(o,['d']);
-    let corr = (pick(o,['correct_letter','correct','letra_correcta','respuesta_correcta','respuesta'])||'').toUpperCase().match(/[A-D]/)?.[0]||'';
-    const why = pick(o,['why','explicacion','explicación','comentario','nota']);
-    const activo = pick(o,['activo','activa','enabled']);
-    // id estable: usa el dado o genera uno por hash de dto|mod|texto
-    let id = (pick(o,['id'])||'').trim();
-    if(!id){ id = djb2([dto,mod,text].join('|')); }
-    return {id, dto, mod, level, text, A,B,C,D, correct:corr, why, activo};
-  }).filter(r => r.text && (r.activo==='' || r.activo==='1' || String(r.activo).toLowerCase()==='true'));
+    const dto=pick(o,['dto','departamento','dpto','depto','departamento (dto)']).trim();
+    const mod=pick(o,['modulo','módulo','module','mod','tema','bloque','unidad','categoria','categoría']).trim();
+    const text=pick(o,['text','texto','pregunta','enunciado']).trim();
+    const A=pick(o,['a']),B=pick(o,['b']),C=pick(o,['c']),D=pick(o,['d']);
+    const corr=(pick(o,['correct_letter','correct','letra_correcta','respuesta_correcta','respuesta'])||'').toUpperCase().match(/[A-D]/)?.[0]||'';
+    const why=pick(o,['why','explicacion','explicación','comentario','nota']);
+    const activo=pick(o,['activo','activa','enabled']);
+    let id=(pick(o,['id'])||'').trim(); if(!id){id=djb2([dto,mod,text].join('|'));}
+    return {id,dto,mod,text,A,B,C,D,correct:corr,why,activo};
+  }).filter(r=>r.text && (r.activo===''||r.activo==='1'||String(r.activo).toLowerCase()==='true'));
 }
-
-/* ========= UTILS ========= */
-function fetchFirst(urls){
-  return new Promise(async (resolve,reject)=>{
-    for(const u of urls){
-      try{
-        const res = await fetch(u + (u.includes('?')?'&':'?') + 'v=' + Date.now(), {cache:'no-store'});
-        if(res.ok){ const buf = await res.arrayBuffer(); resolve(decodeSmart(buf)); return; }
-        console.warn('[CSV 404]', u, res.status);
-      }catch(e){ console.warn('[CSV ERR]', u, e); }
-    }
-    reject(new Error('CSV no encontrado'));
-  });
+async function fetchFirst(urls){
+  for(const u of urls){
+    try{
+      const res=await fetch(u+(u.includes('?')?'&':'?')+'v='+Date.now(),{cache:'no-store'});
+      if(res.ok){const buf=await res.arrayBuffer(); return decodeSmart(buf);}
+    }catch(_){}
+  } throw new Error('CSV no encontrado');
 }
 function loadQUIZFallback(){
   return new Promise((resolve,reject)=>{
     const s=document.createElement('script');
-    s.src='./data/data.js?v=' + Date.now();
+    s.src='./data/data.js?v='+Date.now();
     s.onload=()=>{
       if(window.QUIZ && Array.isArray(window.QUIZ.questions) && window.QUIZ.questions.length){
         RAW = window.QUIZ.questions.map(q=>({
-          id: q.id || null,
-          dto: q.departamento||q.dto||'',
-          mod: q.categoria||q.mod||'',
-          level:(q.nivel||'').toLowerCase(),
-          text: q.texto||q.text||'',
-          A:q.A,B:q.B,C:q.C,D:q.D,
-          correct:(q.correct_letter||q.correct||'').toString().toUpperCase(),
-          why:q.why||'',
-          activo:'1'
-        })).filter(x=>x.text);
-        // genera id si falta
-        const djb2 = s => { let h=5381; for(let i=0;i<s.length;i++){ h=((h<<5)+h) + s.charCodeAt(i); } return (h>>>0).toString(36); };
-        RAW = RAW.map(q => ({...q, id: q.id || djb2([q.dto,q.mod,q.text].join('|'))}));
-        resolve();
+          id:q.id || (q.texto? q.texto.length : Math.random().toString(36).slice(2)),
+          dto:q.departamento||q.dto||'', mod:q.categoria||q.mod||'',
+          text:q.texto||q.text||'', A:q.A,B:q.B,C:q.C,D:q.D,
+          correct:(q.correct_letter||q.correct||'').toString().toUpperCase(), why:q.why||'', activo:'1'
+        })); resolve();
       } else reject(new Error('window.QUIZ vacío'));
     };
     s.onerror=()=>reject(new Error('No se pudo cargar data.js'));
     document.head.appendChild(s);
   });
 }
-function uniq(a){return [...new Set(a.filter(Boolean))]}
-function shuffle(arr){
-  const a = arr.slice();
-  for(let i=a.length-1;i>0;i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [a[i],a[j]] = [a[j],a[i]];
-  }
-  return a;
-}
 
-/* ========= HISTORIAL (no repetir) ========= */
-const LS_KEY = 'quiz_historial_por_modulo_v1';
-const MAX_HISTORY_PER_KEY = 500; // límite por DTO+Módulo
-function keyFor(dto, mod){ return (dto||'').trim() + '||' + (mod||'').trim(); }
-function loadHistory(){
-  try{ return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); }catch(_){ return {}; }
-}
-function saveHistory(hist){ try{ localStorage.setItem(LS_KEY, JSON.stringify(hist)); }catch(_){} }
-function pushUsedIds(dto, mod, ids){
-  const k = keyFor(dto,mod);
-  const hist = loadHistory();
-  const arr = Array.isArray(hist[k]) ? hist[k] : [];
-  // añade sin duplicar y recorta a límite
-  const set = new Set(arr);
-  ids.forEach(id => set.add(id));
-  const merged = Array.from(set);
-  if(merged.length > MAX_HISTORY_PER_KEY){
-    // recorta los más antiguos (al principio)
-    const overflow = merged.length - MAX_HISTORY_PER_KEY;
-    hist[k] = merged.slice(overflow);
-  } else {
-    hist[k] = merged;
-  }
-  saveHistory(hist);
-}
-function getUsedIds(dto, mod){
-  const k = keyFor(dto,mod);
-  const hist = loadHistory();
-  return new Set(Array.isArray(hist[k]) ? hist[k] : []);
-}
+/* ====== Historial para no repetir ====== */
+const LS_KEY='quiz_historial_por_modulo_v1';
+function keyFor(dto,mod){return (dto||'').trim()+'||'+(mod||'').trim();}
+function loadHistory(){ try{return JSON.parse(localStorage.getItem(LS_KEY)||'{}');}catch(_){return{};} }
+function saveHistory(h){ try{localStorage.setItem(LS_KEY,JSON.stringify(h));}catch(_){} }
+function getUsedIds(dto,mod){const k=keyFor(dto,mod);const h=loadHistory();return new Set(Array.isArray(h[k])?h[k]:[]);}
+function pushUsedIds(dto,mod,ids){const k=keyFor(dto,mod);const h=loadHistory();const arr=new Set(Array.isArray(h[k])?h[k]:[]);ids.forEach(id=>arr.add(id));h[k]=Array.from(arr).slice(-500);saveHistory(h);}
 
-/* ========= ESTADO ========= */
-let RAW=[], filtered=[], idx=0;
-let correct=new Set(), wrong=new Set();
-
-const $ = s => document.querySelector(s);
+/* ====== Estado/UI ====== */
+let RAW=[], filtered=[], idx=0; let correct=new Set(), wrong=new Set();
+const $=s=>document.querySelector(s);
 const loaded=$("#loaded"), dept=$("#dept"), mod=$("#mod"), who=$("#who");
 const btnStart=$("#btnStart"), kpis=$("#kpis");
-const holder=$("#holder"), bar=$("#bar"), metaPos=$("#metaPos"), metaScore=$("#metaScore"), metaTags=$("#metaTags");
+const holder=$("#holder"), bar=$("#bar"), metaPos=$("#metaPos"), metaScore=$("#metaScore"), metaTags=$("#metaTags"), loadwarn=$("#loadwarn");
+function uniq(a){return [...new Set(a.filter(Boolean))]} function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
-/* ========= FILTROS + KPIs ========= */
 function rebuildFilters(){
-  const depts = uniq(RAW.map(x=>x.dto));
-  const mods  = uniq(RAW.map(x=>x.mod));
-
-  dept.innerHTML = '<option value="">Todos</option>'+depts.map(v=>`<option>${v}</option>`).join('');
-  mod.innerHTML  = '<option value="">Todos</option>'+mods.map(v=>`<option>${v}</option>`).join('');
-
-  dept.value=""; mod.value=""; who.value=""; btnStart.disabled = true;
-  updateKPIs();
+  const depts=uniq(RAW.map(x=>x.dto)); const mods=uniq(RAW.map(x=>x.mod));
+  dept.innerHTML='<option value="">Todos</option>'+depts.map(v=>`<option>${v}</option>`).join('');
+  mod.innerHTML='<option value="">Todos</option>'+mods.map(v=>`<option>${v}</option>`).join('');
+  dept.value=""; mod.value=""; who.value=""; btnStart.disabled=true; updateKPIs();
 }
 function updateKPIs(){
   const d=dept.value||'', m=mod.value||'';
-  const base = RAW.filter(q => (d? q.dto===d : true) && (m? q.mod===m : true));
-  const total = base.length;
-  const modList = uniq(RAW.filter(q => (d? q.dto===d : true)).map(q=>q.mod)).length;
-
-  const used = getUsedIds(d,m);
-  const available = base.filter(q => !used.has(q.id)).length;
-
-  kpis.innerHTML = `
-    <span class="kpi">Banco: <b>${total}</b></span>
-    <span class="kpi">Disponibles (no vistas): <b>${available}</b></span>
-    <span class="kpi">Módulos: <b>${modList}</b></span>
-    <span class="kpi">Se usarán: <b>${Math.min(30, total)}</b></span>
-  `;
-  btnStart.disabled = !(dept.value && mod.value && who.value.trim() && total>0);
+  const base=RAW.filter(q=>(d? q.dto===d:true)&&(m? q.mod===m:true));
+  const used=getUsedIds(d,m); const avail=base.filter(q=>!used.has(q.id)).length;
+  kpis.innerHTML=`<span class="kpi">Banco: <b>${base.length}</b></span>
+                  <span class="kpi">Disponibles: <b>${avail}</b></span>
+                  <span class="kpi">Se usarán: <b>${Math.min(30,base.length)}</b></span>`;
+  btnStart.disabled=!(dept.value && mod.value && who.value.trim() && base.length>0);
 }
 dept.onchange=updateKPIs; mod.onchange=updateKPIs; who.oninput=updateKPIs;
 
-/* ========= PROGRESO + PINTADO ========= */
-function setProgress(){
-  const pct=filtered.length?((idx+1)/filtered.length)*100:0;
-  bar.style.width=pct.toFixed(1)+"%";
-  metaPos.textContent = `${filtered.length? (idx+1):0}/${filtered.length||0}`;
-  metaScore.innerHTML = `<b>${correct.size}</b> aciertos · <b>${wrong.size}</b> fallos`;
-}
+function setProgress(){const pct=filtered.length?((idx+1)/filtered.length)*100:0; bar.style.width=pct.toFixed(1)+'%';
+  metaPos.textContent=`${filtered.length?(idx+1):0}/${filtered.length||0}`; metaScore.innerHTML=`<b>${correct.size}</b> aciertos · <b>${wrong.size}</b> fallos`; }
+
 function paint(){
-  if(!filtered.length){
-    holder.className="qbox center";
-    holder.innerHTML='No hay preguntas para esa combinación de filtros.';
-    metaTags.textContent=''; setProgress(); return;
-  }
-  const q=filtered[idx];
-  holder.className="qbox";
-  metaTags.innerHTML = `
-    <span class="badge">${q.dto||'—'}</span>
-    <span class="badge">${q.mod||'—'}</span>
-    <span class="badge">Muestra: ${filtered.length} aleatorias</span>
-  `;
-  holder.innerHTML = `
+  if(!filtered.length){ holder.className='qbox center'; holder.innerHTML='<div>No hay preguntas para esa combinación.</div>'; metaTags.textContent=''; setProgress(); return; }
+  const q=filtered[idx]; holder.className='qbox';
+  metaTags.innerHTML=`<span class="badge">${q.dto||'—'}</span><span class="badge">${q.mod||'—'}</span><span class="badge">Muestra: ${filtered.length}</span>`;
+  holder.innerHTML=`
     <div class="qhead"><div class="qnum">${idx+1}.</div><div class="qid">[#${q.id}]</div></div>
     <div class="qtitle">${q.text}</div>
     <div class="answers" id="answers">
       ${['A','B','C','D'].map(L=>`<div class="ans" data-letter="${L}"><b>${L}.</b> ${q[L]||''}</div>`).join('')}
     </div>
     <div class="explain hidden" id="explain"></div>
-    <div class="controls">
-      <button id="prev" ${idx===0?'disabled':''}>Atrás</button>
-      <button id="next" disabled>Siguiente</button>
-    </div>
-  `;
+    <div class="controls"><button id="prev" ${idx===0?'disabled':''}>Atrás</button><button id="next" disabled>Siguiente</button></div>`;
   setProgress();
-
-  const list=[...document.querySelectorAll('.ans')];
-  const next=$("#next"), prev=$("#prev"), exp=$("#explain");
-  let answered=false;
-  function reveal(letter){
-    if(answered) return; answered=true;
-    const corr=(q.correct||'').toUpperCase();
-    list.forEach(el=>{
-      const l=el.dataset.letter;
-      if(l===corr) el.classList.add('correct');
-      if(letter && l===letter && l!==corr) el.classList.add('wrong');
-    });
-    const textoCorrecta = q[corr] ? ` ${q[corr]}` : '';
-    const textoWhy = q.why ? `<br><b>Explicación:</b> ${q.why}` : '';
-    exp.innerHTML = `<b>Respuesta correcta:</b> ${corr}.${textoCorrecta}${textoWhy}`;
-    exp.classList.remove('hidden');
-    next.disabled=false;
-    if(letter===corr) correct.add(q.id); else wrong.add(q.id);
-    setProgress();
-  }
+  const list=[...document.querySelectorAll('.ans')], next=$("#next"), prev=$("#prev"), exp=$("#explain"); let answered=false;
+  function reveal(letter){ if(answered) return; answered=true; const corr=(q.correct||'').toUpperCase();
+    list.forEach(el=>{const l=el.dataset.letter;if(l===corr) el.classList.add('correct'); if(letter&&l===letter&&l!==corr) el.classList.add('wrong');});
+    const textoCorrecta=q[corr]?` ${q[corr]}`:''; const textoWhy=q.why?`<br><b>Explicación:</b> ${q.why}`:''; exp.innerHTML=`<b>Respuesta correcta:</b> ${corr}.${textoCorrecta}${textoWhy}`; exp.classList.remove('hidden'); next.disabled=false;
+    if(letter===corr) correct.add(q.id); else wrong.add(q.id); setProgress(); }
   list.forEach(el=> el.onclick=()=>reveal(el.dataset.letter));
-  prev.onclick = ()=>{ if(idx>0){ idx--; paint(); } };
-  next.onclick = ()=>{ if(idx<filtered.length-1){ idx++; paint(); } else { showSummary(); } };
+  prev.onclick=()=>{if(idx>0){idx--;paint();}}; next.onclick=()=>{if(idx<filtered.length-1){idx++;paint();}else{showSummary();}};
 }
 
-/* ========= ENVÍO RESULTADOS A SHEET ========= */
-function sendResultToSheet(payload){
-  const headers = { "Content-Type": "application/json" };
-  try {
-    return fetch(SHEET_ENDPOINT, { method:"POST", headers, body:JSON.stringify(payload), mode:"no-cors" })
-      .catch(()=> navigator.sendBeacon(SHEET_ENDPOINT, JSON.stringify(payload)));
-  } catch(e){
-    try{ navigator.sendBeacon(SHEET_ENDPOINT, JSON.stringify(payload)); }catch(_){}
-  }
-}
+function sendResultToSheet(p){const h={"Content-Type":"application/json"};try{return fetch(SHEET_ENDPOINT,{method:"POST",headers:h,body:JSON.stringify(p),mode:"no-cors"}).catch(()=>navigator.sendBeacon(SHEET_ENDPOINT,JSON.stringify(p)));}catch(e){try{navigator.sendBeacon(SHEET_ENDPOINT,JSON.stringify(p));}catch(_){}}}
 
-/* ========= RESUMEN ========= */
 function showSummary(){
-  const d=dept.value||'', m=mod.value||'';
-  // guardar historial de IDs usados en esta sesión
-  pushUsedIds(d, m, filtered.map(q=>q.id));
-
-  const dur = Math.round((Date.now() - startTime) / 1000);
-  const detalleFallos = filtered.map(q=> (wrong.has(q.id) ? q.id : null)).filter(Boolean);
-  const payload = {
-    nombre:(who.value||"").trim(),
-    dto:d, modulo:m, nivel:"",
-    total:filtered.length, aciertos:correct.size, fallos:wrong.size,
-    porcentaje: filtered.length? Math.round((correct.size/filtered.length)*100) : 0,
-    duracion_seg: dur, detalle_fallos: detalleFallos,
-    user_agent: navigator.userAgent, sitio: location.href
-  };
+  const d=dept.value||'', m=mod.value||''; pushUsedIds(d,m,filtered.map(q=>q.id));
+  const dur=Math.round((Date.now()-startTime)/1000); const detalleFallos=filtered.map(q=> (wrong.has(q.id)?q.id:null)).filter(Boolean);
+  const payload={nombre:(who.value||"").trim(),dto:d,modulo:m,nivel:"",total:filtered.length,aciertos:correct.size,fallos:wrong.size,porcentaje:filtered.length?Math.round((correct.size/filtered.length)*100):0,duracion_seg:dur,detalle_fallos:detalleFallos,user_agent:navigator.userAgent,sitio:location.href};
   sendResultToSheet(payload);
-
-  holder.className="qbox center";
-  holder.innerHTML = `
-    <div>
-      <h3 style="margin:6px 0 10px">Resumen</h3>
-      <p class="muted">Aciertos: <b>${correct.size}</b> · Fallos: <b>${wrong.size}</b> · Total: <b>${filtered.length}</b></p>
-      <div class="controls" style="justify-content:center">
-        <button id="review">Revisar solo falladas</button>
-        <button id="again" class="primary">Empezar de nuevo</button>
-      </div>
-    </div>`;
-  $("#review").onclick=()=>{
-    const set=new Set([...wrong]);
-    filtered = filtered.filter(q=> set.has(q.id));
-    idx=0; correct.clear(); wrong.clear(); paint();
-  };
-  $("#again").onclick=()=>{
-    idx=0; correct.clear(); wrong.clear();
-    holder.className="qbox center";
-    holder.innerHTML='Elige <b>Departamento → Módulo</b>, escribe tu nombre y pulsa <b>Empezar test</b>.';
-    setProgress();
-  };
+  holder.className="qbox center"; holder.innerHTML=`<div><h3 style="margin:6px 0 10px">Resumen</h3><p class="muted">Aciertos: <b>${correct.size}</b> · Fallos: <b>${wrong.size}</b> · Total: <b>${filtered.length}</b></p><div class="controls" style="justify-content:center"><button id="review">Revisar solo falladas</button><button id="again" class="primary">Empezar de nuevo</button></div></div>`;
+  $("#review").onclick=()=>{const set=new Set([...wrong]); filtered=filtered.filter(q=>set.has(q.id)); idx=0; correct.clear(); wrong.clear(); paint();};
+  $("#again").onclick=()=>{idx=0;correct.clear();wrong.clear(); holder.className='qbox center'; holder.innerHTML=document.querySelector('.hero').outerHTML; setProgress();};
 }
 
-/* ========= INICIO ========= */
 $("#btnStart").onclick=()=>{
-  startTime = Date.now();
+  startTime=Date.now();
   const d=dept.value||'', m=mod.value||'';
-  const pool = RAW.filter(q=> (d? q.dto===d : true) && (m? q.mod===m : true));
-
-  const used = getUsedIds(d,m);
-  const unusedPool = pool.filter(q => !used.has(q.id));
-  let sample = [];
-
-  if(unusedPool.length >= 30){
-    sample = shuffle(unusedPool).slice(0,30);
-  } else {
-    // usa todas las no vistas y rellena con vistas (rotación)
-    const rest = pool.filter(q => used.has(q.id));
-    sample = shuffle(unusedPool).concat(shuffle(rest)).slice(0, Math.min(30, pool.length));
-    // si el banco ya se ha agotado, "reinicia" para la próxima vez
-    if(unusedPool.length === 0 && pool.length > 0){
-      // limpiamos historial para esta clave para que la siguiente vez empiece fresco
-      const hist = loadHistory(); const k = keyFor(d,m); delete hist[k]; saveHistory(hist);
-    }
-  }
-
-  filtered = sample;
-  idx=0; correct.clear(); wrong.clear(); paint();
+  const pool=RAW.filter(q=>(d? q.dto===d:true)&&(m? q.mod===m:true));
+  const used=getUsedIds(d,m); const unused=pool.filter(q=>!used.has(q.id));
+  let sample=[]; if(unused.length>=30){sample=shuffle(unused).slice(0,30);} else { sample=shuffle(unused).concat(shuffle(pool.filter(q=>used.has(q.id)))).slice(0,Math.min(30,pool.length)); }
+  filtered=sample; idx=0; correct.clear(); wrong.clear(); paint();
 };
 
-/* ========= BOOT ========= */
-let RAW=[];
+/* ====== Boot ====== */
 (async function boot(){
-  const IS_LOCAL = location.protocol === 'file:';
+  const IS_LOCAL = location.protocol==='file:';
   try{
     if(IS_LOCAL) throw new Error('file:// → usar data.js');
     const text = await fetchFirst(CSV_CANDIDATES);
     RAW = normalize(parseCSV(text));
     if(!RAW.length) throw new Error('CSV vacío');
+    loadwarn.classList.add('hidden');
   }catch(e){
-    await loadQUIZFallback();
+    try{
+      await loadQUIZFallback();
+      loadwarn.textContent='Cargando desde data.js (fallback local).'; loadwarn.classList.remove('hidden');
+    }catch(err){
+      loadwarn.textContent='No se encontró CSV ni data.js. Revisa /data/plantilla_preguntas_unica.csv o /data/data.js'; loadwarn.classList.remove('hidden');
+    }
   }
-  loaded.textContent = RAW.length;
+  loaded.textContent = RAW.length || 0;
   rebuildFilters();
 })();
 </script>
