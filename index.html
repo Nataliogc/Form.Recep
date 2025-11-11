@@ -55,15 +55,20 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .controls{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
 .footer{margin:26px auto 10px;color:var(--muted);font-size:12px;text-align:center}
 .small{font-size:12px;color:var(--muted)}
-/* Mensajes finales */
 .note{margin:12px 0;padding:12px;border-radius:12px;border:1px solid #e6e7eb;background:#fafcff}
 .note.danger{border-color:#fecaca;background:#fff5f5}
 .note.warn{border-color:#fde68a;background:#fffbeb}
 .note.ok{border-color:#bbf7d0;background:#f0fdf4}
 .note b{display:block;margin-bottom:6px}
-/* Diagnóstico */
 .diag{margin-top:10px;padding:10px;border:1px dashed #cbd5e1;border-radius:10px;background:#fcfdff;text-align:left;white-space:pre-wrap}
 .diag b{color:#0b3b8f}
+
+/* ------- Caja “¿Por qué…?” mejorada ------- */
+.why{margin-top:16px;padding:14px;border:1px solid var(--border);border-radius:14px;background:linear-gradient(180deg,#ffffff 0,#fbfcff 100%)}
+.why .tag{display:inline-flex;gap:8px;align-items:center;font-size:12px;color:#0b3b8f;background:#eef2ff;border:1px solid #dfe5ff;border-radius:999px;padding:4px 10px;font-weight:700}
+.why h3{margin:12px 0 8px;font-size:15px}
+.why ul{margin:8px 0 0 18px;padding:0}
+.why li{margin:4px 0}
 </style>
 </head>
 <body>
@@ -75,7 +80,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
     </div>
     <div>
       <h1>Sesión de Crecimiento · Formación</h1>
-      <div class="subtitle">Cuestionario por departamento y módulo · 30 preguntas aleatorias sin repetir</div>
+      <div class="subtitle">"Esto no es un examen, es una brújula que nos indica el camino hacia la Excelencia del Servicio. Al identificar dónde brillas y dónde podemos crecer, garantizamos que cada huésped viva una experiencia excepcional en Guadiana y Cumbria. ¡Usemos esta herramienta para ser imparables!"</div>
     </div>
   </div>
 
@@ -99,14 +104,15 @@ button:disabled{opacity:.55;cursor:not-allowed}
         <button id="btnStart" class="primary" disabled>Empezar test</button>
       </div>
 
-      <hr style="margin:16px 0;border:none;border-top:1px dashed var(--border)">
-      <div style="font-size:14px">
-        <b>¿Por qué realizamos estas pruebas?</b>
-        <ul style="margin:6px 0 0 18px;padding:0">
-          <li>Refuerzo del conocimiento clave</li>
-          <li>Estándares comunes entre hoteles</li>
-          <li>Detección de áreas de mejora</li>
-          <li>Reconocer buenas prácticas</li>
+      <!-- Caja “Por qué” mejorada con mensaje tranquilizador -->
+      <div class="why">
+        <span class="tag">No es un examen — es una herramienta de mejora</span>
+        <h3>¿Por qué realizamos estas pruebas?</h3>
+        <ul>
+          <li>Refuerzo del conocimiento clave y del uso del PMS.</li>
+          <li>Estándares comunes entre Guadiana y Cumbria.</li>
+          <li>Detección de áreas de mejora para enfocar la formación.</li>
+          <li>Reconocer buenas prácticas que elevan la experiencia del huésped.</li>
         </ul>
       </div>
     </aside>
@@ -241,17 +247,43 @@ function saveHistory(h){ try{localStorage.setItem(LS_KEY,JSON.stringify(h));}cat
 function getUsedIds(dto,mod){const k=keyFor(dto,mod);const h=loadHistory();return new Set(Array.isArray(h[k])?h[k]:[]);}
 function pushUsedIds(dto,mod,ids){const k=keyFor(dto,mod);const h=loadHistory();const arr=new Set(Array.isArray(h[k])?h[k]:[]);ids.forEach(id=>arr.add(id));h[k]=Array.from(arr).slice(-500);saveHistory(h);}
 
+/* ======= indexación módulos por departamento ======= */
+const MODS_BY_DTO = new Map();
+function indexModsByDept() {
+  MODS_BY_DTO.clear();
+  for (const q of RAW) {
+    const dto = (q.dto||'').trim();
+    const mod = (q.mod||'').trim();
+    if (!dto || !mod) continue;
+    if (!MODS_BY_DTO.has(dto)) MODS_BY_DTO.set(dto, new Set());
+    MODS_BY_DTO.get(dto).add(mod);
+  }
+}
+function buildModuleOptionsFor(depto) {
+  const container = $("#mod");
+  let mods = [];
+  if (!depto) mods = [...new Set(RAW.map(x => (x.mod||'').trim()).filter(Boolean))];
+  else mods = MODS_BY_DTO.has(depto) ? [...MODS_BY_DTO.get(depto)] : [];
+  mods.sort((a,b)=>a.localeCompare(b,'es',{sensitivity:'base'}));
+  container.innerHTML = '<option value="">Todos</option>' + mods.map(m=>`<option>${m}</option>`).join('');
+}
+
 /* ======= estado test ======= */
 let RAW=[], filtered=[], idx=0; let correct=new Set(), wrong=new Set(); let startTime=0;
+
 function updateKPIs(){
-  const d=dept.value||'', m=mod.value||''; const base=RAW.filter(q=>(d? q.dto===d:true)&&(m? q.mod===m:true));
+  const d=dept.value||'', m=mod.value||'';
+  const base=RAW.filter(q=>(d? q.dto===d:true)&&(m? q.mod===m:true));
   const used=getUsedIds(d,m); const avail=base.filter(q=>!used.has(q.id)).length;
   $("#kpis").innerHTML=`<span class="kpi">Banco: <b>${base.length}</b></span>
                         <span class="kpi">Disponibles: <b>${avail}</b></span>
                         <span class="kpi">Se usarán: <b>${Math.min(30,base.length)}</b></span>`;
-  btnStart.disabled=!(dept.value && mod.value && who.value.trim() && base.length>0);
+  // habilitar si hay nombre y hay preguntas (m puede ser vacío = “Todos”)
+  btnStart.disabled=!(who.value.trim() && base.length>0);
 }
-dept.onchange=updateKPIs; mod.onchange=updateKPIs; who.oninput=updateKPIs;
+dept.onchange=()=>{ buildModuleOptionsFor(dept.value||''); updateKPIs(); };
+mod.onchange=updateKPIs;
+who.oninput=updateKPIs;
 
 function setProgress(){const pct=filtered.length?((idx+1)/filtered.length)*100:0; bar.style.width=pct.toFixed(1)+'%';
   metaPos.textContent=`${filtered.length?(idx+1):0}/${filtered.length||0}`; metaScore.innerHTML=`<b>${correct.size}</b> aciertos · <b>${wrong.size}</b> fallos`; }
@@ -278,14 +310,13 @@ function paint(){
   prev.onclick=()=>{if(idx>0){idx--;paint();}}; next.onclick=()=>{if(idx<filtered.length-1){idx++;paint();}else{showSummary();}};
 }
 
-/* ======= envío y resumen con mensajes por % ======= */
 function sendResultToSheet(p){const h={"Content-Type":"application/json"};try{return fetch(SHEET_ENDPOINT,{method:"POST",headers:h,body:JSON.stringify(p),mode:"no-cors"}).catch(()=>navigator.sendBeacon(SHEET_ENDPOINT,JSON.stringify(p)));}catch(e){try{navigator.sendBeacon(SHEET_ENDPOINT,JSON.stringify(p));}catch(_){}}}
 function resultMessage(percent){
   if (percent < 60) {
     return {
       cls: 'danger',
       title: 'Toca repasar',
-      body: 'El resultado está por debajo del 60%. Te recomendamos revisar el blog de procedimientos y los módulos con mayor número de fallos. Repite el test en 48–72 horas: la excelencia se entrena cada día.'
+      body: 'El resultado está por debajo del 60%. Revisa el blog de procedimientos y los módulos con más fallos. Repite el test en 48–72 horas: la excelencia se entrena cada día.'
     };
   } else if (percent < 90) {
     return {
@@ -297,7 +328,7 @@ function resultMessage(percent){
     return {
       cls: 'ok',
       title: '¡Excelente!',
-      body: 'Más del 90% demuestra dominio y constancia. Gracias a tu esfuerzo, cada día reforzamos la calidad del hotel. Mantén la regularidad, ayuda a compañeros en dudas puntuales y propone mejoras cuando detectes oportunidades.'
+      body: 'Más del 90% demuestra dominio y constancia. Gracias a tu esfuerzo, cada día reforzamos la calidad del hotel. Mantén la regularidad y comparte buenas prácticas.'
     };
   }
 }
@@ -309,10 +340,8 @@ function showSummary(){
   const total=filtered.length, aciertos=correct.size, fallos=wrong.size;
   const pct = total ? Math.round((aciertos/total)*100) : 0;
   const msg = resultMessage(pct);
-
   const payload={nombre:(who.value||"").trim(),dto:d,modulo:m,nivel:"",total,aciertos,fallos,porcentaje:pct,duracion_seg:dur,detalle_fallos:detalleFallos,user_agent:navigator.userAgent,sitio:location.href};
   sendResultToSheet(payload);
-
   holder.className="qbox center";
   holder.innerHTML=`<div style="max-width:720px;text-align:left">
       <h3 style="margin:6px 0 10px">Resumen</h3>
@@ -338,22 +367,20 @@ function showSummary(){
     const text = await fetchFirst(CSV_CANDIDATES);
     const parsed = parseCSV(text);
     RAW = normalize(parsed);
-    log('CSV OK. Filas:', parsed.length, 'Normalizadas:', RAW.length);
     if(!RAW.length){ throw new Error('CSV cargado pero 0 preguntas normalizadas (cabeceras distintas?)'); }
     showWarn('Cargando desde CSV.'); diag.classList.add('hidden');
   }catch(e){
     showWarn(IS_LOCAL ? 'Modo local: usando data.js (fallback).' : 'CSV no disponible: usando data.js (fallback).');
-    showDiag(`🛠 Diagnóstico:\n- Motivo: ${e.message}\n- Rutas CSV probadas:\n${CSV_CANDIDATES.map(x=>'  • '+x).join('\n')}\n- Si usas GitHub Pages, confirma que /data/plantilla_preguntas_unica.csv existe.\n- En local (file://), fetch está bloqueado y se usa data.js.`);
+    showDiag(`🛠 Diagnóstico:\n- Motivo: ${e.message}\n- Rutas CSV probadas:\n${CSV_CANDIDATES.map(x=>'  • '+x).join('\n')}\n- En local (file://) se usa data.js; en GitHub Pages, CSV.`);
     try{ await loadQUIZFallback(); }
-    catch(err){ showDiag(diag.textContent + `\n\n❌ Fallback data.js fallido:\n- ${err.message}\n- Comprueba: /data/data.js y que defina window.QUIZ.questions[].`); }
+    catch(err){ showDiag(diag.textContent + `\n\n❌ Fallback data.js fallido:\n- ${err.message}\n- Comprueba /data/data.js y que defina window.QUIZ.questions[].`); }
   }
-
   loaded.textContent = RAW.length || 0;
 
-  const depts=[...new Set(RAW.map(x=>x.dto))].filter(Boolean);
-  const mods=[...new Set(RAW.map(x=>x.mod))].filter(Boolean);
+  // combos
+  const depts=[...new Set(RAW.map(x=>x.dto))].filter(Boolean).sort((a,b)=>a.localeCompare(b,'es',{sensitivity:'base'}));
   dept.innerHTML='<option value="">Todos</option>'+depts.map(v=>`<option>${v}</option>`).join('');
-  mod.innerHTML='<option value="">Todos</option>'+mods.map(v=>`<option>${v}</option>`).join('');
+  indexModsByDept(); buildModuleOptionsFor(dept.value || '');
 
   updateKPIs();
 })();
