@@ -82,7 +82,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
     </div>
     <div>
       <h1>Sesión de Crecimiento · Formación</h1>
-      <div class="subtitle">Cuestionario dinámico por departamento y módulo · 30 preguntas aleatorias</div>
+      <div class="subtitle">Cuestionario por departamento y módulo · 30 preguntas aleatorias sin repetir</div>
     </div>
   </div>
 
@@ -130,7 +130,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
       </div>
 
       <div id="holder" class="qbox center">
-        Elige <b>Departamento → Módulo</b>, escribe tu nombre y pulsa <b>Empezar test</b>. Se seleccionarán <b>30 preguntas</b> aleatorias del módulo.
+        Elige <b>Departamento → Módulo</b>, escribe tu nombre y pulsa <b>Empezar test</b>. Se seleccionarán <b>30 preguntas</b> aleatorias del módulo, evitando repetir las ya vistas.
       </div>
     </section>
   </div>
@@ -184,17 +184,22 @@ function parseCSV(text){
 }
 function normalize(arr){
   const pick=(o,ks)=>{for(const k of ks){ if(k in o && String(o[k]).trim()!=='') return String(o[k]); } return '';};
+  const djb2 = s => { let h=5381; for(let i=0;i<s.length;i++){ h=((h<<5)+h) + s.charCodeAt(i); } return (h>>>0).toString(36); };
+
   return arr.map(r=>{
     const o={}; Object.keys(r).forEach(k=>o[k.toLowerCase()]=r[k]);
-    const dto   = pick(o,['dto','departamento','dpto','depto','depart.','departamento (dto)']);
-    const mod   = pick(o,['modulo','módulo','module','mod','tema','bloque','unidad','categoria','categoría']);
-    const level = pick(o,['nivel','nivél','level']).toLowerCase(); // ya no se usa en filtros, pero lo guardamos si existe
-    const text  = pick(o,['text','texto','pregunta','enunciado']);
+    const dto   = pick(o,['dto','departamento','dpto','depto','depart.','departamento (dto)']).trim();
+    const mod   = pick(o,['modulo','módulo','module','mod','tema','bloque','unidad','categoria','categoría']).trim();
+    const level = pick(o,['nivel','nivél','level']).toLowerCase();
+    const text  = pick(o,['text','texto','pregunta','enunciado']).trim();
     const A=pick(o,['a']), B=pick(o,['b']), C=pick(o,['c']), D=pick(o,['d']);
     let corr = (pick(o,['correct_letter','correct','letra_correcta','respuesta_correcta','respuesta'])||'').toUpperCase().match(/[A-D]/)?.[0]||'';
     const why = pick(o,['why','explicacion','explicación','comentario','nota']);
     const activo = pick(o,['activo','activa','enabled']);
-    return {id:(pick(o,['id'])||'').trim()||undefined, dto:(dto||'').trim(), mod:(mod||'').trim(), level, text, A,B,C,D, correct:corr, why, activo};
+    // id estable: usa el dado o genera uno por hash de dto|mod|texto
+    let id = (pick(o,['id'])||'').trim();
+    if(!id){ id = djb2([dto,mod,text].join('|')); }
+    return {id, dto, mod, level, text, A,B,C,D, correct:corr, why, activo};
   }).filter(r => r.text && (r.activo==='' || r.activo==='1' || String(r.activo).toLowerCase()==='true'));
 }
 
@@ -218,10 +223,19 @@ function loadQUIZFallback(){
     s.onload=()=>{
       if(window.QUIZ && Array.isArray(window.QUIZ.questions) && window.QUIZ.questions.length){
         RAW = window.QUIZ.questions.map(q=>({
-          id:q.id, dto:q.departamento||q.dto||'', mod:q.categoria||q.mod||'',
-          level:(q.nivel||'').toLowerCase(), text:q.texto||q.text||'',
-          A:q.A,B:q.B,C:q.C,D:q.D, correct:(q.correct_letter||q.correct||'').toString().toUpperCase(), why:q.why||''
+          id: q.id || null,
+          dto: q.departamento||q.dto||'',
+          mod: q.categoria||q.mod||'',
+          level:(q.nivel||'').toLowerCase(),
+          text: q.texto||q.text||'',
+          A:q.A,B:q.B,C:q.C,D:q.D,
+          correct:(q.correct_letter||q.correct||'').toString().toUpperCase(),
+          why:q.why||'',
+          activo:'1'
         })).filter(x=>x.text);
+        // genera id si falta
+        const djb2 = s => { let h=5381; for(let i=0;i<s.length;i++){ h=((h<<5)+h) + s.charCodeAt(i); } return (h>>>0).toString(36); };
+        RAW = RAW.map(q => ({...q, id: q.id || djb2([q.dto,q.mod,q.text].join('|'))}));
         resolve();
       } else reject(new Error('window.QUIZ vacío'));
     };
@@ -231,13 +245,43 @@ function loadQUIZFallback(){
 }
 function uniq(a){return [...new Set(a.filter(Boolean))]}
 function shuffle(arr){
-  // Fisher-Yates
   const a = arr.slice();
   for(let i=a.length-1;i>0;i--){
     const j = Math.floor(Math.random()*(i+1));
     [a[i],a[j]] = [a[j],a[i]];
   }
   return a;
+}
+
+/* ========= HISTORIAL (no repetir) ========= */
+const LS_KEY = 'quiz_historial_por_modulo_v1';
+const MAX_HISTORY_PER_KEY = 500; // límite por DTO+Módulo
+function keyFor(dto, mod){ return (dto||'').trim() + '||' + (mod||'').trim(); }
+function loadHistory(){
+  try{ return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); }catch(_){ return {}; }
+}
+function saveHistory(hist){ try{ localStorage.setItem(LS_KEY, JSON.stringify(hist)); }catch(_){} }
+function pushUsedIds(dto, mod, ids){
+  const k = keyFor(dto,mod);
+  const hist = loadHistory();
+  const arr = Array.isArray(hist[k]) ? hist[k] : [];
+  // añade sin duplicar y recorta a límite
+  const set = new Set(arr);
+  ids.forEach(id => set.add(id));
+  const merged = Array.from(set);
+  if(merged.length > MAX_HISTORY_PER_KEY){
+    // recorta los más antiguos (al principio)
+    const overflow = merged.length - MAX_HISTORY_PER_KEY;
+    hist[k] = merged.slice(overflow);
+  } else {
+    hist[k] = merged;
+  }
+  saveHistory(hist);
+}
+function getUsedIds(dto, mod){
+  const k = keyFor(dto,mod);
+  const hist = loadHistory();
+  return new Set(Array.isArray(hist[k]) ? hist[k] : []);
 }
 
 /* ========= ESTADO ========= */
@@ -266,10 +310,14 @@ function updateKPIs(){
   const total = base.length;
   const modList = uniq(RAW.filter(q => (d? q.dto===d : true)).map(q=>q.mod)).length;
 
+  const used = getUsedIds(d,m);
+  const available = base.filter(q => !used.has(q.id)).length;
+
   kpis.innerHTML = `
-    <span class="kpi">Banco de preguntas: <b>${total}</b></span>
-    <span class="kpi">Módulos disponibles: <b>${modList}</b></span>
-    <span class="kpi">Se usarán: <b>${Math.min(30,total)}</b></span>
+    <span class="kpi">Banco: <b>${total}</b></span>
+    <span class="kpi">Disponibles (no vistas): <b>${available}</b></span>
+    <span class="kpi">Módulos: <b>${modList}</b></span>
+    <span class="kpi">Se usarán: <b>${Math.min(30, total)}</b></span>
   `;
   btnStart.disabled = !(dept.value && mod.value && who.value.trim() && total>0);
 }
@@ -296,7 +344,7 @@ function paint(){
     <span class="badge">Muestra: ${filtered.length} aleatorias</span>
   `;
   holder.innerHTML = `
-    <div class="qhead"><div class="qnum">${idx+1}.</div><div class="qid">[#${q.id ?? (idx+1)}]</div></div>
+    <div class="qhead"><div class="qnum">${idx+1}.</div><div class="qid">[#${q.id}]</div></div>
     <div class="qtitle">${q.text}</div>
     <div class="answers" id="answers">
       ${['A','B','C','D'].map(L=>`<div class="ans" data-letter="${L}"><b>${L}.</b> ${q[L]||''}</div>`).join('')}
@@ -325,7 +373,7 @@ function paint(){
     exp.innerHTML = `<b>Respuesta correcta:</b> ${corr}.${textoCorrecta}${textoWhy}`;
     exp.classList.remove('hidden');
     next.disabled=false;
-    if(letter===corr) correct.add(q.id ?? idx); else wrong.add(q.id ?? idx);
+    if(letter===corr) correct.add(q.id); else wrong.add(q.id);
     setProgress();
   }
   list.forEach(el=> el.onclick=()=>reveal(el.dataset.letter));
@@ -346,13 +394,15 @@ function sendResultToSheet(payload){
 
 /* ========= RESUMEN ========= */
 function showSummary(){
+  const d=dept.value||'', m=mod.value||'';
+  // guardar historial de IDs usados en esta sesión
+  pushUsedIds(d, m, filtered.map(q=>q.id));
+
   const dur = Math.round((Date.now() - startTime) / 1000);
-  const detalleFallos = filtered.map((q,i)=> (wrong.has(q.id ?? i) ? (q.id ?? i) : null)).filter(Boolean);
+  const detalleFallos = filtered.map(q=> (wrong.has(q.id) ? q.id : null)).filter(Boolean);
   const payload = {
     nombre:(who.value||"").trim(),
-    dto:(dept.value||""),
-    modulo:(mod.value||""),
-    nivel:"", // ya no hay nivel en este flujo
+    dto:d, modulo:m, nivel:"",
     total:filtered.length, aciertos:correct.size, fallos:wrong.size,
     porcentaje: filtered.length? Math.round((correct.size/filtered.length)*100) : 0,
     duracion_seg: dur, detalle_fallos: detalleFallos,
@@ -372,7 +422,7 @@ function showSummary(){
     </div>`;
   $("#review").onclick=()=>{
     const set=new Set([...wrong]);
-    filtered = filtered.filter((q,i)=> set.has(q.id ?? i));
+    filtered = filtered.filter(q=> set.has(q.id));
     idx=0; correct.clear(); wrong.clear(); paint();
   };
   $("#again").onclick=()=>{
@@ -388,7 +438,24 @@ $("#btnStart").onclick=()=>{
   startTime = Date.now();
   const d=dept.value||'', m=mod.value||'';
   const pool = RAW.filter(q=> (d? q.dto===d : true) && (m? q.mod===m : true));
-  const sample = shuffle(pool).slice(0, Math.min(30, pool.length));
+
+  const used = getUsedIds(d,m);
+  const unusedPool = pool.filter(q => !used.has(q.id));
+  let sample = [];
+
+  if(unusedPool.length >= 30){
+    sample = shuffle(unusedPool).slice(0,30);
+  } else {
+    // usa todas las no vistas y rellena con vistas (rotación)
+    const rest = pool.filter(q => used.has(q.id));
+    sample = shuffle(unusedPool).concat(shuffle(rest)).slice(0, Math.min(30, pool.length));
+    // si el banco ya se ha agotado, "reinicia" para la próxima vez
+    if(unusedPool.length === 0 && pool.length > 0){
+      // limpiamos historial para esta clave para que la siguiente vez empiece fresco
+      const hist = loadHistory(); const k = keyFor(d,m); delete hist[k]; saveHistory(hist);
+    }
+  }
+
   filtered = sample;
   idx=0; correct.clear(); wrong.clear(); paint();
 };
