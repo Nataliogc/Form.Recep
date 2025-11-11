@@ -55,6 +55,8 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .controls{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
 .footer{margin:26px auto 10px;color:var(--muted);font-size:12px;text-align:center}
 .small{font-size:12px;color:var(--muted)}
+.diag{margin-top:10px;padding:10px;border:1px dashed #cbd5e1;border-radius:10px;background:#fcfdff;text-align:left;white-space:pre-wrap}
+.diag b{color:#0b3b8f}
 </style>
 </head>
 <body>
@@ -110,7 +112,6 @@ button:disabled{opacity:.55;cursor:not-allowed}
         <span class="badge" id="metaTags"></span>
       </div>
 
-      <!-- HERO antes de iniciar -->
       <div id="holder" class="qbox center">
         <div class="hero">
           <img src="./img/empty.png" alt="Test" onerror="this.src='img/empty.png'">
@@ -119,6 +120,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
             Se seleccionarán <b>30 preguntas</b> aleatorias del módulo evitando repetir las ya vistas.
           </div>
           <div id="loadwarn" class="small hidden"></div>
+          <div id="diag" class="diag hidden"></div>
         </div>
       </div>
     </section>
@@ -128,18 +130,25 @@ button:disabled{opacity:.55;cursor:not-allowed}
 </div>
 
 <script>
-/* ====== CONFIG ====== */
+/* ========= CONFIG ========= */
 const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycby-ICzBZDkBH8agMpQa8OwSp_B1rC2tAXMMwQnKF0WSFqMoC6WQMk556_ztqmTizcn3oQ/exec";
-/* CSV candidatos (variantes de ruta para Pages) */
 const CSV_CANDIDATES = [
   './data/plantilla_preguntas_unica.csv',
   'data/plantilla_preguntas_unica.csv',
-  '/data/plantilla_preguntas_unica.csv',
-  location.pathname.replace(/\\/[^/]*$/, '') + '/data/plantilla_preguntas_unica.csv'
+  '/data/plantilla_preguntas_unica.csv'
 ];
 let startTime = 0;
 
-/* ====== CSV helpers ====== */
+/* ========= UTILS ========= */
+const $ = s => document.querySelector(s);
+const loaded=$("#loaded"), dept=$("#dept"), mod=$("#mod"), who=$("#who"), btnStart=$("#btnStart");
+const holder=$("#holder"), bar=$("#bar"), metaPos=$("#metaPos"), metaScore=$("#metaScore"), metaTags=$("#metaTags");
+const loadwarn=$("#loadwarn"), diag=$("#diag");
+function log(...a){ console.log('[DATA]',...a); }
+function showDiag(msg){ diag.classList.remove('hidden'); diag.innerHTML = msg; }
+function showWarn(msg){ loadwarn.classList.remove('hidden'); loadwarn.textContent = msg; }
+
+/* ========= CSV helpers ========= */
 function decodeSmart(buf){ try{return new TextDecoder('utf-8',{fatal:false}).decode(buf);}catch(_){}
   try{return new TextDecoder('windows-1252').decode(buf);}catch(_){}
   return ''; }
@@ -186,10 +195,12 @@ function normalize(arr){
 async function fetchFirst(urls){
   for(const u of urls){
     try{
+      log('Intentando CSV:', u);
       const res=await fetch(u+(u.includes('?')?'&':'?')+'v='+Date.now(),{cache:'no-store'});
       if(res.ok){const buf=await res.arrayBuffer(); return decodeSmart(buf);}
-    }catch(_){}
-  } throw new Error('CSV no encontrado');
+      log('CSV no OK',u,res.status);
+    }catch(e){ log('CSV error',u,e.message); }
+  } throw new Error('CSV no encontrado en rutas candidatas');
 }
 function loadQUIZFallback(){
   return new Promise((resolve,reject)=>{
@@ -197,20 +208,26 @@ function loadQUIZFallback(){
     s.src='./data/data.js?v='+Date.now();
     s.onload=()=>{
       if(window.QUIZ && Array.isArray(window.QUIZ.questions) && window.QUIZ.questions.length){
+        log('data.js cargado:', window.QUIZ.questions.length);
         RAW = window.QUIZ.questions.map(q=>({
-          id:q.id || (q.texto? q.texto.length : Math.random().toString(36).slice(2)),
-          dto:q.departamento||q.dto||'', mod:q.categoria||q.mod||'',
-          text:q.texto||q.text||'', A:q.A,B:q.B,C:q.C,D:q.D,
-          correct:(q.correct_letter||q.correct||'').toString().toUpperCase(), why:q.why||'', activo:'1'
-        })); resolve();
-      } else reject(new Error('window.QUIZ vacío'));
+          id: q.id || Math.random().toString(36).slice(2),
+          dto: q.departamento||q.dto||'',
+          mod: q.categoria||q.mod||'',
+          text: q.texto||q.text||'',
+          A:q.A,B:q.B,C:q.C,D:q.D,
+          correct:(q.correct_letter||q.correct||'').toString().toUpperCase(),
+          why:q.why||'',
+          activo:'1'
+        }));
+        resolve();
+      } else reject(new Error('window.QUIZ vacío o sin questions[]'));
     };
     s.onerror=()=>reject(new Error('No se pudo cargar data.js'));
     document.head.appendChild(s);
   });
 }
 
-/* ====== Historial para no repetir ====== */
+/* ========= Historial (no repetir) ========= */
 const LS_KEY='quiz_historial_por_modulo_v1';
 function keyFor(dto,mod){return (dto||'').trim()+'||'+(mod||'').trim();}
 function loadHistory(){ try{return JSON.parse(localStorage.getItem(LS_KEY)||'{}');}catch(_){return{};} }
@@ -218,14 +235,10 @@ function saveHistory(h){ try{localStorage.setItem(LS_KEY,JSON.stringify(h));}cat
 function getUsedIds(dto,mod){const k=keyFor(dto,mod);const h=loadHistory();return new Set(Array.isArray(h[k])?h[k]:[]);}
 function pushUsedIds(dto,mod,ids){const k=keyFor(dto,mod);const h=loadHistory();const arr=new Set(Array.isArray(h[k])?h[k]:[]);ids.forEach(id=>arr.add(id));h[k]=Array.from(arr).slice(-500);saveHistory(h);}
 
-/* ====== Estado/UI ====== */
+/* ========= Estado del test ========= */
 let RAW=[], filtered=[], idx=0; let correct=new Set(), wrong=new Set();
-const $=s=>document.querySelector(s);
-const loaded=$("#loaded"), dept=$("#dept"), mod=$("#mod"), who=$("#who");
-const btnStart=$("#btnStart"), kpis=$("#kpis");
-const holder=$("#holder"), bar=$("#bar"), metaPos=$("#metaPos"), metaScore=$("#metaScore"), metaTags=$("#metaTags"), loadwarn=$("#loadwarn");
-function uniq(a){return [...new Set(a.filter(Boolean))]} function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-
+function uniq(a){return [...new Set(a.filter(Boolean))]}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function rebuildFilters(){
   const depts=uniq(RAW.map(x=>x.dto)); const mods=uniq(RAW.map(x=>x.mod));
   dept.innerHTML='<option value="">Todos</option>'+depts.map(v=>`<option>${v}</option>`).join('');
@@ -233,12 +246,11 @@ function rebuildFilters(){
   dept.value=""; mod.value=""; who.value=""; btnStart.disabled=true; updateKPIs();
 }
 function updateKPIs(){
-  const d=dept.value||'', m=mod.value||'';
-  const base=RAW.filter(q=>(d? q.dto===d:true)&&(m? q.mod===m:true));
+  const d=dept.value||'', m=mod.value||''; const base=RAW.filter(q=>(d? q.dto===d:true)&&(m? q.mod===m:true));
   const used=getUsedIds(d,m); const avail=base.filter(q=>!used.has(q.id)).length;
-  kpis.innerHTML=`<span class="kpi">Banco: <b>${base.length}</b></span>
-                  <span class="kpi">Disponibles: <b>${avail}</b></span>
-                  <span class="kpi">Se usarán: <b>${Math.min(30,base.length)}</b></span>`;
+  $("#kpis").innerHTML=`<span class="kpi">Banco: <b>${base.length}</b></span>
+                        <span class="kpi">Disponibles: <b>${avail}</b></span>
+                        <span class="kpi">Se usarán: <b>${Math.min(30,base.length)}</b></span>`;
   btnStart.disabled=!(dept.value && mod.value && who.value.trim() && base.length>0);
 }
 dept.onchange=updateKPIs; mod.onchange=updateKPIs; who.oninput=updateKPIs;
@@ -269,7 +281,6 @@ function paint(){
 }
 
 function sendResultToSheet(p){const h={"Content-Type":"application/json"};try{return fetch(SHEET_ENDPOINT,{method:"POST",headers:h,body:JSON.stringify(p),mode:"no-cors"}).catch(()=>navigator.sendBeacon(SHEET_ENDPOINT,JSON.stringify(p)));}catch(e){try{navigator.sendBeacon(SHEET_ENDPOINT,JSON.stringify(p));}catch(_){}}}
-
 function showSummary(){
   const d=dept.value||'', m=mod.value||''; pushUsedIds(d,m,filtered.map(q=>q.id));
   const dur=Math.round((Date.now()-startTime)/1000); const detalleFallos=filtered.map(q=> (wrong.has(q.id)?q.id:null)).filter(Boolean);
@@ -280,7 +291,7 @@ function showSummary(){
   $("#again").onclick=()=>{idx=0;correct.clear();wrong.clear(); holder.className='qbox center'; holder.innerHTML=document.querySelector('.hero').outerHTML; setProgress();};
 }
 
-$("#btnStart").onclick=()=>{
+btnStart.onclick=()=>{
   startTime=Date.now();
   const d=dept.value||'', m=mod.value||'';
   const pool=RAW.filter(q=>(d? q.dto===d:true)&&(m? q.mod===m:true));
@@ -289,25 +300,49 @@ $("#btnStart").onclick=()=>{
   filtered=sample; idx=0; correct.clear(); wrong.clear(); paint();
 };
 
-/* ====== Boot ====== */
+/* ========= Boot con diagnóstico ========= */
 (async function boot(){
   const IS_LOCAL = location.protocol==='file:';
   try{
-    if(IS_LOCAL) throw new Error('file:// → usar data.js');
+    if(IS_LOCAL){ throw new Error('file:// detectado (fetch CSV bloqueado por navegador)'); }
     const text = await fetchFirst(CSV_CANDIDATES);
-    RAW = normalize(parseCSV(text));
-    if(!RAW.length) throw new Error('CSV vacío');
-    loadwarn.classList.add('hidden');
+    const parsed = parseCSV(text);
+    RAW = normalize(parsed);
+    log('CSV OK. Filas:', parsed.length, 'Normalizadas:', RAW.length);
+    if(!RAW.length){ throw new Error('CSV cargado pero 0 preguntas normalizadas (cabeceras distintas?)'); }
+    showWarn('Cargando desde CSV.');
+    diag.classList.add('hidden');
   }catch(e){
+    showWarn(IS_LOCAL ? 'Modo local: usando data.js (fallback).' : 'CSV no disponible: usando data.js (fallback).');
+    showDiag(`🛠 Diagnóstico:\n- Motivo: ${e.message}\n- Rutas CSV probadas:\n${CSV_CANDIDATES.map(x=>'  • '+x).join('\n')}\n- Si usas GitHub Pages, confirma que /data/plantilla_preguntas_unica.csv existe.\n- En local (file://), fetch está bloqueado por el navegador y se usa data.js.`);
     try{
       await loadQUIZFallback();
-      loadwarn.textContent='Cargando desde data.js (fallback local).'; loadwarn.classList.remove('hidden');
     }catch(err){
-      loadwarn.textContent='No se encontró CSV ni data.js. Revisa /data/plantilla_preguntas_unica.csv o /data/data.js'; loadwarn.classList.remove('hidden');
+      showDiag(diag.textContent + `\n\n❌ Fallback data.js fallido:\n- ${err.message}\n- Comprueba: /data/data.js y que defina window.QUIZ.questions[].`);
     }
   }
   loaded.textContent = RAW.length || 0;
-  rebuildFilters();
+
+  const depts=[...new Set(RAW.map(x=>x.dto))].filter(Boolean);
+  const mods=[...new Set(RAW.map(x=>x.mod))].filter(Boolean);
+  dept.innerHTML='<option value="">Todos</option>'+depts.map(v=>`<option>${v}</option>`).join('');
+  mod.innerHTML='<option value="">Todos</option>'+mods.map(v=>`<option>${v}</option>`).join('');
+  (function updateKPIs(){ const d=dept.value||'', m=mod.value||''; const base=RAW.filter(q=>(d? q.dto===d:true)&&(m? q.mod===m:true));
+    const used=getUsedIds(d,m); const avail=base.filter(q=>!used.has(q.id)).length;
+    $("#kpis").innerHTML=`<span class="kpi">Banco: <b>${base.length}</b></span>
+                          <span class="kpi">Disponibles: <b>${avail}</b></span>
+                          <span class="kpi">Se usarán: <b>${Math.min(30,base.length)}</b></span>`;
+    btnStart.disabled=!(dept.value && mod.value && who.value.trim() && base.length>0);
+  })();
+  dept.onchange=()=>{ const base=RAW.filter(q=>(dept.value? q.dto===dept.value:true)&&(mod.value? q.mod===mod.value:true));
+    const used=getUsedIds(dept.value||'',mod.value||''); const avail=base.filter(q=>!used.has(q.id)).length;
+    $("#kpis").innerHTML=`<span class="kpi">Banco: <b>${base.length}</b></span>
+                          <span class="kpi">Disponibles: <b>${avail}</b></span>
+                          <span class="kpi">Se usarán: <b>${Math.min(30,base.length)}</b></span>`;
+    btnStart.disabled=!(dept.value && mod.value && who.value.trim() && base.length>0);
+  };
+  mod.onchange=dept.onchange;
+  who.oninput=dept.onchange;
 })();
 </script>
 </body>
