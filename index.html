@@ -1,418 +1,357 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sesión de Crecimiento · Formación</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#f6f7fb;--card:#fff;--ink:#0f172a;--muted:#667085;--border:#e6e7eb;--primary:#0b61d6;--ring:rgba(11,97,214,.14);}
-*{box-sizing:border-box} html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
-.hidden{display:none}
-.wrap{max-width:1250px;margin:28px auto;padding:0 18px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 10px 35px rgba(15,23,42,.04)}
-
-.header{padding:18px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
-.brand{display:flex;gap:18px;align-items:center}
-.brand img{height:42px;object-fit:contain}
-
-/* Cabecera refinada */
-.header-content{padding:10px 0 4px}
-.header-content h1{margin:0 0 6px;font-size:26px;font-weight:800;letter-spacing:.2px}
-.header-content h2{margin:0 0 4px;font-size:16px;font-weight:700;color:#0b3b8f}
-.header-content h3{margin:0;font-size:14px;font-weight:600;color:#475569}
-.header-content hr{margin:14px 0;height:1px;border:0;background:linear-gradient(90deg,#e7ecff,transparent)}
-
-.grid{display:grid;grid-template-columns:360px 1fr;gap:18px;margin-top:18px}
-@media (max-width:980px){.grid{grid-template-columns:1fr}}
-.sidebar{padding:16px}
-.step{display:flex;align-items:center;gap:10px;margin:8px 0 12px}
-.step .num{background:#eef2ff;border:1px solid #dfe5ff;color:#0b3b8f;border-radius:999px;padding:4px 12px;font-weight:800}
-.help{font-size:14px;color:var(--muted)}
-label{font-size:12px;color:var(--muted);display:block;margin:10px 0 6px}
-select,input{width:100%;padding:12px;border:1px solid var(--border);border-radius:12px;background:#fff;outline:none}
-select:focus,input:focus{box-shadow:0 0 0 6px var(--ring);border-color:#c7d7f7}
-button{padding:12px 16px;border-radius:12px;border:1px solid var(--border);background:#fff;cursor:pointer;font-weight:700}
-button.primary{background:var(--primary);color:#fff;border:0}
-button:disabled{opacity:.55;cursor:not-allowed}
-.kpis{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.kpi{background:#f1f5f9;border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-size:13px}
-
-.content{padding:16px}
-.progress{height:10px;background:#eef2ff;border-radius:999px;overflow:hidden}
-.progress>div{height:100%;width:0;background:#80aaff;transition:width .2s ease}
-.meta{display:flex;gap:10px;align-items:center;margin:10px 0 8px;color:var(--muted);font-size:14px}
-.badge{display:inline-flex;align-items:center;gap:6px;background:#eef2ff;border:1px solid #dfe5ff;border-radius:999px;padding:4px 10px;font-size:12px}
-
-.qbox{padding:6px 0}
-.center{display:flex;align-items:center;justify-content:center;padding:28px 10px;color:var(--muted);text-align:center}
-.hero{display:flex;flex-direction:column;align-items:center;gap:14px}
-.hero img{max-width:220px;height:auto;opacity:.9}
-
-.qhead{display:flex;align-items:baseline;gap:8px}
-.qnum{font-weight:800;font-size:20px}
-.qid{font-size:12px;color:var(--muted)}
-.qtitle{font-size:22px;font-weight:800;margin:6px 0 10px}
-.answers{display:grid;gap:10px;margin-top:8px}
-.ans{padding:12px;border:1px solid var(--border);border-radius:12px;background:#fff;cursor:pointer;display:flex;gap:10px;align-items:flex-start}
-.ans:hover{border-color:#d7d9df;background:#fcfcff}
-.ans.correct{background:#ecfdf5;border-color:#86efac}
-.ans.wrong{background:#fef2f2;border-color:#fca5a5}
-.explain{margin-top:12px;padding:12px;border:1px dashed #cbd5e1;border-radius:12px;background:#f8fbff}
-.controls{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
-
-.footer{margin:26px auto 10px;color:var(--muted);font-size:12px;text-align:center}
-.small{font-size:12px;color:var(--muted)}
-.note{margin:12px 0;padding:12px;border-radius:12px;border:1px solid #e6e7eb;background:#fafcff}
-.note.danger{border-color:#fecaca;background:#fff5f5}
-.note.warn{border-color:#fde68a;background:#fffbeb}
-.note.ok{border-color:#bbf7d0;background:#f0fdf4}
-.note b{display:block;margin-bottom:6px}
-.diag{margin-top:10px;padding:10px;border:1px dashed #cbd5e1;border-radius:10px;background:#fcfdff;text-align:left;white-space:pre-wrap}
-.diag b{color:#0b3b8f}
-
-/* Caja “¿Por qué…?” pulida */
-.why{
-  margin-top:16px;padding:16px 16px 14px;border:1px solid var(--border);
-  border-radius:16px;background:radial-gradient(120% 120% at 0% 0%, #f8fbff 0%, #ffffff 60%);
-  box-shadow:0 6px 22px rgba(15,23,42,.05);
-}
-.why .tag{
-  display:inline-flex;gap:8px;align-items:center;font-size:12px;color:#0b3b8f;
-  background:#eef2ff;border:1px solid #dfe5ff;border-radius:999px;padding:4px 10px;font-weight:800;letter-spacing:.2px;
-}
-.why h3{margin:10px 0 6px;font-size:15px;font-weight:800}
-.why .lead{margin:0 0 10px;font-size:13px;color:#475569}
-.why ul{--cols:1;margin:10px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:6px 12px}
-@media (min-width:880px){.why ul{--cols:2}}
-.why li{position:relative;padding-left:22px;font-size:14px}
-.why li::before{content:"";position:absolute;left:0;top:7px;width:10px;height:10px;border-radius:3px;background:#0b61d6;box-shadow:0 0 0 3px rgba(11,97,214,.16)}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#26323e">
+  <title>FORMACIÓN RECEPCIÓN - GUADIANA &amp; CUMBRIA</title>
+  <link rel="icon" href="./Form.Recep.ico">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-<div class="wrap">
-  <div class="card header">
-    <div class="brand">
-      <img src="./img/logo-guadiana.png" alt="Guadiana" onerror="this.style.display='none'">
-      <img src="./img/logo-cumbria.png" alt="Cumbria" onerror="this.style.display='none'">
-    </div>
-    <div class="header-content">
-      <h1>Sesión de Crecimiento · Formación en Excelencia</h1>
-      <h2>"Una herramienta, un equipo, un estándar. ¡La clave para fortalecer nuestra excelencia!"</h2>
-      <h3>Su objetivo es alinear y fortalecer al equipo para garantizar un servicio de alto nivel en Guadiana y Cumbria.</h3>
-      <hr>
-      
-    </div>
-  </div>
 
-  <div class="grid">
-    <aside class="card sidebar">
-      <div class="step"><span class="num">1</span><b>Estado</b></div>
-      <div class="help">Preguntas cargadas: <b id="loaded">0</b></div>
-
-      <div class="step"><span class="num">2</span><b>Filtros</b></div>
-      <label for="dept">Departamento (DTO)</label>
-      <select id="dept"><option value="">Todos</option></select>
-
-      <label for="mod">Módulo</label>
-      <select id="mod"><option value="">Todos</option></select>
-
-      <div class="kpis" id="kpis"></div>
-
-      <div class="step"><span class="num">3</span><b>Nombre y empezar</b></div>
-      <input id="who" type="text" placeholder="Nombre y apellidos (obligatorio)">
-      <div style="margin-top:12px;display:flex;gap:10px">
-        <button id="btnStart" class="primary" disabled>Empezar test</button>
-      </div>
-
-      <div class="why">
-        <span class="tag">No es un examen — es una herramienta de mejora</span>
-        <h3>¿Por qué realizamos estas pruebas?</h3>
-        <p class="lead">Queremos reforzar hábitos, unificar estándares y detectar oportunidades de mejora sin presiones. La excelencia se entrena con práctica guiada.</p>
-        <ul>
-          <li>Refuerzo del conocimiento clave y del uso del PMS.</li>
-          <li>Estándares comunes entre Guadiana y Cumbria.</li>
-          <li>Detección de áreas de mejora para enfocar la formación.</li>
-          <li>Reconocer buenas prácticas que elevan la experiencia del huésped.</li>
-        </ul>
-      </div>
-    </aside>
-
-    <section class="card content">
-      <div class="progress"><div id="bar"></div></div>
-      <div class="meta">
-        <span class="badge" id="metaPos">0/0</span>
-        <span class="badge" id="metaScore"><b>0</b> aciertos · <b>0</b> fallos</span>
-        <span class="badge" id="metaTags"></span>
-      </div>
-
-      <div id="holder" class="qbox center">
-        <div class="hero">
-          <img src="./img/empty.png" alt="Test" onerror="this.src='img/empty.png'">
-          <div>
-            <b>Elige Departamento → Módulo</b>, escribe tu nombre y pulsa <b>Empezar test</b>.<br>
-            Se seleccionarán <b>30 preguntas</b> del módulo evitando repetir las ya vistas.
+  <!-- CABECERA OFICIAL ALINEADA CON PROTOCOLO-RECEP -->
+  <header class="main-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="brand-logos">
+          <img src="./img/logo-guadiana.png" alt="Sercotel Guadiana" onerror="this.style.display='none'">
+          <span class="brand-sep" aria-hidden="true"></span>
+          <img src="./img/logo-cumbria.png" alt="Cumbria Spa&Hotel" onerror="this.style.display='none'">
+        </div>
+        <div class="header-titles">
+          <h1>FORMACIÓN RECEPCIÓN - GUADIANA &amp; CUMBRIA</h1>
+          <div class="header-update">
+            <i class="far fa-clock"></i>
+            <span id="headerUpdateText">Sincronizando banco…</span>
           </div>
-          <div id="loadwarn" class="small hidden"></div>
-          <div id="diag" class="diag hidden"></div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <a id="manualLinkHeader" class="manual-link-btn" href="https://cumbriaspahotel.github.io/Protocolo-Recep/" target="_blank" rel="noopener" title="Abrir el Manual Operativo Protocolo-Recep">
+          <i class="fas fa-book-open"></i>
+          <span>Manual Protocolos</span>
+        </a>
+        <button id="syncPill" class="sync-pill" type="button" title="Estado de sincronización y fuente de preguntas">
+          <span class="sync-dot" aria-hidden="true"></span>
+          <span id="syncText" class="sync-text">Cargando…</span>
+          <strong id="syncCount">0</strong>
+        </button>
+        <button id="btnSettings" class="hdr-icon-btn" type="button" title="Fuente de datos y sincronización" aria-label="Ajustes">
+          <i class="fas fa-cog"></i>
+        </button>
+        <button id="btnTheme" class="theme-btn" type="button" title="Cambiar modo oscuro" aria-label="Cambiar modo oscuro">
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+
+    <!-- ==================== VISTA 1: BIENVENIDA Y CONFIGURACIÓN ==================== -->
+    <section id="viewSetup" class="view">
+      <div class="card hero-card">
+        <div class="card-accent-bar"></div>
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <span class="hero-badge"><i class="fas fa-award"></i> Sesión de Crecimiento · Estándar Único</span>
+            <h2>Una herramienta, un equipo, un estándar.</h2>
+            <p>Entrenamiento interactivo conectado con el manual operativo <strong>Mínimos Recepción</strong> para alinear estándares y reforzar la excelencia en Guadiana y Cumbria.</p>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span id="heroTotal" class="val">0</span>
+              <span class="lbl">Preguntas</span>
+            </div>
+            <div class="hero-stat">
+              <span id="heroSessions" class="val">0</span>
+              <span class="lbl">Sesiones</span>
+            </div>
+            <div class="hero-stat">
+              <span id="heroAvg" class="val">—</span>
+              <span class="lbl">Tu media</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="setup-grid">
+        <!-- Tarjeta de configuración -->
+        <div class="card">
+          <div class="card-accent-bar"></div>
+          <div class="card-body">
+            <div class="section-head">
+              <h3><i class="fas fa-sliders-h"></i> Configura tu sesión</h3>
+              <span id="updatedBadge" class="tag">Sincronizando…</span>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="who">
+                Nombre y apellidos
+                <span class="hint">Obligatorio · se recuerda en este puesto</span>
+              </label>
+              <input id="who" type="text" placeholder="Ej. Laura García" autocomplete="name">
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">
+                Departamento (DTO)
+                <span class="hint">Hotel o estándar común</span>
+              </div>
+              <div id="deptPills" class="pill-group" role="group" aria-label="Departamento"></div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="mod">
+                Módulo formativo
+                <span id="modCountHint" class="hint"></span>
+              </label>
+              <select id="mod">
+                <option value="">Todos los módulos</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">
+                Nivel de dificultad
+                <span class="hint">Opcional</span>
+              </div>
+              <div id="levelPills" class="pill-group" role="group" aria-label="Nivel"></div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">Duración de la sesión</div>
+              <div id="modeGrid" class="mode-grid"></div>
+            </div>
+
+            <div class="kpi-strip">
+              <div class="kpi-items" id="kpis">
+                <span>Banco: <b>0</b></span>
+                <span>Sin ver: <b>0</b></span>
+                <span>En esta sesión: <b>0</b></span>
+              </div>
+              <button id="btnResetHistory" class="link-btn" type="button" title="Permite volver a ver preguntas ya respondidas en este filtro">
+                Reiniciar vistas
+              </button>
+            </div>
+
+            <button id="btnStart" class="btn btn-primary btn-lg" type="button" disabled>
+              <i class="fas fa-play"></i> Comenzar sesión
+            </button>
+          </div>
+        </div>
+
+        <!-- Columna lateral -->
+        <aside class="side-stack">
+          <!-- Novedades vivas de Protocolo-Recep -->
+          <div id="protoUpdatesCard" class="card hidden">
+            <div class="card-body">
+              <div class="section-head" style="margin-bottom:12px">
+                <h3><i class="fas fa-sync-alt"></i> Actualizado en Protocolos</h3>
+                <a class="link-btn" href="https://cumbriaspahotel.github.io/Protocolo-Recep/" target="_blank" rel="noopener">Ver todo</a>
+              </div>
+              <div id="protoUpdatesList" class="proto-list"></div>
+            </div>
+          </div>
+
+          <!-- ¿Por qué? con burbujas numeradas estilo Protocolo-Recep -->
+          <div class="card">
+            <div class="card-body">
+              <div class="section-head" style="margin-bottom:8px">
+                <h3><i class="fas fa-graduation-cap"></i> ¿Por qué entrenamos?</h3>
+              </div>
+              <p style="margin:0;font-size:13.5px;color:var(--text-muted)">
+                No es un examen: es una herramienta práctica para unificar criterios y reforzar la operativa diaria sin presiones.
+              </p>
+              <div class="step-list">
+                <div class="step-row">
+                  <span class="step-bubble">1</span>
+                  <span>Refuerzo del conocimiento clave y del uso del PMS.</span>
+                </div>
+                <div class="step-row">
+                  <span class="step-bubble">2</span>
+                  <span>Estándares comunes entre Guadiana y Cumbria.</span>
+                </div>
+                <div class="step-row">
+                  <span class="step-bubble">3</span>
+                  <span>Conexión directa con el manual <b>Protocolo-Recep</b>.</span>
+                </div>
+                <div class="step-row">
+                  <span class="step-bubble">4</span>
+                  <span>Detección de áreas de mejora para enfocar la formación.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Últimas sesiones locales -->
+          <div id="recentCard" class="card hidden">
+            <div class="card-body">
+              <div class="section-head" style="margin-bottom:12px">
+                <h3><i class="fas fa-history"></i> Tus últimas sesiones</h3>
+                <button id="btnClearRecent" class="link-btn" type="button">Limpiar</button>
+              </div>
+              <div id="recentList" class="history-list"></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ==================== VISTA 2: MODO ENFOQUE (TEST) ==================== -->
+    <section id="viewQuiz" class="view hidden">
+      <div class="quiz-container">
+        <div class="quiz-hud">
+          <div class="hud-left">
+            <button id="btnExitQuiz" class="btn" type="button" style="padding:7px 13px;font-size:13px">
+              <i class="fas fa-arrow-left"></i> Salir
+            </button>
+            <span class="hud-chip" id="hudPos">1 / 30</span>
+            <span class="hud-chip"><i class="far fa-clock"></i> <span id="hudTimer">00:00</span></span>
+          </div>
+          <div class="hud-right">
+            <span class="hud-chip" id="hudScore">
+              <span class="ok-txt">0 ✓</span> · <span class="ko-txt">0 ✕</span>
+            </span>
+            <span class="hud-chip streak hidden" id="hudStreak"><i class="fas fa-fire"></i> Racha: 0</span>
+          </div>
+        </div>
+
+        <div class="progress-track">
+          <div id="progressBar" class="progress-fill"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-accent-bar"></div>
+          <div class="card-body">
+            <div class="q-meta">
+              <div id="qBadges" class="q-badges"></div>
+              <span id="qId" class="q-id"></span>
+            </div>
+
+            <h2 id="qTitle" class="q-title"></h2>
+
+            <div id="answersGrid" class="answers-grid"></div>
+
+            <div id="explainBox" class="explain-box hidden"></div>
+
+            <div class="quiz-footer">
+              <button id="btnPrev" class="btn" type="button"><i class="fas fa-chevron-left"></i> Anterior</button>
+              <span class="kbd-hint">Teclado: <kbd>A</kbd>–<kbd>D</kbd> responder · <kbd>Enter</kbd> siguiente</span>
+              <button id="btnNext" class="btn btn-primary" type="button" disabled>Siguiente <i class="fas fa-chevron-right"></i></button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- ==================== VISTA 3: RESUMEN DE RESULTADOS ==================== -->
+    <section id="viewSummary" class="view hidden">
+      <div class="summary-container">
+        <div class="card">
+          <div class="card-accent-bar"></div>
+          <div class="card-body">
+            <div class="summary-hero">
+              <div class="score-ring-wrap">
+                <svg viewBox="0 0 120 120" aria-hidden="true">
+                  <circle class="score-ring-bg" cx="60" cy="60" r="52"></circle>
+                  <circle id="scoreRingFg" class="score-ring-fg" cx="60" cy="60" r="52"
+                          stroke-dasharray="326.7" stroke-dashoffset="326.7"></circle>
+                </svg>
+                <div class="score-ring-label">
+                  <strong id="sumPct">0%</strong>
+                  <span>acierto</span>
+                </div>
+              </div>
+
+              <div class="summary-message">
+                <h2 id="sumTitle">¡Sesión completada!</h2>
+                <p id="sumBody"></p>
+                <span id="sheetStatus" class="sheet-status"><i class="fas fa-check-circle"></i> Resultado enviado a Google Sheets</span>
+              </div>
+            </div>
+
+            <div class="summary-kpis">
+              <div class="stat-tile ok">
+                <strong id="sumOk">0</strong>
+                <span>Aciertos</span>
+              </div>
+              <div class="stat-tile ko">
+                <strong id="sumKo">0</strong>
+                <span>Fallos</span>
+              </div>
+              <div class="stat-tile">
+                <strong id="sumTime">0:00</strong>
+                <span>Duración</span>
+              </div>
+              <div class="stat-tile">
+                <strong id="sumStreak">0</strong>
+                <span>Mejor racha</span>
+              </div>
+            </div>
+
+            <div id="sumBreakdownWrap" class="hidden">
+              <div class="field-label" style="margin-bottom:10px">Desglose por módulo</div>
+              <div id="sumBreakdown" class="breakdown-list"></div>
+            </div>
+
+            <div class="summary-actions">
+              <button id="btnReviewWrong" class="btn" type="button"><i class="fas fa-redo"></i> Revisar solo falladas</button>
+              <button id="btnBackHome" class="btn" type="button"><i class="fas fa-home"></i> Inicio</button>
+              <button id="btnRepeatNew" class="btn btn-primary" type="button">Nueva sesión <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    © Formación Interna · Sercotel Guadiana &amp; Cumbria Spa&amp;Hotel ·
+    <a href="https://cumbriaspahotel.github.io/Protocolo-Recep/" target="_blank" rel="noopener">Portal Protocolo-Recep</a> ·
+    <span id="footerMeta">v2.0.0</span>
+  </footer>
+
+  <!-- ==================== MODAL: FUENTE DE DATOS EN VIVO ==================== -->
+  <div id="settingsModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="card-accent-bar"></div>
+      <div class="modal-body">
+        <div class="modal-header">
+          <h3 id="modalTitle"><i class="fas fa-sync-alt" style="color:var(--accent-blue)"></i> Sincronización y fuente en vivo</h3>
+          <button id="btnCloseModal" class="btn" type="button" style="padding:6px 10px" aria-label="Cerrar">✕</button>
+        </div>
+
+        <div id="syncDiagBox" class="info-box"></div>
+
+        <div class="field-group">
+          <label class="field-label" for="liveUrlInput">
+            URL CSV de Google Sheets (opcional · actualización instantánea)
+          </label>
+          <input id="liveUrlInput" type="url" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv">
+          <p style="margin:8px 0 0;font-size:12.5px;color:var(--text-muted)">
+            En Google Sheets: <b>Archivo → Compartir → Publicar en la web → CSV</b>. Al pegarla aquí (o en <code>js/config.js</code>), cualquier pregunta nueva o editada aparece al instante sin tocar GitHub.
+          </p>
+        </div>
+
+        <div class="modal-actions">
+          <button id="btnSyncNow" class="btn" type="button"><i class="fas fa-sync"></i> Sincronizar ahora</button>
+          <button id="btnSaveLiveUrl" class="btn btn-primary" type="button"><i class="fas fa-save"></i> Guardar y recargar</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="footer">© Formación interna · Sercotel Guadiana y Cumbria Spa&Hotel</div>
-</div>
-
-<script>
-/* ===== Config ===== */
-const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbw0zjfjTf_XzNLLCN6aVe17WiwyMgoY7N3Rz6Bx3NySrf3Q5N1wLVxdLxswWrGOdwFHmA/exec";
-const CSV_CANDIDATES = [
-  './data/plantilla_preguntas_unica.csv',
-  'data/plantilla_preguntas_unica.csv',
-  '/data/plantilla_preguntas_unica.csv'
-];
-
-/* ===== refs & utils ===== */
-const $ = s => document.querySelector(s);
-const loaded=$("#loaded"), dept=$("#dept"), mod=$("#mod"), who=$("#who"), btnStart=$("#btnStart");
-const holder=$("#holder"), bar=$("#bar"), metaPos=$("#metaPos"), metaScore=$("#metaScore"), metaTags=$("#metaTags");
-const loadwarn=$("#loadwarn"), diag=$("#diag");
-function uniq(a){return [...new Set(a.filter(Boolean))]}
-function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function showDiag(msg){ diag.classList.remove('hidden'); diag.textContent = msg; }
-function showWarn(msg){ loadwarn.classList.remove('hidden'); loadwarn.textContent = msg; }
-
-/* ===== CSV loader ===== */
-function decodeSmart(buf){ try{return new TextDecoder('utf-8',{fatal:false}).decode(buf);}catch(_){}
-  try{return new TextDecoder('windows-1252').decode(buf);}catch(_){}
-  return ''; }
-function detectDelimiter(sample){ const c={',':0,';':0,'\t':0,'|':0}; const ls=sample.split(/\r?\n/).slice(0,6);
-  for(const l of ls){ for(const k in c){ c[k]+= (l.split(k).length-1);} } let m=-1,b=','; for(const k in c){ if(c[k]>m){m=c[k];b=k;} } return b; }
-function splitRow(line,delim){ const out=[]; let cur='',q=false;
-  for(let i=0;i<line.length;i++){const ch=line[i],n=line[i+1];
-    if(ch==='\"'){q=!q;continue;} if(!q && ch===delim){out.push(cur);cur='';continue;}
-    if(!q && ch==='\r' && n==='\n'){i++;out.push(cur);return out;}
-    if(!q && (ch==='\n'||ch==='\r')){out.push(cur);return out;} cur+=ch;}
-  out.push(cur);return out; }
-function parseCSV(text){
-  const d=detectDelimiter(text);
-  const lines=text.split(/\r?\n/).filter(x=>x.trim()!=='');
-  const head=splitRow(lines[0],d).map(h=>h.trim().toLowerCase());
-  return lines.slice(1).map(ln=>{ const cols=splitRow(ln,d); const o={}; head.forEach((h,i)=>o[h]=(cols[i]??'').trim()); return o; });
-}
-function normalize(arr){
-  const pick=(o,ks)=>{for(const k of ks){if(k in o && String(o[k]).trim()!=='') return String(o[k]);}return'';};
-  const djb2=s=>{let h=5381;for(let i=0;i<s.length;i++){h=((h<<5)+h)+s.charCodeAt(i);}return(h>>>0).toString(36);};
-  return arr.map(r=>{
-    const o={}; Object.keys(r).forEach(k=>o[k.toLowerCase()]=r[k]);
-    const dto=pick(o,['dto','departamento','departamento (dto)','dpto','depto']).trim();
-    const mod=pick(o,['modulo','módulo','module','mod','tema','bloque','unidad','categoria','categoría']).trim();
-    const text=pick(o,['text','texto','pregunta','enunciado']).trim();
-    const A=pick(o,['a']),B=pick(o,['b']),C=pick(o,['c']),D=pick(o,['d']);
-    const corr=(pick(o,['correct_letter','correct','letra_correcta','respuesta_correcta','respuesta'])||'').toUpperCase().match(/[A-D]/)?.[0]||'';
-    const why=pick(o,['why','explicacion','explicación','comentario','nota']);
-    const activo=pick(o,['activo','activa','enabled']);
-    let id=(pick(o,['id'])||'').trim(); if(!id){id=djb2([dto,mod,text].join('|'));}
-    return {id,dto,mod,text,A,B,C,D,correct:corr,why,activo};
-  }).filter(r=>r.text && (r.activo===''||r.activo==='1'||String(r.activo).toLowerCase()==='true'));
-}
-async function fetchFirst(urls){
-  for(const u of urls){
-    try{
-      const res=await fetch(u+(u.includes('?')?'&':'?')+'v='+Date.now(),{cache:'no-store'});
-      if(res.ok){const buf=await res.arrayBuffer(); return decodeSmart(buf);}
-    }catch(_){}
-  } throw new Error('CSV no encontrado en rutas candidatas');
-}
-function loadQUIZFallback(){
-  return new Promise((resolve,reject)=>{
-    const s=document.createElement('script');
-    s.src='./data/data.js?v='+Date.now();
-    s.onload=()=>{
-      if(window.QUIZ && Array.isArray(window.QUIZ.questions) && window.QUIZ.questions.length){
-        RAW = window.QUIZ.questions.map(q=>({
-          id:q.id || Math.random().toString(36).slice(2),
-          dto:q.departamento||q.dto||'',
-          mod:q.categoria||q.mod||'',
-          text:q.texto||q.text||'',
-          A:q.A,B:q.B,C:q.C,D:q.D,
-          correct:(q.correct_letter||q.correct||'').toString().toUpperCase(),
-          why:q.why||'',
-          activo:'1'
-        }));
-        resolve();
-      } else reject(new Error('window.QUIZ vacío o sin questions[]'));
-    };
-    s.onerror=()=>reject(new Error('No se pudo cargar data.js'));
-    document.head.appendChild(s);
-  });
-}
-
-/* ===== Historial no-repetir ===== */
-const LS_KEY='quiz_historial_por_modulo_v1';
-function keyFor(dto,mod){return (dto||'').trim()+'||'+(mod||'').trim();}
-function loadHistory(){ try{return JSON.parse(localStorage.getItem(LS_KEY)||'{}');}catch(_){return{};} }
-function saveHistory(h){ try{localStorage.setItem(LS_KEY,JSON.stringify(h));}catch(_){} }
-function getUsedIds(dto,mod){const k=keyFor(dto,mod);const h=loadHistory();return new Set(Array.isArray(h[k])?h[k]:[]);}
-function pushUsedIds(dto,mod,ids){const k=keyFor(dto,mod);const h=loadHistory();const arr=new Set(Array.isArray(h[k])?h[k]:[]);ids.forEach(id=>arr.add(id));h[k]=Array.from(arr).slice(-500);saveHistory(h);}
-
-/* ===== Indexación módulos por DTO ===== */
-const MODS_BY_DTO = new Map();
-function indexModsByDept() {
-  MODS_BY_DTO.clear();
-  for (const q of RAW) {
-    const d=(q.dto||'').trim(), m=(q.mod||'').trim();
-    if(!d || !m) continue;
-    if(!MODS_BY_DTO.has(d)) MODS_BY_DTO.set(d,new Set());
-    MODS_BY_DTO.get(d).add(m);
-  }
-}
-function buildModuleOptionsFor(dpto) {
-  let mods=[];
-  if(!dpto) mods = [...new Set(RAW.map(x=>(x.mod||'').trim()).filter(Boolean))];
-  else mods = MODS_BY_DTO.has(dpto) ? [...MODS_BY_DTO.get(dpto)] : [];
-  mods.sort((a,b)=>a.localeCompare(b,'es',{sensitivity:'base'}));
-  mod.innerHTML='<option value="">Todos</option>'+mods.map(m=>`<option>${m}</option>`).join('');
-}
-
-/* ===== Estado del test ===== */
-let RAW=[], filtered=[], idx=0; let correct=new Set(), wrong=new Set(); let startTime=0;
-
-function updateKPIs(){
-  const d=dept.value||'', m=mod.value||'';
-  const base=RAW.filter(q=>(d? q.dto===d:true)&&(m? q.mod===m:true));
-  const used=getUsedIds(d,m); const avail=base.filter(q=>!used.has(q.id)).length;
-  $("#kpis").innerHTML=`<span class="kpi">Banco: <b>${base.length}</b></span>
-                        <span class="kpi">Disponibles: <b>${avail}</b></span>
-                        <span class="kpi">Se usarán: <b>${Math.min(30,base.length)}</b></span>`;
-  btnStart.disabled=!(who.value.trim() && base.length>0);
-}
-dept.onchange=()=>{ buildModuleOptionsFor(dept.value||''); updateKPIs(); };
-mod.onchange=updateKPIs;
-who.oninput=updateKPIs;
-
-/* ===== Pintar preguntas ===== */
-function setProgress(){const pct=filtered.length?((idx+1)/filtered.length)*100:0; bar.style.width=pct.toFixed(1)+'%';
-  metaPos.textContent=`${filtered.length?(idx+1):0}/${filtered.length||0}`; metaScore.innerHTML=`<b>${correct.size}</b> aciertos · <b>${wrong.size}</b> fallos`; }
-function paint(){
-  if(!filtered.length){ holder.className='qbox center'; holder.innerHTML='<div>No hay preguntas para esa combinación.</div>'; metaTags.textContent=''; setProgress(); return; }
-  const q=filtered[idx]; holder.className='qbox';
-  metaTags.innerHTML=`<span class="badge">${q.dto||'—'}</span><span class="badge">${q.mod||'—'}</span><span class="badge">Muestra: ${filtered.length}</span>`;
-  holder.innerHTML=`
-    <div class="qhead"><div class="qnum">${idx+1}.</div><div class="qid">[#${q.id}]</div></div>
-    <div class="qtitle">${q.text}</div>
-    <div class="answers" id="answers">
-      ${['A','B','C','D'].map(L=>`<div class="ans" data-letter="${L}"><b>${L}.</b> ${q[L]||''}</div>`).join('')}
-    </div>
-    <div class="explain hidden" id="explain"></div>
-    <div class="controls"><button id="prev" ${idx===0?'disabled':''}>Atrás</button><button id="next" disabled>Siguiente</button></div>`;
-  setProgress();
-  const list=[...document.querySelectorAll('.ans')], next=$("#next"), prev=$("#prev"), exp=$("#explain"); let answered=false;
-  function reveal(letter){ if(answered) return; answered=true; const corr=(q.correct||'').toUpperCase();
-    list.forEach(el=>{const l=el.dataset.letter;if(l===corr) el.classList.add('correct'); if(letter&&l===letter&&l!==corr) el.classList.add('wrong');});
-    const textoCorrecta=q[corr]?` ${q[corr]}`:''; const textoWhy=q.why?`<br><b>Explicación:</b> ${q.why}`:''; exp.innerHTML=`<b>Respuesta correcta:</b> ${corr}.${textoCorrecta}${textoWhy}`; exp.classList.remove('hidden'); next.disabled=false;
-    if(letter===corr) correct.add(q.id); else wrong.add(q.id); setProgress(); }
-  list.forEach(el=> el.onclick=()=>reveal(el.dataset.letter));
-  prev.onclick=()=>{if(idx>0){idx--;paint();}}; next.onclick=()=>{if(idx<filtered.length-1){idx++;paint();}else{showSummary();}};
-}
-
-/* ===== Envío de resultados ===== */
-function sendResultToSheet(p){const h={"Content-Type":"application/json"};try{return fetch(SHEET_ENDPOINT,{method:"POST",headers:h,body:JSON.stringify(p),mode:"no-cors"}).catch(()=>navigator.sendBeacon(SHEET_ENDPOINT,JSON.stringify(p)));}catch(e){try{navigator.sendBeacon(SHEET_ENDPOINT,JSON.stringify(p));}catch(_){}}}
-function resultMessage(percent){
-  if (percent < 60) {
-    return {cls:'danger',title:'Toca repasar',body:'Resultado por debajo del 60%. Revisa el blog de procedimientos y repite el test en 48–72h.'};
-  } else if (percent < 90) {
-    return {cls:'warn',title:'Vamos bien, con margen de mejora',body:'Buen avance (60–89%). Usa “Revisar solo falladas” y refuerza los puntos débiles.'};
-  } else {
-    return {cls:'ok',title:'¡Excelente!',body:'Más del 90% demuestra dominio y constancia. Gracias por elevar la calidad del servicio.'};
-  }
-}
-function showSummary(){
-  const d=dept.value||'', m=mod.value||'';
-  pushUsedIds(d,m,filtered.map(q=>q.id));
-  const dur=Math.round((Date.now()-startTime)/1000);
-  const detalleFallos=filtered.map(q=> (wrong.has(q.id)?q.id:null)).filter(Boolean);
-  const total=filtered.length, aciertos=correct.size, fallos=wrong.size;
-  const pct = total ? Math.round((aciertos/total)*100) : 0;
-  const msg = resultMessage(pct);
-
-  // >>> payload alineado con Apps Script (sin user_agent/sitio, con ids_preguntas)
-  const payload={
-    nombre:(who.value||"").trim(),
-    dto:d,
-    modulo:m,
-    nivel:"",
-    total,
-    aciertos,
-    fallos,
-    duracion_seg:dur,
-    ids_preguntas: filtered.map(q=>q.id),
-    detalle_fallos: detalleFallos
-  };
-  sendResultToSheet(payload);
-
-  holder.className="qbox center";
-  holder.innerHTML=`<div style="max-width:720px;text-align:left">
-      <h3 style="margin:6px 0 10px">Resumen</h3>
-      <p class="muted">Aciertos: <b>${aciertos}</b> · Fallos: <b>${fallos}</b> · Total: <b>${total}</b> · <b>${pct}%</b></p>
-      <div class="note ${msg.cls}">
-        <b>${msg.title}</b>
-        ${msg.body}
-      </div>
-      <div class="controls" style="justify-content:center">
-        <button id="review">Revisar solo falladas</button>
-        <button id="again" class="primary">Empezar de nuevo</button>
-      </div>
-    </div>`;
-  $("#review").onclick=()=>{const set=new Set([...wrong]); filtered=filtered.filter(q=>set.has(q.id)); idx=0; correct.clear(); wrong.clear(); paint();};
-  $("#again").onclick=()=>{idx=0;correct.clear();wrong.clear(); holder.className='qbox center'; holder.innerHTML=document.querySelector('.hero').outerHTML; setProgress();};
-}
-
-/* ===== Arrancar test ===== */
-btnStart.onclick = () => {
-  const d = dept.value || '';
-  const m = mod.value || '';
-
-  const base = RAW.filter(q => (d ? q.dto === d : true) && (m ? q.mod === m : true));
-  if (!base.length) { alert('No hay preguntas para esa combinación.'); return; }
-
-  const used = getUsedIds(d, m);
-  let pool = base.filter(q => !used.has(q.id));
-  if (pool.length === 0) pool = base; // fallback si Disponibles=0
-
-  const take = Math.min(30, pool.length);
-  filtered = shuffle(pool).slice(0, take);
-
-  idx = 0; correct.clear(); wrong.clear();
-  startTime = Date.now();
-  paint();
-};
-
-/* ===== Boot ===== */
-(async function boot(){
-  const IS_LOCAL = location.protocol==='file:';
-  try{
-    if(IS_LOCAL){ throw new Error('file:// detectado (fetch CSV bloqueado por navegador)'); }
-    const text = await fetchFirst(CSV_CANDIDATES);
-    const parsed = parseCSV(text);
-    RAW = normalize(parsed);
-    if(!RAW.length){ throw new Error('CSV cargado pero 0 preguntas normalizadas'); }
-    showWarn('Cargando desde CSV.');
-  }catch(e){
-    showWarn(IS_LOCAL ? 'Modo local: usando data.js (fallback).' : 'CSV no disponible: usando data.js (fallback).');
-    showDiag(`🛠 Diagnóstico: ${e.message}`);
-    try{ await loadQUIZFallback(); }catch(err){ showDiag(diag.textContent+` · Fallback fallido: ${err.message}`); }
-  }
-  loaded.textContent = RAW.length || 0;
-
-  const depts=uniq(RAW.map(x=>x.dto)).sort((a,b)=>a.localeCompare(b,'es',{sensitivity:'base'}));
-  dept.innerHTML='<option value="">Todos</option>'+depts.map(v=>`<option>${v}</option>`).join('');
-  indexModsByDept(); buildModuleOptionsFor(dept.value || '');
-  updateKPIs();
-})();
-</script>
+  <script src="./js/config.js"></script>
+  <script src="./js/data-loader.js"></script>
+  <script src="./js/app.js"></script>
 </body>
 </html>

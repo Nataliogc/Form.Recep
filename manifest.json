@@ -1,0 +1,17 @@
+{
+  "name": "Formación Recepción · Guadiana & Cumbria",
+  "short_name": "Form.Recep",
+  "description": "Entrenamiento operativo de recepción conectado con el manual Protocolo-Recep de Sercotel Guadiana y Cumbria Spa&Hotel.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f1f4f8",
+  "theme_color": "#26323e",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "./Form.Recep.ico",
+      "sizes": "64x64 128x128 256x256",
+      "type": "image/x-icon"
+    }
+  ]
+}

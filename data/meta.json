@@ -1,0 +1,23 @@
+{
+  "updated_at": "2026-11-21T23:19:23+00:00",
+  "count": 270,
+  "source": "repository_csv",
+  "departments": [
+    "Recep-Cumbria",
+    "Recep-Guadiana",
+    "Recepción"
+  ],
+  "modules": [
+    "Atención al Cliente y Protocolo",
+    "Errores Comunes",
+    "Gestión Administrativa y Cobros",
+    "Operativa Turnos",
+    "Reservas",
+    "Supervisión de Ocupación (Inventory)"
+  ],
+  "levels": [
+    "Avanzado",
+    "Básico",
+    "Intermedio"
+  ]
+}
