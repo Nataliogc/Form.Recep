@@ -159,6 +159,27 @@ h1, h2, h3, h4 {
   min-width: 0;
 }
 
+.header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.version-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(165, 140, 95, 0.28);
+  border: 1px solid rgba(197, 168, 127, 0.55);
+  color: #f3dfb8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+
 .header-titles h1 {
   margin: 0;
   font-size: 1rem;
