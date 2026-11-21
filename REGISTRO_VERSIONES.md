@@ -2,11 +2,35 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.0.1`** | **22/11/2026** | Producción |
+| **`v2.1.3`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.1.3] — 22/11/2026
+- **Módulos Afectados:** Automatización IA
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Compatibilidad completa con el nuevo formato de claves AQ.* de Google AI Studio (Free tier) y Vertex AI con fallback automático
+
+### [v2.1.2] — 22/11/2026
+- **Módulos Afectados:** Automatización IA
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Soporte automático para claves Vertex AI (AQ.*) además de Google AI Studio (AIza*) en auto_generate_questions.py
+
+### [v2.1.1] — 22/11/2026
+- **Módulos Afectados:** Cabecera, Interfaz Pública
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Eliminados el indicador técnico de sincronización (CSV) y el botón de ajustes de la interfaz pública
+
+### [v2.1.0] — 22/11/2026
+- **Módulos Afectados:** Automatización IA, GitHub Actions
+- **Tipo de Cambio:** Nueva Característica / Mejora
+- **Detalle de Cambios:**
+  - Generador automático de preguntas desde Protocolo-Recep con Gemini AI y GitHub Actions (auto_generate_questions.py + sync_state.json)
 
 ### [v2.0.1] — 22/11/2026
 - **Módulos Afectados:** Cabecera, Versionado

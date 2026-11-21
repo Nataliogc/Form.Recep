@@ -1,0 +1,1112 @@
+{
+  "version": 1,
+  "last_run": "2026-11-21T23:33:26+00:00",
+  "protocols": {
+    "6df663b459e3": {
+      "title": "10. G3 - Sistema Onity y OnPortal",
+      "section": "10",
+      "updated": "2026-02-10T16:12:18.952Z",
+      "hash": "332e2361640a1dd7",
+      "question_ids": []
+    },
+    "8af92e36ddb0": {
+      "title": "10. 📝Otros Manuales Básicos de Recepción {🟠}",
+      "section": "10",
+      "updated": "2026-02-10T16:09:57.195Z",
+      "hash": "dbc6099baf2b7ee5",
+      "question_ids": []
+    },
+    "e4b6def1aaf3": {
+      "title": "12.3 Zenith Manager System | Documentación Operativa",
+      "section": "12.3",
+      "updated": "2026-01-16T15:37:16.322Z",
+      "hash": "7c71e2284000318f",
+      "question_ids": []
+    },
+    "ce2ad060a1d2": {
+      "title": "1. ✅ GUÍA OPERATIVA  RECEPCIÓN  {🟠}",
+      "section": "1",
+      "updated": "2026-01-16T15:01:08.957Z",
+      "hash": "1a9768274354cd05",
+      "question_ids": []
+    },
+    "c8b5c772f597": {
+      "title": "Trabaja con Nosotros",
+      "section": "",
+      "updated": "2026-01-11T10:32:03.918Z",
+      "hash": "d70a7bb905ef3225",
+      "question_ids": []
+    },
+    "5a1a0f488020": {
+      "title": "Escapada Con Spa",
+      "section": "",
+      "updated": "2026-01-10T17:39:43.260Z",
+      "hash": "d6ee53efe2878b95",
+      "question_ids": []
+    },
+    "7a57ab235a3a": {
+      "title": "xx, escapada con spa",
+      "section": "",
+      "updated": "2026-01-10T17:39:31.236Z",
+      "hash": "1acf1ade724a3f28",
+      "question_ids": []
+    },
+    "f3c398578147": {
+      "title": "Procedimiento operativo - Organización, seguimiento y resolución durante el turno de Recepción",
+      "section": "",
+      "updated": "2025-12-12T22:26:45.124Z",
+      "hash": "970d1a0c33031aed",
+      "question_ids": []
+    },
+    "cf77935df9af": {
+      "title": "Gestión de Bonos Regalo – Procedimiento obligatorio en Recepción de Spa",
+      "section": "",
+      "updated": "2025-12-12T22:04:01.509Z",
+      "hash": "30054bed6d7401b8",
+      "question_ids": []
+    },
+    "60a24c0a107f": {
+      "title": "3.6. 🏷️ Tarifas 2026 👪 Grupos {🟢}",
+      "section": "3.6",
+      "updated": "2025-11-20T13:33:53.967Z",
+      "hash": "c89ec96123e511c0",
+      "question_ids": []
+    },
+    "667df9af5ac1": {
+      "title": "3.1.1. 👁️‍🗨️ Visión general de canales y operativa en Cumbria {🟢}",
+      "section": "3.1.1",
+      "updated": "2025-11-13T22:00:04.406Z",
+      "hash": "06ccff069b6395b0",
+      "question_ids": []
+    },
+    "b931ad86191b": {
+      "title": "3.1.2. 👁️‍🗨️ Visión general de canales y operativa en Guadiana {🟢}",
+      "section": "3.1.2",
+      "updated": "2025-11-13T21:58:19.204Z",
+      "hash": "0ee3818a69accbdd",
+      "question_ids": []
+    },
+    "eb2eb6453cc7": {
+      "title": "10.C.3 Explicación del Video Cierre de Venta de Escapadas",
+      "section": "10",
+      "updated": "2025-11-13T13:44:47.839Z",
+      "hash": "305c196e813a75ea",
+      "question_ids": []
+    },
+    "6df4020d9763": {
+      "title": "6.6  Normativa de Visitas en Habitaciones",
+      "section": "6.6",
+      "updated": "2025-11-13T10:15:25.459Z",
+      "hash": "a7e2283413340eea",
+      "question_ids": []
+    },
+    "1d3baf4b7c01": {
+      "title": "11.1. 🔄  Solicitu de cambio de turnos {🟢}",
+      "section": "11.1",
+      "updated": "2025-11-07T16:47:02.271Z",
+      "hash": "88cdeba5772a46b9",
+      "question_ids": []
+    },
+    "e0bc074d7941": {
+      "title": "11.3. 🕗 Gestión cuadrantes de turnos {🟢}",
+      "section": "11.3",
+      "updated": "2025-11-07T14:11:20.459Z",
+      "hash": "7c20a709cf7b7da9",
+      "question_ids": []
+    },
+    "1558cde942d4": {
+      "title": "15. Empresas",
+      "section": "15",
+      "updated": "2025-11-02T10:21:01.512Z",
+      "hash": "ca39aff1145dbb64",
+      "question_ids": []
+    },
+    "dc71f93132fa": {
+      "title": "RV: 📝 Procedimiento – Manuales de turno y cierre de caja",
+      "section": "",
+      "updated": "2025-11-02T09:29:00.292Z",
+      "hash": "f0d32176d0beb10e",
+      "question_ids": []
+    },
+    "f6ef3cb8655f": {
+      "title": "RV: Reservas Keytel con SPA – Indicación obligatoria en “Cargos” y comisión correcta",
+      "section": "",
+      "updated": "2025-11-02T09:23:24.084Z",
+      "hash": "4e8b72d8de7f16dd",
+      "question_ids": []
+    },
+    "bbf2686dec9b": {
+      "title": "INFORME ANUAL DE CALIDAD 2025 Cumbria Spa&Hotel - calidad en destino",
+      "section": "",
+      "updated": "2025-10-24T10:49:37.979Z",
+      "hash": "de80d6e18afb2ed7",
+      "question_ids": []
+    },
+    "f13dbfc09e62": {
+      "title": "📢 Registro de incidencias durante la estancia de los clientes",
+      "section": "",
+      "updated": "2025-10-24T01:57:23.174Z",
+      "hash": "19dbc7afa7093440",
+      "question_ids": []
+    },
+    "b3dfe2fc8291": {
+      "title": "INFORME ANUAL DE CALIDAD 2025 Sercotel Guadiana - calidad en destino",
+      "section": "",
+      "updated": "2025-10-24T01:21:43.911Z",
+      "hash": "49ab0c2493b4c106",
+      "question_ids": []
+    },
+    "670b2e1bb696": {
+      "title": "📢 Aclaración sobre aplicación de tablas de precios – Revenue - Guadiana",
+      "section": "",
+      "updated": "2025-10-17T20:30:32.514Z",
+      "hash": "df4d976bb14c310c",
+      "question_ids": []
+    },
+    "04ef758dfd55": {
+      "title": "Control de inventory hotel GUADIANA – Días 21 al 23 de octubre (errores graves en disponibilidad)",
+      "section": "",
+      "updated": "2025-10-16T18:55:37.809Z",
+      "hash": "912bb8bf13c2c161",
+      "question_ids": []
+    },
+    "7b8178f19731": {
+      "title": "6.4. 🛑 Alta de Empresas y Agencias  {🟢}",
+      "section": "6.4",
+      "updated": "2025-10-06T00:01:05.706Z",
+      "hash": "874a9f4a07754aa1",
+      "question_ids": []
+    },
+    "54eab7b6deb0": {
+      "title": "3.4. ✔️ Revisión y control de reservas {🟢}",
+      "section": "3.4",
+      "updated": "2025-10-06T00:00:34.126Z",
+      "hash": "85b0b84bc1fe2f8e",
+      "question_ids": []
+    },
+    "c4bdebb46cf9": {
+      "title": "6.5. ⭐ Prevención de Reseñas Negativas {🟢}",
+      "section": "6.5",
+      "updated": "2025-10-05T23:58:56.411Z",
+      "hash": "a15b9195a629ffd9",
+      "question_ids": []
+    },
+    "fc4a977d8072": {
+      "title": "🎯 3.7 Tarifas Especiales CODE  {🟢}",
+      "section": "",
+      "updated": "2025-10-05T22:49:56.189Z",
+      "hash": "df500bdd905f4232",
+      "question_ids": []
+    },
+    "e4a5d544b418": {
+      "title": "5.3. 🔚 Gestión y cierre de grupos  {🔴}",
+      "section": "5.3",
+      "updated": "2025-10-05T22:16:10.071Z",
+      "hash": "75b9cd9802713e5a",
+      "question_ids": []
+    },
+    "2fd497579b16": {
+      "title": "2.4. Manual de Recepción🌙 Turno de Noche {🟢}",
+      "section": "2.4",
+      "updated": "2025-10-05T22:14:33.842Z",
+      "hash": "175225b60f4ed99d",
+      "question_ids": []
+    },
+    "70b284cc82c9": {
+      "title": "2.4.2. 🛎️ Procedimientos especiales Guadiana {🟢}",
+      "section": "2.4.2",
+      "updated": "2025-10-04T23:29:44.160Z",
+      "hash": "b472fa8d82265dea",
+      "question_ids": []
+    },
+    "dd2da4a8312b": {
+      "title": "3.1.3. 🤝Contratos Agencias y las condiciones Guadiana {🟢}",
+      "section": "3.1.3",
+      "updated": "2025-10-04T23:10:47.164Z",
+      "hash": "f3af879289d1e2e1",
+      "question_ids": []
+    },
+    "8696fe84f681": {
+      "title": "3.1. 📡 Canales de venta online y singularidades {🟢}",
+      "section": "3.1",
+      "updated": "2025-10-04T22:56:02.891Z",
+      "hash": "2ba37f685b7af719",
+      "question_ids": []
+    },
+    "ef432e187b09": {
+      "title": "cabecera",
+      "section": "",
+      "updated": "2025-10-04T17:42:41.619Z",
+      "hash": "2524aa47ff77e86f",
+      "question_ids": []
+    },
+    "05c8e00b88b4": {
+      "title": "8.2 🛏️ Supervisión de Ocupación e Inventory {🟢}",
+      "section": "8.2",
+      "updated": "2025-10-04T12:02:54.740Z",
+      "hash": "85ddc68c08b3ff41",
+      "question_ids": []
+    },
+    "dfff0ed228f7": {
+      "title": "2.4.1. 🛎️ Procedimientos especiales Cumbria {🟢}",
+      "section": "2.4.1",
+      "updated": "2025-10-04T11:38:41.122Z",
+      "hash": "212d14de4f3ce2b5",
+      "question_ids": []
+    },
+    "f4ff4a56e80c": {
+      "title": "3.4.1 ✅ RoomCloud-Cumbria {🟢}",
+      "section": "3.4.1",
+      "updated": "2025-10-04T00:23:56.849Z",
+      "hash": "7ae246135af50533",
+      "question_ids": []
+    },
+    "fa565a4ee5be": {
+      "title": "3.4.2. ✅ Siteminder-Guadiana {🟢}",
+      "section": "3.4.2",
+      "updated": "2025-10-04T00:06:29.254Z",
+      "hash": "faa912a0abbc38c9",
+      "question_ids": []
+    },
+    "aa9e4d337a9f": {
+      "title": "2.2. Manual Recepción 🌅 Turno de Mañana   {🟢}",
+      "section": "2.2",
+      "updated": "2025-10-03T22:09:15.766Z",
+      "hash": "c16d3635c59d341b",
+      "question_ids": []
+    },
+    "16af9029445c": {
+      "title": "noches pruevbas",
+      "section": "",
+      "updated": "2025-09-30T00:21:05.892Z",
+      "hash": "643bbe5c83d2b281",
+      "question_ids": []
+    },
+    "598653b5ce11": {
+      "title": "2.3. Manual Recepción🌇 Turno de Tarde  {🟢}",
+      "section": "2.3",
+      "updated": "2025-09-29T18:20:49.355Z",
+      "hash": "db6b0b4de274c2c1",
+      "question_ids": []
+    },
+    "1d4fc4240733": {
+      "title": "5.2. 🛎️ Registro y bienvenida de grupos {🟠}",
+      "section": "5.2",
+      "updated": "2025-09-29T17:55:52.041Z",
+      "hash": "de5b0e3a9e655059",
+      "question_ids": []
+    },
+    "c868f95067f2": {
+      "title": "3.3. 👪 Gestión reservas grupo {🔴}",
+      "section": "3.3",
+      "updated": "2025-09-29T14:10:23.656Z",
+      "hash": "0ddfff7e66598b8f",
+      "question_ids": []
+    },
+    "0709ba8fb919": {
+      "title": "Checklist",
+      "section": "",
+      "updated": "2025-09-29T08:52:25.453Z",
+      "hash": "d638427b7fadbd96",
+      "question_ids": []
+    },
+    "6664baedfce7": {
+      "title": "✍️ Menús editables",
+      "section": "",
+      "updated": "2025-09-27T10:02:22.034Z",
+      "hash": "2ad1fa9498899a5a",
+      "question_ids": []
+    },
+    "70ef580fbf8b": {
+      "title": "10.C.1. calidad en destino – Cumbria Spa&Hotel  {🔴}",
+      "section": "10",
+      "updated": "2025-09-27T00:47:24.222Z",
+      "hash": "1abe832fba14e939",
+      "question_ids": []
+    },
+    "d55757799a9f": {
+      "title": "10.C.2. Calidad en Destino –Sercotel Guadiana {🔴}",
+      "section": "10",
+      "updated": "2025-09-27T00:46:08.875Z",
+      "hash": "148b48c09a930c99",
+      "question_ids": []
+    },
+    "5ecab2b1ad79": {
+      "title": "🍽️ Menu Eventos",
+      "section": "",
+      "updated": "2025-09-26T21:03:11.990Z",
+      "hash": "b1cac6dca5fc181a",
+      "question_ids": []
+    },
+    "fbfd9fceda79": {
+      "title": "formato video",
+      "section": "",
+      "updated": "2025-09-22T07:20:57.649Z",
+      "hash": "1d5fa0ff97696d75",
+      "question_ids": []
+    },
+    "57b7bbed612f": {
+      "title": "6.3. 🚨 Gestión de incidencias {🟢}",
+      "section": "6.3",
+      "updated": "2025-09-21T21:49:13.643Z",
+      "hash": "6be364e0a9de3ae9",
+      "question_ids": []
+    },
+    "ceed6c236f3b": {
+      "title": "4.2. 📝 Check-in y bienvenida  {🟢}",
+      "section": "4.2",
+      "updated": "2025-09-19T19:52:03.668Z",
+      "hash": "1b03cae07e951ac0",
+      "question_ids": []
+    },
+    "a7c2b929c3cd": {
+      "title": "4.4. 🕓 Late Check-Out (salida tardía) {🟢}",
+      "section": "4.4",
+      "updated": "2025-09-18T20:10:55.197Z",
+      "hash": "5a854a05e06c4bfa",
+      "question_ids": []
+    },
+    "eed003666b7a": {
+      "title": "📌 Procedimientos clave – Supervisión de Ocupación e Inventory",
+      "section": "",
+      "updated": "2025-09-14T23:30:05.606Z",
+      "hash": "8cfb2abf0a64591b",
+      "question_ids": []
+    },
+    "ef2bb6dcc141": {
+      "title": "📢 Nueva Política de Garantía",
+      "section": "",
+      "updated": "2025-09-14T09:11:08.745Z",
+      "hash": "3be0ab343bd7a3eb",
+      "question_ids": []
+    },
+    "19a67592baa5": {
+      "title": "📢  Campaña escapada joven CLM 2025",
+      "section": "",
+      "updated": "2025-09-14T09:10:53.502Z",
+      "hash": "aceca5c96c57f286",
+      "question_ids": []
+    },
+    "48f4ec337b19": {
+      "title": "📢   Prórroga Campaña Escapada Joven CLM",
+      "section": "",
+      "updated": "2025-09-13T22:57:01.796Z",
+      "hash": "0c985b1df4ddf7d5",
+      "question_ids": []
+    },
+    "986f0f79e558": {
+      "title": "8.3. 📝 Cierre de inventory {🟢}",
+      "section": "8.3",
+      "updated": "2025-09-13T22:36:47.377Z",
+      "hash": "5234dd08ef9a37f3",
+      "question_ids": []
+    },
+    "4fed9d2748e6": {
+      "title": "2.1. 📅Tareas Comunes a Todos los Turnos  {🟢}",
+      "section": "2.1",
+      "updated": "2025-09-13T22:34:44.550Z",
+      "hash": "a2c6b2d3e0484861",
+      "question_ids": []
+    },
+    "2778a0de290c": {
+      "title": "formulalrio",
+      "section": "",
+      "updated": "2025-08-27T04:47:45.072Z",
+      "hash": "68b3f7a94d65ea54",
+      "question_ids": []
+    },
+    "e0df400c578b": {
+      "title": "dd",
+      "section": "",
+      "updated": "2025-08-23T20:45:46.901Z",
+      "hash": "5899bb699edf7fc9",
+      "question_ids": []
+    },
+    "6afd8aa407be": {
+      "title": "Menú Grupos Turisticos",
+      "section": "",
+      "updated": "2025-08-14T19:54:37.002Z",
+      "hash": "f7bd03ded845f5e2",
+      "question_ids": []
+    },
+    "c7e95d7a117f": {
+      "title": "Menú Deportivo",
+      "section": "",
+      "updated": "2025-08-14T19:38:51.855Z",
+      "hash": "fe2a21cffee5b1c2",
+      "question_ids": []
+    },
+    "7aafdcb3f687": {
+      "title": "8.6.1. 🔄 Uso Siteminder (Guadiana) {🔴}",
+      "section": "8.6.1",
+      "updated": "2025-08-09T20:23:18.784Z",
+      "hash": "9872ec1d010b95ec",
+      "question_ids": []
+    },
+    "8fed6fb031e7": {
+      "title": "8.6.2. 🔄 Uso SoulGuest (Guadiana) {🔴}",
+      "section": "8.6.2",
+      "updated": "2025-08-09T20:15:01.436Z",
+      "hash": "d04313c20a793810",
+      "question_ids": []
+    },
+    "d4e0f99faef5": {
+      "title": "8.5. 🔐 Manual: Grabación de Tarjetas de Emergencia y Repuesto {🟡}",
+      "section": "8.5",
+      "updated": "2025-08-07T20:25:27.534Z",
+      "hash": "b7e833f8ff3286f9",
+      "question_ids": []
+    },
+    "72e8ec835c9e": {
+      "title": "8.6.3. 🔄 Uso RoomCloud (Cumbria) {🔴}",
+      "section": "8.6.3",
+      "updated": "2025-08-07T20:22:27.290Z",
+      "hash": "5946a35723401573",
+      "question_ids": []
+    },
+    "693d811ae437": {
+      "title": "4.5. 💵 Control de caja y depósitos {🔴}",
+      "section": "4.5",
+      "updated": "2025-08-07T20:21:06.158Z",
+      "hash": "fd33c4e85d9709ba",
+      "question_ids": []
+    },
+    "42dda2d4b79d": {
+      "title": "4.3. 🔚 Check-out y cierre de cuenta {🔴}",
+      "section": "4.3",
+      "updated": "2025-08-07T20:20:38.126Z",
+      "hash": "87705ff2149aa87d",
+      "question_ids": []
+    },
+    "35b1ad3417ec": {
+      "title": "5.1. 🛏️ Preparación de habitaciones y salas {🔴}",
+      "section": "5.1",
+      "updated": "2025-08-07T20:20:26.641Z",
+      "hash": "888a402d13ba271c",
+      "question_ids": []
+    },
+    "480970775183": {
+      "title": "6.1. 🔄 Comunicación y coordinación interna {🔴}",
+      "section": "6.1",
+      "updated": "2025-08-07T20:20:17.667Z",
+      "hash": "4e7e9f60f0a940cf",
+      "question_ids": []
+    },
+    "b5220e57c62a": {
+      "title": "2.5. 👋 Bienvenida y Adaptación para Nuevas Incorporaciones {🟢}",
+      "section": "2.5",
+      "updated": "2025-08-07T20:18:36.548Z",
+      "hash": "2623a173ac310a24",
+      "question_ids": []
+    },
+    "551730b28d90": {
+      "title": "3.5. 🏷️ Tarifas 2026 👤 Individuales {🟢}",
+      "section": "3.5",
+      "updated": "2025-08-07T20:18:07.098Z",
+      "hash": "57a4cb481b342d7d",
+      "question_ids": []
+    },
+    "e2de35570236": {
+      "title": "6.2. ❌ Políticas de cancelación {🟢}",
+      "section": "6.2",
+      "updated": "2025-08-07T20:17:40.437Z",
+      "hash": "b8f6b9aae28e5ec9",
+      "question_ids": []
+    },
+    "d9b7842665f1": {
+      "title": "8.4. 💳 TPV y medios de pago {🟢}",
+      "section": "8.4",
+      "updated": "2025-08-07T20:17:18.776Z",
+      "hash": "68b07fbbae896db3",
+      "question_ids": []
+    },
+    "4ad3868f7856": {
+      "title": "7.5. 🛑 Protocolo de actuación 🛑 Posible intoxicación alimentaria {🟢}",
+      "section": "7.5",
+      "updated": "2025-08-07T20:16:20.262Z",
+      "hash": "18e9db7dc3abadc0",
+      "question_ids": []
+    },
+    "b15c905f5d50": {
+      "title": "7.4. 👨‍⚕️ Primeros auxilios y emergencias varias {🟢}",
+      "section": "7.4",
+      "updated": "2025-08-07T20:16:08.386Z",
+      "hash": "f84cdfd353183071",
+      "question_ids": []
+    },
+    "8b67bcc7e120": {
+      "title": "7.3. 🔥 Actuación ante incendios {🟢}",
+      "section": "7.3",
+      "updated": "2025-08-07T20:15:59.600Z",
+      "hash": "af08f9f9fffad07e",
+      "question_ids": []
+    },
+    "4477e6c76c04": {
+      "title": "7.1. 🛎️ Central de alarmas {🟢}",
+      "section": "7.1",
+      "updated": "2025-08-07T20:15:50.713Z",
+      "hash": "c27b9552a3ae118a",
+      "question_ids": []
+    },
+    "b4bb6d89ccf9": {
+      "title": "7.2. 🆘 Protocolo de Situaciones Especiales {🟢}",
+      "section": "7.2",
+      "updated": "2025-08-07T20:15:42.499Z",
+      "hash": "0b518f0a2b065d27",
+      "question_ids": []
+    },
+    "8b29ab415936": {
+      "title": "12.1. 💧 Procedimientos Spa {🟢}",
+      "section": "12.1",
+      "updated": "2025-08-07T20:15:14.864Z",
+      "hash": "48a3ac6f728b4fc6",
+      "question_ids": []
+    },
+    "2c310baa4927": {
+      "title": "13.1. 📢 Comunicados y alertas recientes {🟢}",
+      "section": "13.1",
+      "updated": "2025-08-07T20:14:58.074Z",
+      "hash": "dbdd33bac3d25d83",
+      "question_ids": []
+    },
+    "9f5413b32bf3": {
+      "title": "4.1. 🛏️ Asignación de habitaciones  {🟠}",
+      "section": "4.1",
+      "updated": "2025-08-07T20:13:10.914Z",
+      "hash": "655ad2693b4a055f",
+      "question_ids": []
+    },
+    "2c462a3fdeff": {
+      "title": "3.2. 👤 Gestión reservas individuales  {🟠}",
+      "section": "3.2",
+      "updated": "2025-08-07T20:12:59.512Z",
+      "hash": "4459c8cc7bc7bee3",
+      "question_ids": []
+    },
+    "760f4fc96d99": {
+      "title": "8.1. 🖥️ Presentación del PMS  {🟠}",
+      "section": "8.1",
+      "updated": "2025-08-07T20:12:36.581Z",
+      "hash": "8e96a8daeb35b9f8",
+      "question_ids": []
+    },
+    "b21446d0cfd7": {
+      "title": "fgdfgsfdg",
+      "section": "",
+      "updated": "2025-08-01T21:01:09.520Z",
+      "hash": "7a504e136a622c30",
+      "question_ids": []
+    },
+    "7f7eac7f7f15": {
+      "title": "Horarios e Informacion",
+      "section": "",
+      "updated": "2025-07-26T11:29:14.297Z",
+      "hash": "86cf6be4f98d6eb2",
+      "question_ids": []
+    },
+    "ad1093ee2658": {
+      "title": "Horarios",
+      "section": "",
+      "updated": "2025-07-26T10:02:37.439Z",
+      "hash": "6c464341655551ea",
+      "question_ids": []
+    },
+    "c990c20ff0cd": {
+      "title": "xxx horario",
+      "section": "",
+      "updated": "2025-07-26T10:02:24.560Z",
+      "hash": "25753459a5e86134",
+      "question_ids": []
+    },
+    "3599caad814c": {
+      "title": "Los alérgenos",
+      "section": "",
+      "updated": "2025-07-17T20:32:28.318Z",
+      "hash": "3342b73a73f9fca6",
+      "question_ids": []
+    },
+    "4d1a91a37099": {
+      "title": "plantilla",
+      "section": "",
+      "updated": "2025-06-23T21:52:26.977Z",
+      "hash": "19db37739f08f006",
+      "question_ids": []
+    },
+    "a1a616f0b979": {
+      "title": "- de 7 dias",
+      "section": "",
+      "updated": "2025-06-23T19:59:51.657Z",
+      "hash": "2e44874c23ad9bc0",
+      "question_ids": []
+    },
+    "b0c1c78a34d0": {
+      "title": "mas de 7 dias",
+      "section": "",
+      "updated": "2025-06-23T19:12:20.159Z",
+      "hash": "c370fe1c99ec831d",
+      "question_ids": []
+    },
+    "c1b9135fd29f": {
+      "title": "Inicio",
+      "section": "",
+      "updated": "2025-06-13T17:03:31.157Z",
+      "hash": "f5499a0c10079d73",
+      "question_ids": []
+    },
+    "b1bd63ecf76e": {
+      "title": "Borrador Inicio",
+      "section": "",
+      "updated": "2025-06-13T17:00:08.089Z",
+      "hash": "f448da2e39f855fa",
+      "question_ids": []
+    },
+    "c332a0e634e8": {
+      "title": "Cafeteria",
+      "section": "",
+      "updated": "2025-06-02T09:00:08.630Z",
+      "hash": "bbbe2fea6499f4ce",
+      "question_ids": []
+    },
+    "ec76ca540667": {
+      "title": "1.1. Turno de Mañana",
+      "section": "1.1",
+      "updated": "2025-05-25T15:41:04.843Z",
+      "hash": "2be77bac288942dd",
+      "question_ids": []
+    },
+    "d542f0820cd0": {
+      "title": "1.1. Tareas Comunes a Todos los Turnos",
+      "section": "1.1",
+      "updated": "2025-05-25T11:56:19.398Z",
+      "hash": "e8ef8fb6c77b9a8d",
+      "question_ids": []
+    },
+    "2a16cf497b40": {
+      "title": "1.3 Turno de Noche",
+      "section": "1.3",
+      "updated": "2025-05-25T06:17:36.223Z",
+      "hash": "8436012deb237bd6",
+      "question_ids": []
+    },
+    "be32a92b75e9": {
+      "title": "Canales de Venta Online y sus singularidades - Guadiana",
+      "section": "",
+      "updated": "2025-05-24T16:40:19.783Z",
+      "hash": "1154810683bed60d",
+      "question_ids": []
+    },
+    "401e5017a509": {
+      "title": "Uso básico Channel SITEMINDER",
+      "section": "",
+      "updated": "2025-05-23T07:29:08.999Z",
+      "hash": "faa2f248f8a340b6",
+      "question_ids": []
+    },
+    "255475a38082": {
+      "title": "Uso básico channel ROOMCLOUD",
+      "section": "",
+      "updated": "2025-05-23T07:29:08.909Z",
+      "hash": "2f4d8c408bf5e42c",
+      "question_ids": []
+    },
+    "1b0ab6cdcd16": {
+      "title": "Manuales &quot;Básicos&quot; Channel y PMS",
+      "section": "",
+      "updated": "2025-05-23T07:29:08.818Z",
+      "hash": "c1206828b0e1ac8f",
+      "question_ids": []
+    },
+    "45676362c658": {
+      "title": "Turnos",
+      "section": "",
+      "updated": "2025-05-23T07:29:08.635Z",
+      "hash": "c9a3fd623e718299",
+      "question_ids": []
+    },
+    "ace08fd5a69a": {
+      "title": "🛎️ 2.2 Check-In y Bienvenida",
+      "section": "",
+      "updated": "2025-05-23T07:29:08.456Z",
+      "hash": "d0e4a626ff80cf5d",
+      "question_ids": []
+    },
+    "f4772df621f1": {
+      "title": "2.1 🛏️Asignación de Habitaciones",
+      "section": "2.1",
+      "updated": "2025-05-23T07:29:08.364Z",
+      "hash": "df56a0613c7bed0e",
+      "question_ids": []
+    },
+    "efb670fd750d": {
+      "title": "5. Control de Canales de Venta Online",
+      "section": "5",
+      "updated": "2025-05-23T07:29:08.226Z",
+      "hash": "914645404dba4a98",
+      "question_ids": []
+    },
+    "cd2a2c8f8d47": {
+      "title": "6. Gestión de Incidencias y  Comunicaciones Internas",
+      "section": "6",
+      "updated": "2025-05-23T07:29:08.089Z",
+      "hash": "f029b9e31f63e119",
+      "question_ids": []
+    },
+    "73dfd040c4a4": {
+      "title": "2.4.1 Políticas de Cancelación",
+      "section": "2.4.1",
+      "updated": "2025-05-23T07:29:07.888Z",
+      "hash": "d8bd7ecc20d269f5",
+      "question_ids": []
+    },
+    "181ff6ef06ac": {
+      "title": "5.2. Cierre Inventory",
+      "section": "5.2",
+      "updated": "2025-05-23T07:29:07.755Z",
+      "hash": "06f6ccef1fec7e22",
+      "question_ids": []
+    },
+    "c5e88832ce24": {
+      "title": "5.1 Supervisión de Ocupación e Inventario",
+      "section": "5.1",
+      "updated": "2025-05-23T07:29:07.623Z",
+      "hash": "3137774756c44d87",
+      "question_ids": []
+    },
+    "433ea201307e": {
+      "title": "3.2 Gestión de Reservas  Grupo",
+      "section": "3.2",
+      "updated": "2025-05-23T07:29:07.510Z",
+      "hash": "4bbe6e66ee334c60",
+      "question_ids": []
+    },
+    "2d5dedcae296": {
+      "title": "3.1 Gestión de Reservas Individual",
+      "section": "3.1",
+      "updated": "2025-05-23T07:29:07.396Z",
+      "hash": "19d4c6b0b04df304",
+      "question_ids": []
+    },
+    "f3e0b333b8f7": {
+      "title": "2.4 Control de Caja y depósitos",
+      "section": "2.4",
+      "updated": "2025-05-23T07:29:07.303Z",
+      "hash": "e9aad74adaed8b70",
+      "question_ids": []
+    },
+    "56a6f4ff3682": {
+      "title": "video",
+      "section": "",
+      "updated": "2025-05-23T07:29:07.251Z",
+      "hash": "d3f0c74eae310caa",
+      "question_ids": []
+    },
+    "3828a38aafec": {
+      "title": "Menú Principal - Blog de Recepción",
+      "section": "",
+      "updated": "2025-05-23T07:29:07.070Z",
+      "hash": "edd006e324baeb61",
+      "question_ids": []
+    },
+    "794eeb66b33c": {
+      "title": "👋 ¡Bienvenida a las Nuevas Incorporaciones!",
+      "section": "",
+      "updated": "2025-05-23T07:29:06.937Z",
+      "hash": "3d7de57a56600a11",
+      "question_ids": []
+    },
+    "fa985dd5b7e9": {
+      "title": "4.1 Preparacion y Gestión",
+      "section": "4.1",
+      "updated": "2025-05-23T07:29:06.799Z",
+      "hash": "3cd005269e9a12ef",
+      "question_ids": []
+    },
+    "212c1a91c2c6": {
+      "title": "4.2 Registro",
+      "section": "4.2",
+      "updated": "2025-05-23T07:29:06.665Z",
+      "hash": "7f8f38425940435c",
+      "question_ids": []
+    },
+    "018567966159": {
+      "title": "4.3 Problemas comunes",
+      "section": "4.3",
+      "updated": "2025-05-23T07:29:06.532Z",
+      "hash": "1b6de6a2a4cc95af",
+      "question_ids": []
+    },
+    "b462f96f3380": {
+      "title": "💼 2.3 Check-out y cierre de cuenta",
+      "section": "",
+      "updated": "2025-05-23T07:29:06.398Z",
+      "hash": "f250b8e2f514f654",
+      "question_ids": []
+    },
+    "ce9ff572df72": {
+      "title": "2.4.2",
+      "section": "2.4.2",
+      "updated": "2025-05-23T07:29:06.206Z",
+      "hash": "e9427c47fd3ed990",
+      "question_ids": []
+    },
+    "48097efa71bf": {
+      "title": "💼 2.3 Check-out y cierre de Turno",
+      "section": "",
+      "updated": "2025-05-23T07:29:06.110Z",
+      "hash": "cdd0eea72729ba1f",
+      "question_ids": []
+    },
+    "61c90e0de396": {
+      "title": "1.2. Turno de Tarde",
+      "section": "1.2",
+      "updated": "2025-05-23T07:29:05.925Z",
+      "hash": "be3a44b3a743024a",
+      "question_ids": []
+    },
+    "3dcca1e9ea15": {
+      "title": "Me gusta esta pagina menus",
+      "section": "",
+      "updated": "2025-05-23T07:23:17.164Z",
+      "hash": "56934fa8df8c6896",
+      "question_ids": []
+    },
+    "231647c4298c": {
+      "title": "Servício de Lavandería y Planchado",
+      "section": "",
+      "updated": "2025-05-05T19:37:38.184Z",
+      "hash": "924dd38094fc3b84",
+      "question_ids": []
+    },
+    "2513da8cddde": {
+      "title": "Cumbria Restaurante",
+      "section": "",
+      "updated": "2025-05-05T19:37:38.159Z",
+      "hash": "71ab165762984de9",
+      "question_ids": []
+    },
+    "f295ae091ae5": {
+      "title": "Borrador Test Restaurante",
+      "section": "",
+      "updated": "2025-05-03T04:04:12.871Z",
+      "hash": "78105e0084588520",
+      "question_ids": []
+    },
+    "8dac58b7bd46": {
+      "title": "Restaurane",
+      "section": "",
+      "updated": "2025-05-03T04:02:56.643Z",
+      "hash": "88ec197fdc0b4cce",
+      "question_ids": []
+    },
+    "a92201c65491": {
+      "title": "Borrador - test  Cafeteria",
+      "section": "",
+      "updated": "2025-05-01T13:39:57.868Z",
+      "hash": "604c375d42cf98cc",
+      "question_ids": []
+    },
+    "cfe2e2c32560": {
+      "title": "Carta Cafetería",
+      "section": "",
+      "updated": "2025-04-24T01:57:05.600Z",
+      "hash": "2112bc0846ad2a6d",
+      "question_ids": []
+    },
+    "5db37b0b4f43": {
+      "title": "ENCUESTA SATISFACCIÓN",
+      "section": "",
+      "updated": "2025-04-10T00:54:37.345Z",
+      "hash": "b3e8d20643105cfa",
+      "question_ids": []
+    },
+    "6e1f9045010c": {
+      "title": "Teatro Municipal Quijano",
+      "section": "",
+      "updated": "2025-04-09T21:32:52.560Z",
+      "hash": "08ceefe240537bf0",
+      "question_ids": []
+    },
+    "3bc72f5a21b2": {
+      "title": "Un Enigmático Encuentro en Suite Spa",
+      "section": "",
+      "updated": "2025-03-02T18:49:38.995Z",
+      "hash": "364a992d2c73e130",
+      "question_ids": []
+    },
+    "b4a6169b4796": {
+      "title": "Programación Cultural Ciudad Real (provincia)",
+      "section": "",
+      "updated": "2024-11-13T14:50:02.122Z",
+      "hash": "5487d800bd3249f6",
+      "question_ids": []
+    },
+    "dd9081eb80a9": {
+      "title": "Cumbria Spa & Hotel: Invitación a Descubrir Almagro, la Perla del Corazón de La Mancha",
+      "section": "",
+      "updated": "2025-03-02T18:48:23.749Z",
+      "hash": "7ff03070589461c0",
+      "question_ids": []
+    },
+    "9bf742fb4bf6": {
+      "title": "Cumbria Spa & Hotel: Invitación a Descubrir las Tablas de Daimiel",
+      "section": "",
+      "updated": "2025-03-02T18:36:44.351Z",
+      "hash": "802aa225253f435a",
+      "question_ids": []
+    },
+    "aecd94a8c1f5": {
+      "title": "Cumbria Spa & Hotel: Invitación a Descubrir las Lagunas de Ruidera",
+      "section": "",
+      "updated": "2025-03-02T18:36:30.231Z",
+      "hash": "9630e7f135630877",
+      "question_ids": []
+    },
+    "d7edc9d88739": {
+      "title": "Cumbria Spa & Hotel: Invitación a Descubrir el Parque Nacional de Cabañeros",
+      "section": "",
+      "updated": "2025-03-02T18:36:12.550Z",
+      "hash": "50e3cc8f348796ee",
+      "question_ids": []
+    },
+    "643da3beb457": {
+      "title": "Restaurante Rincón de cervantes",
+      "section": "",
+      "updated": "2025-02-11T13:37:46.268Z",
+      "hash": "43f7bdc5544c6688",
+      "question_ids": []
+    },
+    "ce55b5b85f2d": {
+      "title": "Sercotel Guadiana",
+      "section": "",
+      "updated": "2024-12-03T00:24:08.189Z",
+      "hash": "5449f18f09bab21d",
+      "question_ids": []
+    },
+    "0379eb870548": {
+      "title": "Código promocional",
+      "section": "",
+      "updated": "2024-11-13T15:45:39.972Z",
+      "hash": "ac663151295f3322",
+      "question_ids": []
+    },
+    "74d52b423067": {
+      "title": "Programa Cultural Ciudad Real Capital",
+      "section": "",
+      "updated": "2024-11-13T14:56:12.939Z",
+      "hash": "46ad8e8bae5a56ac",
+      "question_ids": []
+    },
+    "222c41e67cab": {
+      "title": "Ciudad Real en Globo",
+      "section": "",
+      "updated": "2024-11-13T13:52:30.047Z",
+      "hash": "2b0cdc57fff1ba7d",
+      "question_ids": []
+    },
+    "d795f83cdf0f": {
+      "title": "10ª jornada del campeonato Laliga 24/25",
+      "section": "10",
+      "updated": "2024-11-13T13:49:14.135Z",
+      "hash": "71ae95e5a121277e",
+      "question_ids": []
+    },
+    "aed947e72c8c": {
+      "title": "Noticias",
+      "section": "",
+      "updated": "2024-11-11T23:42:12.991Z",
+      "hash": "554b0a9a9382548d",
+      "question_ids": []
+    },
+    "e879f569855f": {
+      "title": "Reservas de Grupo",
+      "section": "",
+      "updated": "2024-11-12T22:25:10.168Z",
+      "hash": "a84737519f786b56",
+      "question_ids": []
+    },
+    "853ce17adf09": {
+      "title": "Escapada Cielo y Corazón",
+      "section": "",
+      "updated": "2024-11-12T22:21:09.317Z",
+      "hash": "3de56229bb97049d",
+      "question_ids": []
+    },
+    "3c14634a3198": {
+      "title": "Escapada de Calma y Relax",
+      "section": "",
+      "updated": "2024-11-12T22:15:35.528Z",
+      "hash": "18c264090e21a793",
+      "question_ids": []
+    },
+    "e19529443dff": {
+      "title": "Escapada Romántica \"Amor y Relax\"",
+      "section": "",
+      "updated": "2024-11-12T22:02:50.918Z",
+      "hash": "ee358e83e8b8670c",
+      "question_ids": []
+    },
+    "d2c7c40a23ae": {
+      "title": "Salones",
+      "section": "",
+      "updated": "2024-11-12T00:31:18.745Z",
+      "hash": "497deec7ac512896",
+      "question_ids": []
+    },
+    "2e86492b6fe4": {
+      "title": "Geoparque Volcanes de Calatrava",
+      "section": "",
+      "updated": "2024-11-11T23:44:50.367Z",
+      "hash": "0d2e57b3f149f749",
+      "question_ids": []
+    },
+    "872001eba736": {
+      "title": "Complemento disponible en  tu Escapada Con Spa",
+      "section": "",
+      "updated": "2024-11-02T01:23:12.349Z",
+      "hash": "0d72937194e5f325",
+      "question_ids": []
+    },
+    "b1d5a821fd2f": {
+      "title": "ESCAPADA A TU AIRE - Visita histórica a Ciudad Real",
+      "section": "",
+      "updated": "2024-11-02T00:24:46.457Z",
+      "hash": "4ad8ba3175c7a208",
+      "question_ids": []
+    },
+    "61bd9e82ba59": {
+      "title": "ESCAPADA A TU AIRE - Visitas guiadas Arco del Torreón y galerías",
+      "section": "",
+      "updated": "2024-11-02T00:24:28.649Z",
+      "hash": "75710f348f8cccfb",
+      "question_ids": []
+    },
+    "7e03ecfdf0c8": {
+      "title": "Noches de Estrellas",
+      "section": "",
+      "updated": "2024-11-02T00:24:20.502Z",
+      "hash": "52af584a02239058",
+      "question_ids": []
+    },
+    "27a529debfee": {
+      "title": "Especial Perseidas-Lagrimas de San Lorenzo",
+      "section": "",
+      "updated": "2024-11-02T00:24:12.146Z",
+      "hash": "ef70e574d08f8292",
+      "question_ids": []
+    },
+    "40202c7a60ba": {
+      "title": "Senderismo Nocturno",
+      "section": "",
+      "updated": "2024-11-02T00:24:07.221Z",
+      "hash": "0d425fa01a4b3b08",
+      "question_ids": []
+    },
+    "6b0990636281": {
+      "title": "Las reservas de grupo",
+      "section": "",
+      "updated": "2024-11-01T23:49:21.014Z",
+      "hash": "c340183abc1ebb31",
+      "question_ids": []
+    }
+  }
+}

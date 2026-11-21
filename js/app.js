@@ -33,13 +33,9 @@
   const viewSummary = $("#viewSummary");
 
   const headerUpdateText = $("#headerUpdateText");
-  const syncPill = $("#syncPill");
-  const syncText = $("#syncText");
-  const syncCount = $("#syncCount");
   const updatedBadge = $("#updatedBadge");
   const footerMeta = $("#footerMeta");
   const btnTheme = $("#btnTheme");
-  const btnSettings = $("#btnSettings");
 
   const heroTotal = $("#heroTotal");
   const heroSessions = $("#heroSessions");
@@ -89,13 +85,6 @@
   const btnReviewWrong = $("#btnReviewWrong");
   const btnBackHome = $("#btnBackHome");
   const btnRepeatNew = $("#btnRepeatNew");
-
-  const settingsModal = $("#settingsModal");
-  const btnCloseModal = $("#btnCloseModal");
-  const syncDiagBox = $("#syncDiagBox");
-  const liveUrlInput = $("#liveUrlInput");
-  const btnSyncNow = $("#btnSyncNow");
-  const btnSaveLiveUrl = $("#btnSaveLiveUrl");
 
   // ===== Utilities =====
   const uniq = (arr) => [...new Set(arr.filter(Boolean))];
@@ -752,29 +741,17 @@
     showView("summary");
   }
 
-  // ===== Sync & Settings Modal =====
+  // ===== Sync metadata =====
   function updateSyncUI() {
-    syncPill.dataset.source = LOAD_META.source || "error";
-    syncText.textContent = LOAD_META.sourceLabel || "Sin datos";
-    syncCount.textContent = RAW.length;
-
     const dateStr = formatDateShort(LOAD_META.updatedAt);
     headerUpdateText.textContent = dateStr
-      ? `Última actualización: ${dateStr} · v${CFG.version || "2.0.0"}`
-      : `${LOAD_META.sourceLabel} · v${CFG.version || "2.0.0"}`;
-    updatedBadge.textContent = dateStr ? `Actualizado · ${dateStr}` : LOAD_META.sourceLabel;
-    footerMeta.textContent = `v${CFG.version || "2.0.0"} · ${RAW.length} preguntas (${LOAD_META.sourceLabel})`;
-
-    const errInfo = LOAD_META.errors?.length ? `<br><small>Notas: ${esc(LOAD_META.errors.join(" · "))}</small>` : "";
-    syncDiagBox.innerHTML = `
-      <b>Fuente activa:</b> ${esc(LOAD_META.sourceLabel)}<br>
-      <b>Preguntas activas cargadas:</b> ${RAW.length}<br>
-      <b>Última sincronización:</b> ${dateStr || "Ahora mismo"}${errInfo}
-    `;
+      ? `Última actualización: ${dateStr}`
+      : "Banco de formación activo";
+    updatedBadge.textContent = dateStr ? `Actualizado · ${dateStr}` : "Banco activo";
+    footerMeta.textContent = `v${CFG.version || "2.1.1"} · ${RAW.length} preguntas`;
   }
 
   async function refreshData() {
-    syncText.textContent = "Sincronizando…";
     const result = await window.DataLoader.loadQuestions();
     RAW = result.questions || [];
     LOAD_META = result;
@@ -787,38 +764,10 @@
     updateKPIs();
   }
 
-  function openModal() {
-    liveUrlInput.value = window.DataLoader.getConfiguredLiveUrl();
-    updateSyncUI();
-    settingsModal.classList.remove("hidden");
-  }
-
-  function closeModal() {
-    settingsModal.classList.add("hidden");
-  }
-
   // ===== Events =====
   btnTheme.onclick = () => {
     const isDark = document.body.classList.contains("dark-mode");
     applyTheme(isDark ? "light" : "dark");
-  };
-
-  syncPill.onclick = openModal;
-  btnSettings.onclick = openModal;
-  btnCloseModal.onclick = closeModal;
-  settingsModal.onclick = (e) => {
-    if (e.target === settingsModal) closeModal();
-  };
-
-  btnSyncNow.onclick = async () => {
-    await refreshData();
-    closeModal();
-  };
-
-  btnSaveLiveUrl.onclick = async () => {
-    window.DataLoader.setCustomLiveUrl(liveUrlInput.value);
-    await refreshData();
-    closeModal();
   };
 
   whoInput.oninput = updateKPIs;
@@ -869,7 +818,7 @@
   btnRepeatNew.onclick = () => startSession();
 
   document.addEventListener("keydown", (e) => {
-    if (viewQuiz.classList.contains("hidden") || !settingsModal.classList.contains("hidden")) return;
+    if (viewQuiz.classList.contains("hidden")) return;
     const key = e.key.toUpperCase();
     if (["A", "B", "C", "D"].includes(key)) {
       const q = sessionQuestions[currentIdx];
