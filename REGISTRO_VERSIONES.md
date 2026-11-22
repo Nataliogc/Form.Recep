@@ -2,11 +2,17 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.6.0`** | **22/11/2026** | Producción |
+| **`v2.6.1`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.6.1] — 22/11/2026
+- **Módulos Afectados:** Automatización IA
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Actualizado el modelo de Gemini a gemini-3.8-flash con fallback automático de modelos en auto_generate_questions.py
 
 ### [v2.6.0] — 22/11/2026
 - **Módulos Afectados:** Automatización IA, Integración Protocolo-Recep

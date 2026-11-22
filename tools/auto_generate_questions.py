@@ -33,7 +33,8 @@ CSV_PATH = ROOT / "data" / "plantilla_preguntas_unica.csv"
 STATE_PATH = ROOT / "data" / "sync_state.json"
 
 DEFAULT_PROTOCOLO_URL = "https://cumbriaspahotel.github.io/Protocolo-Recep/data.js"
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
+GEMINI_FALLBACK_MODELS = [GEMINI_MODEL, "gemini-3.8-flash", "gemini-3.0-flash", "gemini-2.5-flash"]
 
 ALLOWED_MODULES = [
     "Operativa Turnos",
@@ -265,15 +266,14 @@ REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
    "dto", "categoria", "nivel", "texto", "A", "B", "C", "D", "correct_letter", "why" (o [] si no aplica).
 """
 
-    if api_key.startswith("AQ."):
-        endpoints = [
-            f"https://aiplatform.googleapis.com/v1/publishers/google/models/{GEMINI_MODEL}:generateContent?key={api_key}",
-            f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={api_key}",
-        ]
-    else:
-        endpoints = [
-            f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={api_key}",
-        ]
+    models_to_try = list(dict.fromkeys(m for m in GEMINI_FALLBACK_MODELS if m))
+    endpoints = []
+    for mdl in models_to_try:
+        if api_key.startswith("AQ."):
+            endpoints.append(f"https://generativelanguage.googleapis.com/v1beta/models/{mdl}:generateContent?key={api_key}")
+            endpoints.append(f"https://aiplatform.googleapis.com/v1/publishers/google/models/{mdl}:generateContent?key={api_key}")
+        else:
+            endpoints.append(f"https://generativelanguage.googleapis.com/v1beta/models/{mdl}:generateContent?key={api_key}")
 
     body_bytes = json.dumps(
         {
