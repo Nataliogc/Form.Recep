@@ -2,11 +2,17 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.6.1`** | **22/11/2026** | Producción |
+| **`v2.6.2`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.6.2] — 22/11/2026
+- **Módulos Afectados:** Automatización IA
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Autodescubrimiento automático de modelos Gemini disponibles para la clave API y caché de endpoint activo en auto_generate_questions.py
 
 ### [v2.6.1] — 22/11/2026
 - **Módulos Afectados:** Automatización IA

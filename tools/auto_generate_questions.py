@@ -33,8 +33,47 @@ CSV_PATH = ROOT / "data" / "plantilla_preguntas_unica.csv"
 STATE_PATH = ROOT / "data" / "sync_state.json"
 
 DEFAULT_PROTOCOLO_URL = "https://cumbriaspahotel.github.io/Protocolo-Recep/data.js"
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
-GEMINI_FALLBACK_MODELS = [GEMINI_MODEL, "gemini-3.8-flash", "gemini-3.0-flash", "gemini-2.5-flash"]
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "").strip()
+GEMINI_FALLBACK_MODELS = ["gemini-2.5-flash-lite", "gemini-2.0-flash", "gemini-3.8-flash", "gemini-3.0-flash", "gemini-2.5-flash"]
+DISCOVERED_MODELS: list[str] | None = None
+WORKING_ENDPOINT: tuple[str, str] | None = None
+
+
+def discover_available_models(api_key: str) -> list[str]:
+    global DISCOVERED_MODELS
+    if DISCOVERED_MODELS is not None:
+        return DISCOVERED_MODELS
+
+    found = []
+    for base in ("https://generativelanguage.googleapis.com/v1beta/models",):
+        try:
+            req = urllib.request.Request(f"{base}?key={api_key}", headers={"User-Agent": "FormRecep-AutoGen/2.6"})
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                payload = json.loads(resp.read().decode("utf-8"))
+            for m in payload.get("models", []):
+                methods = m.get("supportedGenerationMethods") or []
+                name = str(m.get("name") or "").replace("models/", "").strip()
+                if not name or "generateContent" not in methods:
+                    continue
+                if "gemini" in name.lower() and "embedding" not in name.lower() and "tts" not in name.lower() and "image" not in name.lower():
+                    found.append(name)
+        except Exception as exc:
+            print(f"ℹ Aviso al listar modelos disponibles: {exc}")
+
+    # Priorizar modelos flash más modernos (evitando preview/exp si hay estables)
+    def score(name: str) -> tuple:
+        low = name.lower()
+        is_flash = 0 if "flash" in low else 1
+        is_stable = 0 if ("exp" not in low and "preview" not in low) else 1
+        nums = [int(x) for x in re.findall(r"\d+", low)]
+        ver = tuple(-n for n in nums[:2]) if nums else (0, 0)
+        return (is_flash, is_stable, ver, low)
+
+    found.sort(key=score)
+    if found:
+        print(f"✓ Modelos Gemini detectados para esta clave: {', '.join(found[:5])}")
+    DISCOVERED_MODELS = found
+    return found
 
 ALLOWED_MODULES = [
     "Operativa Turnos",
@@ -266,14 +305,17 @@ REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
    "dto", "categoria", "nivel", "texto", "A", "B", "C", "D", "correct_letter", "why" (o [] si no aplica).
 """
 
-    models_to_try = list(dict.fromkeys(m for m in GEMINI_FALLBACK_MODELS if m))
-    endpoints = []
-    for mdl in models_to_try:
-        if api_key.startswith("AQ."):
-            endpoints.append(f"https://generativelanguage.googleapis.com/v1beta/models/{mdl}:generateContent?key={api_key}")
-            endpoints.append(f"https://aiplatform.googleapis.com/v1/publishers/google/models/{mdl}:generateContent?key={api_key}")
-        else:
-            endpoints.append(f"https://generativelanguage.googleapis.com/v1beta/models/{mdl}:generateContent?key={api_key}")
+    global WORKING_ENDPOINT
+    if WORKING_ENDPOINT:
+        endpoints = [WORKING_ENDPOINT]
+    else:
+        discovered = discover_available_models(api_key)
+        models_to_try = list(dict.fromkeys(([GEMINI_MODEL] if GEMINI_MODEL else []) + discovered[:4] + GEMINI_FALLBACK_MODELS))
+        endpoints = []
+        for mdl in models_to_try:
+            endpoints.append((mdl, f"https://generativelanguage.googleapis.com/v1beta/models/{mdl}:generateContent?key={api_key}"))
+            if api_key.startswith("AQ."):
+                endpoints.append((mdl, f"https://aiplatform.googleapis.com/v1/publishers/google/models/{mdl}:generateContent?key={api_key}"))
 
     body_bytes = json.dumps(
         {
@@ -286,8 +328,8 @@ REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
     ).encode("utf-8")
 
     data = None
-    last_err = None
-    for endpoint in endpoints:
+    errors_seen = []
+    for mdl, endpoint in endpoints:
         req = urllib.request.Request(
             endpoint,
             data=body_bytes,
@@ -295,23 +337,27 @@ REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
             method="POST",
         )
         try:
-            with urllib.request.urlopen(req, timeout=45) as resp:
+            with urllib.request.urlopen(req, timeout=35) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
+            if not WORKING_ENDPOINT:
+                WORKING_ENDPOINT = (mdl, endpoint)
+                print(f"  ✓ Usando modelo activo: {mdl}")
             break
         except urllib.error.HTTPError as exc:
             err_body = ""
             try:
-                err_body = exc.read().decode("utf-8", errors="replace")[:260]
+                err_body = exc.read().decode("utf-8", errors="replace")[:180]
             except Exception:
                 pass
-            last_err = RuntimeError(f"HTTP {exc.code} {exc.reason}: {err_body}")
-            if exc.code in (400, 401, 403, 404) and endpoint != endpoints[-1]:
+            errors_seen.append(f"[{mdl}] HTTP {exc.code}: {err_body}")
+            if exc.code in (400, 401, 403, 404, 429):
                 continue
-            raise last_err
+            raise RuntimeError(errors_seen[-1])
+        except Exception as exc:
+            errors_seen.append(f"[{mdl}] {exc}")
+            continue
     if data is None:
-        if last_err:
-            raise last_err
-        return []
+        raise RuntimeError(" | ".join(errors_seen[:3]) if errors_seen else "Sin respuesta de Gemini")
 
     raw_text = (
         data.get("candidates", [{}])[0]
