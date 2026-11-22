@@ -81,6 +81,8 @@ def main() -> int:
         D = pick(norm, ["d", "opcion_d", "opción_d"])
         corr_raw = pick(norm, ["correct_letter", "correct", "correcta", "letra_correcta", "respuesta_correcta", "respuesta"])
         why = pick(norm, ["why", "explicacion", "explicación", "comentario", "nota"])
+        imagen = pick(norm, ["imagen", "image", "img", "captura", "foto"])
+        imagen_explicacion = pick(norm, ["imagen_explicacion", "imagen_explicación", "imagen_why", "img_why", "image_explanation", "captura_explicacion"])
         qid = pick(norm, ["id"]) or str(idx)
 
         corr = corr_raw.upper()
@@ -98,21 +100,24 @@ def main() -> int:
                 warnings.append(f"Fila {idx} (ID {qid}): respuesta correcta inválida '{corr_raw}', usando 'A'")
                 corr = "A"
 
-        questions.append(
-            {
-                "id": int(qid) if qid.isdigit() else qid,
-                "departamento": dto,
-                "categoria": categoria,
-                "nivel": nivel,
-                "texto": texto,
-                "A": A,
-                "B": B,
-                "C": C,
-                "D": D,
-                "correct_letter": corr,
-                "why": why,
-            }
-        )
+        item = {
+            "id": int(qid) if qid.isdigit() else qid,
+            "departamento": dto,
+            "categoria": categoria,
+            "nivel": nivel,
+            "texto": texto,
+            "A": A,
+            "B": B,
+            "C": C,
+            "D": D,
+            "correct_letter": corr,
+            "why": why,
+        }
+        if imagen:
+            item["imagen"] = imagen
+        if imagen_explicacion:
+            item["imagen_explicacion"] = imagen_explicacion
+        questions.append(item)
 
     now_iso = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     payload = {"count": len(questions), "updated_at": now_iso, "questions": questions}
@@ -128,6 +133,7 @@ def main() -> int:
     meta = {
         "updated_at": now_iso,
         "count": len(questions),
+        "with_images": sum(1 for q in questions if q.get("imagen") or q.get("imagen_explicacion")),
         "source": "google_sheets_sync" if remote_used else "repository_csv",
         "departments": sorted({q["departamento"] for q in questions if q["departamento"]}),
         "modules": sorted({q["categoria"] for q in questions if q["categoria"]}),

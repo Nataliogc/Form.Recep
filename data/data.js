@@ -1,8 +1,8 @@
 // Autogenerado a partir de data/plantilla_preguntas_unica.csv
-// Actualizado: 2026-11-22T14:07:13+00:00 (284 preguntas)
+// Actualizado: 2026-11-22T20:36:07+00:00 (284 preguntas)
 window.QUIZ = {
   "count": 284,
-  "updated_at": "2026-11-22T14:07:13+00:00",
+  "updated_at": "2026-11-22T20:36:07+00:00",
   "questions": [
     {
       "id": 1,
@@ -2966,7 +2966,8 @@ window.QUIZ = {
       "C": "Las habitaciones ocupadas",
       "D": "Las cancelaciones del día",
       "correct_letter": "B",
-      "why": "La columna blanca muestra ajustes manuales por tipología y día. Un valor positivo resta disponibilidad y uno negativo la suma. No debe modificarse directamente."
+      "why": "La columna blanca muestra ajustes manuales por tipología y día. Un valor positivo resta disponibilidad y uno negativo la suma. No debe modificarse directamente.",
+      "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhkXSqhKMhXs7ifVXCUbO2qmh799r7Mi6H2gH-TruxLEV0sXbnqLKb1XmdhlTVEVf0ByN3IX1hPAdQvQfWwOkQAgIEV5_jLO01g7VZOd3QMXD_1StKAHt7lEC1FKD2aF3Llj5Py6YZpOn2RDwFwMWwJM3llmxsQ1zoMYfOaaBk7JiFR_l_Tjzi3U_yf20F5/s1600/fgsdfgsfdgsdfgsdfgsdfgg.jpg"
     },
     {
       "id": 231,
@@ -2979,7 +2980,8 @@ window.QUIZ = {
       "C": "No tiene efecto",
       "D": "Elimina reservas antiguas",
       "correct_letter": "B",
-      "why": "Los positivos en columna blanca restan disponibilidad; deben compensarse con un negativo equivalente si se ajusta manualmente."
+      "why": "Los positivos en columna blanca restan disponibilidad; deben compensarse con un negativo equivalente si se ajusta manualmente.",
+      "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhkXSqhKMhXs7ifVXCUbO2qmh799r7Mi6H2gH-TruxLEV0sXbnqLKb1XmdhlTVEVf0ByN3IX1hPAdQvQfWwOkQAgIEV5_jLO01g7VZOd3QMXD_1StKAHt7lEC1FKD2aF3Llj5Py6YZpOn2RDwFwMWwJM3llmxsQ1zoMYfOaaBk7JiFR_l_Tjzi3U_yf20F5/s1600/fgsdfgsfdgsdfgsdfgsdfgg.jpg"
     },
     {
       "id": 232,
@@ -2992,7 +2994,8 @@ window.QUIZ = {
       "C": "Error de cálculo",
       "D": "Cancelación pendiente",
       "correct_letter": "B",
-      "why": "Un negativo suma disponibilidad manualmente; si existe, debe haber un positivo compensatorio. Si no, hay error en el cuadrado de tipología."
+      "why": "Un negativo suma disponibilidad manualmente; si existe, debe haber un positivo compensatorio. Si no, hay error en el cuadrado de tipología.",
+      "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhkXSqhKMhXs7ifVXCUbO2qmh799r7Mi6H2gH-TruxLEV0sXbnqLKb1XmdhlTVEVf0ByN3IX1hPAdQvQfWwOkQAgIEV5_jLO01g7VZOd3QMXD_1StKAHt7lEC1FKD2aF3Llj5Py6YZpOn2RDwFwMWwJM3llmxsQ1zoMYfOaaBk7JiFR_l_Tjzi3U_yf20F5/s1600/fgsdfgsfdgsdfgsdfgsdfgg.jpg"
     },
     {
       "id": 233,
@@ -3005,7 +3008,9 @@ window.QUIZ = {
       "C": "Buscar y corregir la reserva que origina el conflicto",
       "D": "Cambiar las tarifas afectadas",
       "correct_letter": "C",
-      "why": "Nunca se corrige el Inventory directamente. Se revisa la reserva que provoca el error y se reubica desde allí, manteniendo integridad de datos."
+      "why": "Nunca se corrige el Inventory directamente. Se revisa la reserva que provoca el error y se reubica desde allí, manteniendo integridad de datos.",
+      "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhkXSqhKMhXs7ifVXCUbO2qmh799r7Mi6H2gH-TruxLEV0sXbnqLKb1XmdhlTVEVf0ByN3IX1hPAdQvQfWwOkQAgIEV5_jLO01g7VZOd3QMXD_1StKAHt7lEC1FKD2aF3Llj5Py6YZpOn2RDwFwMWwJM3llmxsQ1zoMYfOaaBk7JiFR_l_Tjzi3U_yf20F5/s1600/fgsdfgsfdgsdfgsdfgsdfgg.jpg",
+      "imagen_explicacion": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhexwhQfuqaPYhW8i8tEX7IeYQP37GOlnbVG71xWSw5OiiM25_Yc1_X6EaAZuJIR2QRyyXGeS88jR7x94bzzLnDTfhktrWpTEVj25WuTF08OplzY2zQ5Z0XkFMOJMcKWzjpjFKom4bfzGcH3DWsMA1Gkan60LKp5Y91Z9Fp2KFz2793A7EjeEagS8F-52m3/s1500/Cuadre%20orig%20Dui.png"
     },
     {
       "id": 234,
@@ -3018,7 +3023,8 @@ window.QUIZ = {
       "C": "Tarifas y restricciones",
       "D": "Códigos de agencia",
       "correct_letter": "B",
-      "why": "La parte superior (verde/blanca) refleja disponibilidad por tipología/día. La inferior (blanca/salmón) muestra ocupadas y % de ocupación."
+      "why": "La parte superior (verde/blanca) refleja disponibilidad por tipología/día. La inferior (blanca/salmón) muestra ocupadas y % de ocupación.",
+      "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisuStuk8LXwG9dmcL0gz_ou_FcWmzcG37nnYji241LMHYCjBnqNyhw490qO0jCN2IA1KsTiO6jCrcTZgvYejpC4g_LY3vXkbLcne_yUG6v8pGwUJF3qd7zTpE-iGS0bZpwSs4Lhzja1P4t0-C3lJ1C8Ko4VfbZs0xbVFU_o6Sxu6XRTel1LNw1BvREPHVK/s1000/ddddddd.png"
     },
     {
       "id": 235,
@@ -3031,7 +3037,8 @@ window.QUIZ = {
       "C": "El hotel está vacío",
       "D": "Hay un ajuste manual en cero",
       "correct_letter": "B",
-      "why": "Un número negativo en disponibilidad indica sobreocupación. Debe corregirse reubicando reservas y nunca alterando Inventory."
+      "why": "Un número negativo en disponibilidad indica sobreocupación. Debe corregirse reubicando reservas y nunca alterando Inventory.",
+      "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisuStuk8LXwG9dmcL0gz_ou_FcWmzcG37nnYji241LMHYCjBnqNyhw490qO0jCN2IA1KsTiO6jCrcTZgvYejpC4g_LY3vXkbLcne_yUG6v8pGwUJF3qd7zTpE-iGS0bZpwSs4Lhzja1P4t0-C3lJ1C8Ko4VfbZs0xbVFU_o6Sxu6XRTel1LNw1BvREPHVK/s1000/ddddddd.png"
     },
     {
       "id": 236,
@@ -3044,7 +3051,9 @@ window.QUIZ = {
       "C": "Ignorar el negativo si el porcentaje de ocupación global es inferior al 90 %",
       "D": "Abrir el listado pulsando la celda del bloque Ocupadas, reubicar la reserva necesaria cambiando su tipología y registrar siempre en Observaciones “Cuadre orig: [tipología original] → cambio manual”.",
       "correct_letter": "D",
-      "why": "Un negativo indica que se han vendido más habitaciones de las disponibles (sobreocupación). La corrección debe hacerse desde la reserva responsable: reubicarla a otra tipología disponible y dejar traza en Observaciones usando el formato obligatorio “Cuadre orig: …” para mantener la trazabilidad operativa"
+      "why": "Un negativo indica que se han vendido más habitaciones de las disponibles (sobreocupación). La corrección debe hacerse desde la reserva responsable: reubicarla a otra tipología disponible y dejar traza en Observaciones usando el formato obligatorio “Cuadre orig: …” para mantener la trazabilidad operativa",
+      "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisuStuk8LXwG9dmcL0gz_ou_FcWmzcG37nnYji241LMHYCjBnqNyhw490qO0jCN2IA1KsTiO6jCrcTZgvYejpC4g_LY3vXkbLcne_yUG6v8pGwUJF3qd7zTpE-iGS0bZpwSs4Lhzja1P4t0-C3lJ1C8Ko4VfbZs0xbVFU_o6Sxu6XRTel1LNw1BvREPHVK/s1000/ddddddd.png",
+      "imagen_explicacion": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEit6-vakOArXG1oreqjhQgjJYES9jDnNwGLifAGLfRthgGkiFfSqTwZCPEKI7I44oLuhljuiSKpm_BUDYpRoKp7NvKnFyvKppcnk4sHTufdMFtWsdx2TtAh8FEKYfVbn1z7ismU-jY7ITwoaWu5u6a5lflBKB8msF4F6oisHW83O9AZR2WOwV7h-t7A9UQW/s1500/1.png"
     },
     {
       "id": 237,
@@ -3057,7 +3066,8 @@ window.QUIZ = {
       "C": "En la ficha de tarifas",
       "D": "En Channel Manager",
       "correct_letter": "B",
-      "why": "Las correcciones se hacen desde la reserva causante. Se cambia la tipología manteniendo el precio, sin tocar directamente Inventory."
+      "why": "Las correcciones se hacen desde la reserva causante. Se cambia la tipología manteniendo el precio, sin tocar directamente Inventory.",
+      "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhexwhQfuqaPYhW8i8tEX7IeYQP37GOlnbVG71xWSw5OiiM25_Yc1_X6EaAZuJIR2QRyyXGeS88jR7x94bzzLnDTfhktrWpTEVj25WuTF08OplzY2zQ5Z0XkFMOJMcKWzjpjFKom4bfzGcH3DWsMA1Gkan60LKp5Y91Z9Fp2KFz2793A7EjeEagS8F-52m3/s1500/Cuadre%20orig%20Dui.png"
     },
     {
       "id": 238,
@@ -3070,7 +3080,8 @@ window.QUIZ = {
       "C": "Eliminar la reserva y volver a crearla",
       "D": "Actualizar el canal",
       "correct_letter": "B",
-      "why": "Antes de cualquier cambio, anota nº de personas y precio por día para confirmar después que no varía. Evita desajustes de facturación o régimen."
+      "why": "Antes de cualquier cambio, anota nº de personas y precio por día para confirmar después que no varía. Evita desajustes de facturación o régimen.",
+      "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhexwhQfuqaPYhW8i8tEX7IeYQP37GOlnbVG71xWSw5OiiM25_Yc1_X6EaAZuJIR2QRyyXGeS88jR7x94bzzLnDTfhktrWpTEVj25WuTF08OplzY2zQ5Z0XkFMOJMcKWzjpjFKom4bfzGcH3DWsMA1Gkan60LKp5Y91Z9Fp2KFz2793A7EjeEagS8F-52m3/s1500/Cuadre%20orig%20Dui.png"
     },
     {
       "id": 239,
@@ -3083,7 +3094,8 @@ window.QUIZ = {
       "C": "Aplicar tarifa BAR actual",
       "D": "Eliminar todos los suplementos",
       "correct_letter": "B",
-      "why": "Al guardar el cambio, selecciona 'mantener precio'. Si el PMS recalcula, introducir manualmente el importe original garantizando coherencia contable."
+      "why": "Al guardar el cambio, selecciona 'mantener precio'. Si el PMS recalcula, introducir manualmente el importe original garantizando coherencia contable.",
+      "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhexwhQfuqaPYhW8i8tEX7IeYQP37GOlnbVG71xWSw5OiiM25_Yc1_X6EaAZuJIR2QRyyXGeS88jR7x94bzzLnDTfhktrWpTEVj25WuTF08OplzY2zQ5Z0XkFMOJMcKWzjpjFKom4bfzGcH3DWsMA1Gkan60LKp5Y91Z9Fp2KFz2793A7EjeEagS8F-52m3/s1500/Cuadre%20orig%20Dui.png"
     },
     {
       "id": 240,
@@ -3096,7 +3108,8 @@ window.QUIZ = {
       "C": "Que la reserva tenga comentarios del cliente",
       "D": "Que se borre la observación anterior",
       "correct_letter": "B",
-      "why": "Siempre deja traza en Observaciones con formato estándar: 'Cuadre orig: [tipología original]'. Facilita futuras reubicaciones y control interno."
+      "why": "Siempre deja traza en Observaciones con formato estándar: 'Cuadre orig: [tipología original]'. Facilita futuras reubicaciones y control interno.",
+      "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhexwhQfuqaPYhW8i8tEX7IeYQP37GOlnbVG71xWSw5OiiM25_Yc1_X6EaAZuJIR2QRyyXGeS88jR7x94bzzLnDTfhktrWpTEVj25WuTF08OplzY2zQ5Z0XkFMOJMcKWzjpjFKom4bfzGcH3DWsMA1Gkan60LKp5Y91Z9Fp2KFz2793A7EjeEagS8F-52m3/s1500/Cuadre%20orig%20Dui.png"
     },
     {
       "id": 241,
@@ -3109,7 +3122,8 @@ window.QUIZ = {
       "C": "Tipo de cama, minibar y TV",
       "D": "Email, check-in y factura",
       "correct_letter": "A",
-      "why": "Tras corregir, verifica: precio idéntico al original, régimen correcto y Observaciones actualizadas. Así se garantiza coherencia y trazabilidad."
+      "why": "Tras corregir, verifica: precio idéntico al original, régimen correcto y Observaciones actualizadas. Así se garantiza coherencia y trazabilidad.",
+      "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhexwhQfuqaPYhW8i8tEX7IeYQP37GOlnbVG71xWSw5OiiM25_Yc1_X6EaAZuJIR2QRyyXGeS88jR7x94bzzLnDTfhktrWpTEVj25WuTF08OplzY2zQ5Z0XkFMOJMcKWzjpjFKom4bfzGcH3DWsMA1Gkan60LKp5Y91Z9Fp2KFz2793A7EjeEagS8F-52m3/s1500/Cuadre%20orig%20Dui.png"
     },
     {
       "id": 242,
@@ -3395,7 +3409,9 @@ window.QUIZ = {
       "C": "Reasignar la tipología desde el panel de Disponibilidad sin acceder a la reserva, siempre que la nueva categoría tenga inventario sobrante.",
       "D": "Acceder al listado pulsando la celda del bloque Ocupadas, identificar la reserva que excede el inventario, cambiar manualmente su tipología desde la propia reserva y registrar obligatoriamente en Observaciones: “Cuadre orig: [tipología original] → cambio manual para normalizar ocupación”.",
       "correct_letter": "D",
-      "why": "Un negativo en el Planning de Ocupación indica que una tipología tiene más reservas asignadas que habitaciones disponibles para ese día, es decir, una situación real de sobreocupación. El Inventory no debe modificarse y tampoco deben utilizarse recálculos automáticos del PMS, ya que generarían inconsistencias. La única corrección válida consiste en acceder al listado pulsando la celda del bloque Ocupadas, identificar la reserva que provoca el exceso, cambiar su tipología desde la propia reserva manteniendo el precio exactamente igual y registrar de forma obligatoria en Observaciones la traza estándar “Cuadre orig: [tipología original] → cambio manual para normalizar ocupación”, garantizando así la trazabilidad operativa entre turnos."
+      "why": "Un negativo en el Planning de Ocupación indica que una tipología tiene más reservas asignadas que habitaciones disponibles para ese día, es decir, una situación real de sobreocupación. El Inventory no debe modificarse y tampoco deben utilizarse recálculos automáticos del PMS, ya que generarían inconsistencias. La única corrección válida consiste en acceder al listado pulsando la celda del bloque Ocupadas, identificar la reserva que provoca el exceso, cambiar su tipología desde la propia reserva manteniendo el precio exactamente igual y registrar de forma obligatoria en Observaciones la traza estándar “Cuadre orig: [tipología original] → cambio manual para normalizar ocupación”, garantizando así la trazabilidad operativa entre turnos.",
+      "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisuStuk8LXwG9dmcL0gz_ou_FcWmzcG37nnYji241LMHYCjBnqNyhw490qO0jCN2IA1KsTiO6jCrcTZgvYejpC4g_LY3vXkbLcne_yUG6v8pGwUJF3qd7zTpE-iGS0bZpwSs4Lhzja1P4t0-C3lJ1C8Ko4VfbZs0xbVFU_o6Sxu6XRTel1LNw1BvREPHVK/s1000/ddddddd.png",
+      "imagen_explicacion": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEit6-vakOArXG1oreqjhQgjJYES9jDnNwGLifAGLfRthgGkiFfSqTwZCPEKI7I44oLuhljuiSKpm_BUDYpRoKp7NvKnFyvKppcnk4sHTufdMFtWsdx2TtAh8FEKYfVbn1z7ismU-jY7ITwoaWu5u6a5lflBKB8msF4F6oisHW83O9AZR2WOwV7h-t7A9UQW/s1500/1.png"
     },
     {
       "id": 264,
@@ -3408,7 +3424,8 @@ window.QUIZ = {
       "C": "Que el hotel tiene todas sus habitaciones libres pero no se han sincronizado los canales",
       "D": "Que Inventory ha aplicado de forma automática un ajuste manual para equilibrar el stock",
       "correct_letter": "B",
-      "why": "Un negativo no es un error del sistema sino un indicador de sobreocupación que muestra que el cupo real ha sido superado; la corrección debe hacerse reubicando la reserva que provoca el exceso sin modificar Inventory."
+      "why": "Un negativo no es un error del sistema sino un indicador de sobreocupación que muestra que el cupo real ha sido superado; la corrección debe hacerse reubicando la reserva que provoca el exceso sin modificar Inventory.",
+      "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisuStuk8LXwG9dmcL0gz_ou_FcWmzcG37nnYji241LMHYCjBnqNyhw490qO0jCN2IA1KsTiO6jCrcTZgvYejpC4g_LY3vXkbLcne_yUG6v8pGwUJF3qd7zTpE-iGS0bZpwSs4Lhzja1P4t0-C3lJ1C8Ko4VfbZs0xbVFU_o6Sxu6XRTel1LNw1BvREPHVK/s1000/ddddddd.png"
     },
     {
       "id": 265,
@@ -3577,7 +3594,8 @@ window.QUIZ = {
       "C": "Solicitarle un bono físico o código de validación externo para poder autorizar su entrada al circuito.",
       "D": "Marcar la cita como 'SIN CARGO · Dirección' para no generar descuadres en la caja del Spa.",
       "correct_letter": "B",
-      "why": "El manual establece que el estado 'HOT. NO INC. 30€' corresponde a un huésped alojado sin el servicio incluido, por lo que se debe cobrar la tarifa en recepción o realizar el cargo a su habitación."
+      "why": "El manual establece que el estado 'HOT. NO INC. 30€' corresponde a un huésped alojado sin el servicio incluido, por lo que se debe cobrar la tarifa en recepción o realizar el cargo a su habitación.",
+      "imagen": "protocolo:Imagenes/gest-spa/01-inicio-dashboard.png"
     },
     {
       "id": 278,
@@ -3590,7 +3608,8 @@ window.QUIZ = {
       "C": "Genera el informe de caja del día y envía el justificante de la reserva por correo electrónico.",
       "D": "Bloquea la cabina o sala asignada durante 15 minutos adicionales por tareas de limpieza.",
       "correct_letter": "B",
-      "why": "Según el manual, al pulsar 'Confirmar Asistencia (Presentado)' la cita pasa a verde con doble check y avisa a las terapeutas de que el cliente ya está en el Spa."
+      "why": "Según el manual, al pulsar 'Confirmar Asistencia (Presentado)' la cita pasa a verde con doble check y avisa a las terapeutas de que el cliente ya está en el Spa.",
+      "imagen": "protocolo:Imagenes/gest-spa/01-inicio-dashboard.png"
     },
     {
       "id": 279,
@@ -3616,7 +3635,9 @@ window.QUIZ = {
       "C": "Sí, siempre que se seleccione el origen 'Particular' o 'Hotel' para habilitar el contador de aforo en vivo.",
       "D": "No, las reservas del Circuito Spa solo se pueden gestionar de manera presencial bloqueando la agenda de la terapeuta de turno.",
       "correct_letter": "B",
-      "why": "El documento especifica claramente en el apartado 3.1 que el Circuito Spa NO se reserva desde el Planning de Ocupación (reservado exclusivamente para Cabinas y Salas), sino desde su módulo propio Spa donde se controla el aforo por turnos de 60 minutos."
+      "why": "El documento especifica claramente en el apartado 3.1 que el Circuito Spa NO se reserva desde el Planning de Ocupación (reservado exclusivamente para Cabinas y Salas), sino desde su módulo propio Spa donde se controla el aforo por turnos de 60 minutos.",
+      "imagen": "protocolo:Imagenes/gest-spa/03b-spa-detalle-turno.png",
+      "imagen_explicacion": "protocolo:Imagenes/gest-spa/03c-spa-nueva-reserva.png"
     },
     {
       "id": 281,
@@ -3629,7 +3650,9 @@ window.QUIZ = {
       "C": "5 casillas verdes seguidas, que cubren los 60 minutos del servicio más 15 minutos adicionales obligatorios para limpieza.",
       "D": "3 casillas verdes de 15 minutos si el cliente procede del hotel, ya que se le aplica un turno reducido.",
       "correct_letter": "C",
-      "why": "El procedimiento paso a paso del Planning de Ocupación especifica que se deben comprobar casillas verdes seguidas suficientes para el servicio más 15 minutos de limpieza. Por ejemplo, para un masaje de 60 minutos se requieren 4 casillas de servicio + 1 casilla de limpieza = 5 casillas seguidas."
+      "why": "El procedimiento paso a paso del Planning de Ocupación especifica que se deben comprobar casillas verdes seguidas suficientes para el servicio más 15 minutos de limpieza. Por ejemplo, para un masaje de 60 minutos se requieren 4 casillas de servicio + 1 casilla de limpieza = 5 casillas seguidas.",
+      "imagen": "protocolo:Imagenes/gest-spa/05-ocupacion-global.png",
+      "imagen_explicacion": "protocolo:Imagenes/gest-spa/04b-cabinas-nueva-reserva.png"
     },
     {
       "id": 282,
@@ -3642,7 +3665,9 @@ window.QUIZ = {
       "C": "Cuando la venta incluya más de tres servicios combinados (alojamiento, restaurante y spa).",
       "D": "Únicamente si la reserva se efectúa con más de un mes de antelación sobre la fecha deseada.",
       "correct_letter": "B",
-      "why": "Según el apartado 4.2 del manual, un Bono Regalo se emite únicamente cuando el cliente no sabe la fecha en la que vendrá o quiere regalarlo (con validez máxima de 1 año). Si el cliente ya tiene fecha y hora concretas, no se debe hacer un bono, sino realizar la reserva directamente en la agenda de Ocupación o Spa."
+      "why": "Según el apartado 4.2 del manual, un Bono Regalo se emite únicamente cuando el cliente no sabe la fecha en la que vendrá o quiere regalarlo (con validez máxima de 1 año). Si el cliente ya tiene fecha y hora concretas, no se debe hacer un bono, sino realizar la reserva directamente en la agenda de Ocupación o Spa.",
+      "imagen": "protocolo:Imagenes/gest-spa/02-bonos-lista.png",
+      "imagen_explicacion": "protocolo:Imagenes/gest-spa/02b1-bonos-buscar-servicio.png"
     },
     {
       "id": 283,
@@ -3655,7 +3680,8 @@ window.QUIZ = {
       "C": "El sistema cambia el estado a 'PARCIAL' y requiere enviar una solicitud por correo a la dirección del Spa.",
       "D": "El campo se modifica libremente, pero no actualiza las ventas en el cierre de caja de la jornada.",
       "correct_letter": "B",
-      "why": "El apartado 4.4 especifica que el campo 'Sesiones Usadas' es de solo lectura para evitar bonos marcados como canjeados sin reserva real. El flujo correcto para que pase a CANJEADO automáticamente es pulsar el botón 'Reservar' en cada ítem de ITEMS DE COMPRA o indicar el código completo exacto (ej. LOC-2026-6970) si se crea la cita directamente en la agenda."
+      "why": "El apartado 4.4 especifica que el campo 'Sesiones Usadas' es de solo lectura para evitar bonos marcados como canjeados sin reserva real. El flujo correcto para que pase a CANJEADO automáticamente es pulsar el botón 'Reservar' en cada ítem de ITEMS DE COMPRA o indicar el código completo exacto (ej. LOC-2026-6970) si se crea la cita directamente en la agenda.",
+      "imagen": "protocolo:Imagenes/gest-spa/02c9-canje-error-manual.png"
     },
     {
       "id": 284,
@@ -3668,7 +3694,9 @@ window.QUIZ = {
       "C": "Ambos servicios se registran automáticamente pulsando el botón 'Consumir' sin necesidad de consultar otros sistemas.",
       "D": "Se requiere adjuntar copia en PDF del bono impreso y seleccionar el número de mesa asignado en la agenda.",
       "correct_letter": "B",
-      "why": "Según el apartado 4.3, para el ítem de Alojamiento el sistema solicita la Fecha de Alojamiento y el Nº de Reserva de Hotel del PMS (previa consulta con Recepción). Para el Menú de Restaurante, al pulsar 'Reservar' se abre Mesachef con los datos cargados y solo se debe indicar Fecha, Hora y Turno (Almuerzo o Cena)."
+      "why": "Según el apartado 4.3, para el ítem de Alojamiento el sistema solicita la Fecha de Alojamiento y el Nº de Reserva de Hotel del PMS (previa consulta con Recepción). Para el Menú de Restaurante, al pulsar 'Reservar' se abre Mesachef con los datos cargados y solo se debe indicar Fecha, Hora y Turno (Almuerzo o Cena).",
+      "imagen": "protocolo:Imagenes/gest-spa/02c2-canje-gestionar-items.png",
+      "imagen_explicacion": "protocolo:Imagenes/gest-spa/02c3-canje-hotel-pms.png"
     },
     {
       "id": 285,
@@ -3681,7 +3709,8 @@ window.QUIZ = {
       "C": "Bloquea el acceso al sistema ZENITH para el resto de terapeutas durante ese turno.",
       "D": "Envía automáticamente un aviso PayGold de cancelación a los clientes agendados.",
       "correct_letter": "B",
-      "why": "Según la sección 5.2 del manual, al registrar una baja, vacaciones o permiso en el botón 'Ausencia / Vacaciones', la columna del terapeuta mostrará automáticamente '🚫 Terapeuta no disponible'."
+      "why": "Según la sección 5.2 del manual, al registrar una baja, vacaciones o permiso en el botón 'Ausencia / Vacaciones', la columna del terapeuta mostrará automáticamente '🚫 Terapeuta no disponible'.",
+      "imagen": "protocolo:Imagenes/gest-spa/08e-gestion-ausencia.png"
     },
     {
       "id": 286,
@@ -3694,7 +3723,8 @@ window.QUIZ = {
       "C": "Modificar la jornada laboral del terapeuta y reasignar sus permisos en Fichas de Personal.",
       "D": "Generar automáticamente la liquidación de comisiones del equipo de masajistas.",
       "correct_letter": "B",
-      "why": "El apartado 5.3 indica expresamente que haciendo clic en cualquier cita o hueco libre de la matriz de 15 días se pueden crear, guardar (GUARDAR RESERVA / GUARDAR Y ABRIR PAYGOLD) o eliminar reservas directamente sin salir de esta vista."
+      "why": "El apartado 5.3 indica expresamente que haciendo clic en cualquier cita o hueco libre de la matriz de 15 días se pueden crear, guardar (GUARDAR RESERVA / GUARDAR Y ABRIR PAYGOLD) o eliminar reservas directamente sin salir de esta vista.",
+      "imagen": "protocolo:Imagenes/gest-spa/07-vision-15d.png"
     }
   ]
 };

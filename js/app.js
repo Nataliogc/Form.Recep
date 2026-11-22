@@ -75,6 +75,13 @@
   const qBadges = $("#qBadges");
   const qId = $("#qId");
   const qTitle = $("#qTitle");
+  const qMedia = $("#qMedia");
+  const qMediaBtn = $("#qMediaBtn");
+  const qMediaImg = $("#qMediaImg");
+  const imgLightbox = $("#imgLightbox");
+  const imgLightboxImg = $("#imgLightboxImg");
+  const imgLightboxCaption = $("#imgLightboxCaption");
+  const imgLightboxClose = $("#imgLightboxClose");
   const answersGrid = $("#answersGrid");
   const explainBox = $("#explainBox");
   const btnPrev = $("#btnPrev");
@@ -435,6 +442,13 @@
       const res = await fetch(`${csvUrl}${sep}_ts=${Date.now()}`, { cache: "no-store" });
       if (!res.ok) return;
       const rows = parseSimpleCsv(await res.text());
+      const parseSheetNum = (val) => {
+        if (val == null || val === "") return NaN;
+        let clean = String(val).trim().replace(/\s+/g, "").replace(/%$/, "");
+        if (clean.includes(",") && clean.includes(".")) clean = clean.replace(/\./g, "").replace(",", ".");
+        else if (clean.includes(",")) clean = clean.replace(",", ".");
+        return Number(clean);
+      };
       const pick = (o, ks) => {
         for (const k of ks) if (k in o && String(o[k]).trim() !== "") return String(o[k]).trim();
         return "";
@@ -442,13 +456,29 @@
       REMOTE_RESULTS = rows
         .map((r) => {
           const nombre = pick(r, ["nombre", "empleado", "usuario", "recepcionista", "name"]);
-          const total = Number(pick(r, ["total", "preguntas"])) || 0;
-          let aciertos = Number(pick(r, ["aciertos", "ok", "correctas"])) || 0;
-          const pctRaw = pick(r, ["pct", "porcentaje", "nota", "score", "acierto"]);
+          const totalRaw = pick(r, ["total", "preguntas"]);
+          let total = 0;
+          if (totalRaw !== "") {
+            const tNum = parseSheetNum(totalRaw);
+            if (Number.isFinite(tNum) && tNum > 0) {
+              total = totalRaw.includes("%") ? Math.round(tNum / 100) : Math.round(tNum);
+            }
+          }
+          let aciertos = Math.round(parseSheetNum(pick(r, ["aciertos", "ok", "correctas"])));
+          if (!Number.isFinite(aciertos)) aciertos = 0;
+          const resumen = pick(r, ["resumen", "summary"]);
+          if (resumen) {
+            const rm = resumen.match(/(\d+)\s*\/\s*(\d+)/);
+            if (rm && (total === 0 || aciertos > total)) {
+              aciertos = Number(rm[1]);
+              total = Number(rm[2]);
+            }
+          }
+          const pctRaw = pick(r, ["% aciertos", "pct", "porcentaje", "nota", "score", "acierto"]);
           let pct;
           if (pctRaw !== "") {
-            let pNum = Number(String(pctRaw).replace("%", "").replace(",", "."));
-            if (pNum > 0 && pNum <= 1 && !String(pctRaw).includes("%")) pNum = pNum * 100;
+            let pNum = parseSheetNum(pctRaw);
+            if (pNum > 0 && pNum <= 1 && !pctRaw.includes("%")) pNum = pNum * 100;
             pct = Math.round(pNum);
           } else if ((total === 0 || aciertos > total) && aciertos > 0 && aciertos <= 100) {
             pct = Math.round(aciertos);
@@ -463,7 +493,7 @@
           return {
             nombre,
             nameKey: canonName(nombre),
-            dto: pick(r, ["dto", "departamento", "hotel"]),
+            dto: pick(r, ["dto", "departamento/hotel", "departamento", "hotel"]),
             modulo: pick(r, ["modulo", "módulo", "categoría", "categoria"]),
             nivel: pick(r, ["nivel", "level"]),
             total,
@@ -781,6 +811,26 @@
     return "";
   }
 
+  function openLightbox(src, caption) {
+    if (!src || !imgLightbox) return;
+    imgLightboxImg.src = src;
+    imgLightboxCaption.textContent = caption || "";
+    imgLightbox.classList.remove("hidden");
+  }
+
+  function closeLightbox() {
+    if (!imgLightbox || imgLightbox.classList.contains("hidden")) return;
+    imgLightbox.classList.add("hidden");
+    imgLightboxImg.src = "";
+  }
+
+  if (imgLightboxClose) imgLightboxClose.onclick = closeLightbox;
+  if (imgLightbox) {
+    imgLightbox.addEventListener("click", (e) => {
+      if (e.target === imgLightbox) closeLightbox();
+    });
+  }
+
   function renderQuestion() {
     const q = sessionQuestions[currentIdx];
     if (!q) return;
@@ -795,6 +845,27 @@
     qBadges.innerHTML = badges.join("");
     qId.textContent = `#${q.id}`;
     qTitle.textContent = q.text;
+
+    if (qMedia && qMediaImg) {
+      if (q.img) {
+        qMediaImg.onload = () => qMedia.classList.remove("hidden");
+        qMediaImg.onerror = () => {
+          qMedia.classList.add("hidden");
+          qMediaImg.removeAttribute("src");
+        };
+        qMediaImg.alt = `Captura de apoyo · Pregunta #${q.id}`;
+        qMediaImg.src = q.img;
+        qMedia.classList.remove("hidden");
+        if (qMediaBtn) {
+          qMediaBtn.onclick = () => openLightbox(q.img, `#${q.id} · ${q.text}`);
+        }
+      } else {
+        qMedia.classList.add("hidden");
+        qMediaImg.onload = null;
+        qMediaImg.onerror = null;
+        qMediaImg.removeAttribute("src");
+      }
+    }
 
     const prevAns = answersMap.get(q.id);
     const letters = ["A", "B", "C", "D"].filter((L) => q[L]);
@@ -844,17 +915,40 @@
     const hint = (CFG.MODULE_PROTOCOL_HINTS || {})[q.mod] || { section: "Manual Operativo" };
     const manualUrl = CFG.PROTOCOLO_RECEP_URL || "https://cumbriaspahotel.github.io/Protocolo-Recep/";
 
+    const whyImgHtml = q.whyImg
+      ? `<figure class="explain-media">
+           <button type="button" class="q-media-btn explain-media-btn" aria-label="Ampliar captura de la explicación">
+             <img src="${esc(q.whyImg)}" alt="Captura explicativa · Pregunta #${esc(q.id)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+             <span class="q-media-zoom"><i class="fas fa-search-plus"></i> Ver detalle</span>
+           </button>
+         </figure>`
+      : "";
+
     explainBox.classList.toggle("is-right", isRight);
     explainBox.classList.toggle("is-wrong", !isRight);
     explainBox.innerHTML = `
       <strong>${statusLabel}</strong>
       ${whyHtml}
+      ${whyImgHtml}
       <div class="explain-proto-link">
         <span><i class="fas fa-book"></i> Referencia: <b>${esc(hint.section)}</b></span>
         <a href="${esc(manualUrl)}" target="_blank" rel="noopener">
           Consultar en Protocolo-Recep <i class="fas fa-external-link-alt"></i>
         </a>
       </div>`;
+    if (q.whyImg) {
+      const expBtn = explainBox.querySelector(".explain-media-btn");
+      const expImg = explainBox.querySelector(".explain-media img");
+      if (expImg) {
+        expImg.onerror = () => {
+          const fig = expImg.closest(".explain-media");
+          if (fig) fig.remove();
+        };
+      }
+      if (expBtn) {
+        expBtn.onclick = () => openLightbox(q.whyImg, `Explicación · #${q.id} (${q.mod || "Protocolo"})`);
+      }
+    }
     explainBox.classList.remove("hidden");
   }
 
@@ -1125,6 +1219,11 @@
   btnRepeatNew.onclick = () => startSession();
 
   document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && imgLightbox && !imgLightbox.classList.contains("hidden")) {
+      closeLightbox();
+      return;
+    }
+    if (imgLightbox && !imgLightbox.classList.contains("hidden")) return;
     if (viewQuiz.classList.contains("hidden")) return;
     const key = e.key.toUpperCase();
     if (["A", "B", "C", "D"].includes(key)) {

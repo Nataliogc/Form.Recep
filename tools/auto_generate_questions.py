@@ -105,7 +105,53 @@ CSV_HEADERS = [
     "correct_letter",
     "why",
     "activo",
+    "imagen",
+    "imagen_explicacion",
 ]
+
+
+def extract_protocol_images(raw_html: str) -> list[dict]:
+    """Extrae capturas operativas reales del HTML del protocolo (excluye logos, placeholders e ilustraciones decorativas)."""
+    if not raw_html:
+        return []
+    found = []
+    seen = set()
+    pattern = re.compile(
+        r'(?:<a[^>]+href=["\']([^"\']+)["\'][^>]*>\s*)?<img([^>]+)>',
+        re.IGNORECASE | re.DOTALL,
+    )
+    for m in pattern.finditer(raw_html):
+        href = (m.group(1) or "").strip()
+        attrs = m.group(2) or ""
+        src_m = re.search(r'src=["\']([^"\']+)["\']', attrs, re.IGNORECASE)
+        if not src_m:
+            continue
+        src = src_m.group(1).strip()
+        alt_m = re.search(r'alt=["\']([^"\']*)["\']', attrs, re.IGNORECASE)
+        alt = html.unescape(alt_m.group(1).strip()) if alt_m else ""
+
+        # Usar href si apunta a una imagen de mayor resolución (ej. Blogger)
+        url = src
+        if href and re.search(r'\.(png|jpe?g|webp|gif)(\?|$)', href, re.IGNORECASE):
+            url = href
+
+        low_url = url.lower()
+        low_alt = alt.lower()
+        if any(skip in low_url for skip in ("placehold.co", "chatgpt%20image", "chatgpt image", "logo", "favicon", "data:image")):
+            continue
+        if any(skip in low_alt for skip in ("ilustración recepción", "ilustracion recepcion", "logo", "captura del módulo")):
+            continue
+
+        if not re.match(r'^https?://', url, re.IGNORECASE):
+            url = "protocolo:" + url.lstrip("./")
+
+        if url in seen:
+            continue
+        seen.add(url)
+        found.append({"id": f"IMG_{len(found) + 1}", "url": url, "alt": alt or Path(url.split("?")[0]).name})
+        if len(found) >= 12:
+            break
+    return found
 
 
 def strip_html(raw_html: str) -> str:
@@ -218,6 +264,9 @@ def read_csv_rows() -> tuple[list[str], list[dict], int]:
     delim = ";" if first_line.count(";") > first_line.count(",") else ","
     reader = csv.DictReader(raw.splitlines(), delimiter=delim)
     headers = list(reader.fieldnames or CSV_HEADERS)
+    for col in ("imagen", "imagen_explicacion"):
+        if col not in headers:
+            headers.append(col)
     rows = list(reader)
     max_id = 0
     for r in rows:
@@ -297,12 +346,22 @@ def call_gemini(api_key: str, protocol: dict, clean_text: str, num_questions: in
     default_dto = infer_default_dto(protocol, title, clean_text)
 
     excerpt = clean_text[:6500]
+    proto_images = extract_protocol_images(str(protocol.get("content") or ""))
+    img_by_id = {im["id"]: im["url"] for im in proto_images}
+    images_block = ""
+    if proto_images:
+        lines = [f'  - {im["id"]}: {im["alt"]}' for im in proto_images]
+        images_block = (
+            "\n- Capturas reales disponibles en este documento (úsalas SOLO si ayudan a entender una pantalla/pestaña/bloque):\n"
+            + "\n".join(lines)
+            + "\n"
+        )
     prompt = f"""Eres el Director de Recepción y Calidad de Sercotel Guadiana y Cumbria Spa&Hotel.
 Evalúa el siguiente documento del manual interno y, SOLO si contiene procedimientos operativos reales, redacta entre 1 y {num_questions} preguntas tipo test de alto valor práctico para el equipo.
 
 DOCUMENTO:
 - Título: {title}
-- Sección: {section or 'General'}
+- Sección: {section or 'General'}{images_block}
 - Contenido:
 \"\"\"
 {excerpt}
@@ -321,8 +380,9 @@ REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
    - Usa "Recepción" para la operativa común de ambos hoteles.
 7. "categoria" debe ser exactamente uno de: {json.dumps(ALLOWED_MODULES, ensure_ascii=False)} (sugerido: "{default_mod}"). Si el documento es de Spa/GEST-SPA, usa "Spa y Servicios" (o "Errores Comunes" solo para incidencias).
 8. "nivel" debe ser uno de: {json.dumps(ALLOWED_LEVELS, ensure_ascii=False)}.
-9. Responde ÚNICAMENTE con un array JSON válido de objetos con estas claves exactas:
-   "dto", "categoria", "nivel", "texto", "A", "B", "C", "D", "correct_letter", "why" (o [] si no aplica).
+9. CAPTURAS DE PANTALLA (opcional): si la pregunta trata sobre una pantalla, pestaña, columna o botón y existe una captura correspondiente en la lista superior, indica su identificador (ej. "IMG_1") en "imagen" (para mostrar en el enunciado) y/o en "imagen_explicacion" (para mostrar tras responder). Si no aplica, deja "" en ambos campos.
+10. Responde ÚNICAMENTE con un array JSON válido de objetos con estas claves exactas:
+   "dto", "categoria", "nivel", "texto", "A", "B", "C", "D", "correct_letter", "why", "imagen", "imagen_explicacion" (o [] si no aplica).
 """
 
     global WORKING_ENDPOINT
@@ -423,6 +483,11 @@ REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
         if nivel not in ALLOWED_LEVELS:
             nivel = "Intermedio"
 
+        img_ref = str(item.get("imagen") or "").strip()
+        why_img_ref = str(item.get("imagen_explicacion") or "").strip()
+        imagen_url = img_by_id.get(img_ref, "")
+        why_img_url = img_by_id.get(why_img_ref, "")
+
         valid.append(
             {
                 "dto": dto,
@@ -435,6 +500,8 @@ REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
                 "D": D,
                 "correct_letter": corr,
                 "why": why,
+                "imagen": imagen_url,
+                "imagen_explicacion": why_img_url,
             }
         )
     return valid
@@ -578,6 +645,8 @@ def main() -> int:
                 "correct_letter": q["correct_letter"],
                 "why": q["why"],
                 "activo": "1",
+                "imagen": q.get("imagen", ""),
+                "imagen_explicacion": q.get("imagen_explicacion", ""),
             }
             rows.append(new_row)
             existing_texts.add(q["texto"].lower())

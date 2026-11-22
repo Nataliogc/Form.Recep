@@ -2,11 +2,23 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.6.4`** | **22/11/2026** | Producción |
+| **`v2.7.1`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.7.1] — 22/11/2026
+- **Módulos Afectados:** Panel Admin, Estadísticas, Ranking
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Corrección de lectura de Total (formato porcentaje de Sheets), % Aciertos, Tiempo_seg y Departamento/Hotel en admin.html/index.html; nuevo Ranking ponderado por precisión, volumen de preguntas y tiempo por pregunta
+
+### [v2.7.0] — 22/11/2026
+- **Módulos Afectados:** UI Test, Data Loader, Banco CSV, Auto-Generador IA
+- **Tipo de Cambio:** Nueva Característica / Mejora
+- **Detalle de Cambios:**
+  - Soporte de capturas de pantalla en preguntas y explicaciones con visor lightbox, vinculación de 23 capturas reales de Protocolo-Recep (Inventory y GEST-SPA) y extracción automática en generador IA
 
 ### [v2.6.4] — 22/11/2026
 - **Módulos Afectados:** Portada, Automatización IA

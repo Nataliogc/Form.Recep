@@ -27,7 +27,7 @@
         <div class="header-titles">
           <div class="header-title-row">
             <h1>PANEL ADMINISTRADOR · FORMACIÓN RECEPCIÓN</h1>
-            <span id="app-version-badge" class="version-badge">v2.6.4</span>
+            <span id="app-version-badge" class="version-badge">v2.7.1</span>
           </div>
           <div class="header-update">
             <i class="fas fa-chart-line"></i>
@@ -217,7 +217,7 @@
           <div class="card">
             <div class="card-body">
               <div class="section-head">
-                <h3><i class="fas fa-user-check"></i> Rendimiento por recepcionista</h3>
+                <h3><i class="fas fa-trophy" style="color:var(--accent-gold, #c29b59)"></i> Ranking y rendimiento por recepcionista</h3>
                 <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
                   <button id="btnManageRules" class="link-btn hidden" type="button"></button>
                   <span id="peopleCountTag" class="tag">0 personas</span>
@@ -227,11 +227,13 @@
                 <table class="data-table">
                   <thead>
                     <tr>
+                      <th style="text-align:center">#</th>
                       <th>Recepcionista</th>
-                      <th>Sesiones</th>
+                      <th>Ses.</th>
+                      <th>Resultado</th>
                       <th>Media</th>
-                      <th>Mejor</th>
-                      <th>Última</th>
+                      <th>Tiempo/preg.</th>
+                      <th title="Puntuación ponderada (0-100): precisión real (75%), volumen de preguntas (15%) y agilidad (10%)">Ranking</th>
                       <th style="text-align:right">Acciones</th>
                     </tr>
                   </thead>
@@ -456,7 +458,7 @@
   </main>
 
   <footer class="app-footer">
-    © Panel de Administración · Sercotel Guadiana &amp; Cumbria Spa&amp;Hotel · <span id="footerMeta">v2.6.4</span>
+    © Panel de Administración · Sercotel Guadiana &amp; Cumbria Spa&amp;Hotel · <span id="footerMeta">v2.7.1</span>
   </footer>
 
   <!-- MODAL FICHA INDIVIDUAL DE RECEPCIONISTA -->
@@ -542,8 +544,8 @@
     </div>
   </div>
 
-  <script src="./js/config.js?v=2.6.4"></script>
-  <script src="./js/data-loader.js?v=2.6.4"></script>
-  <script src="./js/admin.js?v=2.6.4"></script>
+  <script src="./js/config.js?v=2.7.1"></script>
+  <script src="./js/data-loader.js?v=2.7.1"></script>
+  <script src="./js/admin.js?v=2.7.1"></script>
 </body>
 </html>

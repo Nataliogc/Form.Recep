@@ -103,6 +103,21 @@
     return (h >>> 0).toString(36);
   }
 
+  function resolveImageUrl(raw) {
+    const val = String(raw || "").trim();
+    if (!val) return "";
+    if (/^(https?:\/\/|data:image\/)/i.test(val)) return val;
+    if (/^protocolo:/i.test(val)) {
+      const base = String(window.APP_CONFIG?.PROTOCOLO_RECEP_URL || "https://cumbriaspahotel.github.io/Protocolo-Recep/").replace(/\/+$/, "");
+      const rel = val.replace(/^protocolo:/i, "").replace(/^\/+/, "");
+      return `${base}/${rel}`;
+    }
+    if (val.startsWith("./") || val.startsWith("../") || val.startsWith("/") || val.includes("/")) {
+      return val;
+    }
+    return `./img/preguntas/${val}`;
+  }
+
   function normalizeList(arr) {
     const pick = (o, keys) => {
       for (const k of keys) {
@@ -139,11 +154,13 @@
         }
 
         const why = pick(o, ["why", "explicacion", "explicación", "comentario", "nota"]);
+        const img = resolveImageUrl(pick(o, ["imagen", "image", "img", "captura", "foto"]));
+        const whyImg = resolveImageUrl(pick(o, ["imagen_explicacion", "imagen_explicación", "imagen_why", "img_why", "image_explanation", "captura_explicacion"]));
         const activo = pick(o, ["activo", "activa", "enabled"]);
         let id = pick(o, ["id"]);
         if (!id) id = djb2([dto, mod, text].join("|"));
 
-        return { id: String(id), dto, mod, nivel, text, A, B, C, D, correct: corr, why, activo };
+        return { id: String(id), dto, mod, nivel, text, A, B, C, D, correct: corr, why, img, whyImg, activo };
       })
       .filter((q) => {
         if (!q.text) return false;

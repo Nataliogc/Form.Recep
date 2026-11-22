@@ -205,10 +205,41 @@
     return null;
   }
 
+  function parseSheetNumber(val) {
+    if (val == null || val === "") return NaN;
+    const s = String(val).trim();
+    if (!s) return NaN;
+    // Quitar separadores de miles si hay coma decimal (ej. "1.000,00%")
+    let clean = s.replace(/\s+/g, "").replace(/%$/, "");
+    if (clean.includes(",") && clean.includes(".")) {
+      clean = clean.replace(/\./g, "").replace(",", ".");
+    } else if (clean.includes(",")) {
+      clean = clean.replace(",", ".");
+    }
+    return Number(clean);
+  }
+
+  function parseDurationSeconds(secRaw, mmssRaw) {
+    const sNum = parseSheetNumber(secRaw);
+    if (Number.isFinite(sNum) && sNum > 0) return Math.round(sNum);
+    const txt = String(mmssRaw || "").trim();
+    if (!txt) return 0;
+    const parts = txt.split(":").map((x) => Number(x));
+    if (parts.some((x) => !Number.isFinite(x))) return 0;
+    if (parts.length === 2) return Math.max(0, parts[0] * 60 + parts[1]);
+    if (parts.length === 3) {
+      // Google Sheets a veces guarda "52:51" como "52:51:00" (hh:mm:ss)
+      if (parts[2] === 0 && parts[0] >= 10) return Math.max(0, parts[0] * 60 + parts[1]);
+      return Math.max(0, parts[0] * 3600 + parts[1] * 60 + parts[2]);
+    }
+    return 0;
+  }
+
   function normalizeResults(rawArr) {
     const cleanKey = (k) =>
       String(k || "")
         .toLowerCase()
+        .replace(/%/g, " pct ")
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .replace(/[^a-z0-9]+/g, "_")
@@ -224,24 +255,61 @@
       .map((r) => {
         const o = {};
         Object.keys(r || {}).forEach((k) => {
-          o[k.toLowerCase().trim()] = r[k];
-          o[cleanKey(k)] = r[k];
+          const low = k.toLowerCase().trim();
+          const ck = cleanKey(k);
+          if (!(low in o) || String(o[low]).trim() === "") o[low] = r[k];
+          if (!(ck in o) || String(o[ck]).trim() === "") o[ck] = r[k];
         });
         const nombre = String(pick(o, ["nombre", "empleado", "usuario", "recepcionista", "name", "nombre_y_apellidos"])).trim();
-        const dto = String(pick(o, ["dto", "departamento", "hotel"])).trim() || "Todos";
+        const dto = String(pick(o, ["dto", "departamento_hotel", "departamento/hotel", "departamento", "hotel"])).trim() || "Todos";
         const modulo = String(pick(o, ["modulo", "módulo", "categoria", "categoría"])).trim() || "General";
         const nivel = String(pick(o, ["nivel", "level"])).trim() || "Todos";
-        const total = Number(pick(o, ["total", "preguntas", "total_preguntas"])) || 0;
-        let aciertos = Number(pick(o, ["aciertos", "ok", "correctas"])) || 0;
-        let fallos = Number(pick(o, ["fallos", "ko", "errores", "num_fallos"])) || Math.max(0, total - aciertos);
-        const pctRaw = pick(o, ["pct", "porcentaje", "nota", "score", "acierto", "porcentaje_acierto"]);
+
+        // Parsear Total: Google Sheets puede formatear enteros como porcentaje ("1000,00%" = 10, "3000,00%" = 30)
+        const totalRaw = pick(o, ["total", "preguntas", "total_preguntas"]);
+        let total = 0;
+        if (totalRaw !== "") {
+          const tNum = parseSheetNumber(totalRaw);
+          if (Number.isFinite(tNum) && tNum > 0) {
+            total = String(totalRaw).includes("%") ? Math.round(tNum / 100) : Math.round(tNum);
+          }
+        }
+
+        let aciertos = Math.round(parseSheetNumber(pick(o, ["aciertos", "ok", "correctas"])));
+        if (!Number.isFinite(aciertos)) aciertos = 0;
+
+        let fallos = Math.round(parseSheetNumber(pick(o, ["fallos", "ko", "errores", "num_fallos"])));
+        if (!Number.isFinite(fallos)) fallos = 0;
+
+        // Respaldo con columna "Resumen" (ej. "10/10 · 100% · 03:50") si Total vino vacío o corrupto
+        const resumen = String(pick(o, ["resumen", "summary"])).trim();
+        if (resumen) {
+          const rm = resumen.match(/(\d+)\s*\/\s*(\d+)/);
+          if (rm) {
+            const rOk = Number(rm[1]);
+            const rTot = Number(rm[2]);
+            if (rTot > 0 && (total === 0 || aciertos > total)) {
+              total = rTot;
+              aciertos = rOk;
+              fallos = Math.max(0, total - aciertos);
+            }
+          }
+        }
+
+        if (total === 0 && (aciertos > 0 || fallos > 0) && aciertos + fallos <= 500) {
+          total = aciertos + fallos;
+        }
+        if (total > 0 && fallos === 0 && aciertos <= total) {
+          fallos = Math.max(0, total - aciertos);
+        }
+
+        const pctRaw = pick(o, ["pct_aciertos", "% aciertos", "pct", "porcentaje", "nota", "score", "acierto", "porcentaje_acierto"]);
         let pct;
         if (pctRaw !== "") {
-          let pNum = Number(String(pctRaw).replace("%", "").replace(",", "."));
+          let pNum = parseSheetNumber(pctRaw);
           if (pNum > 0 && pNum <= 1 && !String(pctRaw).includes("%")) pNum = pNum * 100;
           pct = Math.round(pNum);
         } else if ((total === 0 || aciertos > total) && aciertos > 0 && aciertos <= 100) {
-          // Si la columna traía el porcentaje (ej. 90 con total=0 o 90 sobre 30)
           pct = Math.round(aciertos);
           aciertos = total > 0 ? Math.round((pct / 100) * total) : 0;
           fallos = total > 0 ? Math.max(0, total - aciertos) : 0;
@@ -253,7 +321,11 @@
           fallos = Math.max(0, total - aciertos);
         }
         pct = Math.max(0, Math.min(100, Number.isFinite(pct) ? pct : 0));
-        const dur = Number(pick(o, ["duracion_seg", "duración_seg", "duracion", "tiempo", "segundos"])) || 0;
+
+        const dur = parseDurationSeconds(
+          pick(o, ["tiempo_seg", "duracion_seg", "duración_seg", "duracion", "segundos"]),
+          pick(o, ["tiempo_mm_ss", "tiempo (mm:ss)", "tiempo"])
+        );
         const date = parseFlexibleDate(pick(o, ["fecha", "timestamp", "date", "marca_temporal", "marca temporal", "created_at", "fecha_hora"]));
 
         let rawFallos = pick(o, [
@@ -708,49 +780,57 @@
       return;
     }
 
-    const avg = Math.round(sessions.reduce((s, x) => s + x.pct, 0) / sessions.length);
-    const best = Math.max(...sessions.map((x) => x.pct));
+    const totalQ = sessions.reduce((s, x) => s + (x.total || 0), 0);
+    const totalOk = sessions.reduce((s, x) => s + (x.aciertos || 0), 0);
+    const totalDur = sessions.reduce((s, x) => s + (x.duracion_seg || 0), 0);
+    const avg = totalQ > 0 ? Math.round((totalOk / totalQ) * 100) : Math.round(sessions.reduce((s, x) => s + x.pct, 0) / sessions.length);
+    const secPerQ = totalQ > 0 && totalDur > 0 ? Math.round(totalDur / totalQ) : 0;
     const modMap = new Map();
     sessions.forEach((s) => {
       const m = s.modulo || "General";
-      if (!modMap.has(m)) modMap.set(m, { sum: 0, n: 0 });
+      if (!modMap.has(m)) modMap.set(m, { sum: 0, n: 0, ok: 0, tot: 0 });
       const e = modMap.get(m);
       e.sum += s.pct;
       e.n++;
+      e.ok += s.aciertos || 0;
+      e.tot += s.total || 0;
     });
 
     const modHtml = [...modMap.entries()]
       .map(([m, v]) => {
-        const ma = Math.round(v.sum / v.n);
-        return `<div class="rule-row"><span>${esc(m)} (${v.n} ses.)</span><span class="score-badge ${badgeClass(ma)}">${ma}%</span></div>`;
+        const ma = v.tot > 0 ? Math.round((v.ok / v.tot) * 100) : Math.round(v.sum / v.n);
+        const detail = v.tot > 0 ? ` · ${v.ok}/${v.tot}` : "";
+        return `<div class="rule-row"><span>${esc(m)} (${v.n} ses.${detail})</span><span class="score-badge ${badgeClass(ma)}">${ma}%</span></div>`;
       })
       .join("");
 
     const histHtml = sessions
-      .slice(0, 12)
+      .slice(0, 15)
       .map(
         (s) => `
         <tr>
           <td style="font-size:12px;color:var(--text-muted)">${esc(formatDate(s.date))}</td>
           <td>${esc(s.modulo)}</td>
-          <td>${s.aciertos}/${s.total}</td>
+          <td>${s.total > 0 ? `${s.aciertos}/${s.total}` : "—"}</td>
+          <td style="font-size:12px;color:var(--text-muted)">${s.duracion_seg > 0 ? formatTime(s.duracion_seg) : "—"}</td>
           <td><span class="score-badge ${badgeClass(s.pct)}">${s.pct}%</span></td>
         </tr>`
       )
       .join("");
 
     personModalBody.innerHTML = `
-      <div class="summary-kpis" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px">
+      <div class="summary-kpis" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">
         <div class="stat-tile"><strong>${sessions.length}</strong><span>Sesiones</span></div>
-        <div class="stat-tile ok"><strong>${avg}%</strong><span>Media</span></div>
-        <div class="stat-tile"><strong>${best}%</strong><span>Mejor nota</span></div>
+        <div class="stat-tile"><strong>${totalQ > 0 ? `${totalOk}/${totalQ}` : "—"}</strong><span>Aciertos / Preg.</span></div>
+        <div class="stat-tile ok"><strong>${avg}%</strong><span>Media real</span></div>
+        <div class="stat-tile"><strong>${secPerQ > 0 ? `${secPerQ}s` : "—"}</strong><span>Tiempo / preg.</span></div>
       </div>
       <div class="field-label" style="margin-bottom:6px">Rendimiento por módulo</div>
       <div class="rules-list" style="margin-bottom:14px;max-height:150px">${modHtml}</div>
       <div class="field-label" style="margin-bottom:6px">Últimas sesiones</div>
       <div class="table-wrap" style="max-height:200px;overflow-y:auto">
         <table class="data-table">
-          <thead><tr><th>Fecha</th><th>Módulo</th><th>Aciertos</th><th>Nota</th></tr></thead>
+          <thead><tr><th>Fecha</th><th>Módulo</th><th>Resultado</th><th>Tiempo</th><th>Nota</th></tr></thead>
           <tbody>${histHtml}</tbody>
         </table>
       </div>`;
@@ -960,38 +1040,88 @@
     });
   }
 
+  function computeRankingScore(p) {
+    // Fórmula justa de Ranking (0-100 pts) combinando precisión real, volumen de preguntas y agilidad:
+    // 1) Precisión ajustada por muestra (máx. 75 pts): evita que 1/1 (100%) gane a 50 preguntas al 96%
+    const priorQ = 5;
+    const priorRate = 0.7;
+    const adjAcc =
+      p.totalQuestions > 0
+        ? (p.totalCorrect + priorQ * priorRate) / (p.totalQuestions + priorQ)
+        : (p.avg / 100) * 0.85;
+    const accPts = adjAcc * 75;
+
+    // 2) Volumen de preguntas respondidas (máx. 15 pts, tope en 60 preguntas)
+    const volPts = Math.min(1, p.totalQuestions / 60) * 15;
+
+    // 3) Agilidad / tiempo medio por pregunta (máx. 10 pts)
+    let timePts = 5; // neutro si no hay dato de tiempo
+    if (p.secPerQ > 0) {
+      if (p.secPerQ < 4) timePts = 6; // demasiado rápido (posible clic al azar)
+      else if (p.secPerQ <= 25) timePts = 10; // ritmo ágil y reflexivo
+      else timePts = Math.max(2, 10 - ((p.secPerQ - 25) / 65) * 8);
+    }
+
+    const totalScore = Math.round(accPts + volPts + timePts);
+    const tip = `Ranking ${totalScore}/100 · Precisión ajustada: ${accPts.toFixed(1)}/75 · Volumen (${p.totalQuestions} preg.): ${volPts.toFixed(1)}/15 · Agilidad (${p.secPerQ ? p.secPerQ + "s/preg" : "sin dato"}): ${timePts.toFixed(1)}/10`;
+    return { score: totalScore, tip };
+  }
+
   function renderPeopleTable(list) {
     updateRulesBadge();
     const map = new Map();
     list.forEach((r) => {
       const key = r.personKey || canonPersonKey(r.nombre || "Sin nombre");
-      if (!map.has(key)) map.set(key, { key, name: r.nombre || "Sin nombre", sessions: 0, sum: 0, best: 0, last: null });
+      if (!map.has(key)) {
+        map.set(key, {
+          key,
+          name: r.nombre || "Sin nombre",
+          sessions: 0,
+          sum: 0,
+          totalQuestions: 0,
+          totalCorrect: 0,
+          totalTime: 0,
+          best: 0,
+          last: null,
+        });
+      }
       const p = map.get(key);
       p.sessions++;
       p.sum += r.pct;
+      p.totalQuestions += r.total || 0;
+      p.totalCorrect += r.aciertos || 0;
+      p.totalTime += r.duracion_seg || 0;
       if (r.pct > p.best) p.best = r.pct;
       if (r.date && (!p.last || r.date > p.last)) p.last = r.date;
     });
 
     const rows = [...map.values()]
-      .map((p) => ({ ...p, avg: Math.round(p.sum / p.sessions) }))
-      .sort((a, b) => b.avg - a.avg || b.sessions - a.sessions);
+      .map((p) => {
+        const avg = p.totalQuestions > 0 ? Math.round((p.totalCorrect / p.totalQuestions) * 100) : Math.round(p.sum / p.sessions);
+        const secPerQ = p.totalQuestions > 0 && p.totalTime > 0 ? Math.round(p.totalTime / p.totalQuestions) : 0;
+        const rk = computeRankingScore({ ...p, avg, secPerQ });
+        return { ...p, avg, secPerQ, rankScore: rk.score, rankTip: rk.tip };
+      })
+      .sort((a, b) => b.rankScore - a.rankScore || b.avg - a.avg || b.totalQuestions - a.totalQuestions);
 
     peopleCountTag.textContent = `${rows.length} personas`;
     if (!rows.length) {
-      peopleTableBody.innerHTML = '<tr><td colspan="6" class="empty-state">Sin datos para este filtro.</td></tr>';
+      peopleTableBody.innerHTML = '<tr><td colspan="8" class="empty-state">Sin datos para este filtro.</td></tr>';
       return;
     }
 
+    const medals = ["🥇", "🥈", "🥉"];
     peopleTableBody.innerHTML = rows
       .map(
-        (p) => `
+        (p, idx) => `
         <tr>
+          <td style="font-weight:700;text-align:center;white-space:nowrap">${idx < 3 ? medals[idx] : idx + 1}</td>
           <td><button type="button" class="person-link" data-open-person="${esc(p.key)}" data-open-name="${esc(p.name)}">${esc(p.name)}</button></td>
           <td>${p.sessions}</td>
+          <td style="white-space:nowrap">${p.totalQuestions > 0 ? `<strong>${p.totalCorrect}</strong>/${p.totalQuestions}` : "—"}</td>
           <td><span class="score-badge ${badgeClass(p.avg)}">${p.avg}%</span></td>
-          <td>${p.best}%</td>
-          <td style="color:var(--text-muted);font-size:12.5px">${p.last ? esc(p.last.toLocaleDateString("es-ES")) : "—"}</td>
+          <td style="color:var(--text-muted);font-size:12.5px;white-space:nowrap" title="Tiempo total acumulado: ${p.totalTime > 0 ? formatTime(p.totalTime) : "—"}">${p.secPerQ > 0 ? `${p.secPerQ}s` : "—"}</td>
+          <td><span class="score-badge ${badgeClass(p.rankScore)}" title="${esc(p.rankTip)}">${p.rankScore} pts</span></td>
           <td style="text-align:right">
             <div class="row-actions">
               <button type="button" class="mini-action" data-merge-key="${esc(p.key)}" data-merge-name="${esc(p.name)}" title="Combinar con otro participante">
