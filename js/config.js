@@ -3,7 +3,7 @@
  * Integrado con el sistema oficial Protocolo-Recep.
  */
 window.APP_CONFIG = {
-  version: "2.5.5",
+  version: "2.6.0",
   appName: "FORMACIÓN RECEPCIÓN - GUADIANA & CUMBRIA",
   hotelsLabel: "Sercotel Guadiana & Cumbria Spa&Hotel",
 
@@ -52,7 +52,8 @@ window.APP_CONFIG = {
     "Supervisión de Ocupación (Inventory)": { section: "5ª Sección · Inventory y Ocupación", query: "Inventory" },
     "PMS y Sistemas (Zenith / Onity)": { section: "10ª–12ª Sección · Onity y Zenith PMS", query: "Zenith" },
     "Canales de Venta y OTAs": { section: "Canales de Venta · SiteMinder / Booking / Witbooking", query: "Booking" },
-    "Grupos y Eventos": { section: "3ª Sección · Gestión de Grupos y Eventos", query: "Grupo" },
+    "Grupos y Eventos": { section: "4ª Sección · Eventos y Grupos", query: "Grupo" },
+    "Seguridad y Emergencias": { section: "5ª Sección · Seguridad", query: "Seguridad" },
     "Spa y Servicios": { section: "Servicios · Cumbria Spa & Escapadas", query: "Spa" },
   },
 

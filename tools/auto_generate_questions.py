@@ -32,7 +32,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CSV_PATH = ROOT / "data" / "plantilla_preguntas_unica.csv"
 STATE_PATH = ROOT / "data" / "sync_state.json"
 
-DEFAULT_PROTOCOLO_URL = "https://cumbriaspahotel.github.io/Protocolo-Recep/data.json"
+DEFAULT_PROTOCOLO_URL = "https://cumbriaspahotel.github.io/Protocolo-Recep/data.js"
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
 
 ALLOWED_MODULES = [
@@ -45,6 +45,7 @@ ALLOWED_MODULES = [
     "PMS y Sistemas (Zenith / Onity)",
     "Canales de Venta y OTAs",
     "Grupos y Eventos",
+    "Seguridad y Emergencias",
     "Spa y Servicios",
 ]
 
@@ -89,13 +90,68 @@ def content_hash(title: str, clean_text: str) -> str:
     return hashlib.sha256(f"{title}\n{clean_text}".encode("utf-8")).hexdigest()[:16]
 
 
+def extract_js_array(js_text: str, var_name: str) -> list:
+    m = re.search(rf"(?:var|const|let)\s+{re.escape(var_name)}\s*=\s*", js_text)
+    if not m:
+        return []
+    decoder = json.JSONDecoder()
+    idx = m.end()
+    while idx < len(js_text) and js_text[idx] in " \t\r\n":
+        idx += 1
+    try:
+        val, _ = decoder.raw_decode(js_text, idx)
+        return val if isinstance(val, list) else []
+    except Exception:
+        return []
+
+
+def parse_protocolo_source(raw: str) -> list[dict]:
+    stripped = raw.lstrip()
+    if stripped.startswith("[") or stripped.startswith("{"):
+        parsed = json.loads(raw)
+        return parsed if isinstance(parsed, list) else []
+
+    # Parsear data.js oficial de Protocolo-Recep (protocols_data + channels_config)
+    items = []
+    protocols = extract_js_array(raw, "protocols_data")
+    for p in protocols:
+        if isinstance(p, dict):
+            items.append(p)
+
+    channels = extract_js_array(raw, "channels_config")
+    for ch in channels:
+        if not isinstance(ch, dict) or not ch.get("name"):
+            continue
+        hotel = str(ch.get("hotel") or "").strip()
+        parts = [
+            f"Canal de venta: {ch.get('name')} ({hotel or 'Guadiana y Cumbria'})",
+            str(ch.get("summary") or ""),
+            str(ch.get("content") or ""),
+            str(ch.get("notes") or ""),
+            str(ch.get("errors") or ""),
+            str(ch.get("htmlContent") or ""),
+        ]
+        items.append(
+            {
+                "title": f"Canal {ch.get('name')} ({hotel})" if hotel else f"Canal {ch.get('name')}",
+                "section": "3.canales",
+                "updated": "2026-10-01T00:00:00Z",
+                "content": "\n".join(x for x in parts if x),
+                "isChannel": True,
+                "hotel": hotel,
+            }
+        )
+    return items
+
+
 def load_protocols(url: str, local_json: str | None) -> list[dict]:
     if local_json:
-        raw = Path(local_json).read_text(encoding="utf-8")
-        return json.loads(raw)
-    req = urllib.request.Request(url, headers={"User-Agent": "FormRecep-AutoGen/2.1"})
-    with urllib.request.urlopen(req, timeout=25) as resp:
-        return json.loads(resp.read().decode("utf-8", errors="replace"))
+        raw = Path(local_json).read_text(encoding="utf-8", errors="replace")
+        return parse_protocolo_source(raw)
+    req = urllib.request.Request(url, headers={"User-Agent": "FormRecep-AutoGen/2.6"})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        raw = resp.read().decode("utf-8", errors="replace")
+    return parse_protocolo_source(raw)
 
 
 def load_state() -> dict:
@@ -144,22 +200,24 @@ def write_csv_rows(headers: list[str], rows: list[dict]) -> None:
 def infer_default_module(p: dict) -> str:
     sec = str(p.get("section") or "").strip()
     title = str(p.get("title") or "").lower()
+    if p.get("isChannel") or any(w in title for w in ("siteminder", "witbooking", "booking", "expedia", "channel", "ota", "canal ")):
+        return "Canales de Venta y OTAs"
     if any(w in title for w in ("onity", "onportal", "zenith", "cerradura", "pms", "llave")):
         return "PMS y Sistemas (Zenith / Onity)"
-    if any(w in title for w in ("siteminder", "witbooking", "booking", "expedia", "channel", "ota")):
-        return "Canales de Venta y OTAs"
-    if any(w in title for w in ("grupo", "evento", "boda", "salón", "salon", "banquete")):
+    if sec.startswith("5") or any(w in title for w in ("seguridad", "emergencia", "incendio", "evacuación", "evacuacion", "policía", "policia", "rgpd")):
+        return "Seguridad y Emergencias"
+    if sec.startswith("4") or any(w in title for w in ("grupo", "evento", "boda", "salón", "salon", "banquete")):
         return "Grupos y Eventos"
     if any(w in title for w in ("spa", "circuito", "masaje", "escapada")):
         return "Spa y Servicios"
+    if p.get("isCritical") or any(w in title for w in ("error", "problema", "incidencia")):
+        return "Errores Comunes"
     if sec.startswith("1") or "turno" in title:
         return "Operativa Turnos"
+    if any(w in title for w in ("inventory", "ocupación", "ocupacion", "overbooking")):
+        return "Supervisión de Ocupación (Inventory)"
     if sec.startswith("3") or "reserva" in title:
         return "Reservas"
-    if sec.startswith("4") or "error" in title or "problema" in title or "incidencia" in title:
-        return "Errores Comunes"
-    if sec.startswith("5") or "inventory" in title or "ocupación" in title or "ocupacion" in title:
-        return "Supervisión de Ocupación (Inventory)"
     if any(w in title for w in ("factur", "caja", "cobro", "pago", "tarjeta", "crédito", "credito", "tpv")):
         return "Gestión Administrativa y Cobros"
     return "Atención al Cliente y Protocolo"

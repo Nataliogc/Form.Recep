@@ -2,11 +2,17 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.5.5`** | **22/11/2026** | Producción |
+| **`v2.6.0`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.6.0] — 22/11/2026
+- **Módulos Afectados:** Automatización IA, Integración Protocolo-Recep
+- **Tipo de Cambio:** Nueva Característica / Mejora
+- **Detalle de Cambios:**
+  - Conectado el generador IA directamente a Protocolo-Recep/data.js (72 protocolos en vivo + 16 canales de venta: Smartbox, Wonderbox, Gest-Spa, Onity RFID, Segmentación, etc.)
 
 ### [v2.5.5] — 22/11/2026
 - **Módulos Afectados:** Automatización IA
