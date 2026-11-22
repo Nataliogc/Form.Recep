@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "last_run": "2026-11-22T02:05:05+00:00",
+  "last_run": "2026-11-22T02:10:15+00:00",
   "protocols": {
     "f3c398578147": {
       "title": "Procedimiento operativo - Organización, seguimiento y resolución durante el turno de Recepción",
@@ -1058,6 +1058,45 @@
       "updated": "2024-11-01T23:49:21.014Z",
       "hash": "c340183abc1ebb31",
       "question_ids": []
+    },
+    "1ba463d2b9e7": {
+      "title": "Smartbox (La Vida es Bella / Dakotabox)",
+      "section": "5.2.11",
+      "updated": "2026-11-16",
+      "hash": "7ce3320d764f87bb",
+      "question_ids": [
+        273,
+        274
+      ]
+    },
+    "72cf83a76906": {
+      "title": "Wonderbox (Vivabox / Cofre VIP)",
+      "section": "5.2.12",
+      "updated": "2026-11-16",
+      "hash": "2803793dfbf41d48",
+      "question_ids": [],
+      "skipped_non_operational": true
+    },
+    "3154e8399f91": {
+      "title": "Ego Experiencias",
+      "section": "5.2.13",
+      "updated": "2026-11-16",
+      "hash": "66b04628e68b26d5",
+      "question_ids": [
+        275,
+        276
+      ]
+    },
+    "2ec986808dc8": {
+      "title": "GEST-SPA · 1. Inicio, Estados y Acciones",
+      "section": "5.2.5",
+      "updated": "2026-11-15",
+      "hash": "00249dbe4a079b2d",
+      "question_ids": [
+        277,
+        278,
+        279
+      ]
     }
   }
 }

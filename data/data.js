@@ -1,8 +1,8 @@
 // Autogenerado a partir de data/plantilla_preguntas_unica.csv
-// Actualizado: 2026-11-22T02:05:05+00:00 (270 preguntas)
+// Actualizado: 2026-11-22T02:10:15+00:00 (277 preguntas)
 window.QUIZ = {
-  "count": 270,
-  "updated_at": "2026-11-22T02:05:05+00:00",
+  "count": 277,
+  "updated_at": "2026-11-22T02:10:15+00:00",
   "questions": [
     {
       "id": 1,
@@ -3382,7 +3382,7 @@ window.QUIZ = {
       "C": "Durante el check-in, cuando el huésped presenta el bono físico y el sistema detecta el número antiguo como “validado parcialmente”.",
       "D": "Únicamente durante la noche previa a la llegada, cuando el PMS entra en modo de conciliación y permite actualizar el código sin romper la validación automática.",
       "correct_letter": "D",
-      "why": "Los bonos Smartbox se validan y sincronizan automáticamente con la plataforma.\nModificar el código antes o después del ciclo nocturno previo a la llegada genera errores de conciliación, validaciones duplicadas y pérdida de trazabilidad.\nPor ello, el procedimiento establece que solo puede cambiarse la noche anterior, cuando el PMS ejecuta la verificación final previa al uso del servicio."
+      "why": "Los bonos Smartbox se validan y sincronizan automáticamente con la plataforma.Modificar el código antes o después del ciclo nocturno previo a la llegada genera errores de conciliación, validaciones duplicadas y pérdida de trazabilidad.Por ello, el procedimiento establece que solo puede cambiarse la noche anterior, cuando el PMS ejecuta la verificación final previa al uso del servicio."
     },
     {
       "id": 263,
@@ -3513,6 +3513,97 @@ window.QUIZ = {
       "D": "Registrar únicamente el país de origen, ya que es el único dato exigido para extranjeros",
       "correct_letter": "A",
       "why": "El RD 933/2021 exige registrar el domicilio declarado del viajero. Como el pasaporte no lo incorpora, el recepcionista debe pedirlo directamente al huésped y consignarlo manualmente en el MR-HOSPE. Sin este dato, el XML no puede validarse ni enviarse correctamente."
+    },
+    {
+      "id": 273,
+      "departamento": "Recepción",
+      "categoria": "Spa y Servicios",
+      "nivel": "Intermedio",
+      "texto": "Según el procedimiento operativo para la gestión de bonos Smartbox (La Vida es Bella / Dakotabox) en Recepción de Spa, ¿cuál es la secuencia correcta de pasos antes y durante el registro de la cita?",
+      "A": "Confirmar la cita al cliente, canjear el bono al finalizar el servicio en Gest-Spa seleccionando origen 'Cobro Pendiente' y anotar el código en la factura.",
+      "B": "Solicitar el código al cliente antes de confirmar la cita, comprobar estado y servicios en Smartbox Partners, realizar el canje en la plataforma y registrarlo en Gest-Spa seleccionando Origen 'Smartbox (0 € en caja)' con el código completo en Observaciones.",
+      "C": "Solicitar el bono a la llegada del cliente, registrar la reserva en Gest-Spa con origen 'Venta Directa' y realizar el canje en la plataforma Smartbox Partners únicamente al cierre del turno.",
+      "D": "Validar el bono en Smartbox Partners, confirmar la cita e introducir en Gest-Spa un cobro de 0 € bajo el origen 'Tarjeta Crédito', guardando el código en el nombre del titular.",
+      "correct_letter": "B",
+      "why": "El manual especifica requerir el número de cheque/código antes de confirmar la cita, verificar validez y servicios en el portal Smartbox Partners, canjearlo en la plataforma para asegurar la liquidación, y registrarlo en Gest-Spa seleccionando Origen 'Smartbox (0 € en caja)' anotando el código completo en Observaciones."
+    },
+    {
+      "id": 274,
+      "departamento": "Recepción",
+      "categoria": "Spa y Servicios",
+      "nivel": "Intermedio",
+      "texto": "Al procesar una reserva de cofre regalo en Gest-Spa en la Recepción del Spa, ¿de qué forma exacta debe registrarse el origen del cobro y los datos del bono?",
+      "A": "Seleccionando Origen 'Venta Directa Spa' y especificando el número de bono en la casilla de importe cobrado.",
+      "B": "Seleccionando Origen 'Smartbox (0 € en caja)' y anotando el código completo en el campo Observaciones.",
+      "C": "Seleccionando Origen 'Bono Externo' con importe cero y adjuntando el justificante impreso al arqueo de caja.",
+      "D": "Seleccionando Origen 'Cobro OTA' y detallando en el campo de observaciones la fecha de caducidad del bono.",
+      "correct_letter": "B",
+      "why": "El procedimiento indica de forma explícita que en Gest-Spa se debe seleccionar el Origen 'Smartbox (0 € en caja)' y anotar el código completo en Observaciones."
+    },
+    {
+      "id": 275,
+      "departamento": "Recepción",
+      "categoria": "Spa y Servicios",
+      "nivel": "Intermedio",
+      "texto": "¿Cuál es el procedimiento correcto para registrar un bono de Ego Experiencias en la aplicación Gest-Spa?",
+      "A": "Seleccionar Origen 'Ego Experiencias' (0 € en caja) y anotar el código del bono en Observaciones.",
+      "B": "Seleccionar Origen 'Cliente Directo', registrar el cobro en efectivo y adjuntar el localizador en la ficha.",
+      "C": "Seleccionar Origen 'Bono Externo General', aplicar un cobro de tarifa base y reflejar el descuento en Observaciones.",
+      "D": "Registrar la reserva sin origen específico y dejar la caja en pendiente de cobro por transferencia.",
+      "correct_letter": "A",
+      "why": "El documento indica explícitamente que en Gest-Spa se debe seleccionar Origen Ego Experiencias (0 € en caja) y anotar el código en el apartado de Observaciones."
+    },
+    {
+      "id": 276,
+      "departamento": "Recepción",
+      "categoria": "Spa y Servicios",
+      "nivel": "Intermedio",
+      "texto": "¿En qué momento se debe realizar la validación del canje del bono de Ego Experiencias en el portal correspondiente?",
+      "A": "Se valida en el portal correspondiente al finalizar la sesión del cliente en el Spa.",
+      "B": "Se valida automáticamente en el sistema al guardar la reserva en Gest-Spa.",
+      "C": "Se valida el canje en el portal correspondiente antes de la entrada del cliente al Spa.",
+      "D": "Se realiza la validación únicamente durante el cierre y arqueo de caja del turno de noche.",
+      "correct_letter": "C",
+      "why": "Según la secuencia de pasos clave descrita en el manual, la validación del canje en el portal correspondiente debe realizarse obligatoriamente antes de la entrada al Spa."
+    },
+    {
+      "id": 277,
+      "departamento": "Recepción",
+      "categoria": "Spa y Servicios",
+      "nivel": "Intermedio",
+      "texto": "Si un cliente alojado acude al Spa y en la columna ESTADO de GEST-SPA se muestra el distintivo 'HOT. NO INC. 30€', ¿cuál es el procedimiento correcto que debe seguir el recepcionista?",
+      "A": "Darle acceso inmediato sin gestionar cobros, ya que al estar alojado se liquida automáticamente al hacer check-out.",
+      "B": "Cobrar los 30€ directamente en la recepción del Spa o tramitar el cargo correspondiente a la habitación del huésped.",
+      "C": "Solicitarle un bono físico o código de validación externo para poder autorizar su entrada al circuito.",
+      "D": "Marcar la cita como 'SIN CARGO · Dirección' para no generar descuadres en la caja del Spa.",
+      "correct_letter": "B",
+      "why": "El manual establece que el estado 'HOT. NO INC. 30€' corresponde a un huésped alojado sin el servicio incluido, por lo que se debe cobrar la tarifa en recepción o realizar el cargo a su habitación."
+    },
+    {
+      "id": 278,
+      "departamento": "Recepción",
+      "categoria": "PMS y Sistemas (Zenith / Onity)",
+      "nivel": "Básico",
+      "texto": "En el panel de Inicio de GEST-SPA, ¿qué efecto operativo tiene pulsar el botón 'Confirmar Asistencia (Presentado)' en la columna ACCIONES cuando el cliente llega al mostrador?",
+      "A": "Abre automáticamente la pasarela PayGold para tramitar el cobro con tarjeta bancaria.",
+      "B": "Cambia la reserva a color verde con doble check y notifica a las terapeutas que el cliente ya ha llegado al Spa.",
+      "C": "Genera el informe de caja del día y envía el justificante de la reserva por correo electrónico.",
+      "D": "Bloquea la cabina o sala asignada durante 15 minutos adicionales por tareas de limpieza.",
+      "correct_letter": "B",
+      "why": "Según el manual, al pulsar 'Confirmar Asistencia (Presentado)' la cita pasa a verde con doble check y avisa a las terapeutas de que el cliente ya está en el Spa."
+    },
+    {
+      "id": 279,
+      "departamento": "Recepción",
+      "categoria": "Errores Comunes",
+      "nivel": "Intermedio",
+      "texto": "Al intentar enviar el recordatorio automático o enlace de pago por WhatsApp a un cliente desde la columna ACCIONES, un recepcionista observa que la opción no aparece. ¿A qué se debe esto según el manual?",
+      "A": "A que la cita está marcada en el sistema con el estado 'PAGADO'.",
+      "B": "A que la reserva corresponde a un cofre regalo externo (Smartbox o Wonderbox).",
+      "C": "A que no se ha registrado ningún número de teléfono en la ficha del cliente.",
+      "D": "A que han transcurrido más de 15 minutos de retraso sobre la hora reservada.",
+      "correct_letter": "C",
+      "why": "El manual especifica explícitamente en la nota de la acción 'Enviar WhatsApp' que si el botón no aparece es debido a que la ficha del cliente no tiene teléfono."
     }
   ]
 };
