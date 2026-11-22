@@ -2,11 +2,17 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.2.1`** | **22/11/2026** | Producción |
+| **`v2.2.2`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.2.2] — 22/11/2026
+- **Módulos Afectados:** Panel Administrador
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Habilitada carga remota de resultados CSV desde modo local (file://) y añadido cache-busting automático (?v=) en admin.html
 
 ### [v2.2.1] — 22/11/2026
 - **Módulos Afectados:** Panel Administrador, Configuración

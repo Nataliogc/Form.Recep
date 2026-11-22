@@ -213,9 +213,9 @@
   async function loadResultsFromRemote() {
     setBanner("info", '<i class="fas fa-spinner fa-spin"></i> Cargando resultados desde Google Sheets…');
 
-    // 1) Si hay URL CSV de resultados configurada
+    // 1) Si hay URL CSV de resultados configurada (funciona tanto en web como en local file://)
     const csvUrl = getConfiguredResultsCsvUrl();
-    if (csvUrl && location.protocol !== "file:") {
+    if (csvUrl) {
       try {
         const sep = csvUrl.includes("?") ? "&" : "?";
         const res = await fetch(`${csvUrl}${sep}_ts=${Date.now()}`, { cache: "no-store" });
@@ -234,7 +234,7 @@
 
     // 2) Intentar leer JSON via doGet() del mismo RESULTS_ENDPOINT de Apps Script
     const endpoint = CFG.RESULTS_ENDPOINT;
-    if (endpoint && location.protocol !== "file:") {
+    if (endpoint) {
       try {
         const sep = endpoint.includes("?") ? "&" : "?";
         const res = await fetch(`${endpoint}${sep}action=get_results&_ts=${Date.now()}`, { cache: "no-store" });

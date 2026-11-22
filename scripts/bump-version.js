@@ -82,7 +82,8 @@ if (fs.existsSync(swPath)) {
     const html = fs.readFileSync(htmlPath, 'utf8');
     const updated = html
       .replace(/(<span id="app-version-badge"[^>]*>)v[0-9.]+(<\/span>)/, `$1v${newVersion}$2`)
-      .replace(/(<span id="footerMeta"[^>]*>)v[0-9.]+(<\/span>)/, `$1v${newVersion}$2`);
+      .replace(/(<span id="footerMeta"[^>]*>)v[0-9.]+(<\/span>)/, `$1v${newVersion}$2`)
+      .replace(/\?v=[0-9.]+/g, `?v=${newVersion}`);
     fs.writeFileSync(htmlPath, updated, 'utf8');
   }
 });
