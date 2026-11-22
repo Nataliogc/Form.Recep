@@ -2,11 +2,17 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.7.1`** | **22/11/2026** | Producción |
+| **`v2.7.2`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.7.2] — 22/11/2026
+- **Módulos Afectados:** Panel Admin, CSS
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Evitar salto de línea en badges .score-badge (84 pts) y ajustar espaciado compacto en tabla de ranking
 
 ### [v2.7.1] — 22/11/2026
 - **Módulos Afectados:** Panel Admin, Estadísticas, Ranking

@@ -213,6 +213,18 @@
   vertical-align: middle;
 }
 
+.data-table.ranking-table th,
+.data-table.ranking-table td {
+  padding: 9px 8px;
+}
+
+.data-table.ranking-table td:first-child,
+.data-table.ranking-table th:first-child {
+  padding-left: 6px;
+  padding-right: 4px;
+  width: 32px;
+}
+
 .data-table tbody tr:hover {
   background: var(--bg-light);
 }
