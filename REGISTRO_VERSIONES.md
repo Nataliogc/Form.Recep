@@ -2,11 +2,17 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.2.0`** | **22/11/2026** | Producción |
+| **`v2.2.1`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.2.1] — 22/11/2026
+- **Módulos Afectados:** Panel Administrador, Configuración
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Conectada la URL CSV en vivo de Formación – Resultados.gsheet en config.js para el Panel de Administrador
 
 ### [v2.2.0] — 22/11/2026
 - **Módulos Afectados:** Panel Administrador
