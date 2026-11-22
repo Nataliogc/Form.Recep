@@ -1,8 +1,8 @@
 // Autogenerado a partir de data/plantilla_preguntas_unica.csv
-// Actualizado: 2026-11-22T02:10:15+00:00 (277 preguntas)
+// Actualizado: 2026-11-22T02:15:24+00:00 (277 preguntas)
 window.QUIZ = {
   "count": 277,
-  "updated_at": "2026-11-22T02:10:15+00:00",
+  "updated_at": "2026-11-22T02:15:24+00:00",
   "questions": [
     {
       "id": 1,
@@ -3516,7 +3516,7 @@ window.QUIZ = {
     },
     {
       "id": 273,
-      "departamento": "Recepción",
+      "departamento": "Spa",
       "categoria": "Spa y Servicios",
       "nivel": "Intermedio",
       "texto": "Según el procedimiento operativo para la gestión de bonos Smartbox (La Vida es Bella / Dakotabox) en Recepción de Spa, ¿cuál es la secuencia correcta de pasos antes y durante el registro de la cita?",
@@ -3529,7 +3529,7 @@ window.QUIZ = {
     },
     {
       "id": 274,
-      "departamento": "Recepción",
+      "departamento": "Spa",
       "categoria": "Spa y Servicios",
       "nivel": "Intermedio",
       "texto": "Al procesar una reserva de cofre regalo en Gest-Spa en la Recepción del Spa, ¿de qué forma exacta debe registrarse el origen del cobro y los datos del bono?",
@@ -3542,7 +3542,7 @@ window.QUIZ = {
     },
     {
       "id": 275,
-      "departamento": "Recepción",
+      "departamento": "Spa",
       "categoria": "Spa y Servicios",
       "nivel": "Intermedio",
       "texto": "¿Cuál es el procedimiento correcto para registrar un bono de Ego Experiencias en la aplicación Gest-Spa?",
@@ -3555,7 +3555,7 @@ window.QUIZ = {
     },
     {
       "id": 276,
-      "departamento": "Recepción",
+      "departamento": "Spa",
       "categoria": "Spa y Servicios",
       "nivel": "Intermedio",
       "texto": "¿En qué momento se debe realizar la validación del canje del bono de Ego Experiencias en el portal correspondiente?",
@@ -3568,7 +3568,7 @@ window.QUIZ = {
     },
     {
       "id": 277,
-      "departamento": "Recepción",
+      "departamento": "Spa",
       "categoria": "Spa y Servicios",
       "nivel": "Intermedio",
       "texto": "Si un cliente alojado acude al Spa y en la columna ESTADO de GEST-SPA se muestra el distintivo 'HOT. NO INC. 30€', ¿cuál es el procedimiento correcto que debe seguir el recepcionista?",
@@ -3581,8 +3581,8 @@ window.QUIZ = {
     },
     {
       "id": 278,
-      "departamento": "Recepción",
-      "categoria": "PMS y Sistemas (Zenith / Onity)",
+      "departamento": "Spa",
+      "categoria": "Spa y Servicios",
       "nivel": "Básico",
       "texto": "En el panel de Inicio de GEST-SPA, ¿qué efecto operativo tiene pulsar el botón 'Confirmar Asistencia (Presentado)' en la columna ACCIONES cuando el cliente llega al mostrador?",
       "A": "Abre automáticamente la pasarela PayGold para tramitar el cobro con tarjeta bancaria.",
@@ -3594,7 +3594,7 @@ window.QUIZ = {
     },
     {
       "id": 279,
-      "departamento": "Recepción",
+      "departamento": "Spa",
       "categoria": "Errores Comunes",
       "nivel": "Intermedio",
       "texto": "Al intentar enviar el recordatorio automático o enlace de pago por WhatsApp a un cliente desde la columna ACCIONES, un recepcionista observa que la opción no aparece. ¿A qué se debe esto según el manual?",

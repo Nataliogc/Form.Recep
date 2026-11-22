@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-11-22T02:10:15+00:00",
+  "updated_at": "2026-11-22T02:15:24+00:00",
   "count": 277,
   "source": "repository_csv",
   "departments": [
     "Recep-Cumbria",
     "Recep-Guadiana",
-    "Recepción"
+    "Recepción",
+    "Spa"
   ],
   "modules": [
     "Atención al Cliente y Protocolo",
     "Errores Comunes",
     "Gestión Administrativa y Cobros",
     "Operativa Turnos",
-    "PMS y Sistemas (Zenith / Onity)",
     "Reservas",
     "Spa y Servicios",
     "Supervisión de Ocupación (Inventory)"

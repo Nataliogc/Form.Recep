@@ -2,11 +2,17 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.6.2`** | **22/11/2026** | Producción |
+| **`v2.6.3`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.6.3] — 22/11/2026
+- **Módulos Afectados:** Clasificación DTO, Automatización IA
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Separación estricta entre Hoteles (Recepción, Recep-Guadiana, Recep-Cumbria) y Spa (DTO dedicado 'Spa' para GEST-SPA, circuito termal y bonos)
 
 ### [v2.6.2] — 22/11/2026
 - **Módulos Afectados:** Automatización IA

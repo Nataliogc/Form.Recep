@@ -89,7 +89,7 @@ ALLOWED_MODULES = [
     "Spa y Servicios",
 ]
 
-ALLOWED_DTOS = ["Recepción", "Recep-Guadiana", "Recep-Cumbria"]
+ALLOWED_DTOS = ["Recepción", "Recep-Guadiana", "Recep-Cumbria", "Spa"]
 ALLOWED_LEVELS = ["Básico", "Intermedio", "Avanzado"]
 
 CSV_HEADERS = [
@@ -263,7 +263,22 @@ def infer_default_module(p: dict) -> str:
     return "Atención al Cliente y Protocolo"
 
 
-def infer_default_dto(title: str, clean_text: str) -> str:
+def is_spa_protocol(p: dict, clean_text: str) -> bool:
+    sec = str(p.get("section") or "").strip()
+    title = str(p.get("title") or "").lower()
+    head = f"{title}\n{clean_text[:800]}".lower()
+    if sec.startswith("5.2"):
+        return True
+    if any(w in title for w in ("gest-spa", "spa", "smartbox", "wonderbox", "ego experiencias", "circuito termal", "cabinas")):
+        return True
+    if "gest-spa" in head or "recepción del spa" in head or "circuito termal" in head:
+        return True
+    return False
+
+
+def infer_default_dto(p: dict, title: str, clean_text: str) -> str:
+    if is_spa_protocol(p, clean_text):
+        return "Spa"
     blob = f"{title}\n{clean_text[:1500]}".lower()
     has_g = "guadiana" in blob
     has_c = "cumbria" in blob
@@ -277,12 +292,13 @@ def infer_default_dto(title: str, clean_text: str) -> str:
 def call_gemini(api_key: str, protocol: dict, clean_text: str, num_questions: int) -> list[dict]:
     title = str(protocol.get("title") or "").strip()
     section = str(protocol.get("section") or "").strip()
-    default_mod = infer_default_module(protocol)
-    default_dto = infer_default_dto(title, clean_text)
+    spa_doc = is_spa_protocol(protocol, clean_text)
+    default_mod = "Spa y Servicios" if spa_doc else infer_default_module(protocol)
+    default_dto = infer_default_dto(protocol, title, clean_text)
 
     excerpt = clean_text[:6500]
     prompt = f"""Eres el Director de Recepción y Calidad de Sercotel Guadiana y Cumbria Spa&Hotel.
-Evalúa el siguiente documento del manual interno y, SOLO si contiene procedimientos operativos reales, redacta entre 1 y {num_questions} preguntas tipo test de alto valor práctico para el equipo de recepción.
+Evalúa el siguiente documento del manual interno y, SOLO si contiene procedimientos operativos reales, redacta entre 1 y {num_questions} preguntas tipo test de alto valor práctico para el equipo.
 
 DOCUMENTO:
 - Título: {title}
@@ -295,11 +311,15 @@ DOCUMENTO:
 REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
 1. SI el documento es puramente turístico, cultural, institucional, un enlace sin procedimiento o no contiene reglas operativas evaluables (ej. "Trabaja con nosotros", agenda cultural, enlaces externos sin pasos), DEVUELVE UN ARRAY VACÍO: []. NUNCA inventes preguntas de relleno.
 2. PROHIBIDO hacer preguntas tontas, obvias o triviales (ej. "¿Es importante ser amable?", "¿De qué color es el botón?", preguntas sobre títulos o formato del documento).
-3. ENFÓCATE EN OPERATIVA REAL DE MOSTRADOR: pasos obligatorios en PMS/Channel/Onity, horarios límite, gestión de caja/facturación/garantías, políticas de cancelación/no-show, coordinación con pisos/dirección y prevención de errores reales.
+3. ENFÓCATE EN OPERATIVA REAL DE MOSTRADOR: pasos obligatorios en PMS/Channel/Onity/GEST-SPA, horarios límite, gestión de caja/facturación/garantías, políticas de cancelación/no-show, coordinación con pisos/terapeutas/dirección y prevención de errores reales.
 4. OPCIONES REALISTAS: las 4 opciones (A, B, C, D) deben ser verosímiles y de longitud similar (errores que cometería un recepcionista sin experiencia). PROHIBIDO poner opciones absurdas o ridículas que delaten la respuesta correcta.
 5. FIDELIDAD ABSOLUTA: cada pregunta y explicación ("why") debe basarse exclusivamente en hechos concretos del texto anterior (no inventes importes, horarios ni normas).
-6. "dto" debe ser uno de: {json.dumps(ALLOWED_DTOS, ensure_ascii=False)} (sugerido: "{default_dto}").
-7. "categoria" debe ser exactamente uno de: {json.dumps(ALLOWED_MODULES, ensure_ascii=False)} (sugerido: "{default_mod}").
+6. SEPARACIÓN HOTELES vs SPA ("dto") — OBLIGATORIO elegir exactamente uno de {json.dumps(ALLOWED_DTOS, ensure_ascii=False)} (sugerido: "{default_dto}"):
+   - Usa "Spa" para TODO lo relativo al Spa, GEST-SPA, circuito termal, cabinas, terapeutas o bonos/cofres regalo del Spa.
+   - Usa "Recep-Guadiana" solo si es exclusivo de Sercotel Guadiana.
+   - Usa "Recep-Cumbria" solo si es exclusivo del Hotel Cumbria (alojamiento, no Spa).
+   - Usa "Recepción" para la operativa común de ambos hoteles.
+7. "categoria" debe ser exactamente uno de: {json.dumps(ALLOWED_MODULES, ensure_ascii=False)} (sugerido: "{default_mod}"). Si el documento es de Spa/GEST-SPA, usa "Spa y Servicios" (o "Errores Comunes" solo para incidencias).
 8. "nivel" debe ser uno de: {json.dumps(ALLOWED_LEVELS, ensure_ascii=False)}.
 9. Responde ÚNICAMENTE con un array JSON válido de objetos con estas claves exactas:
    "dto", "categoria", "nivel", "texto", "A", "B", "C", "D", "correct_letter", "why" (o [] si no aplica).
@@ -391,10 +411,12 @@ REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
         if not (texto and A and B and C and D and corr in ("A", "B", "C", "D") and why):
             continue
 
-        dto = str(item.get("dto") or default_dto).strip()
+        dto = "Spa" if spa_doc else str(item.get("dto") or default_dto).strip()
         if dto not in ALLOWED_DTOS:
             dto = default_dto
         cat = str(item.get("categoria") or default_mod).strip()
+        if spa_doc and cat not in ("Spa y Servicios", "Errores Comunes"):
+            cat = "Spa y Servicios"
         if cat not in ALLOWED_MODULES:
             cat = default_mod
         nivel = str(item.get("nivel") or "Intermedio").strip()
