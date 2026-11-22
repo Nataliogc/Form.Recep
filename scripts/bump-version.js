@@ -7,6 +7,7 @@ const registroPath = path.join(root, 'REGISTRO_VERSIONES.md');
 const configPath = path.join(root, 'js', 'config.js');
 const swPath = path.join(root, 'sw.js');
 const indexPath = path.join(root, 'index.html');
+const adminPath = path.join(root, 'admin.html');
 
 // Uso: node scripts/bump-version.js "Descripción del cambio" [--patch|--minor|--major] [--modules "Módulo"]
 const args = process.argv.slice(2);
@@ -75,14 +76,16 @@ if (fs.existsSync(swPath)) {
   fs.writeFileSync(swPath, updated, 'utf8');
 }
 
-// 3. Actualizar badge visible en index.html
-if (fs.existsSync(indexPath)) {
-  const html = fs.readFileSync(indexPath, 'utf8');
-  const updated = html
-    .replace(/(<span id="app-version-badge"[^>]*>)v[0-9.]+(<\/span>)/, `$1v${newVersion}$2`)
-    .replace(/(<span id="footerMeta"[^>]*>)v[0-9.]+(<\/span>)/, `$1v${newVersion}$2`);
-  fs.writeFileSync(indexPath, updated, 'utf8');
-}
+// 3. Actualizar badge visible en index.html y admin.html
+[indexPath, adminPath].forEach((htmlPath) => {
+  if (fs.existsSync(htmlPath)) {
+    const html = fs.readFileSync(htmlPath, 'utf8');
+    const updated = html
+      .replace(/(<span id="app-version-badge"[^>]*>)v[0-9.]+(<\/span>)/, `$1v${newVersion}$2`)
+      .replace(/(<span id="footerMeta"[^>]*>)v[0-9.]+(<\/span>)/, `$1v${newVersion}$2`);
+    fs.writeFileSync(htmlPath, updated, 'utf8');
+  }
+});
 
 // 4. Actualizar REGISTRO_VERSIONES.md
 if (fs.existsSync(registroPath)) {

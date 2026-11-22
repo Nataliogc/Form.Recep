@@ -165,16 +165,17 @@
       if (!valid.length) return;
       const baseUrl = CFG.PROTOCOLO_RECEP_URL || "https://cumbriaspahotel.github.io/Protocolo-Recep/";
       protoUpdatesList.innerHTML = valid
-        .map(
-          (p) => `
+        .map((p) => {
+          const cleanTitle = String(p.title || "").replace(/\{[^}]*\}/g, "").trim();
+          return `
           <a class="proto-item" href="${esc(baseUrl)}" target="_blank" rel="noopener">
             <div>
-              <strong>${esc(p.title)}</strong>
+              <strong>${esc(cleanTitle)}</strong>
               <small><i class="far fa-clock"></i> ${esc(formatDateShort(p.updated))}${p.section ? ` · Sec. ${esc(p.section)}` : ""}</small>
             </div>
             <i class="fas fa-external-link-alt"></i>
-          </a>`
-        )
+          </a>`;
+        })
         .join("");
       protoUpdatesCard.classList.remove("hidden");
     } catch (_) {

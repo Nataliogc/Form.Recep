@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PANEL ADMINISTRADOR · Formación Recepción</title>
+  <link rel="icon" href="./Form.Recep.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- CABECERA ADMINISTRADOR -->
+  <header class="main-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="brand-logos">
+          <img src="./img/logo-guadiana.png" alt="Sercotel Guadiana" onerror="this.style.display='none'">
+          <span class="brand-sep" aria-hidden="true"></span>
+          <img src="./img/logo-cumbria.png" alt="Cumbria Spa&Hotel" onerror="this.style.display='none'">
+        </div>
+        <div class="header-titles">
+          <div class="header-title-row">
+            <h1>PANEL ADMINISTRADOR · FORMACIÓN RECEPCIÓN</h1>
+            <span id="app-version-badge" class="version-badge">v2.2.0</span>
+          </div>
+          <div class="header-update">
+            <i class="fas fa-chart-line"></i>
+            <span id="adminSubtitle">Analítica de resultados · Guadiana &amp; Cumbria</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <a class="manual-link-btn" href="./index.html" title="Volver a la vista pública de formación">
+          <i class="fas fa-graduation-cap"></i>
+          <span>Vista Test</span>
+        </a>
+        <button id="btnSourceModal" class="hdr-icon-btn hidden" type="button" title="Configurar fuente de resultados (Google Sheets)">
+          <i class="fas fa-database"></i>
+        </button>
+        <button id="btnLogout" class="hdr-icon-btn hidden" type="button" title="Cerrar sesión">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+        <button id="btnTheme" class="theme-btn" type="button" title="Cambiar modo oscuro" aria-label="Cambiar modo oscuro">
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+
+    <!-- ==================== PANTALLA DE ACCESO ==================== -->
+    <section id="loginView" class="login-screen">
+      <div class="card login-card">
+        <div class="card-accent-bar"></div>
+        <div class="card-body">
+          <div class="login-icon"><i class="fas fa-shield-alt"></i></div>
+          <h2 style="margin:0 0 6px">Acceso Administración</h2>
+          <p style="margin:0 0 18px;font-size:13.5px;color:var(--text-muted)">
+            Introduce la clave de dirección para consultar resultados, evolución del equipo y preguntas más falladas.
+          </p>
+
+          <form id="loginForm">
+            <div class="field-group">
+              <label class="field-label" for="passInput">Clave de acceso</label>
+              <input id="passInput" type="password" placeholder="Introduce la contraseña" autocomplete="current-password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="fas fa-unlock-alt"></i> Entrar al panel
+            </button>
+            <div id="loginError" class="login-error hidden">Contraseña incorrecta.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== DASHBOARD ADMINISTRADOR ==================== -->
+    <section id="dashboardView" class="view hidden">
+
+      <!-- Banner de estado de fuente -->
+      <div id="sourceBanner" class="source-banner">
+        <div id="sourceBannerText">
+          <i class="fas fa-spinner fa-spin"></i> Conectando con Google Sheets…
+        </div>
+        <div class="source-banner-actions">
+          <label class="btn" style="padding:7px 12px;font-size:12.5px;cursor:pointer">
+            <i class="fas fa-file-csv"></i> Importar CSV
+            <input id="csvFileInput" type="file" accept=".csv,text/csv" class="hidden">
+          </label>
+          <button id="btnLoadDemo" class="btn" type="button" style="padding:7px 12px;font-size:12.5px">
+            <i class="fas fa-flask"></i> Datos de prueba
+          </button>
+          <button id="btnRefreshResults" class="btn btn-primary" type="button" style="padding:7px 12px;font-size:12.5px">
+            <i class="fas fa-sync-alt"></i> Actualizar
+          </button>
+        </div>
+      </div>
+
+      <!-- Barra de filtros -->
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-body" style="padding:14px 18px">
+          <div class="admin-toolbar" style="margin-bottom:0">
+            <div class="filter-bar">
+              <div class="filter-item">
+                <label for="fSearch">Recepcionista</label>
+                <input id="fSearch" type="text" placeholder="Buscar nombre…">
+              </div>
+              <div class="filter-item">
+                <label for="fDept">Departamento</label>
+                <select id="fDept"><option value="">Todos</option></select>
+              </div>
+              <div class="filter-item">
+                <label for="fMod">Módulo</label>
+                <select id="fMod"><option value="">Todos</option></select>
+              </div>
+              <div class="filter-item">
+                <label for="fRange">Periodo</label>
+                <select id="fRange">
+                  <option value="all">Todo el histórico</option>
+                  <option value="7">Últimos 7 días</option>
+                  <option value="30">Últimos 30 días</option>
+                  <option value="90">Últimos 90 días</option>
+                </select>
+              </div>
+            </div>
+            <div class="toolbar-actions">
+              <button id="btnExportCsv" class="btn" type="button" style="padding:9px 13px;font-size:13px">
+                <i class="fas fa-download"></i> Exportar CSV
+              </button>
+              <button id="btnPrintReport" class="btn" type="button" style="padding:9px 13px;font-size:13px">
+                <i class="fas fa-print"></i> Imprimir
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 KPIs -->
+      <div class="admin-kpis">
+        <div class="kpi-card">
+          <div class="kpi-icon"><i class="fas fa-clipboard-check"></i></div>
+          <div class="kpi-meta"><strong id="kpiSessions">0</strong><span>Sesiones totales</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon green"><i class="fas fa-percentage"></i></div>
+          <div class="kpi-meta"><strong id="kpiAvg">—</strong><span>Nota media global</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon gold"><i class="fas fa-trophy"></i></div>
+          <div class="kpi-meta"><strong id="kpiExcellence">—</strong><span>Excelencia (≥90%)</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon"><i class="fas fa-users"></i></div>
+          <div class="kpi-meta"><strong id="kpiPeople">0</strong><span>Personas evaluadas</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon red"><i class="fas fa-stopwatch"></i></div>
+          <div class="kpi-meta"><strong id="kpiTime">—</strong><span>Duración media</span></div>
+        </div>
+      </div>
+
+      <!-- Gráficas -->
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-accent-bar"></div>
+          <div class="card-body">
+            <div class="section-head">
+              <h3><i class="fas fa-chart-bar"></i> Nota media por módulo</h3>
+            </div>
+            <div class="chart-box"><canvas id="chartModules"></canvas></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-accent-bar"></div>
+          <div class="card-body">
+            <div class="section-head">
+              <h3><i class="fas fa-chart-pie"></i> Distribución de resultados</h3>
+            </div>
+            <div class="chart-box"><canvas id="chartDist"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ranking equipo + Preguntas más falladas -->
+      <div class="analytics-grid">
+        <div class="card">
+          <div class="card-body">
+            <div class="section-head">
+              <h3><i class="fas fa-user-check"></i> Rendimiento por recepcionista</h3>
+              <span id="peopleCountTag" class="tag">0 personas</span>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Recepcionista</th>
+                    <th>Sesiones</th>
+                    <th>Media</th>
+                    <th>Mejor</th>
+                    <th>Última</th>
+                  </tr>
+                </thead>
+                <tbody id="peopleTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="section-head">
+              <h3><i class="fas fa-exclamation-triangle" style="color:var(--accent-red)"></i> Top preguntas más falladas</h3>
+              <span class="tag">Para reforzar en briefing</span>
+            </div>
+            <div id="missedQuestionsList" class="missed-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registro completo de sesiones -->
+      <div class="card">
+        <div class="card-body">
+          <div class="section-head">
+            <h3><i class="fas fa-list-ul"></i> Historial de sesiones registradas</h3>
+            <span id="rowsCountTag" class="tag">0 registros</span>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Recepcionista</th>
+                  <th>DTO</th>
+                  <th>Módulo</th>
+                  <th>Nivel</th>
+                  <th>Resultado</th>
+                  <th>Nota</th>
+                  <th>Tiempo</th>
+                </tr>
+              </thead>
+              <tbody id="sessionsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    © Panel de Administración · Sercotel Guadiana &amp; Cumbria Spa&amp;Hotel · <span id="footerMeta">v2.2.0</span>
+  </footer>
+
+  <!-- MODAL DE CONEXIÓN CON GOOGLE SHEETS -->
+  <div id="sourceModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="card-accent-bar"></div>
+      <div class="modal-body">
+        <div class="modal-header">
+          <h3><i class="fas fa-database" style="color:var(--accent-blue)"></i> Conectar resultados de Google Sheets</h3>
+          <button id="btnCloseSourceModal" class="btn" type="button" style="padding:6px 10px">✕</button>
+        </div>
+
+        <div class="info-box">
+          El panel intenta leer automáticamente desde tu <b>Apps Script</b> (<code>doGet</code>). Si prefieres no tocar el Apps Script, pega abajo la URL CSV publicada de tu hoja <b>Formación – Resultados</b>:
+          <br><i>Google Sheets → Archivo → Compartir → Publicar en la web → CSV</i>.
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="resultsCsvUrlInput">URL CSV de resultados (Google Sheets)</label>
+          <input id="resultsCsvUrlInput" type="url" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv">
+        </div>
+
+        <div class="modal-actions">
+          <button id="btnClearSourceUrl" class="btn" type="button">Usar Apps Script por defecto</button>
+          <button id="btnSaveSourceUrl" class="btn btn-primary" type="button"><i class="fas fa-save"></i> Guardar y cargar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/config.js"></script>
+  <script src="./js/data-loader.js"></script>
+  <script src="./js/admin.js"></script>
+</body>
+</html>

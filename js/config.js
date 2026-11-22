@@ -3,7 +3,7 @@
  * Integrado con el sistema oficial Protocolo-Recep.
  */
 window.APP_CONFIG = {
-  version: "2.1.3",
+  version: "2.2.0",
   appName: "FORMACIÓN RECEPCIÓN - GUADIANA & CUMBRIA",
   hotelsLabel: "Sercotel Guadiana & Cumbria Spa&Hotel",
 
@@ -14,6 +14,12 @@ window.APP_CONFIG = {
   // Endpoint de Google Apps Script donde se registran los resultados (conservado del original)
   RESULTS_ENDPOINT:
     "https://script.google.com/macros/s/AKfycbw0zjfjTf_XzNLLCN6aVe17WiwyMgoY7N3Rz6Bx3NySrf3Q5N1wLVxdLxswWrGOdwFHmA/exec",
+
+  // (Opcional) URL CSV publicada de "Formación – Resultados.gsheet" para el panel admin.html
+  RESULTS_CSV_URL: "",
+
+  // Clave de acceso al panel privado admin.html (puedes cambiarla aquí)
+  ADMIN_PASSWORD: "guadiana2026",
 
   // (Opcional) URL pública CSV de Google Sheets para cargar preguntas en tiempo real
   LIVE_QUESTIONS_CSV_URL: "",

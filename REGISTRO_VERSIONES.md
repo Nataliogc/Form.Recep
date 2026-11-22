@@ -2,11 +2,23 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.1.3`** | **22/11/2026** | Producción |
+| **`v2.2.0`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.2.0] — 22/11/2026
+- **Módulos Afectados:** Panel Administrador
+- **Tipo de Cambio:** Nueva Característica / Mejora
+- **Detalle de Cambios:**
+  - Nuevo Panel de Administrador privado (admin.html) con analítica de resultados, gráficas por módulo, ranking de recepcionistas, top preguntas más falladas y exportación CSV
+
+### [v2.1.4] — 22/11/2026
+- **Módulos Afectados:** Estilos, Interfaz
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Diseño fluido adaptable a todo el ancho de pantalla (1760px), formulario en 2 columnas compacto, limpieza de etiquetas en títulos de protocolos y bloqueo de autocompletado de gestores de contraseñas
 
 ### [v2.1.3] — 22/11/2026
 - **Módulos Afectados:** Automatización IA

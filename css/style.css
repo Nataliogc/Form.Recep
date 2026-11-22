@@ -110,9 +110,10 @@ h1, h2, h3, h4 {
 }
 
 .header-inner {
-  max-width: 1180px;
+  width: 100%;
+  max-width: 1760px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 9px clamp(14px, 2.2vw, 32px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -293,9 +294,10 @@ h1, h2, h3, h4 {
 
 /* ===== CONTENEDOR PRINCIPAL ===== */
 .shell {
-  max-width: 1180px;
+  width: 100%;
+  max-width: 1760px;
   margin: 0 auto;
-  padding: 22px 20px 44px;
+  padding: 14px clamp(14px, 2.2vw, 32px) 26px;
 }
 
 .view {
@@ -323,25 +325,26 @@ h1, h2, h3, h4 {
 }
 
 .card-body {
-  padding: 22px 24px;
+  padding: 18px 22px;
 }
 
 /* ===== BANNER INTRODUCTORIO (Guía de Estilo Protocolo-Recep) ===== */
 .hero-card {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .hero-inner {
-  padding: 22px 26px;
+  padding: 15px 22px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 16px;
 }
 
 .hero-copy {
-  max-width: 670px;
+  flex: 1;
+  min-width: 280px;
   border-left: 5px solid var(--accent-blue);
   padding-left: 16px;
 }
@@ -406,9 +409,15 @@ h1, h2, h3, h4 {
 /* ===== GRID SETUP ===== */
 .setup-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.85fr);
-  gap: 20px;
+  grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.95fr);
+  gap: 16px;
   align-items: start;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .section-head {
@@ -416,12 +425,12 @@ h1, h2, h3, h4 {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .section-head h3 {
   margin: 0;
-  font-size: 17px;
+  font-size: 16.5px;
   display: flex;
   align-items: center;
   gap: 9px;
@@ -431,7 +440,7 @@ h1, h2, h3, h4 {
   color: var(--accent-blue);
 }
 
-.field-group { margin-bottom: 18px; }
+.field-group { margin-bottom: 13px; }
 
 .field-label {
   display: flex;
@@ -746,7 +755,7 @@ select:focus {
 body.dark-mode .score-badge.warn { color: #fbbf24; }
 
 /* ===== VISTA QUIZ (MODO ENFOQUE) ===== */
-.quiz-container { max-width: 840px; margin: 0 auto; }
+.quiz-container { width: 100%; max-width: 980px; margin: 0 auto; }
 
 .quiz-hud {
   display: flex;
@@ -955,7 +964,7 @@ body.dark-mode .tag-level-intermedio { color: #fbbf24; }
 }
 
 /* ===== RESUMEN ===== */
-.summary-container { max-width: 800px; margin: 0 auto; }
+.summary-container { width: 100%; max-width: 960px; margin: 0 auto; }
 
 .summary-hero {
   display: flex;
@@ -1092,9 +1101,10 @@ body.dark-mode .tag-level-intermedio { color: #fbbf24; }
 
 /* ===== FOOTER ===== */
 .app-footer {
-  max-width: 1180px;
+  width: 100%;
+  max-width: 1760px;
   margin: 0 auto;
-  padding: 10px 20px 28px;
+  padding: 6px clamp(14px, 2.2vw, 32px) 18px;
   text-align: center;
   font-size: 12.5px;
   color: var(--text-muted);
@@ -1104,9 +1114,13 @@ body.dark-mode .tag-level-intermedio { color: #fbbf24; }
 .app-footer a:hover { text-decoration: underline; }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 920px) {
+@media (max-width: 960px) {
   .setup-grid { grid-template-columns: 1fr; }
   .summary-kpis { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 680px) {
+  .form-row-2 { grid-template-columns: 1fr; gap: 0; }
 }
 
 @media (max-width: 640px) {
