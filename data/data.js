@@ -1,15 +1,8 @@
 // Autogenerado a partir de data/plantilla_preguntas_unica.csv
-<<<<<<< HEAD
-// Actualizado: 2026-11-22T21:56:05+00:00 (282 preguntas)
+// Actualizado: 2026-11-22T22:02:42+00:00 (293 preguntas)
 window.QUIZ = {
-  "count": 282,
-  "updated_at": "2026-11-22T21:56:05+00:00",
-=======
-// Actualizado: 2026-11-22T21:05:36+00:00 (282 preguntas)
-window.QUIZ = {
-  "count": 282,
-  "updated_at": "2026-11-22T21:05:36+00:00",
->>>>>>> c606cb9e21d6c24d68231c0e2caa30e097ec2ea6
+  "count": 293,
+  "updated_at": "2026-11-22T22:02:42+00:00",
   "questions": [
     {
       "id": 1,
@@ -3989,6 +3982,164 @@ window.QUIZ = {
       "correct_letter": "B",
       "why": "El apartado 5.3 indica expresamente que haciendo clic en cualquier cita o hueco libre de la matriz de 15 días se pueden crear, guardar (GUARDAR RESERVA / GUARDAR Y ABRIR PAYGOLD) o eliminar reservas directamente sin salir de esta vista.",
       "imagen": "protocolo:Imagenes/gest-spa/07-vision-15d.png"
+    },
+    {
+      "id": 287,
+      "departamento": "Spa",
+      "categoria": "Procedimientos Spa",
+      "submodulo": "Procedimientos Spa",
+      "nivel": "Intermedio",
+      "texto": "Un huésped alojado en el hotel acude a la recepción para reservar el circuito termal para un sábado. Su tarifa de habitación NO incluye la entrada al Spa. ¿Qué origen se debe seleccionar en GEST-SPA y qué tarifa se le aplicará?",
+      "A": "Seleccionar 'Hotel - Incluido', dejando el importe a 0 € tras comprobar su número de habitación en el PMS.",
+      "B": "Seleccionar 'Particular (Pago Directo)', cobrándole la tarifa general de 25 €/pax independientemente de estar alojado.",
+      "C": "Seleccionar 'Hotel - NO Incluidos', aplicándole la tarifa especial de 18 €/persona·hora por ser fin de semana (viernes a domingo).",
+      "D": "Seleccionar 'Hotel - NO Incluidos', aplicándole la tarifa plana de 12 €/persona·hora válida para cualquier día de la semana.",
+      "correct_letter": "C",
+      "why": "Según la sección 2.2 del manual, el Origen 'Hotel - NO Incluidos' aplica una tarifa reducida para huéspedes de 12 €/persona·hora de lunes a jueves y de 18 €/persona·hora de viernes a domingo.",
+      "imagen": "protocolo:Imagenes/gest-spa/03c-spa-nueva-reserva.png",
+      "imagen_explicacion": "protocolo:Imagenes/gest-spa/03c-spa-nueva-reserva.png"
+    },
+    {
+      "id": 288,
+      "departamento": "Spa",
+      "categoria": "Procedimientos Spa",
+      "submodulo": "Procedimientos Spa",
+      "nivel": "Básico",
+      "texto": "¿Cuál es el procedimiento obligatorio al registrar una reserva en GEST-SPA para un cliente alojado cuya tarifa de habitación SÍ incluye el Circuito Spa?",
+      "A": "Seleccionar el Origen 'Hotel - Incluido', verificar que el importe reflejado en recepción sea de 0 € y anotar obligatoriamente el número de habitación.",
+      "B": "Seleccionar el Origen 'Particular (Pago Directo)', aplicar un 100% en 'Descuento Especial' y registrar el pago en mostrador.",
+      "C": "Seleccionar el Origen 'Bono Spa (Interno)', generar un código promocional temporal y adjuntarlo en las observaciones.",
+      "D": "Seleccionar 'Hotel - NO Incluidos' y pulsar el botón '🔒 Cerrar Turno' para que el sistema no cargue el concepto a la habitación.",
+      "correct_letter": "A",
+      "why": "El manual especifica que para 'Hotel - Incluido' la tarifa de habitación ya cubre el acceso al spa, por lo que el importe debe figurar como 0 € en recepción y es imprescindible anotar el número de habitación del huésped.",
+      "imagen": "protocolo:Imagenes/gest-spa/03c-spa-nueva-reserva.png",
+      "imagen_explicacion": "protocolo:Imagenes/gest-spa/03c-spa-nueva-reserva.png"
+    },
+    {
+      "id": 289,
+      "departamento": "Spa",
+      "categoria": "Procedimientos Spa",
+      "submodulo": "Procedimientos Spa",
+      "nivel": "Intermedio",
+      "texto": "¿Qué comprobaciones obligatorias se deben realizar al finalizar la jornada durante la rutina de cierre en el sistema GEST-SPA?",
+      "A": "Verificar que no queden citas en estado PENDING sin cobrar ni bonos sin canjear, revisar la ocupación a 15 días y reabrir los bloqueos manuales puntuales si eran solo para hoy.",
+      "B": "Marcar automáticamente las citas PENDING como canceladas, cerrar la franja de 15 días y eliminar los bloqueos manuales de toda la semana.",
+      "C": "Transferir el cobro de las citas PENDING a la cuenta de la habitación, desasignar los turnos en GESTIÓN y archivar el historial de cancelaciones.",
+      "D": "Anular los bonos no canjeados en el día, bloquear todas las cabinas para el día siguiente y enviar recordatorios por WhatsApp.",
+      "correct_letter": "A",
+      "why": "Según la rutina de cierre descrita en el manual de GEST-SPA, el procedimiento exige confirmar que no queden citas PENDING sin cobrar ni bonos sin canjear, revisar Ocupación y Visión 15d para el día siguiente, y comprobar que los bloqueos manuales puntuales se reabran si solo aplican al día de hoy."
+    },
+    {
+      "id": 290,
+      "departamento": "Spa",
+      "categoria": "Procedimientos Spa",
+      "submodulo": "Procedimientos Spa",
+      "nivel": "Básico",
+      "texto": "Al revisar la agenda en GEST-SPA, aparece un bloque de 15 minutos reservado automáticamente justo después de la cita de un masaje. ¿A qué responde esta franja de tiempo?",
+      "A": "Es un margen de cortesía fijado por el sistema por si el cliente llega con retraso a su tratamiento.",
+      "B": "Corresponde al bloque automático de limpieza y preparación que reserva el sistema para acondicionar la cabina entre clientes.",
+      "C": "Es el tiempo estimado que tarda el sistema en procesar el cobro y la validación del bono del cliente.",
+      "D": "Es un intervalo obligatorio reservado para que la terapeuta complete la ficha técnica del servicio.",
+      "correct_letter": "B",
+      "why": "El manual especifica en sus preguntas frecuentes que los 15 minutos bloqueados tras un masaje corresponden al bloque automático de 'Limpieza / Preparación' reservado por el sistema para acondicionar la cabina antes del siguiente cliente."
+    },
+    {
+      "id": 291,
+      "departamento": "Spa",
+      "categoria": "Procedimientos Spa",
+      "submodulo": "Procedimientos Spa",
+      "nivel": "Intermedio",
+      "texto": "Si un recepcionista necesita consultar una cita que fue cancelada durante el día en GEST-SPA, ¿dónde y cómo debe realizar esta comprobación?",
+      "A": "En la sección GESTIÓN → Cuadrante, filtrando el listado por el estado 'Cancelado'.",
+      "B": "En Inicio y Spa / Cabinas, haciendo clic sobre la cita y seleccionando 'Historial de Anulaciones'.",
+      "C": "En la pantalla de Cabinas y Salas, marcando la casilla superior 'Ver Anuladas' para mostrar el historial del día.",
+      "D": "En la pestaña Visión 15d, activando el filtro de citas con estado PENDING o no cobradas.",
+      "correct_letter": "C",
+      "why": "Tal como se indica en las FAQ del procedimiento, para visualizar una cita cancelada se debe acceder a Cabinas y Salas y marcar la casilla superior 'Ver Anuladas' para desplegar el historial de cancelaciones de la jornada."
+    },
+    {
+      "id": 292,
+      "departamento": "Recepción",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
+      "nivel": "Intermedio",
+      "texto": "Un cliente llama por teléfono para hacer una reserva directa e indica que se hospeda por motivos de empresa, pero la empresa no dispone de tarifa fija negociada. El PMS la asigna automáticamente como DIRECTO OFFLINE. ¿Qué acción debe realizar Recepción?",
+      "A": "No hacer nada, ya que las reservas telefónicas deben mantenerse siempre como DIRECTO OFFLINE.",
+      "B": "Modificar manualmente el segmento de DIRECTO OFFLINE a CORPORATIVO DINÁMICO.",
+      "C": "Modificar el segmento a CORPORATIVO LINEAL para incluirla en la producción de empresas.",
+      "D": "Cambiar el segmento a DIRECTO ONLINE para especificar que es un cliente individual corporativo.",
+      "correct_letter": "B",
+      "why": "El manual establece que cuando entra una reserva directa por teléfono/mostrador/email el PMS la asigna como DIRECTO OFFLINE, pero si Recepción identifica que corresponde a una estancia de empresa (sin tarifa negociada lineal), se debe cambiar manualmente a CORPORATIVO DINÁMICO."
+    },
+    {
+      "id": 293,
+      "departamento": "Recepción",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
+      "nivel": "Intermedio",
+      "texto": "Entra una reserva directa vinculada a una empresa que tiene una tarifa corporativa negociada específica con el hotel. ¿Qué modificación manual del segmento debe realizar Recepción?",
+      "A": "Cambiar manualmente el segmento a CORPORATIVO DINÁMICO.",
+      "B": "Cambiar manualmente el segmento a CORPORATIVO LINEAL.",
+      "C": "Ninguna; al entrar con su tarifa negociada correspondiente, Recepción no tiene que modificar manualmente el segmento.",
+      "D": "Cambiar el segmento a DIRECTO OFFLINE para registrar que el contacto fue directo.",
+      "correct_letter": "C",
+      "why": "El procedimiento indica expresamente que las reservas de empresas con tarifa negociada (CORPORATIVO LINEAL) entran mediante su tarifa correspondiente, por lo que Recepción no debe intervenir ni modificar manualmente el segmento."
+    },
+    {
+      "id": 294,
+      "departamento": "Recepción",
+      "categoria": "Eventos y Grupos",
+      "submodulo": "Operativa de Grupos",
+      "nivel": "Básico",
+      "texto": "Se recibe una petición de bloqueo de 14 habitaciones para un evento de empresa, pero el cliente aún no ha confirmado la reserva. ¿En qué segmento se debe catalogar?",
+      "A": "GRUPO",
+      "B": "GRUPO TANTEO",
+      "C": "CORPORATIVO DINÁMICO",
+      "D": "DIRECTO OFFLINE",
+      "correct_letter": "B",
+      "why": "Para reservas de más de 10 habitaciones, si el grupo ya está confirmado se asigna el segmento GRUPO, pero si todavía está sin confirmar corresponde el segmento GRUPO TANTEO."
+    },
+    {
+      "id": 295,
+      "departamento": "Recepción",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
+      "nivel": "Intermedio",
+      "texto": "Un cliente llega al hotel a las 12:00 h y reclama su habitación manifestando que lleva varias horas de viaje. La habitación aún se está limpiando. ¿Cuál es la forma correcta de proceder según la operativa interna?",
+      "A": "Explicar amablemente que la hora oficial de entrada es a las 16:00 h, tomar nota de que está esperando, ofrecer guardar su equipaje e indicarle que si se libera antes se le entregará, sin prometer una hora concreta.",
+      "B": "Pedir disculpas por el retraso en la preparación de la habitación y prometerle que estará lista en 30 minutos para calmar sus expectativas.",
+      "C": "Informarle de que las camareras de pisos van con retraso y sugerirle que acuda directamente al departamento de pisos a consultar el estado.",
+      "D": "Aplicar un suplemento por Early Check-in si el cliente insiste en acceder antes de la hora oficial aunque la habitación esté todavía en proceso de limpieza.",
+      "correct_letter": "A",
+      "why": "Según el manual, la llegada anticipada no modifica la hora oficial (16:00 h) ni constituye una incidencia. Se debe mantener un tono cordial, ofrecer facilidades como guardar el equipaje, tomar nota de su presencia y entregarla si está lista antes, pero sin prometer entregas anticipadas ni fijar tiempos sin confirmación."
+    },
+    {
+      "id": 296,
+      "departamento": "Recepción",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
+      "nivel": "Básico",
+      "texto": "Antes de la hora oficial de entrada (16:00 h), si un cliente pregunta por qué su habitación no está lista, ¿cuál de las siguientes justificaciones NO debemos decir bajo ninguna circunstancia?",
+      "A": "«La hora oficial de entrada comienza a partir de las 16:00 h y le avisaremos en cuanto finalice su preparación.»",
+      "B": "«Mientras su habitación se termina de preparar, si lo desea podemos guardar su equipaje en consigna.»",
+      "C": "«Si logramos tenerla disponible antes de las 16:00 h, se la entregaremos inmediatamente.»",
+      "D": "«Las chicas de pisos van con retraso y estamos teniendo problemas con la lavandería.»",
+      "correct_letter": "D",
+      "why": "El procedimiento especifica claramente que nunca debemos trasladar nuestros problemas internos al cliente ni justificar la espera con frases como 'las chicas van con retraso', 'estamos esperando a lavandería' o 'Pisos no nos la ha dado', ya que antes de las 16:00 h no existe un retraso como tal."
+    },
+    {
+      "id": 297,
+      "departamento": "Recepción",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
+      "nivel": "Avanzado",
+      "texto": "Son las 16:15 h y el cliente llega a Recepción pero su habitación asignada aún no está lista. ¿Qué protocolo se debe aplicar al haber superado la hora oficial de entrada?",
+      "A": "Tratar la situación como un Early Check-in sin coste y pedir al cliente que se siente a esperar en el hall sin molestar a Pisos.",
+      "B": "Gestionar la situación como una incidencia: pedir disculpas, contactar con Pisos para obtener una previsión realista, comprobar habitaciones alternativas de la misma categoría e informar al cliente haciendo seguimiento activo.",
+      "C": "Decirle al cliente que estará lista en 10 o 15 minutos para tranquilizarlo, aunque no tengamos confirmación real del departamento de Pisos.",
+      "D": "Informar al cliente de que no se pueden dar explicaciones hasta que la Gobernanta baje personalmente a recepción a entregar las llaves.",
+      "correct_letter": "B",
+      "why": "A partir de las 16:00 h la situación se convierte en una incidencia. El procedimiento exige disculparse, contactar inmediatamente con Pisos para tener una previsión real, revisar habitaciones alternativas preparadas de la misma categoría e informar/hacer seguimiento al cliente sin dar tiempos inventados."
     }
   ]
 };
