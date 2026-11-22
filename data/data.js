@@ -1,8 +1,15 @@
 // Autogenerado a partir de data/plantilla_preguntas_unica.csv
+<<<<<<< HEAD
 // Actualizado: 2026-11-22T21:56:05+00:00 (282 preguntas)
 window.QUIZ = {
   "count": 282,
   "updated_at": "2026-11-22T21:56:05+00:00",
+=======
+// Actualizado: 2026-11-22T21:05:36+00:00 (282 preguntas)
+window.QUIZ = {
+  "count": 282,
+  "updated_at": "2026-11-22T21:05:36+00:00",
+>>>>>>> c606cb9e21d6c24d68231c0e2caa30e097ec2ea6
   "questions": [
     {
       "id": 1,
