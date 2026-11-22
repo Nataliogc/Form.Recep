@@ -8,6 +8,66 @@
 (function () {
   const CACHE_KEY = "form_recep_questions_cache_v2";
   const CUSTOM_URL_KEY = "form_recep_live_csv_url_v1";
+  const OVERRIDES_KEY = "form_recep_question_overrides_v1";
+
+  function getOverrides() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(OVERRIDES_KEY) || "{}");
+      return raw && typeof raw === "object" ? raw : {};
+    } catch (_) {
+      return {};
+    }
+  }
+
+  function saveOverride(id, patch) {
+    const all = getOverrides();
+    all[String(id)] = { ...(all[String(id)] || {}), ...patch, updatedAt: new Date().toISOString() };
+    try {
+      localStorage.setItem(OVERRIDES_KEY, JSON.stringify(all));
+    } catch (_) {}
+    return all;
+  }
+
+  function removeOverride(id) {
+    const all = getOverrides();
+    delete all[String(id)];
+    try {
+      localStorage.setItem(OVERRIDES_KEY, JSON.stringify(all));
+    } catch (_) {}
+    return all;
+  }
+
+  function clearOverrides() {
+    try {
+      localStorage.removeItem(OVERRIDES_KEY);
+    } catch (_) {}
+  }
+
+  function applyOverrides(list, includeInactive = false) {
+    const overrides = getOverrides();
+    return (list || [])
+      .map((q) => {
+        const ov = overrides[String(q.id)];
+        if (!ov) return { ...q, overridden: false };
+        const rawImg = "rawImg" in ov ? ov.rawImg : q.rawImg || "";
+        const rawWhyImg = "rawWhyImg" in ov ? ov.rawWhyImg : q.rawWhyImg || "";
+        return {
+          ...q,
+          ...ov,
+          rawImg,
+          rawWhyImg,
+          img: resolveImageUrl(rawImg),
+          whyImg: resolveImageUrl(rawWhyImg),
+          overridden: true,
+        };
+      })
+      .filter((q) => {
+        if (!q.text) return false;
+        if (includeInactive) return true;
+        if (!q.activo) return true;
+        return /^(1|true|si|sí|yes)$/i.test(String(q.activo));
+      });
+  }
 
   function decodeSmart(buf) {
     try {
@@ -154,19 +214,17 @@
         }
 
         const why = pick(o, ["why", "explicacion", "explicación", "comentario", "nota"]);
-        const img = resolveImageUrl(pick(o, ["imagen", "image", "img", "captura", "foto"]));
-        const whyImg = resolveImageUrl(pick(o, ["imagen_explicacion", "imagen_explicación", "imagen_why", "img_why", "image_explanation", "captura_explicacion"]));
+        const rawImg = pick(o, ["imagen", "image", "img", "captura", "foto"]);
+        const rawWhyImg = pick(o, ["imagen_explicacion", "imagen_explicación", "imagen_why", "img_why", "image_explanation", "captura_explicacion"]);
+        const img = resolveImageUrl(rawImg);
+        const whyImg = resolveImageUrl(rawWhyImg);
         const activo = pick(o, ["activo", "activa", "enabled"]);
         let id = pick(o, ["id"]);
         if (!id) id = djb2([dto, mod, text].join("|"));
 
-        return { id: String(id), dto, mod, nivel, text, A, B, C, D, correct: corr, why, img, whyImg, activo };
+        return { id: String(id), dto, mod, nivel, text, A, B, C, D, correct: corr, why, rawImg, rawWhyImg, img, whyImg, activo };
       })
-      .filter((q) => {
-        if (!q.text) return false;
-        if (!q.activo) return true;
-        return /^(1|true|si|sí|yes)$/i.test(q.activo);
-      });
+      .filter((q) => Boolean(q.text));
 
     return normalized;
   }
@@ -260,7 +318,7 @@
     } catch (_) {}
   }
 
-  async function loadQuestions() {
+  async function loadQuestionsRaw() {
     const cfg = window.APP_CONFIG || {};
     const isLocalFile = location.protocol === "file:";
     const errors = [];
@@ -370,9 +428,23 @@
     };
   }
 
+  async function loadQuestions(opts = {}) {
+    const res = await loadQuestionsRaw();
+    const includeInactive = Boolean(opts && opts.includeInactive);
+    return {
+      ...res,
+      questions: applyOverrides(res.questions, includeInactive),
+    };
+  }
+
   window.DataLoader = {
     loadQuestions,
     getConfiguredLiveUrl,
     setCustomLiveUrl,
+    getOverrides,
+    saveOverride,
+    removeOverride,
+    clearOverrides,
+    resolveImageUrl,
   };
 })();

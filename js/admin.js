@@ -93,7 +93,29 @@
   const qbMod = $("#qbMod");
   const qbLevel = $("#qbLevel");
   const qbCountTag = $("#qbCountTag");
+  const btnExportBankCsv = $("#btnExportBankCsv");
   const qbankList = $("#qbankList");
+
+  const editQuestionModal = $("#editQuestionModal");
+  const eqModalTitle = $("#eqModalTitle");
+  const btnCloseEditQuestion = $("#btnCloseEditQuestion");
+  const btnCancelEditQuestion = $("#btnCancelEditQuestion");
+  const btnRestoreQuestion = $("#btnRestoreQuestion");
+  const editQuestionForm = $("#editQuestionForm");
+  const eqDto = $("#eqDto");
+  const eqMod = $("#eqMod");
+  const eqLevel = $("#eqLevel");
+  const eqCorrect = $("#eqCorrect");
+  const eqActive = $("#eqActive");
+  const eqText = $("#eqText");
+  const eqA = $("#eqA");
+  const eqB = $("#eqB");
+  const eqC = $("#eqC");
+  const eqD = $("#eqD");
+  const eqWhy = $("#eqWhy");
+  const eqImg = $("#eqImg");
+  const eqWhyImg = $("#eqWhyImg");
+  let editingQuestionId = "";
 
   const btnOpenRulesFromSystem = $("#btnOpenRulesFromSystem");
   const personModal = $("#personModal");
@@ -372,13 +394,16 @@
 
   async function loadQuestionsIndex() {
     try {
-      const res = await window.DataLoader.loadQuestions();
+      const res = await window.DataLoader.loadQuestions({ includeInactive: true });
       ALL_QUESTIONS = res.questions || [];
       QUESTIONS_BY_ID = new Map();
       ALL_QUESTIONS.forEach((q) => QUESTIONS_BY_ID.set(String(q.id), q));
-      tabBankBadge.textContent = ALL_QUESTIONS.length;
+      const activeCount = ALL_QUESTIONS.filter((q) => !q.activo || /^(1|true|si|sí|yes)$/i.test(String(q.activo))).length;
+      tabBankBadge.textContent = activeCount;
       const mods = [...new Set(ALL_QUESTIONS.map((q) => q.mod).filter(Boolean))].sort((a, b) => a.localeCompare(b, "es"));
+      const prevMod = qbMod.value;
       qbMod.innerHTML = '<option value="">Todos</option>' + mods.map((m) => `<option>${esc(m)}</option>`).join("");
+      if (prevMod && mods.includes(prevMod)) qbMod.value = prevMod;
       renderQuestionBank();
     } catch (_) {}
   }
@@ -919,16 +944,123 @@
     };
   }
 
+  function openEditQuestionModal(qid) {
+    const item = QUESTIONS_BY_ID.get(String(qid));
+    if (!item || !editQuestionModal) return;
+    editingQuestionId = String(item.id);
+    eqModalTitle.innerHTML = `<i class="fas fa-edit" style="color:var(--accent-blue)"></i> Intervenir pregunta #${esc(item.id)}`;
+    eqDto.value = ["Recepción", "Recep-Guadiana", "Recep-Cumbria", "Spa"].includes(item.dto) ? item.dto : "Recepción";
+    eqMod.value = item.mod || "";
+    eqLevel.value = ["Básico", "Intermedio", "Avanzado"].includes(item.nivel) ? item.nivel : "Intermedio";
+    eqCorrect.value = ["A", "B", "C", "D"].includes(item.correct) ? item.correct : "A";
+    const isActive = !item.activo || /^(1|true|si|sí|yes)$/i.test(String(item.activo));
+    eqActive.value = isActive ? "1" : "0";
+    eqText.value = item.text || "";
+    eqA.value = item.A || "";
+    eqB.value = item.B || "";
+    eqC.value = item.C || "";
+    eqD.value = item.D || "";
+    eqWhy.value = item.why || "";
+    eqImg.value = item.rawImg || "";
+    eqWhyImg.value = item.rawWhyImg || "";
+    btnRestoreQuestion.classList.toggle("hidden", !item.overridden);
+    editQuestionModal.classList.remove("hidden");
+  }
+
+  function closeEditQuestionModal() {
+    editingQuestionId = "";
+    if (editQuestionModal) editQuestionModal.classList.add("hidden");
+  }
+
+  function exportQuestionBankCsv() {
+    const header = ["id", "dto", "categoría", "nivel", "texto", "A", "B", "C", "D", "correct_letter", "why", "activo", "imagen", "imagen_explicacion"];
+    const lines = [header.join(",")].concat(
+      ALL_QUESTIONS.map((q) => {
+        const isActive = !q.activo || /^(1|true|si|sí|yes)$/i.test(String(q.activo));
+        return [
+          q.id,
+          q.dto,
+          q.mod,
+          q.nivel,
+          q.text,
+          q.A,
+          q.B,
+          q.C,
+          q.D,
+          q.correct,
+          q.why,
+          isActive ? "1" : "0",
+          q.rawImg || "",
+          q.rawWhyImg || "",
+        ]
+          .map((v) => `"${String(v ?? "").replace(/"/g, '""')}"`)
+          .join(",");
+      })
+    );
+    const blob = new Blob(["\uFEFF" + lines.join("\n")], { type: "text/csv;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "plantilla_preguntas_unica.csv";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  if (btnCloseEditQuestion) btnCloseEditQuestion.onclick = closeEditQuestionModal;
+  if (btnCancelEditQuestion) btnCancelEditQuestion.onclick = closeEditQuestionModal;
+  if (editQuestionModal) {
+    editQuestionModal.addEventListener("click", (e) => {
+      if (e.target === editQuestionModal) closeEditQuestionModal();
+    });
+  }
+  if (btnRestoreQuestion) {
+    btnRestoreQuestion.onclick = async () => {
+      if (!editingQuestionId) return;
+      window.DataLoader.removeOverride(editingQuestionId);
+      closeEditQuestionModal();
+      await loadQuestionsIndex();
+    };
+  }
+  if (editQuestionForm) {
+    editQuestionForm.onsubmit = async (e) => {
+      e.preventDefault();
+      if (!editingQuestionId) return;
+      window.DataLoader.saveOverride(editingQuestionId, {
+        dto: eqDto.value,
+        mod: eqMod.value.trim(),
+        nivel: eqLevel.value,
+        correct: eqCorrect.value,
+        activo: eqActive.value,
+        text: eqText.value.trim(),
+        A: eqA.value.trim(),
+        B: eqB.value.trim(),
+        C: eqC.value.trim(),
+        D: eqD.value.trim(),
+        why: eqWhy.value.trim(),
+        rawImg: eqImg.value.trim(),
+        rawWhyImg: eqWhyImg.value.trim(),
+      });
+      closeEditQuestionModal();
+      await loadQuestionsIndex();
+    };
+  }
+  if (btnExportBankCsv) btnExportBankCsv.onclick = exportQuestionBankCsv;
+
   function renderQuestionBank() {
     const q = (qbSearch.value || "").trim().toLowerCase();
     const m = qbMod.value || "";
     const lv = qbLevel.value || "";
 
+    const overrideCount = Object.keys(window.DataLoader.getOverrides ? window.DataLoader.getOverrides() : {}).length;
+    if (btnExportBankCsv) {
+      btnExportBankCsv.classList.toggle("hidden", overrideCount === 0);
+      btnExportBankCsv.innerHTML = `<i class="fas fa-file-csv"></i> Exportar CSV (${overrideCount} ${overrideCount === 1 ? "cambio" : "cambios"})`;
+    }
+
     const filtered = ALL_QUESTIONS.filter((item) => {
       if (m && item.mod !== m) return false;
       if (lv && item.nivel !== lv) return false;
       if (q) {
-        const blob = [item.id, item.text, item.A, item.B, item.C, item.D, item.why, item.mod].join(" ").toLowerCase();
+        const blob = [item.id, item.text, item.A, item.B, item.C, item.D, item.why, item.mod, item.dto].join(" ").toLowerCase();
         if (!blob.includes(q)) return false;
       }
       return true;
@@ -942,17 +1074,26 @@
 
     qbankList.innerHTML = filtered
       .slice(0, 80)
-      .map(
-        (item) => `
-        <div class="qbank-item">
+      .map((item) => {
+        const isActive = !item.activo || /^(1|true|si|sí|yes)$/i.test(String(item.activo));
+        return `
+        <div class="qbank-item" style="${isActive ? "" : "opacity:0.55;border-style:dashed"}">
           <div class="qbank-meta">
             <div style="display:flex;gap:6px;flex-wrap:wrap">
               <span class="tag">#${esc(item.id)}</span>
               ${item.dto ? `<span class="tag">${esc(item.dto)}</span>` : ""}
               ${item.mod ? `<span class="tag">${esc(item.mod)}</span>` : ""}
               ${item.nivel ? `<span class="tag">${esc(item.nivel)}</span>` : ""}
+              ${item.img ? '<span class="tag" title="Incluye captura de pantalla"><i class="fas fa-image"></i> Captura</span>' : ""}
+              ${item.overridden ? '<span class="tag" style="background:var(--warn-bg);color:#b45309;border-color:var(--warn-border)">Intervenida</span>' : ""}
+              ${!isActive ? '<span class="tag" style="background:var(--ko-bg);color:var(--accent-red);border-color:var(--ko-border)">Desactivada</span>' : ""}
             </div>
-            <span class="score-badge ok">Correcta: ${esc(item.correct)}</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="score-badge ok">Correcta: ${esc(item.correct)}</span>
+              <button type="button" class="mini-action" data-edit-q="${esc(item.id)}" title="Intervenir / corregir esta pregunta" style="width:auto;padding:4px 10px;gap:5px;font-size:12px">
+                <i class="fas fa-edit"></i> Intervenir
+              </button>
+            </div>
           </div>
           <h4>${esc(item.text)}</h4>
           <div class="qbank-opts">
@@ -962,9 +1103,13 @@
               .join("")}
           </div>
           ${item.why ? `<p class="qbank-why"><i class="fas fa-info-circle"></i> ${esc(item.why)}</p>` : ""}
-        </div>`
-      )
+        </div>`;
+      })
       .join("");
+
+    qbankList.querySelectorAll("[data-edit-q]").forEach((btn) => {
+      btn.onclick = () => openEditQuestionModal(btn.dataset.editQ);
+    });
   }
 
   function renderCharts(list) {

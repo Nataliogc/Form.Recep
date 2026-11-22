@@ -2,11 +2,17 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.7.3`** | **22/11/2026** | Producción |
+| **`v2.8.0`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.8.0] — 22/11/2026
+- **Módulos Afectados:** Banco de Preguntas, Panel Admin, Motor Test
+- **Tipo de Cambio:** Nueva Característica / Mejora
+- **Detalle de Cambios:**
+  - Auditoría de fiabilidad del banco (7 respuestas correctas erróneas corregidas, duplicados retirados y formatos limpios), editor para intervenir/desactivar preguntas desde admin.html con exportación CSV y selección aleatoria sin repetición por usuario
 
 ### [v2.7.3] — 22/11/2026
 - **Módulos Afectados:** Filtros Departamento, Banco CSV

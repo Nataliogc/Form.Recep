@@ -361,8 +361,8 @@
     }
   }
 
-  // ===== Seen history (no-repeat per DTO + Mod) =====
-  const keyFor = (d, m) => `${(d || "").trim()}||${(m || "").trim()}`;
+  // ===== Seen history (no-repeat per User + DTO + Mod) =====
+  const keyFor = (d, m) => `${canonName(getSelectedUserName()) || "_anon_"}||${(d || "").trim()}||${(m || "").trim()}`;
   function loadSeen() {
     try {
       return JSON.parse(localStorage.getItem(LS_SEEN) || "{}");
@@ -385,7 +385,7 @@
     const k = keyFor(d, m);
     const set = new Set(Array.isArray(h[k]) ? h[k] : []);
     ids.forEach((id) => set.add(id));
-    h[k] = Array.from(set).slice(-600);
+    h[k] = Array.from(set).slice(-1200);
     saveSeen(h);
   }
   function clearUsedIds(d, m) {
@@ -728,8 +728,7 @@
     const base = getFilteredBase();
     const used = getUsedIds(selectedDept, selectedMod);
     const unseen = base.filter((q) => !used.has(q.id)).length;
-    const poolSize = unseen > 0 ? unseen : base.length;
-    const willTake = Math.min(selectedSize, poolSize);
+    const willTake = Math.min(selectedSize, base.length);
 
     kpisEl.innerHTML = `
       <span>Banco: <b>${base.length}</b></span>
@@ -771,15 +770,25 @@
   function startSession(customQuestions = null, review = false) {
     isReviewMode = review;
     if (customQuestions) {
-      sessionQuestions = customQuestions.slice();
+      sessionQuestions = shuffle(customQuestions.slice());
     } else {
       const base = getFilteredBase();
       if (!base.length) return;
       const used = getUsedIds(selectedDept, selectedMod);
-      let pool = base.filter((q) => !used.has(q.id));
-      if (pool.length === 0) pool = base;
-      const take = Math.min(selectedSize, pool.length);
-      sessionQuestions = shuffle(pool).slice(0, take);
+      const unseen = base.filter((q) => !used.has(q.id));
+      const seen = base.filter((q) => used.has(q.id));
+      const take = Math.min(selectedSize, base.length);
+
+      if (unseen.length >= take) {
+        sessionQuestions = shuffle(unseen).slice(0, take);
+      } else if (unseen.length > 0) {
+        const extra = shuffle(seen).slice(0, take - unseen.length);
+        sessionQuestions = shuffle(unseen.concat(extra));
+      } else {
+        // Completó todo el banco de este filtro: reinicia ciclo para este usuario y baraja de nuevo
+        clearUsedIds(selectedDept, selectedMod);
+        sessionQuestions = shuffle(base).slice(0, take);
+      }
     }
 
     currentIdx = 0;

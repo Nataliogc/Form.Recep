@@ -27,7 +27,7 @@
         <div class="header-titles">
           <div class="header-title-row">
             <h1>PANEL ADMINISTRADOR · FORMACIÓN RECEPCIÓN</h1>
-            <span id="app-version-badge" class="version-badge">v2.7.3</span>
+            <span id="app-version-badge" class="version-badge">v2.8.0</span>
           </div>
           <div class="header-update">
             <i class="fas fa-chart-line"></i>
@@ -386,7 +386,10 @@
                   </select>
                 </div>
               </div>
-              <div class="toolbar-actions">
+              <div class="toolbar-actions" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <button id="btnExportBankCsv" class="btn hidden" type="button" title="Descarga plantilla_preguntas_unica.csv con todas tus intervenciones para publicarlo en GitHub">
+                  <i class="fas fa-file-csv"></i> Exportar CSV corregido
+                </button>
                 <span id="qbCountTag" class="tag" style="padding:8px 12px">0 preguntas</span>
               </div>
             </div>
@@ -458,7 +461,7 @@
   </main>
 
   <footer class="app-footer">
-    © Panel de Administración · Sercotel Guadiana &amp; Cumbria Spa&amp;Hotel · <span id="footerMeta">v2.7.3</span>
+    © Panel de Administración · Sercotel Guadiana &amp; Cumbria Spa&amp;Hotel · <span id="footerMeta">v2.8.0</span>
   </footer>
 
   <!-- MODAL FICHA INDIVIDUAL DE RECEPCIONISTA -->
@@ -544,8 +547,112 @@
     </div>
   </div>
 
-  <script src="./js/config.js?v=2.7.3"></script>
-  <script src="./js/data-loader.js?v=2.7.3"></script>
-  <script src="./js/admin.js?v=2.7.3"></script>
+  <!-- MODAL INTERVENIR / EDITAR PREGUNTA -->
+  <div id="editQuestionModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-label="Intervenir pregunta">
+    <div class="modal-card" style="max-width:720px;max-height:92vh;overflow-y:auto">
+      <div class="card-accent-bar"></div>
+      <div class="modal-body">
+        <div class="modal-header">
+          <h3 id="eqModalTitle"><i class="fas fa-edit" style="color:var(--accent-blue)"></i> Intervenir pregunta</h3>
+          <button id="btnCloseEditQuestion" class="btn" type="button" style="padding:6px 10px">✕</button>
+        </div>
+        <form id="editQuestionForm" style="display:grid;gap:12px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px">
+            <div class="field-group" style="margin:0">
+              <label class="field-label" for="eqDto">Departamento</label>
+              <select id="eqDto">
+                <option value="Recepción">Recepción</option>
+                <option value="Recep-Guadiana">Recep-Guadiana</option>
+                <option value="Recep-Cumbria">Recep-Cumbria</option>
+                <option value="Spa">Spa</option>
+              </select>
+            </div>
+            <div class="field-group" style="margin:0">
+              <label class="field-label" for="eqMod">Módulo</label>
+              <input id="eqMod" type="text" required />
+            </div>
+            <div class="field-group" style="margin:0">
+              <label class="field-label" for="eqLevel">Nivel</label>
+              <select id="eqLevel">
+                <option value="Básico">Básico</option>
+                <option value="Intermedio">Intermedio</option>
+                <option value="Avanzado">Avanzado</option>
+              </select>
+            </div>
+            <div class="field-group" style="margin:0">
+              <label class="field-label" for="eqCorrect">Correcta</label>
+              <select id="eqCorrect">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+              </select>
+            </div>
+            <div class="field-group" style="margin:0">
+              <label class="field-label" for="eqActive">Estado</label>
+              <select id="eqActive">
+                <option value="1">Activa</option>
+                <option value="0">Desactivada</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-group" style="margin:0">
+            <label class="field-label" for="eqText">Enunciado de la pregunta</label>
+            <textarea id="eqText" rows="2" required style="width:100%;padding:9px 11px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-light);color:var(--text-dark);font:inherit"></textarea>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px">
+            <div class="field-group" style="margin:0">
+              <label class="field-label" for="eqA">Opción A</label>
+              <input id="eqA" type="text" required />
+            </div>
+            <div class="field-group" style="margin:0">
+              <label class="field-label" for="eqB">Opción B</label>
+              <input id="eqB" type="text" required />
+            </div>
+            <div class="field-group" style="margin:0">
+              <label class="field-label" for="eqC">Opción C</label>
+              <input id="eqC" type="text" required />
+            </div>
+            <div class="field-group" style="margin:0">
+              <label class="field-label" for="eqD">Opción D</label>
+              <input id="eqD" type="text" required />
+            </div>
+          </div>
+
+          <div class="field-group" style="margin:0">
+            <label class="field-label" for="eqWhy">Explicación (por qué es correcta)</label>
+            <textarea id="eqWhy" rows="2" style="width:100%;padding:9px 11px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-light);color:var(--text-dark);font:inherit"></textarea>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px">
+            <div class="field-group" style="margin:0">
+              <label class="field-label" for="eqImg">Captura en enunciado (opcional)</label>
+              <input id="eqImg" type="text" placeholder="Ej. 234.png, protocolo:Imagenes/... o https://..." />
+            </div>
+            <div class="field-group" style="margin:0">
+              <label class="field-label" for="eqWhyImg">Captura en explicación (opcional)</label>
+              <input id="eqWhyImg" type="text" placeholder="Opcional" />
+            </div>
+          </div>
+
+          <div class="modal-actions" style="justify-content:space-between;align-items:center">
+            <button id="btnRestoreQuestion" class="btn hidden" type="button" style="color:var(--accent-red)">
+              <i class="fas fa-undo"></i> Restaurar original
+            </button>
+            <div style="display:flex;gap:8px;margin-left:auto">
+              <button id="btnCancelEditQuestion" class="btn" type="button">Cancelar</button>
+              <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar intervención</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/config.js?v=2.8.0"></script>
+  <script src="./js/data-loader.js?v=2.8.0"></script>
+  <script src="./js/admin.js?v=2.8.0"></script>
 </body>
 </html>
