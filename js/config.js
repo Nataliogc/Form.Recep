@@ -3,7 +3,7 @@
  * Integrado con el sistema oficial Protocolo-Recep.
  */
 window.APP_CONFIG = {
-  version: "2.5.4",
+  version: "2.5.5",
   appName: "FORMACIÓN RECEPCIÓN - GUADIANA & CUMBRIA",
   hotelsLabel: "Sercotel Guadiana & Cumbria Spa&Hotel",
 

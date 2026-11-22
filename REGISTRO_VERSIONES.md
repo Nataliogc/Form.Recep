@@ -2,11 +2,17 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.5.4`** | **22/11/2026** | Producción |
+| **`v2.5.5`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.5.5] — 22/11/2026
+- **Módulos Afectados:** Automatización IA
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Corregido enrutamiento y fallback HTTP 400 para claves AQ.* (Vertex AI / AI Studio) en auto_generate_questions.py
 
 ### [v2.5.4] — 22/11/2026
 - **Módulos Afectados:** Panel Administrador

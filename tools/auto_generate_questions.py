@@ -207,13 +207,15 @@ REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
    "dto", "categoria", "nivel", "texto", "A", "B", "C", "D", "correct_letter", "why" (o [] si no aplica).
 """
 
-    endpoints = [
-        f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={api_key}",
-    ]
     if api_key.startswith("AQ."):
-        endpoints.append(
-            f"https://aiplatform.googleapis.com/v1/publishers/google/models/{GEMINI_MODEL}:generateContent?key={api_key}"
-        )
+        endpoints = [
+            f"https://aiplatform.googleapis.com/v1/publishers/google/models/{GEMINI_MODEL}:generateContent?key={api_key}",
+            f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={api_key}",
+        ]
+    else:
+        endpoints = [
+            f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={api_key}",
+        ]
 
     body_bytes = json.dumps(
         {
@@ -231,7 +233,7 @@ REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
         req = urllib.request.Request(
             endpoint,
             data=body_bytes,
-            headers={"Content-Type": "application/json", "x-goog-api-key": api_key},
+            headers={"Content-Type": "application/json"},
             method="POST",
         )
         try:
@@ -239,10 +241,15 @@ REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
                 data = json.loads(resp.read().decode("utf-8"))
             break
         except urllib.error.HTTPError as exc:
-            last_err = exc
-            if exc.code in (401, 403, 404) and endpoint != endpoints[-1]:
+            err_body = ""
+            try:
+                err_body = exc.read().decode("utf-8", errors="replace")[:260]
+            except Exception:
+                pass
+            last_err = RuntimeError(f"HTTP {exc.code} {exc.reason}: {err_body}")
+            if exc.code in (400, 401, 403, 404) and endpoint != endpoints[-1]:
                 continue
-            raise
+            raise last_err
     if data is None:
         if last_err:
             raise last_err
