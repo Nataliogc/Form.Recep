@@ -195,6 +195,7 @@
 
         const dto = pick(o, ["dto", "departamento", "departamento (dto)", "dpto", "depto", "area", "área"]);
         const mod = pick(o, ["categoría", "categoria", "modulo", "módulo", "module", "mod", "tema", "bloque", "unidad"]);
+        const submod = pick(o, ["submodulo", "submódulo", "submenu", "submenú", "subcategoria", "subcategoría"]);
         const nivel = pick(o, ["nivel", "level", "dificultad"]);
         const text = pick(o, ["texto", "text", "pregunta", "enunciado"]);
         const A = pick(o, ["a", "opcion_a", "opción_a", "opción a"]);
@@ -222,7 +223,7 @@
         let id = pick(o, ["id"]);
         if (!id) id = djb2([dto, mod, text].join("|"));
 
-        return { id: String(id), dto, mod, nivel, text, A, B, C, D, correct: corr, why, rawImg, rawWhyImg, img, whyImg, activo };
+        return { id: String(id), dto, mod, submod, nivel, text, A, B, C, D, correct: corr, why, rawImg, rawWhyImg, img, whyImg, activo };
       })
       .filter((q) => Boolean(q.text));
 

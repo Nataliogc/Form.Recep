@@ -74,6 +74,7 @@ def main() -> int:
 
         dto = pick(norm, ["dto", "departamento", "departamento (dto)", "dpto", "depto", "area", "área"])
         categoria = pick(norm, ["categoría", "categoria", "modulo", "módulo", "mod", "tema"])
+        submodulo = pick(norm, ["submodulo", "submódulo", "submenu", "submenú", "subcategoria", "subcategoría"])
         nivel = pick(norm, ["nivel", "level", "dificultad"])
         A = pick(norm, ["a", "opcion_a", "opción_a"])
         B = pick(norm, ["b", "opcion_b", "opción_b"])
@@ -104,6 +105,7 @@ def main() -> int:
             "id": int(qid) if qid.isdigit() else qid,
             "departamento": dto,
             "categoria": categoria,
+            "submodulo": submodulo,
             "nivel": nivel,
             "texto": texto,
             "A": A,

@@ -336,20 +336,31 @@
       if (!Array.isArray(list)) return;
 
       const valid = list
-        .filter((p) => p && p.title && p.title !== "No Title" && p.updated)
+        .filter((p) => p && p.title && p.title !== "No Title" && p.updated && String(p.status || "").trim().toLowerCase() !== "anulado")
         .sort((a, b) => new Date(b.updated) - new Date(a.updated))
         .slice(0, 4);
 
       if (!valid.length) return;
       const baseUrl = CFG.PROTOCOLO_RECEP_URL || "https://cumbriaspahotel.github.io/Protocolo-Recep/";
+      const spaBaseUrl = (CFG.PROTOCOLO_SPA_URL || "https://cumbriaspahotel.github.io/Protocolo-Recep/spa.html#inicio").split("#")[0];
       protoUpdatesList.innerHTML = valid
         .map((p) => {
           const cleanTitle = String(p.title || "").replace(/\{[^}]*\}/g, "").trim();
+          const sec = String(p.section || "").trim();
+          const isSpaProto =
+            String(p.source || "").trim().toLowerCase() === "cumbria bienestar" ||
+            sec === "5.2" ||
+            sec.startsWith("5.2.");
+          const targetUrl = isSpaProto
+            ? sec
+              ? `${spaBaseUrl}#protocol/${encodeURIComponent(sec)}`
+              : `${spaBaseUrl}#inicio`
+            : baseUrl;
           return `
-          <a class="proto-item" href="${esc(baseUrl)}" target="_blank" rel="noopener">
+          <a class="proto-item" href="${esc(targetUrl)}" target="_blank" rel="noopener">
             <div>
               <strong>${esc(cleanTitle)}</strong>
-              <small><i class="far fa-clock"></i> ${esc(formatDateShort(p.updated))}${p.section ? ` · Sec. ${esc(p.section)}` : ""}</small>
+              <small><i class="far fa-clock"></i> ${esc(formatDateShort(p.updated))}${sec ? ` · Sec. ${esc(sec)}` : ""}${isSpaProto ? " · Spa" : ""}</small>
             </div>
             <i class="fas fa-external-link-alt"></i>
           </a>`;
@@ -601,11 +612,33 @@
     return q.dto === dept;
   }
 
+  function matchesModFilter(q, filterVal) {
+    if (!filterVal) return true;
+    if (filterVal.startsWith("SUB:")) {
+      const [m, s] = filterVal.slice(4).split("||");
+      return q.mod === m && (q.submod || "") === s;
+    }
+    if (filterVal.startsWith("MOD:")) {
+      return q.mod === filterVal.slice(4);
+    }
+    return q.mod === filterVal;
+  }
+
+  function formatModLabel(filterVal) {
+    if (!filterVal) return "";
+    if (filterVal.startsWith("SUB:")) {
+      const [m, s] = filterVal.slice(4).split("||");
+      return s ? `${m} · ${s}` : m;
+    }
+    if (filterVal.startsWith("MOD:")) return filterVal.slice(4);
+    return filterVal;
+  }
+
   function getFilteredBase() {
     return RAW.filter(
       (q) =>
         matchesDept(q, selectedDept) &&
-        (!selectedMod || q.mod === selectedMod) &&
+        matchesModFilter(q, selectedMod) &&
         (!selectedLevel || q.nivel === selectedLevel)
     );
   }
@@ -649,22 +682,81 @@
 
   function renderModuleOptions() {
     const subset = RAW.filter((q) => matchesDept(q, selectedDept));
-    const counts = new Map();
+    const modCounts = new Map();
+    const subCounts = new Map(); // "mod||submod" -> count
+
     subset.forEach((q) => {
       if (!q.mod) return;
-      counts.set(q.mod, (counts.get(q.mod) || 0) + 1);
+      modCounts.set(q.mod, (modCounts.get(q.mod) || 0) + 1);
+      if (q.submod) {
+        const k = `${q.mod}||${q.submod}`;
+        subCounts.set(k, (subCounts.get(k) || 0) + 1);
+      }
     });
-    const mods = [...counts.keys()].sort((a, b) => a.localeCompare(b, "es", { sensitivity: "base" }));
+
+    const tree = isSpaDept(selectedDept)
+      ? CFG.MODULE_TREE_SPA || []
+      : CFG.MODULE_TREE_HOTEL || [];
+
+    const usedMods = new Set();
+    const groupsHtml = [];
+    let visibleGroups = 0;
+
+    tree.forEach((grp) => {
+      const totalInMod = modCounts.get(grp.name) || 0;
+      if (totalInMod === 0) return;
+      usedMods.add(grp.name);
+      visibleGroups++;
+
+      const seenSubs = new Set();
+      const opts = [
+        `<option value="MOD:${esc(grp.name)}">📂 Todo ${esc(grp.name)} (${totalInMod})</option>`,
+      ];
+
+      (grp.submodules || []).forEach((sub) => {
+        const c = subCounts.get(`${grp.name}||${sub}`) || 0;
+        if (c > 0) {
+          seenSubs.add(sub);
+          opts.push(`<option value="SUB:${esc(grp.name)}||${esc(sub)}">↳ ${esc(sub)} (${c})</option>`);
+        }
+      });
+
+      // Cualquier submódulo adicional en CSV no listado en config
+      [...subCounts.keys()]
+        .filter((k) => k.startsWith(`${grp.name}||`))
+        .forEach((k) => {
+          const sub = k.split("||")[1];
+          if (sub && !seenSubs.has(sub)) {
+            opts.push(`<option value="SUB:${esc(grp.name)}||${esc(sub)}">↳ ${esc(sub)} (${subCounts.get(k)})</option>`);
+          }
+        });
+
+      groupsHtml.push(
+        `<optgroup label="${esc(grp.code ? `${grp.code} · ${grp.name}` : grp.name)} (${totalInMod})">${opts.join("")}</optgroup>`
+      );
+    });
+
+    // Fallback para módulos que no estén en el árbol oficial
+    const extraMods = [...modCounts.keys()]
+      .filter((m) => !usedMods.has(m))
+      .sort((a, b) => a.localeCompare(b, "es", { sensitivity: "base" }));
+    extraMods.forEach((m) => {
+      visibleGroups++;
+      groupsHtml.push(`<option value="MOD:${esc(m)}">${esc(m)} (${modCounts.get(m)})</option>`);
+    });
 
     modSelect.innerHTML =
-      `<option value="">Todos los módulos (${subset.length})</option>` +
-      mods.map((m) => `<option value="${esc(m)}">${esc(m)} (${counts.get(m)})</option>`).join("");
+      `<option value="">Todos los módulos (${subset.length})</option>` + groupsHtml.join("");
+
+    // Mantener selección si sigue existiendo
+    const hasSelected = [...modSelect.options].some((o) => o.value === selectedMod);
+    if (!hasSelected) selectedMod = "";
     modSelect.value = selectedMod;
-    modCountHint.textContent = `${mods.length} módulos disponibles`;
+    modCountHint.textContent = `${visibleGroups} módulos · submenús oficiales`;
   }
 
   function renderLevelPills() {
-    const subset = RAW.filter((q) => matchesDept(q, selectedDept) && (!selectedMod || q.mod === selectedMod));
+    const subset = RAW.filter((q) => matchesDept(q, selectedDept) && matchesModFilter(q, selectedMod));
     const order = ["Básico", "Intermedio", "Avanzado"];
     const present = uniq(subset.map((q) => q.nivel)).sort((a, b) => {
       const ia = order.indexOf(a);
@@ -869,6 +961,7 @@
     const badges = [];
     if (q.dto) badges.push(`<span class="tag">${esc(q.dto)}</span>`);
     if (q.mod) badges.push(`<span class="tag">${esc(q.mod)}</span>`);
+    if (q.submod && q.submod !== q.mod) badges.push(`<span class="tag">${esc(q.submod)}</span>`);
     if (q.nivel) badges.push(`<span class="tag ${levelTagClass(q.nivel)}">${esc(q.nivel)}</span>`);
     if (isReviewMode) badges.push(`<span class="tag tag-level-intermedio">Repaso de falladas</span>`);
     qBadges.innerHTML = badges.join("");
@@ -941,8 +1034,14 @@
       : `<i class="fas fa-times-circle" style="color:var(--accent-red)"></i> Respuesta correcta: ${esc(q.correct)}.${corrText}`;
     const whyHtml = q.why ? `<p>${esc(q.why)}</p>` : "";
 
-    const hint = (CFG.MODULE_PROTOCOL_HINTS || {})[q.mod] || { section: "Manual Operativo" };
-    const manualUrl = CFG.PROTOCOLO_RECEP_URL || "https://cumbriaspahotel.github.io/Protocolo-Recep/";
+    const isSpaQ = isSpaDept(q.dto) || q.mod === "Spa y Servicios";
+    const hint = isSpaQ
+      ? { section: "Portal Protocolos Spa (Cumbria Bienestar)" }
+      : (CFG.MODULE_PROTOCOL_HINTS || {})[q.mod] || { section: "Manual Operativo" };
+    const manualUrl = isSpaQ
+      ? CFG.PROTOCOLO_SPA_URL || "https://cumbriaspahotel.github.io/Protocolo-Recep/spa.html#inicio"
+      : CFG.PROTOCOLO_RECEP_URL || "https://cumbriaspahotel.github.io/Protocolo-Recep/";
+    const manualLabel = isSpaQ ? "Consultar en Protocolo Spa" : "Consultar en Protocolo-Recep";
 
     const whyImgHtml = q.whyImg
       ? `<figure class="explain-media">
@@ -962,7 +1061,7 @@
       <div class="explain-proto-link">
         <span><i class="fas fa-book"></i> Referencia: <b>${esc(hint.section)}</b></span>
         <a href="${esc(manualUrl)}" target="_blank" rel="noopener">
-          Consultar en Protocolo-Recep <i class="fas fa-external-link-alt"></i>
+          ${esc(manualLabel)} <i class="fas fa-external-link-alt"></i>
         </a>
       </div>`;
     if (q.whyImg) {
@@ -1070,12 +1169,13 @@
       );
 
       const dtoLabel = selectedDept === DEPT_HOTELS ? "Recepción" : selectedDept;
+      const modLabel = formatModLabel(selectedMod);
       const newEntry = {
         nombre: getSelectedUserName(),
         nameKey: canonName(getSelectedUserName()),
         date: new Date().toISOString(),
         dto: dtoLabel,
-        modulo: selectedMod,
+        modulo: modLabel,
         nivel: selectedLevel,
         total,
         aciertos: ok,
@@ -1088,7 +1188,7 @@
       const payload = {
         nombre: getSelectedUserName(),
         dto: dtoLabel,
-        modulo: selectedMod,
+        modulo: modLabel,
         nivel: selectedLevel,
         total,
         aciertos: ok,

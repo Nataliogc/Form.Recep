@@ -76,18 +76,28 @@ def discover_available_models(api_key: str) -> list[str]:
     return found
 
 ALLOWED_MODULES = [
-    "Operativa Turnos",
-    "Atención al Cliente y Protocolo",
-    "Gestión Administrativa y Cobros",
-    "Reservas",
-    "Errores Comunes",
-    "Supervisión de Ocupación (Inventory)",
-    "PMS y Sistemas (Zenith / Onity)",
-    "Canales de Venta y OTAs",
-    "Grupos y Eventos",
-    "Seguridad y Emergencias",
-    "Spa y Servicios",
+    "Turnos y Personal",
+    "Flujo de Recepción",
+    "Reservas y Sistemas",
+    "Eventos y Grupos",
+    "Seguridad",
+    "Biblioteca y Enlaces",
+    "Procedimientos Spa",
+    "Bonos Spa",
+    "Manuales Spa",
 ]
+
+ALLOWED_SUBMODULES = {
+    "Turnos y Personal": ["Operativa Diaria", "Turno de Mañana", "Turno de Tarde", "Turno de Noche", "Bienvenida y Adaptación", "Gestión de Personal"],
+    "Flujo de Recepción": ["El Ciclo del Huésped", "Finanzas y Caja", "Calidad e Incidencias"],
+    "Reservas y Sistemas": ["Tarifas y Políticas", "Auditoría y Control", "Conectividad", "Software PMS", "Canales Online", "Gestión Individual"],
+    "Eventos y Grupos": ["Operativa de Grupos", "Coordinación y Menús"],
+    "Seguridad": ["Autoprotección y Emergencias"],
+    "Biblioteca y Enlaces": ["Comunicados y Noticias", "Manuales Oficiales", "Reportes de Calidad"],
+    "Procedimientos Spa": ["Procedimientos Spa"],
+    "Bonos Spa": ["Bonos Regalo", "Bonos Externos"],
+    "Manuales Spa": ["GEST-SPA / ZENITH"],
+}
 
 ALLOWED_DTOS = ["Recepción", "Recep-Guadiana", "Recep-Cumbria", "Spa"]
 ALLOWED_LEVELS = ["Básico", "Intermedio", "Avanzado"]
@@ -96,6 +106,7 @@ CSV_HEADERS = [
     "id",
     "dto",
     "categoría",
+    "submodulo",
     "nivel",
     "texto",
     "A",
@@ -286,37 +297,74 @@ def write_csv_rows(headers: list[str], rows: list[dict]) -> None:
         writer.writerows(rows)
 
 
-def infer_default_module(p: dict) -> str:
+def infer_default_module_and_sub(p: dict) -> tuple[str, str]:
     sec = str(p.get("section") or "").strip()
     title = str(p.get("title") or "").lower()
-    if p.get("isChannel") or any(w in title for w in ("siteminder", "witbooking", "booking", "expedia", "channel", "ota", "canal ")):
-        return "Canales de Venta y OTAs"
-    if any(w in title for w in ("onity", "onportal", "zenith", "cerradura", "pms", "llave")):
-        return "PMS y Sistemas (Zenith / Onity)"
-    if sec.startswith("5") or any(w in title for w in ("seguridad", "emergencia", "incendio", "evacuación", "evacuacion", "policía", "policia", "rgpd")):
-        return "Seguridad y Emergencias"
-    if sec.startswith("4") or any(w in title for w in ("grupo", "evento", "boda", "salón", "salon", "banquete")):
-        return "Grupos y Eventos"
-    if any(w in title for w in ("spa", "circuito", "masaje", "escapada")):
-        return "Spa y Servicios"
-    if p.get("isCritical") or any(w in title for w in ("error", "problema", "incidencia")):
-        return "Errores Comunes"
-    if sec.startswith("1") or "turno" in title:
-        return "Operativa Turnos"
-    if any(w in title for w in ("inventory", "ocupación", "ocupacion", "overbooking")):
-        return "Supervisión de Ocupación (Inventory)"
-    if sec.startswith("3") or "reserva" in title:
-        return "Reservas"
-    if any(w in title for w in ("factur", "caja", "cobro", "pago", "tarjeta", "crédito", "credito", "tpv")):
-        return "Gestión Administrativa y Cobros"
-    return "Atención al Cliente y Protocolo"
+    if sec.startswith("5.2") or str(p.get("source") or "").strip().lower() == "cumbria bienestar":
+        if sec in ("5.2.3", "5.2.11", "5.2.12", "5.2.13") or any(w in title for w in ("smartbox", "wonderbox", "ego experiencias")):
+            return "Bonos Spa", "Bonos Externos"
+        if sec == "5.2.2" or "bono" in title:
+            return "Bonos Spa", "Bonos Regalo"
+        if sec in ("5.2.4", "5.2.5", "5.2.6", "5.2.7", "5.2.8", "5.2.9", "5.2.10") or "gest-spa" in title:
+            return "Manuales Spa", "GEST-SPA / ZENITH"
+        return "Procedimientos Spa", "Procedimientos Spa"
+    if sec.startswith("1.1"):
+        return "Turnos y Personal", "Operativa Diaria"
+    if sec.startswith("1.2") or "mañana" in title:
+        return "Turnos y Personal", "Turno de Mañana"
+    if sec.startswith("1.3") or "tarde" in title:
+        return "Turnos y Personal", "Turno de Tarde"
+    if sec.startswith("1.4") or "noche" in title:
+        return "Turnos y Personal", "Turno de Noche"
+    if sec.startswith("1.5") or "bienvenida" in title:
+        return "Turnos y Personal", "Bienvenida y Adaptación"
+    if sec.startswith("1.6") or "cuadrante" in title or "turno" in title:
+        return "Turnos y Personal", "Gestión de Personal"
+    if sec.startswith("2.1"):
+        return "Flujo de Recepción", "El Ciclo del Huésped"
+    if sec.startswith("2.2") or any(w in title for w in ("caja", "tpv", "cobro", "factur", "depósito")):
+        return "Flujo de Recepción", "Finanzas y Caja"
+    if sec.startswith("2.3") or "incidencia" in title or "calidad" in title:
+        return "Flujo de Recepción", "Calidad e Incidencias"
+    if sec.startswith("3.1") or any(w in title for w in ("tarifa", "garantía", "garantia")):
+        return "Reservas y Sistemas", "Tarifas y Políticas"
+    if sec.startswith("3.2") or any(w in title for w in ("inventory", "ocupación", "ocupacion", "auditor")):
+        return "Reservas y Sistemas", "Auditoría y Control"
+    if sec.startswith("3.3") or any(w in title for w in ("synergy", "conectividad", "channel", "siteminder")):
+        return "Reservas y Sistemas", "Conectividad"
+    if sec.startswith("3.4") or any(w in title for w in ("pms", "zenith", "tarjeta")):
+        return "Reservas y Sistemas", "Software PMS"
+    if sec.startswith("3.5") or p.get("isChannel") or any(w in title for w in ("booking", "expedia", "ota", "canal ")):
+        return "Reservas y Sistemas", "Canales Online"
+    if sec.startswith("3.6"):
+        return "Reservas y Sistemas", "Gestión Individual"
+    if sec.startswith("4.2") or "menú" in title or "menu" in title:
+        return "Eventos y Grupos", "Coordinación y Menús"
+    if sec.startswith("4") or any(w in title for w in ("grupo", "evento")):
+        return "Eventos y Grupos", "Operativa de Grupos"
+    if sec.startswith("5") or any(w in title for w in ("seguridad", "emergencia", "incendio", "alarma", "intoxicación")):
+        return "Seguridad", "Autoprotección y Emergencias"
+    if sec.startswith("6.2") or "onity" in title or "manual" in title:
+        return "Biblioteca y Enlaces", "Manuales Oficiales"
+    if sec.startswith("6.3"):
+        return "Biblioteca y Enlaces", "Reportes de Calidad"
+    if sec.startswith("6"):
+        return "Biblioteca y Enlaces", "Comunicados y Noticias"
+    return "Flujo de Recepción", "El Ciclo del Huésped"
+
+
+def infer_default_module(p: dict) -> str:
+    return infer_default_module_and_sub(p)[0]
 
 
 def is_spa_protocol(p: dict, clean_text: str) -> bool:
+    source = str(p.get("source") or "").strip().lower()
+    if source == "cumbria bienestar":
+        return True
     sec = str(p.get("section") or "").strip()
     title = str(p.get("title") or "").lower()
     head = f"{title}\n{clean_text[:800]}".lower()
-    if sec.startswith("5.2"):
+    if sec == "5.2" or sec.startswith("5.2."):
         return True
     if any(w in title for w in ("gest-spa", "spa", "smartbox", "wonderbox", "ego experiencias", "circuito termal", "cabinas")):
         return True
@@ -342,7 +390,7 @@ def call_gemini(api_key: str, protocol: dict, clean_text: str, num_questions: in
     title = str(protocol.get("title") or "").strip()
     section = str(protocol.get("section") or "").strip()
     spa_doc = is_spa_protocol(protocol, clean_text)
-    default_mod = "Spa y Servicios" if spa_doc else infer_default_module(protocol)
+    default_mod, default_sub = infer_default_module_and_sub(protocol)
     default_dto = infer_default_dto(protocol, title, clean_text)
 
     excerpt = clean_text[:6500]
@@ -475,10 +523,13 @@ REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
         if dto not in ALLOWED_DTOS:
             dto = default_dto
         cat = str(item.get("categoria") or default_mod).strip()
-        if spa_doc and cat not in ("Spa y Servicios", "Errores Comunes"):
-            cat = "Spa y Servicios"
+        if spa_doc and cat not in ("Procedimientos Spa", "Bonos Spa", "Manuales Spa"):
+            cat = default_mod
         if cat not in ALLOWED_MODULES:
             cat = default_mod
+        sub = str(item.get("submodulo") or default_sub).strip()
+        if sub not in ALLOWED_SUBMODULES.get(cat, []):
+            sub = default_sub if default_sub in ALLOWED_SUBMODULES.get(cat, []) else (ALLOWED_SUBMODULES.get(cat, [""])[0])
         nivel = str(item.get("nivel") or "Intermedio").strip()
         if nivel not in ALLOWED_LEVELS:
             nivel = "Intermedio"
@@ -492,6 +543,7 @@ REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
             {
                 "dto": dto,
                 "categoría": cat,
+                "submodulo": sub,
                 "nivel": nivel,
                 "texto": texto,
                 "A": A,
@@ -539,6 +591,8 @@ def main() -> int:
     latest_by_key: dict[str, tuple[dict, str, str, str]] = {}
     for p in protocols:
         if not isinstance(p, dict):
+            continue
+        if str(p.get("status") or "").strip().lower() == "anulado":
             continue
         title = str(p.get("title") or "").strip()
         if not title or title.lower() == "no title":
@@ -636,6 +690,7 @@ def main() -> int:
                 "id": str(max_id),
                 "dto": q["dto"],
                 "categoría": q["categoría"],
+                "submodulo": q.get("submodulo", ""),
                 "nivel": q["nivel"],
                 "texto": q["texto"],
                 "A": q["A"],

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-22T20:56:30+00:00",
+  "updated_at": "2026-11-22T21:56:05+00:00",
   "count": 282,
   "with_images": 24,
   "source": "repository_csv",
@@ -10,13 +10,13 @@
     "Spa"
   ],
   "modules": [
-    "Atención al Cliente y Protocolo",
-    "Errores Comunes",
-    "Gestión Administrativa y Cobros",
-    "Operativa Turnos",
-    "Reservas",
-    "Spa y Servicios",
-    "Supervisión de Ocupación (Inventory)"
+    "Bonos Spa",
+    "Eventos y Grupos",
+    "Flujo de Recepción",
+    "Manuales Spa",
+    "Reservas y Sistemas",
+    "Seguridad",
+    "Turnos y Personal"
   ],
   "levels": [
     "Avanzado",

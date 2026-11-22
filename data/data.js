@@ -1,13 +1,14 @@
 // Autogenerado a partir de data/plantilla_preguntas_unica.csv
-// Actualizado: 2026-11-22T20:56:30+00:00 (282 preguntas)
+// Actualizado: 2026-11-22T21:56:05+00:00 (282 preguntas)
 window.QUIZ = {
   "count": 282,
-  "updated_at": "2026-11-22T20:56:30+00:00",
+  "updated_at": "2026-11-22T21:56:05+00:00",
   "questions": [
     {
       "id": 1,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Avanzado",
       "texto": "¿A qué hora se recomienda que llegue el recepcionista para el turno de mañana?",
       "A": "06:45",
@@ -20,7 +21,8 @@ window.QUIZ = {
     {
       "id": 2,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Intermedio",
       "texto": "¿Qué debe hacer el recepcionista al inicio del turno de mañana?",
       "A": "Imprimir solo las salidas",
@@ -33,7 +35,8 @@ window.QUIZ = {
     {
       "id": 3,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Básico",
       "texto": "¿Qué listados se imprimen al inicio del turno de mañana?",
       "A": "Listado de empleados",
@@ -46,7 +49,8 @@ window.QUIZ = {
     {
       "id": 4,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "¿Qué significa \"FdS\" en los manuales?",
       "A": "Factura de Servicio",
@@ -59,7 +63,8 @@ window.QUIZ = {
     {
       "id": 5,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "¿Está permitido coger dinero de la caja dejando un vale?",
       "A": "No, está terminantemente prohibido",
@@ -72,7 +77,8 @@ window.QUIZ = {
     {
       "id": 6,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "¿Qué se debe hacer al finalizar el turno de tarde?",
       "A": "Ninguna de las anteriores es correcta",
@@ -85,7 +91,8 @@ window.QUIZ = {
     {
       "id": 7,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Básico",
       "texto": "¿Qué es un \"walk-in\"?",
       "A": "Un error en el PMS",
@@ -98,7 +105,8 @@ window.QUIZ = {
     {
       "id": 8,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Tarde",
       "nivel": "Básico",
       "texto": "¿A qué hora se revisan las llegadas pendientes en el turno de tarde?",
       "A": "21:00",
@@ -111,7 +119,8 @@ window.QUIZ = {
     {
       "id": 9,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "¿Qué debe hacer el turno de noche antes del cierre?",
       "A": "Apagar todas las luces",
@@ -124,7 +133,8 @@ window.QUIZ = {
     {
       "id": 10,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Noche",
       "nivel": "Básico",
       "texto": "¿Qué se imprime para Housekeeping en el turno de noche?",
       "A": "Listado completo de situación de habitaciones",
@@ -137,7 +147,8 @@ window.QUIZ = {
     {
       "id": 11,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Noche",
       "nivel": "Básico",
       "texto": "¿Qué se debe verificar al hacer check-in nocturno?",
       "A": "Reserva, identidad y método de pago/garantía",
@@ -150,7 +161,8 @@ window.QUIZ = {
     {
       "id": 12,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Operativa Diaria",
       "nivel": "Básico",
       "texto": "¿Qué significa \"Sup\" en las observaciones de una reserva?",
       "A": "Superficie",
@@ -163,7 +175,8 @@ window.QUIZ = {
     {
       "id": 13,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Básico",
       "texto": "¿Quién debe ser informado de la llegada de un cliente VIP?",
       "A": "Mantenimiento",
@@ -176,7 +189,8 @@ window.QUIZ = {
     {
       "id": 14,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "¿Qué se debe hacer con las facturas a crédito en el turno de noche?",
       "A": "Enviarlas por email",
@@ -189,7 +203,8 @@ window.QUIZ = {
     {
       "id": 15,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Tarde",
       "nivel": "Básico",
       "texto": "¿Qué se debe hacer si un huésped pide late check-out?",
       "A": "Cobrar el doble",
@@ -202,7 +217,8 @@ window.QUIZ = {
     {
       "id": 16,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Básico",
       "texto": "¿Qué se debe hacer con los objetos perdidos de habitaciones con salida del día?",
       "A": "Dejarlos en recepción sin más",
@@ -215,7 +231,8 @@ window.QUIZ = {
     {
       "id": 17,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "¿Qué se revisa en el LOG CHANNEL al final del turno de tarde?",
       "A": "Las garantías, reléase y bonos “asume crédito” acordes con tarifa y canal",
@@ -228,7 +245,8 @@ window.QUIZ = {
     {
       "id": 18,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "¿Qué debe realizar el turno de mañana respecto a las habitaciones con salida antes de que los clientes bajen?",
       "A": "No facturar si el huésped es habitual",
@@ -241,7 +259,8 @@ window.QUIZ = {
     {
       "id": 19,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Básico",
       "texto": "¿Qué se debe hacer al asignar habitaciones en el turno de mañana?",
       "A": "Evitar huecos difíciles de asignar y considerar solicitudes específicas",
@@ -254,7 +273,8 @@ window.QUIZ = {
     {
       "id": 20,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Operativa Diaria",
       "nivel": "Básico",
       "texto": "¿Qué se debe hacer si el personal de limpieza no puede limpiar todas las habitaciones?",
       "A": "Avisar a dirección para que tome la decisión",
@@ -267,7 +287,8 @@ window.QUIZ = {
     {
       "id": 21,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Básico",
       "texto": "¿Qué se debe hacer con las reservas fuera de reléase en el turno de mañana?",
       "A": "Darlas por canceladas sin más",
@@ -280,7 +301,8 @@ window.QUIZ = {
     {
       "id": 22,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Noche",
       "nivel": "Básico",
       "texto": "¿Qué se debe hacer al finalizar el turno de noche?",
       "A": "No imprimir nada",
@@ -293,7 +315,8 @@ window.QUIZ = {
     {
       "id": 23,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
       "nivel": "Básico",
       "texto": "¿Qué se debe revisar en el MR-HOSPE al final de los turnos?",
       "A": "Que coincida con el WhatsApp",
@@ -306,7 +329,8 @@ window.QUIZ = {
     {
       "id": 24,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Seguridad",
+      "submodulo": "Autoprotección y Emergencias",
       "nivel": "Básico",
       "texto": "¿Qué se debe hacer si hay un incendio?",
       "A": "Ninguna de las anteriores es correcta",
@@ -319,7 +343,8 @@ window.QUIZ = {
     {
       "id": 25,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Tarde",
       "nivel": "Básico",
       "texto": "¿Qué se debe hacer con los correos electrónicos durante el turno?",
       "A": "Responder solo los urgentes",
@@ -332,7 +357,8 @@ window.QUIZ = {
     {
       "id": 26,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Intermedio",
       "texto": "¿Por qué es importante revisar el rack al inicio del turno?",
       "A": "Para saber cuántos empleados hay",
@@ -345,7 +371,8 @@ window.QUIZ = {
     {
       "id": 27,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Intermedio",
       "texto": "¿Qué debe hacer el turno de mañana si un huésped quiere hacer late check-out?",
       "A": "Revisar ocupación, aplicar política de precios, registrar el servicio y coordinar con Pisos",
@@ -358,7 +385,8 @@ window.QUIZ = {
     {
       "id": 28,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Intermedio",
       "texto": "¿Por qué se revisan las reservas \"por segunda vez\" en el turno de mañana?",
       "A": "Porque los huéspedes cambian de idea",
@@ -371,7 +399,8 @@ window.QUIZ = {
     {
       "id": 29,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Intermedio",
       "texto": "¿Qué implica \"evitar huecos difíciles de asignar\" al distribuir habitaciones?",
       "A": "Asignar habitaciones consecutivas o por plantas, revisando el planning para facilitar limpieza y evitar cambios innecesarios de habitación",
@@ -384,7 +413,8 @@ window.QUIZ = {
     {
       "id": 30,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Intermedio",
       "texto": "¿Qué debe hacer el turno de tarde si un huésped amplía su estancia?",
       "A": "Revisar el planning de ocupación, informar de la tarifa vigente y registrar el cambio en el PMS",
@@ -397,7 +427,8 @@ window.QUIZ = {
     {
       "id": 31,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Operativa Diaria",
       "nivel": "Intermedio",
       "texto": "¿Por qué es clave comunicar a A&B el número de huéspedes con pensión?",
       "A": "Para que preparen la cantidad adecuada de comida y suministros",
@@ -410,7 +441,8 @@ window.QUIZ = {
     {
       "id": 32,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Noche",
       "nivel": "Intermedio",
       "texto": "¿Qué debe hacer el turno de noche con las llegadas después de imprimir el listado para Housekeeping?",
       "A": "Ninguna de las anteriores es correcta",
@@ -423,7 +455,8 @@ window.QUIZ = {
     {
       "id": 33,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Intermedio",
       "texto": "¿Qué se debe verificar para facturar bien a una agencia (TTOO)?",
       "A": "Que el bono esté adjunto y los datos coincidan: tarifa, régimen, fechas, saldo",
@@ -436,7 +469,8 @@ window.QUIZ = {
     {
       "id": 34,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Intermedio",
       "texto": "¿Por qué se debe revisar el LOG CHANNEL al final del turno?",
       "A": "Por cumplir un trámite",
@@ -449,7 +483,8 @@ window.QUIZ = {
     {
       "id": 35,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Intermedio",
       "texto": "¿Qué debe hacer el turno de mañana si un huésped llega temprano y su habitación no está lista?",
       "A": "Revisar el planning de ocupación y ofrecer alternativas según disponibilidad (early check-in, cambio de habitación o guardar equipaje)",
@@ -462,7 +497,8 @@ window.QUIZ = {
     {
       "id": 36,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Intermedio",
       "texto": "¿Qué prioridad tiene el mantenimiento según el turno de mañana?",
       "A": "Las pinturas",
@@ -475,7 +511,8 @@ window.QUIZ = {
     {
       "id": 37,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Intermedio",
       "texto": "¿Qué significa \"Rv. Org. Suite\" en observaciones?",
       "A": "Que la suite está fuera de servicio",
@@ -488,7 +525,8 @@ window.QUIZ = {
     {
       "id": 38,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Eventos y Grupos",
+      "submodulo": "Coordinación y Menús",
       "nivel": "Intermedio",
       "texto": "¿Qué debe hacer el turno de tarde con los grupos?",
       "A": "Verificar que se dispone del rooming list, orden de servicio y llaves programadas antes de la llegada",
@@ -501,7 +539,8 @@ window.QUIZ = {
     {
       "id": 39,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Intermedio",
       "texto": "¿Por qué es importante el relevo verbal al final del turno?",
       "A": "Para asegurar que las incidencias pendientes se gestionen sin interrupción",
@@ -514,7 +553,8 @@ window.QUIZ = {
     {
       "id": 40,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
       "nivel": "Intermedio",
       "texto": "¿Qué se debe hacer si un walk-in llega de noche en estado de embriaguez?",
       "A": "Admitirlo sin más",
@@ -527,7 +567,8 @@ window.QUIZ = {
     {
       "id": 41,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Intermedio",
       "texto": "¿Qué implica \"cuadrar la caja\"?",
       "A": "Verificar que efectivo, tarjetas y movimientos coincidan con el PMS",
@@ -540,7 +581,8 @@ window.QUIZ = {
     {
       "id": 42,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Tarde",
       "nivel": "Intermedio",
       "texto": "¿Qué se debe hacer con las reservas que no cumplen requisitos a las 21:00?",
       "A": "Esperar hasta las 23:00",
@@ -553,7 +595,8 @@ window.QUIZ = {
     {
       "id": 43,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Intermedio",
       "texto": "¿Qué se debe hacer si un huésped se queja durante el turno de tarde?",
       "A": "Escribirla en un papel suelto",
@@ -566,7 +609,8 @@ window.QUIZ = {
     {
       "id": 44,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Operativa Diaria",
       "nivel": "Intermedio",
       "texto": "¿Por qué se debe mantener la agenda de novedades limpia?",
       "A": "Para que solo se vea información relevante y actual (máx. 1 semana)",
@@ -579,7 +623,8 @@ window.QUIZ = {
     {
       "id": 45,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Noche",
       "nivel": "Intermedio",
       "texto": "¿Qué se debe hacer con los no shows en el turno de noche?",
       "A": "No procede según protocolo",
@@ -592,7 +637,8 @@ window.QUIZ = {
     {
       "id": 46,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Tarde",
       "nivel": "Intermedio",
       "texto": "Un huésped con reserva no garantizada no llega a las 21:00. ¿Qué debe hacer el turno de tarde?",
       "A": "Esperar hasta las 23:00",
@@ -605,7 +651,8 @@ window.QUIZ = {
     {
       "id": 47,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Operativa Diaria",
       "nivel": "Intermedio",
       "texto": "¿Qué riesgo hay si no se actualiza el estado de una habitación reparada por mantenimiento?",
       "A": "No hay riesgo",
@@ -618,7 +665,8 @@ window.QUIZ = {
     {
       "id": 48,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Intermedio",
       "texto": "Un huésped solicita factura a nombre de su empresa, pero el pago lo ha realizado él mismo en efectivo. ¿Qué debe comprobar el recepcionista antes de emitirla?",
       "A": "Que la empresa esté dada de alta correctamente en el PMS y crearla siguiendo el protocolo si no existe ficha corporativa",
@@ -631,7 +679,8 @@ window.QUIZ = {
     {
       "id": 49,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Intermedio",
       "texto": "¿Por qué es crítico revisar las \"características extendidas\" (Sup, Cun) al asignar habitaciones?",
       "A": "Porque Housekeeping cobra extra",
@@ -644,7 +693,8 @@ window.QUIZ = {
     {
       "id": 50,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Seguridad",
+      "submodulo": "Autoprotección y Emergencias",
       "nivel": "Intermedio",
       "texto": "¿Qué debe hacer el turno de noche si recibe una llamada de emergencia médica?",
       "A": "Ninguna de las anteriores es correcta",
@@ -657,7 +707,8 @@ window.QUIZ = {
     {
       "id": 51,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Noche",
       "nivel": "Avanzado",
       "texto": "¿Qué implica un error en el MR-HOSPE?",
       "A": "La imposibilidad de cumplir con la obligación legal de registrar y comunicar correctamente los datos de los viajeros según el Real Decreto 933/2021",
@@ -670,7 +721,8 @@ window.QUIZ = {
     {
       "id": 52,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Seguridad",
+      "submodulo": "Autoprotección y Emergencias",
       "nivel": "Avanzado",
       "texto": "Un huésped se queja de ruido a las 2:00 AM. ¿Qué debe hacer el recepcionista de noche?",
       "A": "Decirle que espere al día siguiente",
@@ -683,7 +735,8 @@ window.QUIZ = {
     {
       "id": 53,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "¿Por qué se debe archivar el cierre de caja en un sobre firmado?",
       "A": "Para que el gerente lo vea",
@@ -696,7 +749,8 @@ window.QUIZ = {
     {
       "id": 54,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Avanzado",
       "texto": "¿Qué debe hacer el turno de mañana si una habitación VIP tiene avería y llega un cliente importante?",
       "A": "Decirle al huésped que espere en el lobby",
@@ -709,7 +763,8 @@ window.QUIZ = {
     {
       "id": 55,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Tarde",
       "nivel": "Avanzado",
       "texto": "¿Qué se debe hacer si en el LOG CHANNEL se detecta que una reserva OTA no tiene garantía pero la tarifa lo exige?",
       "A": "Ninguna de las anteriores es correcta",
@@ -722,7 +777,8 @@ window.QUIZ = {
     {
       "id": 56,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Eventos y Grupos",
+      "submodulo": "Coordinación y Menús",
       "nivel": "Avanzado",
       "texto": "Un grupo tiene bono \"asume crédito\", pero no se refleja en PMS. ¿Qué riesgo hay?",
       "A": "Que el restaurante no los atienda",
@@ -735,7 +791,8 @@ window.QUIZ = {
     {
       "id": 57,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Noche",
       "nivel": "Avanzado",
       "texto": "¿Por qué es importante que el turno de noche deje listados impresos para la mañana?",
       "A": "Ahorrar electricidad",
@@ -748,7 +805,8 @@ window.QUIZ = {
     {
       "id": 58,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Eventos y Grupos",
+      "submodulo": "Operativa de Grupos",
       "nivel": "Básico",
       "texto": "¿Qué debe hacer el turno de tarde si un huésped pide ampliar estancia, pero no hay disponibilidad?",
       "A": "Rechazar la solicitud sin más",
@@ -761,7 +819,8 @@ window.QUIZ = {
     {
       "id": 59,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Seguridad",
+      "submodulo": "Autoprotección y Emergencias",
       "nivel": "Avanzado",
       "texto": "¿Qué implica no registrar una incidencia de seguridad (ej.: altercado)?",
       "A": "No hay consecuencias",
@@ -774,7 +833,8 @@ window.QUIZ = {
     {
       "id": 60,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "¿Qué debe verificar el turno de noche en las facturas a crédito de empresas?",
       "A": "Que el huésped haya firmado el libro de visitas",
@@ -787,7 +847,8 @@ window.QUIZ = {
     {
       "id": 61,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
       "nivel": "Avanzado",
       "texto": "Un huésped llega de noche sin DNI. ¿Qué debe hacer el recepcionista?",
       "A": "Hacer check-in igual",
@@ -800,7 +861,8 @@ window.QUIZ = {
     {
       "id": 62,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Avanzado",
       "texto": "¿Qué debe hacer el turno de mañana si Housekeeping reporta que no puede limpiar habitaciones por falta de personal?",
       "A": "Decirle a los huéspedes que limpien ellos",
@@ -813,7 +875,8 @@ window.QUIZ = {
     {
       "id": 63,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Avanzado",
       "texto": "¿Por qué se debe revisar el channel manager al inicio del turno de mañana?",
       "A": "Por rutina",
@@ -826,7 +889,8 @@ window.QUIZ = {
     {
       "id": 64,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Seguridad",
+      "submodulo": "Autoprotección y Emergencias",
       "nivel": "Avanzado",
       "texto": "¿Qué debe hacer el turno de noche si hay un fallo eléctrico en una zona?",
       "A": "Esperar a que se repare solo",
@@ -839,7 +903,8 @@ window.QUIZ = {
     {
       "id": 65,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "¿Qué se debe hacer si un huésped pide no registrar un cargo en su factura por discreción?",
       "A": "Negarse y explicar que todos los servicios deben registrarse por ley y transparencia",
@@ -852,7 +917,8 @@ window.QUIZ = {
     {
       "id": 66,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Operativa Diaria",
       "nivel": "Avanzado",
       "texto": "¿Qué implica una \"reserva fuera de reléase\" no cobrada?",
       "A": "No afecta al hotel",
@@ -865,7 +931,8 @@ window.QUIZ = {
     {
       "id": 67,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Tarde",
       "nivel": "Avanzado",
       "texto": "¿Por qué es clave que el turno de tarde verifique el estado de limpieza en PMS antes del check-in?",
       "A": "Para castigar a Housekeeping",
@@ -878,7 +945,8 @@ window.QUIZ = {
     {
       "id": 68,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Noche",
       "nivel": "Avanzado",
       "texto": "¿Qué debe hacer el turno de noche si un huésped pierde la llave?",
       "A": "No procede según protocolo",
@@ -891,7 +959,8 @@ window.QUIZ = {
     {
       "id": 69,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "¿Qué se debe hacer si en el cierre de caja hay un descuadre?",
       "A": "No procede según protocolo",
@@ -904,7 +973,8 @@ window.QUIZ = {
     {
       "id": 70,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Avanzado",
       "texto": "¿Qué debe hacer el turno de mañana si un huésped VIP tiene una petición especial no registrada en PMS?",
       "A": "Ninguna de las anteriores es correcta",
@@ -917,7 +987,8 @@ window.QUIZ = {
     {
       "id": 71,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Noche",
       "nivel": "Avanzado",
       "texto": "¿Qué debe hacer el turno de noche si una reserva de Hotelbeds no tiene teléfono?",
       "A": "Cancelar la reserva",
@@ -930,7 +1001,8 @@ window.QUIZ = {
     {
       "id": 72,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "¿Qué debe hacer el turno de tarde si una reserva de Keytel es \"pago directo\"?",
       "A": "Cancelar la reserva",
@@ -943,7 +1015,8 @@ window.QUIZ = {
     {
       "id": 73,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Avanzado",
       "texto": "¿Qué debe hacer el turno de mañana si una reserva de Synxis GDS incluye empresa y agencia?",
       "A": "Eliminar los datos",
@@ -956,7 +1029,8 @@ window.QUIZ = {
     {
       "id": 74,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "¿Qué debe hacer el turno de noche si una reserva de Booking.com es un no-show y no hay tarjeta válida?",
       "A": "No procede según protocolo",
@@ -969,7 +1043,8 @@ window.QUIZ = {
     {
       "id": 75,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "¿Qué debe hacer el turno de mañana si una reserva de Traveltino no tiene bono adjunto?",
       "A": "Cobrar al cliente",
@@ -982,7 +1057,8 @@ window.QUIZ = {
     {
       "id": 76,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Eventos y Grupos",
+      "submodulo": "Coordinación y Menús",
       "nivel": "Avanzado",
       "texto": "¿Qué riesgo operativo existe si no se verifica la rooming list antes de la llegada de un grupo?",
       "A": "Que el grupo se aloje sin incidencias",
@@ -995,7 +1071,8 @@ window.QUIZ = {
     {
       "id": 77,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Eventos y Grupos",
+      "submodulo": "Operativa de Grupos",
       "nivel": "Avanzado",
       "texto": "¿Qué debe hacer recepción si el responsable del grupo solicita entregar las llaves directamente a los huéspedes sin pasar por recepción?",
       "A": "Aceptar sin más, para agilizar el proceso",
@@ -1008,7 +1085,8 @@ window.QUIZ = {
     {
       "id": 78,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Eventos y Grupos",
+      "submodulo": "Operativa de Grupos",
       "nivel": "Avanzado",
       "texto": "¿Qué debe hacer recepción si un grupo llega con una persona adicional no incluida en la reserva ni en el bono?",
       "A": "Alojarla sin más si hay disponibilidad",
@@ -1021,7 +1099,8 @@ window.QUIZ = {
     {
       "id": 79,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿Qué canal utiliza tarjeta virtual exclusivamente cuando la reserva se hace en la web oficial del hotel?",
       "A": "Webhotel / Synergy",
@@ -1034,7 +1113,8 @@ window.QUIZ = {
     {
       "id": 80,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Básico",
       "texto": "¿Cómo aparecen las reservas de Booking.com en el Log Channel?",
       "A": "Como \"OTA - BOOKING\"",
@@ -1047,7 +1127,8 @@ window.QUIZ = {
     {
       "id": 81,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿Qué debes hacer si una reserva de Smartbox entra como \"solo alojamiento\" pero el bono incluye desayuno?",
       "A": "Esperar a que el cliente lo reclame",
@@ -1060,7 +1141,8 @@ window.QUIZ = {
     {
       "id": 82,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Básico",
       "texto": "¿Qué tipo de canal requiere crear la reserva manualmente en el PMS porque no entra por el Log Channel?",
       "A": "Hotelbeds",
@@ -1073,7 +1155,8 @@ window.QUIZ = {
     {
       "id": 83,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿A quién se debe facturar una reserva de Expedia Collect (con tarjeta virtual)?",
       "A": "Al huésped que se aloja",
@@ -1086,7 +1169,8 @@ window.QUIZ = {
     {
       "id": 84,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿Qué documento es obligatorio archivar junto a la factura para reservas de W2M?",
       "A": "La copia del DNI del huésped",
@@ -1099,7 +1183,8 @@ window.QUIZ = {
     {
       "id": 85,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Gestión Individual",
       "nivel": "Básico",
       "texto": "¿Qué significa activar la opción “Asume crédito” en una reserva de Weekendesk?",
       "A": "Que la estancia está cubierta por un bono y no se cobra al huésped",
@@ -1112,7 +1197,8 @@ window.QUIZ = {
     {
       "id": 86,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿Cómo se debe facturar un “Bono Cumbria Bienestar”?",
       "A": "A nombre del cliente con IVA completo",
@@ -1125,7 +1211,8 @@ window.QUIZ = {
     {
       "id": 87,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿Cuál es la comisión habitual aplicada a las reservas de Traveltino?",
       "A": "19%",
@@ -1138,7 +1225,8 @@ window.QUIZ = {
     {
       "id": 88,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿Qué debes verificar en una reserva de Booking.com antes del check-in?",
       "A": "Si el huésped ha dejado propina en línea",
@@ -1151,7 +1239,8 @@ window.QUIZ = {
     {
       "id": 89,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿En qué canal debes acceder a una intranet externa para identificar al pagador real?",
       "A": "Hotelbeds",
@@ -1164,7 +1253,8 @@ window.QUIZ = {
     {
       "id": 90,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Básico",
       "texto": "¿Qué debes hacer si una reserva directa (Synxis) no tiene correo electrónico del huésped?",
       "A": "Cancelar la integración con SoulGuest",
@@ -1177,7 +1267,8 @@ window.QUIZ = {
     {
       "id": 91,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Gestión Individual",
       "nivel": "Básico",
       "texto": "¿Qué tipo de pago tienen todas las reservas de Hotelbeds?",
       "A": "Crédito, con cobro directo de la agencia",
@@ -1190,7 +1281,8 @@ window.QUIZ = {
     {
       "id": 92,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿Cómo se identifica una tarifa PYME de Viajes El Corte Inglés?",
       "A": "Por la presencia de “PYME” en el código de la reserva",
@@ -1203,7 +1295,8 @@ window.QUIZ = {
     {
       "id": 93,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
       "nivel": "Básico",
       "texto": "¿Qué ocurre si un cliente cancela un bono de EgoExperiencias con menos de 72 horas de antelación?",
       "A": "Se permite reprogramar sin coste",
@@ -1216,7 +1309,8 @@ window.QUIZ = {
     {
       "id": 94,
       "departamento": "Recep-Guadiana",
-      "categoria": "Reservas",
+      "categoria": "Eventos y Grupos",
+      "submodulo": "Operativa de Grupos",
       "nivel": "Básico",
       "texto": "¿Qué condición es necesaria para que SoulGuest envíe el enlace de check-in online?",
       "A": "Que sea una reserva de grupo",
@@ -1229,7 +1323,8 @@ window.QUIZ = {
     {
       "id": 95,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿Cómo se deben tratar las noches adicionales en una reserva de Smartbox?",
       "A": "Regalándolas como cortesía",
@@ -1242,7 +1337,8 @@ window.QUIZ = {
     {
       "id": 97,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿Qué debes hacer si una reserva de HRS indica “Pagadero por: AMEX GLOBAL BUSINESS TRAVEL SL”?",
       "A": "Facturar al huésped",
@@ -1255,7 +1351,8 @@ window.QUIZ = {
     {
       "id": 98,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿A quién se factura una reserva de Traveltino?",
       "A": "Al huésped",
@@ -1268,7 +1365,8 @@ window.QUIZ = {
     {
       "id": 99,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Básico",
       "texto": "¿Qué debes hacer si una reserva de Roiback no tiene garantía marcada en el PMS?",
       "A": "Forzar la garantía en el PMS y activar SoulGuest manualmente",
@@ -1281,7 +1379,8 @@ window.QUIZ = {
     {
       "id": 100,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Básico",
       "texto": "¿Qué caracteriza a una reserva “Pago Directo” de Synxis?",
       "A": "Que se paga en el hotel sin comisión y es una reserva directa",
@@ -1294,7 +1393,8 @@ window.QUIZ = {
     {
       "id": 101,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿Qué debes hacer si una reserva de Serhs incluye una subagencia como “Alisios Tours”?",
       "A": "No registrar ninguna agencia",
@@ -1307,7 +1407,8 @@ window.QUIZ = {
     {
       "id": 102,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿Qué debes verificar en una reserva de Webhotel/Synergy que incluye una escapada?",
       "A": "Que la habitación tenga jacuzzi",
@@ -1320,7 +1421,8 @@ window.QUIZ = {
     {
       "id": 103,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "¿Qué debes hacer si una reserva de Booking.com no incluye número de teléfono?",
       "A": "Esperar a que Booking lo envíe",
@@ -1333,7 +1435,8 @@ window.QUIZ = {
     {
       "id": 104,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Intermedio",
       "texto": "¿Qué riesgo representa no adjuntar el bono en la facturación de una reserva de Keytel a crédito?",
       "A": "Que Housekeeping no limpie la habitación",
@@ -1346,7 +1449,8 @@ window.QUIZ = {
     {
       "id": 105,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Intermedio",
       "texto": "¿Por qué es crítico diferenciar entre Expedia Collect y Hotel Collect?",
       "A": "Porque determina quién paga (el cliente o Expedia) y a quién se factura",
@@ -1359,7 +1463,8 @@ window.QUIZ = {
     {
       "id": 106,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Intermedio",
       "texto": "En una reserva de Serhs, ¿por qué es importante registrar la subagencia real en el PMS?",
       "A": "Porque el sistema lo exige para imprimir el check-in",
@@ -1372,7 +1477,8 @@ window.QUIZ = {
     {
       "id": 107,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Intermedio",
       "texto": "¿Qué debes hacer si una reserva GDS de Synxis incluye empresa y agencia?",
       "A": "Ninguna de las anteriores es correcta",
@@ -1385,7 +1491,8 @@ window.QUIZ = {
     {
       "id": 108,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Intermedio",
       "texto": "¿Qué debes hacer si una reserva de HRS corresponde a una agencia externa (ej.: BCD Travel)?",
       "A": "Facturar al huésped",
@@ -1398,7 +1505,8 @@ window.QUIZ = {
     {
       "id": 109,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Software PMS",
       "nivel": "Intermedio",
       "texto": "¿Qué debes hacer si una reserva de Webhotel/Synergy incluye SPA?",
       "A": "Cobrar el SPA como extra no incluido",
@@ -1411,7 +1519,8 @@ window.QUIZ = {
     {
       "id": 110,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Intermedio",
       "texto": "¿Cuándo se debe cobrar una reserva de Booking.com con tarifa No Reembolsable (NRF)?",
       "A": "Una semana después de la salida",
@@ -1424,7 +1533,8 @@ window.QUIZ = {
     {
       "id": 111,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Intermedio",
       "texto": "¿Qué debes hacer si una reserva de Booking.com con tarifa EBI se recibe con menos de 7 días para la llegada?",
       "A": "Cancelar la reserva",
@@ -1437,7 +1547,8 @@ window.QUIZ = {
     {
       "id": 112,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Intermedio",
       "texto": "¿Qué procedimiento se debe seguir ante un no-show en Booking.com?",
       "A": "Esperar 24 horas para ver si el huésped llega",
@@ -1450,7 +1561,8 @@ window.QUIZ = {
     {
       "id": 113,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Intermedio",
       "texto": "¿Qué comisión se aplica a las reservas de Viajes El Corte Inglés marcadas como PYME?",
       "A": "19%",
@@ -1463,7 +1575,8 @@ window.QUIZ = {
     {
       "id": 114,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Intermedio",
       "texto": "¿Cómo se factura una reserva de Keytel con pago directo?",
       "A": "Sin factura, solo recibo",
@@ -1476,7 +1589,8 @@ window.QUIZ = {
     {
       "id": 115,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Intermedio",
       "texto": "¿Por qué es importante solicitar el teléfono en el check-in si no viene en la reserva?",
       "A": "Para poder contactar al huésped en caso de incidencias (ej.: averías, objetos olvidados)",
@@ -1489,7 +1603,8 @@ window.QUIZ = {
     {
       "id": 116,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Intermedio",
       "texto": "¿Qué debes hacer si no recibes el bono de una reserva de W2M?",
       "A": "Ninguna de las anteriores es correcta",
@@ -1502,7 +1617,8 @@ window.QUIZ = {
     {
       "id": 117,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Intermedio",
       "texto": "¿Qué debes hacer si una reserva de Smartbox incluye tratamiento de spa?",
       "A": "Enviar un correo al departamento de spa para su preparación",
@@ -1515,7 +1631,8 @@ window.QUIZ = {
     {
       "id": 118,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
       "nivel": "Intermedio",
       "texto": "¿Por qué es necesario corregir el régimen en reservas de Weekendesk?",
       "A": "Porque afecta al cálculo de comisiones",
@@ -1528,7 +1645,8 @@ window.QUIZ = {
     {
       "id": 119,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Gestión Individual",
       "nivel": "Avanzado",
       "texto": "Un cliente llega con un bono de Wonderbox. ¿Qué acción es obligatoria antes de crear la reserva?",
       "A": "Esperar a que el spa confirme disponibilidad",
@@ -1541,7 +1659,8 @@ window.QUIZ = {
     {
       "id": 120,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "¿Qué consecuencia real puede producirse si, en una reserva prepago de Hotelbeds, se emite la factura a nombre del huésped en lugar de hacerlo a la propia agencia?",
       "A": "El PMS interpreta la operación como un “cargo duplicado”, activa el protocolo de conciliación automática y bloquea temporalmente la cuenta del huésped hasta la revisión manual",
@@ -1554,7 +1673,8 @@ window.QUIZ = {
     {
       "id": 121,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de HRS aparece como “HRS - GROUP” pero el bono indica otro pagador?",
       "A": "Facturar al huésped",
@@ -1567,7 +1687,8 @@ window.QUIZ = {
     {
       "id": 122,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Por qué es esencial revisar las modificaciones posteriores en reservas de Keytel?",
       "A": "Porque suelen enviar cambios por correo que afectan al pago o servicios",
@@ -1580,7 +1701,8 @@ window.QUIZ = {
     {
       "id": 123,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué implica no corregir el régimen en una reserva de Smartbox que incluye desayuno?",
       "A": "Que el cliente no reciba el desayuno",
@@ -1593,7 +1715,8 @@ window.QUIZ = {
     {
       "id": 124,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de Booking.com con tarifa EBI se recibe con 10 días de antelación?",
       "A": "Esperar al check-in",
@@ -1606,7 +1729,8 @@ window.QUIZ = {
     {
       "id": 125,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Avanzado",
       "texto": "¿Qué riesgo hay si no se fuerza SoulGuest en una reserva directa sin email?",
       "A": "Que el PMS se bloquee",
@@ -1619,7 +1743,8 @@ window.QUIZ = {
     {
       "id": 126,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de Webhotel/Synergy incluye una botella de vino como extra?",
       "A": "Esperar a que el cliente la reclame",
@@ -1632,7 +1757,8 @@ window.QUIZ = {
     {
       "id": 127,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Por qué es importante registrar la subagencia en reservas de Serhs?",
       "A": "Porque el cliente lo exige",
@@ -1645,7 +1771,8 @@ window.QUIZ = {
     {
       "id": 128,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de Expedia Collect no tiene tarjeta virtual visible?",
       "A": "Cobrar al cliente en recepción",
@@ -1658,7 +1785,8 @@ window.QUIZ = {
     {
       "id": 129,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Avanzado",
       "texto": "¿Qué significa que una reserva de Synxis sea “GDS Amadeus”?",
       "A": "Que proviene de una agencia conectada vía GDS y debe registrarse con empresa y agencia",
@@ -1671,7 +1799,8 @@ window.QUIZ = {
     {
       "id": 130,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de Bono Cumbria no tiene número de bono en recepción?",
       "A": "Cancelar la estancia",
@@ -1684,7 +1813,8 @@ window.QUIZ = {
     {
       "id": 131,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Software PMS",
       "nivel": "Avanzado",
       "texto": "¿Por qué es crítico archivar el bono de Wonderbox junto a la factura?",
       "A": "Porque se necesita para el IVA",
@@ -1697,7 +1827,8 @@ window.QUIZ = {
     {
       "id": 132,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de Traveltino no incluye comisión en el PMS?",
       "A": "Aplicar manualmente el 19% en la facturación",
@@ -1710,7 +1841,8 @@ window.QUIZ = {
     {
       "id": 133,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué implica no registrar una petición especial (ej.: cuna) en el PMS?",
       "A": "Que el hotel pierda la comisión",
@@ -1723,7 +1855,8 @@ window.QUIZ = {
     {
       "id": 134,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de Weekendesk incluye cena romántica?",
       "A": "Verificar que el desglose diario en el PMS incluya la cena con su precio",
@@ -1736,7 +1869,8 @@ window.QUIZ = {
     {
       "id": 135,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Por qué es importante que el número de bono de Smartbox esté en las observaciones del PMS?",
       "A": "Porque el sistema lo requiere para imprimir",
@@ -1749,7 +1883,8 @@ window.QUIZ = {
     {
       "id": 136,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de Webhotel/Synergy no está pagada y es No Reembolsable?",
       "A": "Ofrecer cambio de tarifa",
@@ -1762,7 +1897,8 @@ window.QUIZ = {
     {
       "id": 137,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué riesgo hay si se cobra a un cliente de W2M en recepción?",
       "A": "Que Housekeeping no limpie",
@@ -1775,7 +1911,8 @@ window.QUIZ = {
     {
       "id": 138,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de HRS es de pago directo pero no tiene tarjeta?",
       "A": "Facturar sin cobro",
@@ -1788,7 +1925,8 @@ window.QUIZ = {
     {
       "id": 139,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "¿Por qué es esencial revisar el Log Channel al final del turno?",
       "A": "Porque el gerente lo exige diariamente",
@@ -1801,7 +1939,8 @@ window.QUIZ = {
     {
       "id": 140,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de Booking.com tiene apellidos incorrectos?",
       "A": "Cancelar la reserva",
@@ -1814,7 +1953,8 @@ window.QUIZ = {
     {
       "id": 141,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué implica no pulsar “Asume crédito” en una reserva de Smartbox?",
       "A": "Que el sistema trate la reserva como pago en efectivo y genere errores en la auditoría",
@@ -1827,7 +1967,8 @@ window.QUIZ = {
     {
       "id": 142,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Software PMS",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de EgoExperiencias no tiene marca de cofre en el PMS?",
       "A": "Cancelar la reserva",
@@ -1840,7 +1981,8 @@ window.QUIZ = {
     {
       "id": 143,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Por qué es importante que las noches adicionales en Smartbox se registren solo como alojamiento?",
       "A": "Porque el cliente así lo solicita",
@@ -1853,7 +1995,8 @@ window.QUIZ = {
     {
       "id": 144,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de Viajes El Corte Inglés no tiene número de bono?",
       "A": "Facturar sin bono",
@@ -1866,7 +2009,8 @@ window.QUIZ = {
     {
       "id": 145,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Software PMS",
       "nivel": "Avanzado",
       "texto": "¿Qué consecuencia tiene facturar en bruto una reserva de Hotelbeds?",
       "A": "Que el cliente reciba factura incorrecta",
@@ -1879,7 +2023,8 @@ window.QUIZ = {
     {
       "id": 146,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de Keytel tiene dos bonos adjuntos?",
       "A": "Cancelar la reserva",
@@ -1892,7 +2037,8 @@ window.QUIZ = {
     {
       "id": 147,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Por qué es importante que el desglose diario en Weekendesk coincida con el valor del bono?",
       "A": "Porque el PMS lo requiere para cerrar",
@@ -1905,7 +2051,8 @@ window.QUIZ = {
     {
       "id": 148,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de Serhs no especifica si es prepago o crédito?",
       "A": "Asignar como crédito por defecto",
@@ -1918,7 +2065,8 @@ window.QUIZ = {
     {
       "id": 149,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué implica no archivar el bono de Traveltino?",
       "A": "Que la agencia rechace la factura por falta de documentación",
@@ -1931,7 +2079,8 @@ window.QUIZ = {
     {
       "id": 150,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Software PMS",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de Webhotel/Synergy incluye flores pero no aparecen en el PMS?",
       "A": "Regalar las flores",
@@ -1944,7 +2093,8 @@ window.QUIZ = {
     {
       "id": 151,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Por qué es esencial verificar el tipo de tarifa en Booking.com al recibir la reserva?",
       "A": "Porque determina el esquema de cobro y cancelación asignado por Booking.com y permite saber si el pago debe gestionarse por el hotel, por Payments o según condiciones especiales, evitando riesgos de no-show",
@@ -1957,7 +2107,8 @@ window.QUIZ = {
     {
       "id": 152,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué debes hacer si una reserva de Expedia Collect tiene una VCC caducada?",
       "A": "Cobrar al cliente en recepción",
@@ -1970,7 +2121,8 @@ window.QUIZ = {
     {
       "id": 153,
       "departamento": "Recepción",
-      "categoria": "Reservas",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué riesgo hay si se factura a nombre de “Serhs” en lugar de la subagencia real?",
       "A": "Que el PMS se bloquee",
@@ -1983,7 +2135,8 @@ window.QUIZ = {
     {
       "id": 155,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué debe evitarse en reservas procedentes de Smartbox, El Corte Inglés, GDS u otros canales externos?",
       "A": "Confirmar la reserva sin revisar el canal de origen",
@@ -1996,7 +2149,8 @@ window.QUIZ = {
     {
       "id": 156,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Avanzado",
       "texto": "¿Qué debe hacer el turno de noche ante una reserva con entrada prevista para ese día que no se ha presentado?",
       "A": "Comprobar condiciones en Channel o web, cargar el no show según política de tarifa y, si aplica, informar en la extranet de la OTA",
@@ -2009,7 +2163,8 @@ window.QUIZ = {
     {
       "id": 157,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "En reservas corporativas con pago directo, ¿cuándo procede solicitar prepago?",
       "A": "Si la estancia es prolongada y no hay bono enviado",
@@ -2022,7 +2177,8 @@ window.QUIZ = {
     {
       "id": 158,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué debe hacerse si una tarifa EBI flexible requiere tarjeta como garantía y el pago se realiza en el hotel?",
       "A": "No es necesario marcar release si hay tarjeta registrada",
@@ -2035,7 +2191,8 @@ window.QUIZ = {
     {
       "id": 159,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Software PMS",
       "nivel": "Avanzado",
       "texto": "¿Cuál es el procedimiento al detectar una reserva duplicada en PMS?",
       "A": "Permitir solo la más reciente",
@@ -2048,7 +2205,8 @@ window.QUIZ = {
     {
       "id": 160,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué implica no marcar correctamente 'SP' en reservas Keytel con Spa?",
       "A": "No afecta a liquidación",
@@ -2061,7 +2219,8 @@ window.QUIZ = {
     {
       "id": 161,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Gestión Individual",
       "nivel": "Avanzado",
       "texto": "Si una agencia solicita cambio de nombre en reserva garantizada, ¿qué se debe hacer?",
       "A": "Esperar al check-in",
@@ -2074,7 +2233,8 @@ window.QUIZ = {
     {
       "id": 162,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Avanzado",
       "texto": "¿Qué riesgo existe si una habitación triple se asigna como doble por error?",
       "A": "El cliente recibe upgrade automático",
@@ -2087,7 +2247,8 @@ window.QUIZ = {
     {
       "id": 163,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "¿Qué debe verificarse al convertir una reserva OTA a directa por solicitud del cliente?",
       "A": "Cambiar canal sin registro",
@@ -2100,7 +2261,8 @@ window.QUIZ = {
     {
       "id": 164,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
       "nivel": "Avanzado",
       "texto": "¿Cuál es el control clave en reservas NR al final del día?",
       "A": "Verificar precio correcto",
@@ -2113,7 +2275,8 @@ window.QUIZ = {
     {
       "id": 165,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Avanzado",
       "texto": "¿Qué hacer si channel cancela pero la reserva sigue activa en PMS?",
       "A": "Cancelar manualmente y documentar",
@@ -2126,7 +2289,8 @@ window.QUIZ = {
     {
       "id": 166,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Gestión Individual",
       "nivel": "Avanzado",
       "texto": "¿Qué campo es obligatorio en bonos físicos?",
       "A": "Referencia exacta del bono",
@@ -2139,7 +2303,8 @@ window.QUIZ = {
     {
       "id": 167,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Eventos y Grupos",
+      "submodulo": "Operativa de Grupos",
       "nivel": "Avanzado",
       "texto": "En una reserva de grupo, ¿cuándo puede modificarse la distribución de habitaciones?",
       "A": "Cuando lleguen los clientes",
@@ -2152,7 +2317,8 @@ window.QUIZ = {
     {
       "id": 168,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "¿Qué se debe comprobar al registrar prepago manual?",
       "A": "Hora de creación de reserva",
@@ -2165,7 +2331,8 @@ window.QUIZ = {
     {
       "id": 169,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "Uso correcto del campo 'Cargos' en PMS con Keytel Spa:",
       "A": "Dejar vacío si tarifa incluye Spa",
@@ -2178,7 +2345,8 @@ window.QUIZ = {
     {
       "id": 170,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Gestión Individual",
       "nivel": "Avanzado",
       "texto": "¿Qué hacer si el cliente presenta bono sin código válido?",
       "A": "Solicitar evidencia digital válida o rechazo según política",
@@ -2191,7 +2359,8 @@ window.QUIZ = {
     {
       "id": 171,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "Control crítico de reservas con tarjeta rechazada:",
       "A": "Anular automáticamente",
@@ -2204,7 +2373,8 @@ window.QUIZ = {
     {
       "id": 172,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
       "nivel": "Avanzado",
       "texto": "¿Cómo debe actuar recepción cuando aparece el error “tarifa no aplicable al mercado”?",
       "A": "Reasignar la reserva a tarifa BAR",
@@ -2217,7 +2387,8 @@ window.QUIZ = {
     {
       "id": 173,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué revisar al aplicar tarifa corporativa dinámica TravelPerk?",
       "A": "Eliminar comisión",
@@ -2230,7 +2401,8 @@ window.QUIZ = {
     {
       "id": 174,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Gestión Individual",
       "nivel": "Avanzado",
       "texto": "¿Cuál es el riesgo de no registrar 'bono requerido' en reservas Bono Spa?",
       "A": "Sólo afecta estadísticas",
@@ -2243,7 +2415,8 @@ window.QUIZ = {
     {
       "id": 175,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "Acción si cliente dice 'agencia me dijo que estaba pagado' pero no hay prepago:",
       "A": "Esperar cierre",
@@ -2256,7 +2429,8 @@ window.QUIZ = {
     {
       "id": 176,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Avanzado",
       "texto": "Al cambiar fechas en PMS manualmente:",
       "A": "Cliente asume diferencia",
@@ -2269,7 +2443,8 @@ window.QUIZ = {
     {
       "id": 177,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "¿Qué revisar en reservas con niños en OTA?",
       "A": "Reglas de ocupación, suplementos y edades configuradas",
@@ -2282,7 +2457,8 @@ window.QUIZ = {
     {
       "id": 178,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
       "nivel": "Avanzado",
       "texto": "¿Cuándo generar cargo manual de Spa en PMS?",
       "A": "Siempre",
@@ -2295,7 +2471,8 @@ window.QUIZ = {
     {
       "id": 179,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "Reserva VIP canal Sercotel Rewards:",
       "A": "Eliminar puntos",
@@ -2308,7 +2485,8 @@ window.QUIZ = {
     {
       "id": 180,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
       "nivel": "Avanzado",
       "texto": "¿Qué debe revisarse al hacer downgrade de Suite a Doble?",
       "A": "Nada, sistema lo corrige",
@@ -2321,7 +2499,8 @@ window.QUIZ = {
     {
       "id": 181,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Avanzado",
       "texto": "Errores recurrentes 'no se encontró la reserva' suelen venir de:",
       "A": "Antivirus",
@@ -2334,7 +2513,8 @@ window.QUIZ = {
     {
       "id": 182,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Eventos y Grupos",
+      "submodulo": "Operativa de Grupos",
       "nivel": "Avanzado",
       "texto": "Control obligatorio últimas 48h grupos:",
       "A": "Asignar habitaciones",
@@ -2347,7 +2527,8 @@ window.QUIZ = {
     {
       "id": 183,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "Si cliente solicita factura con CIF distinto al pagador:",
       "A": "Emitirla",
@@ -2360,7 +2541,8 @@ window.QUIZ = {
     {
       "id": 184,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "Al detectar overbooking real:",
       "A": "Cerrar recepción",
@@ -2373,7 +2555,8 @@ window.QUIZ = {
     {
       "id": 185,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "En reservas Keytel con servicio de SPA, ¿qué abreviatura debe añadirse SIEMPRE en «Cargos» para que la comisión aplique?",
       "A": "HA",
@@ -2386,7 +2569,8 @@ window.QUIZ = {
     {
       "id": 186,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "Además de «Cargos», ¿dónde se consigna la comisión correcta en reservas Keytel con SPA?",
       "A": "Observaciones públicas",
@@ -2399,7 +2583,8 @@ window.QUIZ = {
     {
       "id": 187,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "¿Qué elemento NO forma parte del control básico en el cierre de caja del turno?",
       "A": "Efectivo coincide",
@@ -2412,7 +2597,8 @@ window.QUIZ = {
     {
       "id": 188,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "En turno de noche, ¿qué se debe adjuntar al listado de cierre?",
       "A": "Solo el efectivo",
@@ -2425,7 +2611,8 @@ window.QUIZ = {
     {
       "id": 189,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Básico",
       "texto": "¿Cuándo puede modificarse manualmente el localizador de una reserva de Smartbox/ECI/GDS?",
       "A": "En cualquier momento",
@@ -2438,7 +2625,8 @@ window.QUIZ = {
     {
       "id": 190,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "Pago con BONO (Keytel, Smartbox, etc.). ¿Qué garantía corresponde SIEMPRE?",
       "A": "Tarjeta de crédito",
@@ -2451,7 +2639,8 @@ window.QUIZ = {
     {
       "id": 191,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "Para tarifa EBI (Early Booking) con pago directo del cliente, la garantía correcta es:",
       "A": "Tarjeta de crédito",
@@ -2464,7 +2653,8 @@ window.QUIZ = {
     {
       "id": 192,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "Para tarifa NRF (No Reembolsable) con pago directo del cliente, la garantía correcta es:",
       "A": "No reembolsable 100%",
@@ -2477,7 +2667,8 @@ window.QUIZ = {
     {
       "id": 193,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
       "nivel": "Básico",
       "texto": "Marcar «SPA» manualmente en la celda del parte de servicios…",
       "A": "Distribuye los precios automáticamente",
@@ -2490,7 +2681,8 @@ window.QUIZ = {
     {
       "id": 194,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Software PMS",
       "nivel": "Básico",
       "texto": "Carga correcta si el SPA solo aplica el segundo día (27 HD, 28 HD+SPA, 29 HD):",
       "A": "HD, HD+SPA, HD",
@@ -2503,7 +2695,8 @@ window.QUIZ = {
     {
       "id": 195,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Software PMS",
       "nivel": "Básico",
       "texto": "En reservas con Bonos Cumbria Bienestar, el nº de bono debe ponerse en:",
       "A": "Observaciones",
@@ -2516,7 +2709,8 @@ window.QUIZ = {
     {
       "id": 196,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Software PMS",
       "nivel": "Básico",
       "texto": "Reserva para 3 personas: para preservar Triples en venta online, la tipología correcta es:",
       "A": "DOB",
@@ -2529,7 +2723,8 @@ window.QUIZ = {
     {
       "id": 197,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
       "nivel": "Básico",
       "texto": "En la campaña «Escapada Joven», ¿qué error crítico debes evitar?",
       "A": "No imprimir el parte",
@@ -2542,7 +2737,8 @@ window.QUIZ = {
     {
       "id": 198,
       "departamento": "Recep-Cumbria",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Básico",
       "texto": "¿Qué acredita marcar una reserva como «VISTA» en RoomCloud?",
       "A": "Pago confirmado",
@@ -2555,7 +2751,8 @@ window.QUIZ = {
     {
       "id": 199,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "Una EBI con llegada en menos de 7 días y sin garantía flexible se debe:",
       "A": "Tratar como NR y cobrar de inmediato",
@@ -2568,7 +2765,8 @@ window.QUIZ = {
     {
       "id": 200,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Eventos y Grupos",
+      "submodulo": "Operativa de Grupos",
       "nivel": "Básico",
       "texto": "¿Cuándo se cambia el segmento a «Grupo confirmado»?",
       "A": "Al crear la reserva",
@@ -2581,7 +2779,8 @@ window.QUIZ = {
     {
       "id": 201,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "Si Observaciones dicen «MERCADONA PAGO BONO», ¿cómo debe quedar Empresa/Agencia?",
       "A": "Empresa: Particular · Agencia: Sin agencia",
@@ -2594,7 +2793,8 @@ window.QUIZ = {
     {
       "id": 202,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "En Viajes El Corte Inglés (VECI), la comisión correcta es:",
       "A": "Siempre 15%",
@@ -2607,7 +2807,8 @@ window.QUIZ = {
     {
       "id": 203,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Básico",
       "texto": "Para evitar fallos al generar el XML, con menores de edad se debe:",
       "A": "Omitir fecha de nacimiento",
@@ -2620,7 +2821,8 @@ window.QUIZ = {
     {
       "id": 204,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Básico",
       "texto": "Pago con BONO (Keytel, Smartbox, etc.): ¿qué garantía debe indicarse siempre en el PMS?",
       "A": "Tarjeta de crédito",
@@ -2633,7 +2835,8 @@ window.QUIZ = {
     {
       "id": 205,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
       "nivel": "Intermedio",
       "texto": "Tarifa EBI con pago directo del cliente: ¿qué garantía corresponde?",
       "A": "Tarjeta de crédito",
@@ -2646,7 +2849,8 @@ window.QUIZ = {
     {
       "id": 206,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Intermedio",
       "texto": "Tarifa NRF con pago directo del cliente: ¿qué garantía es correcta?",
       "A": "No reembolsable 100%",
@@ -2659,7 +2863,8 @@ window.QUIZ = {
     {
       "id": 207,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "En reservas VECI: si el rate code incluye 'PYME', la comisión correcta es…",
       "A": "10%",
@@ -2672,7 +2877,8 @@ window.QUIZ = {
     {
       "id": 208,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Básico",
       "texto": "Smartbox/ECI/GDS: ¿cuándo puede modificarse manualmente el localizador en PMS?",
       "A": "Nunca",
@@ -2685,7 +2891,8 @@ window.QUIZ = {
     {
       "id": 209,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Software PMS",
       "nivel": "Intermedio",
       "texto": "Bonos Cumbria Bienestar: ¿en qué campo debe introducirse el número de bono?",
       "A": "Observaciones",
@@ -2698,7 +2905,8 @@ window.QUIZ = {
     {
       "id": 210,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Avanzado",
       "texto": "XML con menores: ¿qué requisito evita bloqueos en la generación/envío?",
       "A": "Marcar <18 sin datos",
@@ -2711,7 +2919,8 @@ window.QUIZ = {
     {
       "id": 211,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
       "nivel": "Intermedio",
       "texto": "Diferencia operativa clave: pago directo del cliente vs. pago mediante bono es…",
       "A": "El canal",
@@ -2724,7 +2933,8 @@ window.QUIZ = {
     {
       "id": 212,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "Cierre de caja: ¿qué elemento NO forma parte del control básico?",
       "A": "Efectivo coincide",
@@ -2737,7 +2947,8 @@ window.QUIZ = {
     {
       "id": 213,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "Turno de noche: ¿qué debes adjuntar al listado de cierre?",
       "A": "Únicamente el efectivo",
@@ -2750,7 +2961,8 @@ window.QUIZ = {
     {
       "id": 214,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Intermedio",
       "texto": "Todo descuadre de caja debe…",
       "A": "Ignorarse si es pequeño",
@@ -2763,7 +2975,8 @@ window.QUIZ = {
     {
       "id": 215,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Intermedio",
       "texto": "Marcar una reserva como 'VISTA' en RoomCloud significa…",
       "A": "Pago confirmado",
@@ -2776,7 +2989,8 @@ window.QUIZ = {
     {
       "id": 216,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Intermedio",
       "texto": "Flujo por turnos: antes de las 21:00 en turno de tarde debes…",
       "A": "Revisar todas las llegadas restantes, confirmar prepagos/tarjetas y cargar depósitos si procede",
@@ -2789,7 +3003,8 @@ window.QUIZ = {
     {
       "id": 217,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Avanzado",
       "texto": "Cuando una reserva aparece cancelada en channel pero activa en PMS, el paso correcto es…",
       "A": "Dejarla como está",
@@ -2802,7 +3017,8 @@ window.QUIZ = {
     {
       "id": 219,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Software PMS",
       "nivel": "Intermedio",
       "texto": "Cargar una estancia donde el SPA solo aplica el segundo día (27 HD, 28 HD+SPA, 29 HD) es…",
       "A": "HD, HDSPA, HD",
@@ -2815,7 +3031,8 @@ window.QUIZ = {
     {
       "id": 220,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
       "nivel": "Intermedio",
       "texto": "Si una reserva incluye SPA y no se indica 'SP' en Cargos…",
       "A": "No pasa nada",
@@ -2828,7 +3045,8 @@ window.QUIZ = {
     {
       "id": 221,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "Además de 'Cargos', la comisión correcta de Keytel con SPA debe consignarse en…",
       "A": "Observaciones públicas",
@@ -2841,7 +3059,8 @@ window.QUIZ = {
     {
       "id": 222,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Gestión Individual",
       "nivel": "Básico",
       "texto": "Campaña 'Escapada Joven': error crítico a evitar",
       "A": "No imprimir el parte",
@@ -2854,7 +3073,8 @@ window.QUIZ = {
     {
       "id": 223,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Eventos y Grupos",
+      "submodulo": "Operativa de Grupos",
       "nivel": "Intermedio",
       "texto": "¿Cuándo se cambia el segmento a 'Grupo confirmado'?",
       "A": "Al crear la reserva",
@@ -2867,7 +3087,8 @@ window.QUIZ = {
     {
       "id": 224,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Básico",
       "texto": "¿En qué momento puede modificarse el número de bono Smartbox en el PMS, conforme al procedimiento interno?",
       "A": "En cualquier momento, ya que el sistema actualiza automáticamente el código en la plataforma Smartbox.",
@@ -2880,7 +3101,8 @@ window.QUIZ = {
     {
       "id": 225,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Intermedio",
       "texto": "Cuando el cliente informa de un cambio de bono/fecha en Smartbox, lo correcto es…",
       "A": "Modificar inmediatamente el localizador",
@@ -2893,7 +3115,8 @@ window.QUIZ = {
     {
       "id": 226,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Intermedio",
       "texto": "Caso: Observaciones dicen 'MERCADONA PAGO BONO'. ¿Cómo debe quedar Empresa/Agencia?",
       "A": "Empresa: Particular · Agencia: Sin agencia",
@@ -2906,7 +3129,8 @@ window.QUIZ = {
     {
       "id": 227,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Canales Online",
       "nivel": "Avanzado",
       "texto": "Caso: Reserva Keytel con SPA sin 'SP' en Cargos. ¿Qué ocurre?",
       "A": "Nada, el sistema lo interpreta",
@@ -2919,7 +3143,8 @@ window.QUIZ = {
     {
       "id": 228,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Tarifas y Políticas",
       "nivel": "Intermedio",
       "texto": "Caso: EBI sin garantía y llegada en 48h. Para cubrir riesgo debes…",
       "A": "Mantenerla sin garantía",
@@ -2932,7 +3157,8 @@ window.QUIZ = {
     {
       "id": 229,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Avanzado",
       "texto": "Caso: Falla el XML porque hay menores sin datos completos. La acción correcta es…",
       "A": "Reenviar varias veces",
@@ -2945,7 +3171,8 @@ window.QUIZ = {
     {
       "id": 230,
       "departamento": "Recepción",
-      "categoria": "Supervisión de Ocupación (Inventory)",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Básico",
       "texto": "¿Qué representa la columna blanca del Inventory?",
       "A": "La disponibilidad real del día",
@@ -2959,7 +3186,8 @@ window.QUIZ = {
     {
       "id": 231,
       "departamento": "Recepción",
-      "categoria": "Supervisión de Ocupación (Inventory)",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Básico",
       "texto": "¿Qué efecto produce un valor positivo en la columna blanca del Inventory?",
       "A": "Aumenta la disponibilidad",
@@ -2973,7 +3201,8 @@ window.QUIZ = {
     {
       "id": 232,
       "departamento": "Recepción",
-      "categoria": "Supervisión de Ocupación (Inventory)",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Intermedio",
       "texto": "¿Qué indica un valor negativo en la columna blanca del Inventory?",
       "A": "Sobreocupación",
@@ -2987,7 +3216,8 @@ window.QUIZ = {
     {
       "id": 233,
       "departamento": "Recepción",
-      "categoria": "Supervisión de Ocupación (Inventory)",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Intermedio",
       "texto": "¿Cuál es la acción correcta si ves un desajuste en la columna blanca del Inventory?",
       "A": "Corregir directamente el valor blanco",
@@ -3002,7 +3232,8 @@ window.QUIZ = {
     {
       "id": 234,
       "departamento": "Recepción",
-      "categoria": "Supervisión de Ocupación (Inventory)",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Básico",
       "texto": "¿Qué muestran los bloques superior e inferior en la pestaña Ocupación → Disponibilidad?",
       "A": "Ventas y cancelaciones",
@@ -3016,7 +3247,8 @@ window.QUIZ = {
     {
       "id": 235,
       "departamento": "Recepción",
-      "categoria": "Supervisión de Ocupación (Inventory)",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Básico",
       "texto": "Si la disponibilidad aparece en negativo en Ocupación → Disponibilidad, significa…",
       "A": "Error del PMS",
@@ -3030,7 +3262,8 @@ window.QUIZ = {
     {
       "id": 236,
       "departamento": "Recepción",
-      "categoria": "Supervisión de Ocupación (Inventory)",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Intermedio",
       "texto": "Cuando aparece un negativo en el Planning de Ocupación, ¿qué debes hacer para corregirlo según el procedimiento 8.2?",
       "A": "Ajustar manualmente la columna blanca del Inventory hasta que desaparezca el negativo",
@@ -3045,7 +3278,8 @@ window.QUIZ = {
     {
       "id": 237,
       "departamento": "Recepción",
-      "categoria": "Supervisión de Ocupación (Inventory)",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Intermedio",
       "texto": "¿Dónde debe realizarse la corrección de sobreocupación?",
       "A": "En el módulo Inventory",
@@ -3059,7 +3293,8 @@ window.QUIZ = {
     {
       "id": 238,
       "departamento": "Recepción",
-      "categoria": "Supervisión de Ocupación (Inventory)",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Avanzado",
       "texto": "Antes de modificar la tipología de una reserva, debes…",
       "A": "Cambiar directamente y guardar",
@@ -3073,7 +3308,8 @@ window.QUIZ = {
     {
       "id": 239,
       "departamento": "Recepción",
-      "categoria": "Supervisión de Ocupación (Inventory)",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Avanzado",
       "texto": "Tras modificar la tipología, ¿qué debes seleccionar para mantener la tarifa correcta?",
       "A": "Actualizar precio automáticamente",
@@ -3087,7 +3323,8 @@ window.QUIZ = {
     {
       "id": 240,
       "departamento": "Recepción",
-      "categoria": "Supervisión de Ocupación (Inventory)",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Intermedio",
       "texto": "Tras el cambio, ¿qué debes verificar en Observaciones?",
       "A": "Nada, no es necesario",
@@ -3101,7 +3338,8 @@ window.QUIZ = {
     {
       "id": 241,
       "departamento": "Recepción",
-      "categoria": "Supervisión de Ocupación (Inventory)",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Básico",
       "texto": "¿Qué tres elementos deben confirmarse tras la corrección?",
       "A": "Precio, régimen y observaciones correctas",
@@ -3115,7 +3353,8 @@ window.QUIZ = {
     {
       "id": 242,
       "departamento": "Recepción",
-      "categoria": "Atención al Cliente y Protocolo",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
       "nivel": "Básico",
       "texto": "¿Cuál es la primera frase recomendada al recibir a un huésped que llega al mostrador?",
       "A": "¿Tiene usted reserva?",
@@ -3128,7 +3367,8 @@ window.QUIZ = {
     {
       "id": 243,
       "departamento": "Recepción",
-      "categoria": "Atención al Cliente y Protocolo",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Básico",
       "texto": "¿Qué actitud debe mantener el recepcionista cuando el huésped formula una queja?",
       "A": "Responder inmediatamente con una solución.",
@@ -3141,7 +3381,8 @@ window.QUIZ = {
     {
       "id": 244,
       "departamento": "Recepción",
-      "categoria": "Atención al Cliente y Protocolo",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
       "nivel": "Básico",
       "texto": "¿Qué información debe verificarse siempre antes de entregar una llave o tarjeta de habitación?",
       "A": "El número de habitación y el régimen contratado.",
@@ -3154,7 +3395,8 @@ window.QUIZ = {
     {
       "id": 245,
       "departamento": "Recepción",
-      "categoria": "Atención al Cliente y Protocolo",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
       "nivel": "Básico",
       "texto": "Si un cliente solicita una habitación superior disponible, ¿cómo debe actuar el recepcionista?",
       "A": "Ofrecerla sin coste para quedar bien.",
@@ -3167,7 +3409,8 @@ window.QUIZ = {
     {
       "id": 246,
       "departamento": "Recepción",
-      "categoria": "Atención al Cliente y Protocolo",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
       "nivel": "Básico",
       "texto": "¿Cuál es la forma correcta de atender una llamada entrante al hotel?",
       "A": "¿Dígame?",
@@ -3180,7 +3423,8 @@ window.QUIZ = {
     {
       "id": 247,
       "departamento": "Recepción",
-      "categoria": "Atención al Cliente y Protocolo",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Intermedio",
       "texto": "Un huésped informa de un fallo en el aire acondicionado. ¿Cuál es el procedimiento correcto?",
       "A": "Anotar la incidencia y avisar al departamento de mantenimiento.",
@@ -3193,7 +3437,8 @@ window.QUIZ = {
     {
       "id": 248,
       "departamento": "Recepción",
-      "categoria": "Atención al Cliente y Protocolo",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Intermedio",
       "texto": "En caso de overbooking confirmado, ¿cuál es la prioridad de actuación?",
       "A": "Informar al cliente al llegar y derivarlo a otro hotel sin más.",
@@ -3206,7 +3451,8 @@ window.QUIZ = {
     {
       "id": 249,
       "departamento": "Recepción",
-      "categoria": "Atención al Cliente y Protocolo",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Intermedio",
       "texto": "Si un huésped pierde un objeto en zonas comunes, ¿qué debe hacerse?",
       "A": "Ignorarlo salvo que el cliente insista.",
@@ -3219,7 +3465,8 @@ window.QUIZ = {
     {
       "id": 250,
       "departamento": "Recepción",
-      "categoria": "Atención al Cliente y Protocolo",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
       "nivel": "Intermedio",
       "texto": "Un huésped manifiesta disconformidad con el ruido exterior. ¿Qué debe ofrecerse como primera medida?",
       "A": "Cambio de habitación según disponibilidad.",
@@ -3232,7 +3479,8 @@ window.QUIZ = {
     {
       "id": 251,
       "departamento": "Recepción",
-      "categoria": "Atención al Cliente y Protocolo",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
       "nivel": "Avanzado",
       "texto": "Durante un check-in VIP, el cliente solicita un servicio especial no previsto. ¿Cómo debe actuar el recepcionista?",
       "A": "Rechazarlo por no estar incluido.",
@@ -3245,7 +3493,8 @@ window.QUIZ = {
     {
       "id": 252,
       "departamento": "Recepción",
-      "categoria": "Gestión Administrativa y Cobros",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "¿Cuál es el primer paso antes de iniciar el arqueo de caja?",
       "A": "Contar el dinero en efectivo directamente.",
@@ -3258,7 +3507,8 @@ window.QUIZ = {
     {
       "id": 253,
       "departamento": "Recepción",
-      "categoria": "Gestión Administrativa y Cobros",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "¿Qué debe hacerse cuando un cliente realiza un pago parcial en efectivo?",
       "A": "Registrar solo la parte pagada y anotar el saldo pendiente en la reserva.",
@@ -3271,7 +3521,8 @@ window.QUIZ = {
     {
       "id": 254,
       "departamento": "Recepción",
-      "categoria": "Gestión Administrativa y Cobros",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "¿Qué documento respalda una reserva con depósito previo?",
       "A": "Confirmación verbal.",
@@ -3284,7 +3535,8 @@ window.QUIZ = {
     {
       "id": 255,
       "departamento": "Recepción",
-      "categoria": "Gestión Administrativa y Cobros",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "En un pago con tarjeta rechazada, ¿qué se debe hacer primero?",
       "A": "Anular la reserva.",
@@ -3297,7 +3549,8 @@ window.QUIZ = {
     {
       "id": 256,
       "departamento": "Recepción",
-      "categoria": "Gestión Administrativa y Cobros",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Básico",
       "texto": "¿Qué debe comprobarse antes de emitir una factura a empresa?",
       "A": "Que el huésped tenga número de habitación.",
@@ -3310,7 +3563,8 @@ window.QUIZ = {
     {
       "id": 257,
       "departamento": "Recepción",
-      "categoria": "Gestión Administrativa y Cobros",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Intermedio",
       "texto": "¿Qué procedimiento se sigue para validar un bono de agencia en el check-in?",
       "A": "Solo se guarda el bono sin verificar nada.",
@@ -3323,7 +3577,8 @@ window.QUIZ = {
     {
       "id": 258,
       "departamento": "Recepción",
-      "categoria": "Gestión Administrativa y Cobros",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Intermedio",
       "texto": "Durante el cierre de caja, detectas una diferencia de 10 €. ¿Qué debes hacer?",
       "A": "Ignorarla si es pequeña.",
@@ -3336,7 +3591,8 @@ window.QUIZ = {
     {
       "id": 259,
       "departamento": "Recepción",
-      "categoria": "Gestión Administrativa y Cobros",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Intermedio",
       "texto": "¿Qué acción se considera incorrecta al cerrar el día según el Manual del Turno de Noche?",
       "A": "Revisar que no queden llegadas pendientes y que los no show estén gestionado",
@@ -3349,7 +3605,8 @@ window.QUIZ = {
     {
       "id": 260,
       "departamento": "Recepción",
-      "categoria": "Gestión Administrativa y Cobros",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Intermedio",
       "texto": "Si un cliente solicita factura tras su salida, ¿qué debe hacerse?",
       "A": "Negarse si ya ha hecho check-out.",
@@ -3362,7 +3619,8 @@ window.QUIZ = {
     {
       "id": 261,
       "departamento": "Recepción",
-      "categoria": "Gestión Administrativa y Cobros",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "Un huésped con cuenta crédito empresa no tiene orden de facturación y exige marcharse sin pagar. ¿Cómo se actúa?",
       "A": "Permitir su salida para evitar conflicto.",
@@ -3375,7 +3633,8 @@ window.QUIZ = {
     {
       "id": 262,
       "departamento": "Recepción",
-      "categoria": "Errores Comunes",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Conectividad",
       "nivel": "Avanzado",
       "texto": "Según el protocolo operativo de bonos Smartbox, ¿en qué momento puede modificarse el número de bono asociado a una reserva en el PMS sin generar una desincronización con la plataforma?",
       "A": "En cualquier momento, siempre que el PMS haya ejecutado la “sincronización de códigos” y el bono aparezca como pendiente de uso.",
@@ -3388,7 +3647,8 @@ window.QUIZ = {
     {
       "id": 263,
       "departamento": "Recepción",
-      "categoria": "Supervisión de Ocupación (Inventory)",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Avanzado",
       "texto": "Si en el Planning de Ocupación aparece un negativo en una tipología concreta, ¿qué procedimiento garantiza una corrección válida sin alterar el Inventory ni generar inconsistencias de trazabilidad?",
       "A": "Ajustar manualmente la columna blanca del Inventory para compensar el negativo mediante un valor positivo, siempre que no afecte a otras tipologías.",
@@ -3403,7 +3663,8 @@ window.QUIZ = {
     {
       "id": 264,
       "departamento": "Recepción",
-      "categoria": "Supervisión de Ocupación (Inventory)",
+      "categoria": "Reservas y Sistemas",
+      "submodulo": "Auditoría y Control",
       "nivel": "Avanzado",
       "texto": "Si en Ocupación → Disponibilidad aparece un valor negativo en una tipología, ¿qué representa exactamente según el procedimiento de Supervisión de Ocupación?",
       "A": "Un fallo temporal del PMS que recalculará la disponibilidad durante el proceso nocturno",
@@ -3417,7 +3678,8 @@ window.QUIZ = {
     {
       "id": 265,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "Antes de que los huéspedes bajen a realizar el check-out, ¿qué actuación garantiza que la salida pueda gestionarse sin incidencias y sin necesidad de corregir cargos en mostrador?",
       "A": "Revisar únicamente las reservas con regímenes especiales y dejar las habitaciones estándar para verificarlas a medida que el cliente las solicite",
@@ -3430,7 +3692,8 @@ window.QUIZ = {
     {
       "id": 266,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Turnos y Personal",
+      "submodulo": "Turno de Mañana",
       "nivel": "Avanzado",
       "texto": "Durante la segunda verificación de reservas en el turno de mañana, ¿qué acción asegura que el proceso de asignación sea coherente con los huecos reales del rack y con las peticiones del cliente?",
       "A": "Asignar las habitaciones siguiendo estricto orden numérico para evitar saltos en el rack",
@@ -3443,7 +3706,8 @@ window.QUIZ = {
     {
       "id": 267,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Calidad e Incidencias",
       "nivel": "Avanzado",
       "texto": "En la coordinación inicial con el departamento de limpieza, ¿qué actuación permite garantizar que las habitaciones urgentes queden listas a tiempo sin generar reorganizaciones innecesarias durante el día?",
       "A": "Priorizar siempre las habitaciones de huéspedes VIP aunque tengan salida tardía confirmada",
@@ -3456,7 +3720,8 @@ window.QUIZ = {
     {
       "id": 268,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
       "nivel": "Avanzado",
       "texto": "¿Qué puede ocurrir si el MR-HOSPE no se envía ni valida con frecuencia, tal como indica el protocolo interno?",
       "A": "Que se acumulen errores en los registros y sea necesario recuperar manualmente entradas o check-outs anteriores",
@@ -3469,7 +3734,8 @@ window.QUIZ = {
     {
       "id": 269,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
       "nivel": "Avanzado",
       "texto": "¿Qué riesgo técnico aparece cuando el MR-HOSPE no se envía o valida con regularidad, según la incidencia descrita?",
       "A": "ue la generación del XML falle por registros incompletos o campos obligatorios sin rellenar",
@@ -3482,7 +3748,8 @@ window.QUIZ = {
     {
       "id": 270,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "Finanzas y Caja",
       "nivel": "Avanzado",
       "texto": "Según el Real Decreto 933/2021, ¿qué información debe constar obligatoriamente en el registro de viajeros para que el MR-HOSPE pueda enviarse sin errores?",
       "A": "Datos identificativos completos del viajero, datos de contacto del primer ocupante, domicilio declarado y la captura o soporte del documento presentado en el registro",
@@ -3495,7 +3762,8 @@ window.QUIZ = {
     {
       "id": 271,
       "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
+      "categoria": "Flujo de Recepción",
+      "submodulo": "El Ciclo del Huésped",
       "nivel": "Avanzado",
       "texto": "Si un viajero extranjero presenta un pasaporte que no incluye domicilio, ¿cómo debe proceder el recepcionista según el RD 933/2021?",
       "A": "Solicitar al viajero su domicilio declarado y registrarlo manualmente en el MR-HOSPE, ya que es un dato obligatorio para la comunicación",
@@ -3508,7 +3776,8 @@ window.QUIZ = {
     {
       "id": 273,
       "departamento": "Spa",
-      "categoria": "Spa y Servicios",
+      "categoria": "Bonos Spa",
+      "submodulo": "Bonos Externos",
       "nivel": "Intermedio",
       "texto": "Según el procedimiento operativo para la gestión de bonos Smartbox (La Vida es Bella / Dakotabox) en Recepción de Spa, ¿cuál es la secuencia correcta de pasos antes y durante el registro de la cita?",
       "A": "Confirmar la cita al cliente, canjear el bono al finalizar el servicio en Gest-Spa seleccionando origen 'Cobro Pendiente' y anotar el código en la factura.",
@@ -3521,7 +3790,8 @@ window.QUIZ = {
     {
       "id": 274,
       "departamento": "Spa",
-      "categoria": "Spa y Servicios",
+      "categoria": "Bonos Spa",
+      "submodulo": "Bonos Externos",
       "nivel": "Intermedio",
       "texto": "Al procesar una reserva de cofre regalo en Gest-Spa en la Recepción del Spa, ¿de qué forma exacta debe registrarse el origen del cobro y los datos del bono?",
       "A": "Seleccionando Origen 'Venta Directa Spa' y especificando el número de bono en la casilla de importe cobrado.",
@@ -3534,7 +3804,8 @@ window.QUIZ = {
     {
       "id": 275,
       "departamento": "Spa",
-      "categoria": "Spa y Servicios",
+      "categoria": "Bonos Spa",
+      "submodulo": "Bonos Externos",
       "nivel": "Intermedio",
       "texto": "¿Cuál es el procedimiento correcto para registrar un bono de Ego Experiencias en la aplicación Gest-Spa?",
       "A": "Seleccionar Origen 'Ego Experiencias' (0 € en caja) y anotar el código del bono en Observaciones.",
@@ -3547,7 +3818,8 @@ window.QUIZ = {
     {
       "id": 276,
       "departamento": "Spa",
-      "categoria": "Spa y Servicios",
+      "categoria": "Bonos Spa",
+      "submodulo": "Bonos Externos",
       "nivel": "Intermedio",
       "texto": "¿En qué momento se debe realizar la validación del canje del bono de Ego Experiencias en el portal correspondiente?",
       "A": "Se valida en el portal correspondiente al finalizar la sesión del cliente en el Spa.",
@@ -3560,7 +3832,8 @@ window.QUIZ = {
     {
       "id": 277,
       "departamento": "Spa",
-      "categoria": "Spa y Servicios",
+      "categoria": "Manuales Spa",
+      "submodulo": "GEST-SPA / ZENITH",
       "nivel": "Intermedio",
       "texto": "Si un cliente alojado acude al Spa y en la columna ESTADO de GEST-SPA se muestra el distintivo 'HOT. NO INC. 30€', ¿cuál es el procedimiento correcto que debe seguir el recepcionista?",
       "A": "Darle acceso inmediato sin gestionar cobros, ya que al estar alojado se liquida automáticamente al hacer check-out.",
@@ -3574,7 +3847,8 @@ window.QUIZ = {
     {
       "id": 278,
       "departamento": "Spa",
-      "categoria": "Spa y Servicios",
+      "categoria": "Manuales Spa",
+      "submodulo": "GEST-SPA / ZENITH",
       "nivel": "Básico",
       "texto": "En el panel de Inicio de GEST-SPA, ¿qué efecto operativo tiene pulsar el botón 'Confirmar Asistencia (Presentado)' en la columna ACCIONES cuando el cliente llega al mostrador?",
       "A": "Abre automáticamente la pasarela PayGold para tramitar el cobro con tarjeta bancaria.",
@@ -3588,7 +3862,8 @@ window.QUIZ = {
     {
       "id": 279,
       "departamento": "Spa",
-      "categoria": "Errores Comunes",
+      "categoria": "Bonos Spa",
+      "submodulo": "Bonos Externos",
       "nivel": "Intermedio",
       "texto": "En el panel de Inicio de GEST-SPA, al intentar pulsar el botón 'Enviar WhatsApp' (recordatorio de cita) desde la columna ACCIONES, un recepcionista observa que el botón no aparece. ¿A qué se debe esto según el manual?",
       "A": "A que la cita todavía no ha sido confirmada con el botón 'Confirmar Asistencia'.",
@@ -3602,7 +3877,8 @@ window.QUIZ = {
     {
       "id": 280,
       "departamento": "Spa",
-      "categoria": "Spa y Servicios",
+      "categoria": "Manuales Spa",
+      "submodulo": "GEST-SPA / ZENITH",
       "nivel": "Intermedio",
       "texto": "Un cliente solicita reservar un pase para el Circuito Spa y el recepcionista intenta gestionarlo directamente desde el 'Planning de Ocupación' en GEST-SPA. ¿Es correcto este procedimiento?",
       "A": "Sí, seleccionando la fila de Suite Spa o Sala Panacea e introduciendo el número de personas en el apartado de servicio.",
@@ -3617,7 +3893,8 @@ window.QUIZ = {
     {
       "id": 281,
       "departamento": "Spa",
-      "categoria": "Spa y Servicios",
+      "categoria": "Manuales Spa",
+      "submodulo": "GEST-SPA / ZENITH",
       "nivel": "Intermedio",
       "texto": "Al reservar un masaje de 60 minutos en la vista global del Planning de Ocupación de GEST-SPA, ¿cuántas casillas verdes seguidas (bloques de 15 min) se deben verificar como libres antes de hacer clic en el botón (+)?",
       "A": "4 casillas verdes seguidas (exactamente los 60 minutos del tratamiento).",
@@ -3632,7 +3909,8 @@ window.QUIZ = {
     {
       "id": 282,
       "departamento": "Spa",
-      "categoria": "Spa y Servicios",
+      "categoria": "Manuales Spa",
+      "submodulo": "GEST-SPA / ZENITH",
       "nivel": "Intermedio",
       "texto": "¿En qué situación operativa se debe emitir un 'Bono Regalo' desde la opción (+ Nueva Venta Local) de GEST-SPA en lugar de realizar una reserva directa?",
       "A": "Siempre que el cliente acuda de manera presencial al mostrador a comprar un circuito o tratamiento.",
@@ -3647,7 +3925,8 @@ window.QUIZ = {
     {
       "id": 283,
       "departamento": "Spa",
-      "categoria": "Spa y Servicios",
+      "categoria": "Manuales Spa",
+      "submodulo": "GEST-SPA / ZENITH",
       "nivel": "Avanzado",
       "texto": "Un empleado intenta marcar manualmente un bono como 'CANJEADO' modificando el número de 'Sesiones Usadas'. ¿Qué respuesta ofrece el sistema y cuál es el procedimiento correcto?",
       "A": "El sistema lo permite pero exige introducir la contraseña del supervisor de turno para validar el historial.",
@@ -3661,7 +3940,8 @@ window.QUIZ = {
     {
       "id": 284,
       "departamento": "Spa",
-      "categoria": "Spa y Servicios",
+      "categoria": "Manuales Spa",
+      "submodulo": "GEST-SPA / ZENITH",
       "nivel": "Intermedio",
       "texto": "Al tramitar un bono que contiene 'Alojamiento' y 'Menú de Restaurante' desde el bloque ITEMS DE COMPRA, ¿qué datos específicos requiere el sistema para registrar correctamente cada servicio?",
       "A": "Para Alojamiento solicita la fecha e importe pagado; para Restaurante genera un número de comanda manual.",
@@ -3676,7 +3956,8 @@ window.QUIZ = {
     {
       "id": 285,
       "departamento": "Spa",
-      "categoria": "Spa y Servicios",
+      "categoria": "Manuales Spa",
+      "submodulo": "GEST-SPA / ZENITH",
       "nivel": "Intermedio",
       "texto": "Al registrar una baja médica, vacaciones o permiso de un empleado desde la opción 'Ausencia / Vacaciones' en GEST-SPA, ¿qué visualización o efecto automático genera el sistema en la agenda?",
       "A": "Elimina de forma permanente la ficha del empleado del listado 'Fichas de Personal'.",
@@ -3690,7 +3971,8 @@ window.QUIZ = {
     {
       "id": 286,
       "departamento": "Spa",
-      "categoria": "Spa y Servicios",
+      "categoria": "Manuales Spa",
+      "submodulo": "GEST-SPA / ZENITH",
       "nivel": "Intermedio",
       "texto": "Dentro de la matriz 'Visión 15d' de GEST-SPA, ¿qué acciones directas permite realizar el sistema al hacer clic sobre una cita o hueco libre sin necesidad de abandonar dicha vista?",
       "A": "Únicamente consultar los datos de contacto y teléfono del terapeuta asignado a la sala.",

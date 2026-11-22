@@ -2,11 +2,29 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.8.0`** | **22/11/2026** | Producción |
+| **`v2.9.0`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.9.0] — 22/11/2026
+- **Módulos Afectados:** Módulos y Submenús, Banco CSV, Panel Admin, Auto-Generador IA
+- **Tipo de Cambio:** Nueva Característica / Mejora
+- **Detalle de Cambios:**
+  - Módulos y submenús jerárquicos sincronizados con la estructura oficial de Protocolo-Recep (Hoteles) y spa.html (Spa), reclasificación de las 282 preguntas con columna submodulo y soporte en admin.html y generador IA
+
+### [v2.8.2] — 22/11/2026
+- **Módulos Afectados:** Auto-Generador IA, UI Test
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Excluir protocolos con status Anulado tanto en el generador automático IA como en el bloque de novedades de Protocolo-Recep/Spa
+
+### [v2.8.1] — 22/11/2026
+- **Módulos Afectados:** Config, UI Test, Auto-Generador IA
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Conexión directa con Portal Spa (Protocolo-Recep/spa.html#inicio) en explicaciones de preguntas Spa, novedades del panel lateral, pie de página y regla oficial source=Cumbria Bienestar en el generador IA
 
 ### [v2.8.0] — 22/11/2026
 - **Módulos Afectados:** Banco de Preguntas, Panel Admin, Motor Test

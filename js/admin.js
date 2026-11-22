@@ -104,6 +104,7 @@
   const editQuestionForm = $("#editQuestionForm");
   const eqDto = $("#eqDto");
   const eqMod = $("#eqMod");
+  const eqSubmod = $("#eqSubmod");
   const eqLevel = $("#eqLevel");
   const eqCorrect = $("#eqCorrect");
   const eqActive = $("#eqActive");
@@ -951,6 +952,7 @@
     eqModalTitle.innerHTML = `<i class="fas fa-edit" style="color:var(--accent-blue)"></i> Intervenir pregunta #${esc(item.id)}`;
     eqDto.value = ["Recepción", "Recep-Guadiana", "Recep-Cumbria", "Spa"].includes(item.dto) ? item.dto : "Recepción";
     eqMod.value = item.mod || "";
+    if (eqSubmod) eqSubmod.value = item.submod || "";
     eqLevel.value = ["Básico", "Intermedio", "Avanzado"].includes(item.nivel) ? item.nivel : "Intermedio";
     eqCorrect.value = ["A", "B", "C", "D"].includes(item.correct) ? item.correct : "A";
     const isActive = !item.activo || /^(1|true|si|sí|yes)$/i.test(String(item.activo));
@@ -973,7 +975,7 @@
   }
 
   function exportQuestionBankCsv() {
-    const header = ["id", "dto", "categoría", "nivel", "texto", "A", "B", "C", "D", "correct_letter", "why", "activo", "imagen", "imagen_explicacion"];
+    const header = ["id", "dto", "categoría", "submodulo", "nivel", "texto", "A", "B", "C", "D", "correct_letter", "why", "activo", "imagen", "imagen_explicacion"];
     const lines = [header.join(",")].concat(
       ALL_QUESTIONS.map((q) => {
         const isActive = !q.activo || /^(1|true|si|sí|yes)$/i.test(String(q.activo));
@@ -981,6 +983,7 @@
           q.id,
           q.dto,
           q.mod,
+          q.submod || "",
           q.nivel,
           q.text,
           q.A,
@@ -1027,6 +1030,7 @@
       window.DataLoader.saveOverride(editingQuestionId, {
         dto: eqDto.value,
         mod: eqMod.value.trim(),
+        submod: eqSubmod ? eqSubmod.value.trim() : "",
         nivel: eqLevel.value,
         correct: eqCorrect.value,
         activo: eqActive.value,
@@ -1083,6 +1087,7 @@
               <span class="tag">#${esc(item.id)}</span>
               ${item.dto ? `<span class="tag">${esc(item.dto)}</span>` : ""}
               ${item.mod ? `<span class="tag">${esc(item.mod)}</span>` : ""}
+              ${item.submod && item.submod !== item.mod ? `<span class="tag">${esc(item.submod)}</span>` : ""}
               ${item.nivel ? `<span class="tag">${esc(item.nivel)}</span>` : ""}
               ${item.img ? '<span class="tag" title="Incluye captura de pantalla"><i class="fas fa-image"></i> Captura</span>' : ""}
               ${item.overridden ? '<span class="tag" style="background:var(--warn-bg);color:#b45309;border-color:var(--warn-border)">Intervenida</span>' : ""}
