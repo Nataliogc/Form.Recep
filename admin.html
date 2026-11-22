@@ -27,7 +27,7 @@
         <div class="header-titles">
           <div class="header-title-row">
             <h1>PANEL ADMINISTRADOR · FORMACIÓN RECEPCIÓN</h1>
-            <span id="app-version-badge" class="version-badge">v2.5.2</span>
+            <span id="app-version-badge" class="version-badge">v2.5.4</span>
           </div>
           <div class="header-update">
             <i class="fas fa-chart-line"></i>
@@ -258,6 +258,14 @@
             <div class="section-head" style="flex-wrap:wrap">
               <h3><i class="fas fa-list-ul"></i> Historial de sesiones registradas</h3>
               <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <select id="histRecentFilter" style="width:auto;padding:6px 10px;font-size:12.5px">
+                  <option value="all">Todas (más recientes)</option>
+                  <option value="last5">Últimas 5</option>
+                  <option value="last10">Últimas 10</option>
+                  <option value="last20">Últimas 20</option>
+                  <option value="24h">Últimas 24 horas</option>
+                  <option value="7d">Últimos 7 días</option>
+                </select>
                 <select id="histScoreFilter" style="width:auto;padding:6px 10px;font-size:12.5px">
                   <option value="">Todas las notas</option>
                   <option value="ok">Excelente (≥90%)</option>
@@ -448,7 +456,7 @@
   </main>
 
   <footer class="app-footer">
-    © Panel de Administración · Sercotel Guadiana &amp; Cumbria Spa&amp;Hotel · <span id="footerMeta">v2.5.2</span>
+    © Panel de Administración · Sercotel Guadiana &amp; Cumbria Spa&amp;Hotel · <span id="footerMeta">v2.5.4</span>
   </footer>
 
   <!-- MODAL FICHA INDIVIDUAL DE RECEPCIONISTA -->
@@ -534,8 +542,8 @@
     </div>
   </div>
 
-  <script src="./js/config.js?v=2.5.2"></script>
-  <script src="./js/data-loader.js?v=2.5.2"></script>
-  <script src="./js/admin.js?v=2.5.2"></script>
+  <script src="./js/config.js?v=2.5.4"></script>
+  <script src="./js/data-loader.js?v=2.5.4"></script>
+  <script src="./js/admin.js?v=2.5.4"></script>
 </body>
 </html>

@@ -42,6 +42,10 @@ ALLOWED_MODULES = [
     "Reservas",
     "Errores Comunes",
     "Supervisión de Ocupación (Inventory)",
+    "PMS y Sistemas (Zenith / Onity)",
+    "Canales de Venta y OTAs",
+    "Grupos y Eventos",
+    "Spa y Servicios",
 ]
 
 ALLOWED_DTOS = ["Recepción", "Recep-Guadiana", "Recep-Cumbria"]
@@ -140,9 +144,17 @@ def write_csv_rows(headers: list[str], rows: list[dict]) -> None:
 def infer_default_module(p: dict) -> str:
     sec = str(p.get("section") or "").strip()
     title = str(p.get("title") or "").lower()
+    if any(w in title for w in ("onity", "onportal", "zenith", "cerradura", "pms", "llave")):
+        return "PMS y Sistemas (Zenith / Onity)"
+    if any(w in title for w in ("siteminder", "witbooking", "booking", "expedia", "channel", "ota")):
+        return "Canales de Venta y OTAs"
+    if any(w in title for w in ("grupo", "evento", "boda", "salón", "salon", "banquete")):
+        return "Grupos y Eventos"
+    if any(w in title for w in ("spa", "circuito", "masaje", "escapada")):
+        return "Spa y Servicios"
     if sec.startswith("1") or "turno" in title:
         return "Operativa Turnos"
-    if sec.startswith("3") or "reserva" in title or "booking" in title or "channel" in title:
+    if sec.startswith("3") or "reserva" in title:
         return "Reservas"
     if sec.startswith("4") or "error" in title or "problema" in title or "incidencia" in title:
         return "Errores Comunes"

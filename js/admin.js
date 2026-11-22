@@ -51,6 +51,7 @@
   const missedQuestionsList = $("#missedQuestionsList");
   const rowsCountTag = $("#rowsCountTag");
   const sessionsTableBody = $("#sessionsTableBody");
+  const histRecentFilter = $("#histRecentFilter");
   const histScoreFilter = $("#histScoreFilter");
   const histPageSize = $("#histPageSize");
   const histPager = $("#histPager");
@@ -1062,13 +1063,22 @@
   }
 
   function renderSessionsTable(list) {
+    const recentMode = histRecentFilter ? histRecentFilter.value : "all";
     const scoreFilter = histScoreFilter ? histScoreFilter.value : "";
-    const filtered = list.filter((r) => {
-      if (scoreFilter === "ok") return r.pct >= 90;
-      if (scoreFilter === "warn") return r.pct >= 60 && r.pct < 90;
-      if (scoreFilter === "ko") return r.pct < 60;
+    const nowMs = Date.now();
+
+    let filtered = list.filter((r) => {
+      if (scoreFilter === "ok" && r.pct < 90) return false;
+      if (scoreFilter === "warn" && (r.pct < 60 || r.pct >= 90)) return false;
+      if (scoreFilter === "ko" && r.pct >= 60) return false;
+      if (recentMode === "24h" && (!r.date || nowMs - r.date.getTime() > 86400 * 1000)) return false;
+      if (recentMode === "7d" && (!r.date || nowMs - r.date.getTime() > 7 * 86400 * 1000)) return false;
       return true;
     });
+
+    if (recentMode === "last5") filtered = filtered.slice(0, 5);
+    else if (recentMode === "last10") filtered = filtered.slice(0, 10);
+    else if (recentMode === "last20") filtered = filtered.slice(0, 20);
 
     const pageSize = Number(histPageSize?.value) || 10;
     const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
@@ -1177,6 +1187,12 @@
         renderAll();
       })
   );
+  if (histRecentFilter) {
+    histRecentFilter.onchange = () => {
+      histPage = 1;
+      renderSessionsTable(getFilteredResults());
+    };
+  }
   if (histScoreFilter) {
     histScoreFilter.onchange = () => {
       histPage = 1;

@@ -2,55 +2,6 @@
   "version": 1,
   "last_run": "2026-11-21T23:33:26+00:00",
   "protocols": {
-    "6df663b459e3": {
-      "title": "10. G3 - Sistema Onity y OnPortal",
-      "section": "10",
-      "updated": "2026-02-10T16:12:18.952Z",
-      "hash": "332e2361640a1dd7",
-      "question_ids": []
-    },
-    "8af92e36ddb0": {
-      "title": "10. 📝Otros Manuales Básicos de Recepción {🟠}",
-      "section": "10",
-      "updated": "2026-02-10T16:09:57.195Z",
-      "hash": "dbc6099baf2b7ee5",
-      "question_ids": []
-    },
-    "e4b6def1aaf3": {
-      "title": "12.3 Zenith Manager System | Documentación Operativa",
-      "section": "12.3",
-      "updated": "2026-01-16T15:37:16.322Z",
-      "hash": "7c71e2284000318f",
-      "question_ids": []
-    },
-    "ce2ad060a1d2": {
-      "title": "1. ✅ GUÍA OPERATIVA  RECEPCIÓN  {🟠}",
-      "section": "1",
-      "updated": "2026-01-16T15:01:08.957Z",
-      "hash": "1a9768274354cd05",
-      "question_ids": []
-    },
-    "c8b5c772f597": {
-      "title": "Trabaja con Nosotros",
-      "section": "",
-      "updated": "2026-01-11T10:32:03.918Z",
-      "hash": "d70a7bb905ef3225",
-      "question_ids": []
-    },
-    "5a1a0f488020": {
-      "title": "Escapada Con Spa",
-      "section": "",
-      "updated": "2026-01-10T17:39:43.260Z",
-      "hash": "d6ee53efe2878b95",
-      "question_ids": []
-    },
-    "7a57ab235a3a": {
-      "title": "xx, escapada con spa",
-      "section": "",
-      "updated": "2026-01-10T17:39:31.236Z",
-      "hash": "1acf1ade724a3f28",
-      "question_ids": []
-    },
     "f3c398578147": {
       "title": "Procedimiento operativo - Organización, seguimiento y resolución durante el turno de Recepción",
       "section": "",

@@ -2,11 +2,23 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.5.2`** | **22/11/2026** | Producción |
+| **`v2.5.4`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.5.4] — 22/11/2026
+- **Módulos Afectados:** Panel Administrador
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Añadido filtro rápido de últimas sesiones (Últimas 5/10/20, 24h y 7 días) en el historial del Panel de Administrador
+
+### [v2.5.3] — 22/11/2026
+- **Módulos Afectados:** Automatización IA, Configuración
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Ampliados los módulos del generador IA (Zenith/Onity, Canales/OTAs, Grupos/Eventos, Spa) y habilitados los protocolos de 2026 para generación automática
 
 ### [v2.5.2] — 22/11/2026
 - **Módulos Afectados:** Panel Administrador, Portada
