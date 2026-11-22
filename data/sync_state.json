@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "last_run": "2026-11-22T02:10:15+00:00",
+  "last_run": "2026-11-22T02:22:00+00:00",
   "protocols": {
     "f3c398578147": {
       "title": "Procedimiento operativo - Organización, seguimiento y resolución durante el turno de Recepción",
@@ -1096,6 +1096,37 @@
         277,
         278,
         279
+      ]
+    },
+    "d6c7dadbab35": {
+      "title": "GEST-SPA · 3. Cabinas, Salas y Ocupación",
+      "section": "5.2.7",
+      "updated": "2026-11-15",
+      "hash": "4e11312f52735dbd",
+      "question_ids": [
+        280,
+        281
+      ]
+    },
+    "d5d0529da8d4": {
+      "title": "GEST-SPA · 4. Bonos: Venta Local y Canje",
+      "section": "5.2.8",
+      "updated": "2026-11-15",
+      "hash": "a14438cb111f4ced",
+      "question_ids": [
+        282,
+        283,
+        284
+      ]
+    },
+    "abdf22ac56a2": {
+      "title": "GEST-SPA · 5. GESTIÓN: Personal, Turnos y Visión 15d",
+      "section": "5.2.9",
+      "updated": "2026-11-15",
+      "hash": "44e7e61d27c9aa96",
+      "question_ids": [
+        285,
+        286
       ]
     }
   }

@@ -1,8 +1,8 @@
 // Autogenerado a partir de data/plantilla_preguntas_unica.csv
-// Actualizado: 2026-11-22T02:15:24+00:00 (277 preguntas)
+// Actualizado: 2026-11-22T02:22:00+00:00 (284 preguntas)
 window.QUIZ = {
-  "count": 277,
-  "updated_at": "2026-11-22T02:15:24+00:00",
+  "count": 284,
+  "updated_at": "2026-11-22T02:22:00+00:00",
   "questions": [
     {
       "id": 1,
@@ -3604,6 +3604,97 @@ window.QUIZ = {
       "D": "A que han transcurrido más de 15 minutos de retraso sobre la hora reservada.",
       "correct_letter": "C",
       "why": "El manual especifica explícitamente en la nota de la acción 'Enviar WhatsApp' que si el botón no aparece es debido a que la ficha del cliente no tiene teléfono."
+    },
+    {
+      "id": 280,
+      "departamento": "Spa",
+      "categoria": "Spa y Servicios",
+      "nivel": "Intermedio",
+      "texto": "Un cliente solicita reservar un pase para el Circuito Spa y el recepcionista intenta gestionarlo directamente desde el 'Planning de Ocupación' en GEST-SPA. ¿Es correcto este procedimiento?",
+      "A": "Sí, seleccionando la fila de Suite Spa o Sala Panacea e introduciendo el número de personas en el apartado de servicio.",
+      "B": "No, el Circuito Spa no se reserva desde el Planning de Ocupación; debe realizarse siempre desde su módulo específico Spa para controlar el aforo por turnos de 60 minutos.",
+      "C": "Sí, siempre que se seleccione el origen 'Particular' o 'Hotel' para habilitar el contador de aforo en vivo.",
+      "D": "No, las reservas del Circuito Spa solo se pueden gestionar de manera presencial bloqueando la agenda de la terapeuta de turno.",
+      "correct_letter": "B",
+      "why": "El documento especifica claramente en el apartado 3.1 que el Circuito Spa NO se reserva desde el Planning de Ocupación (reservado exclusivamente para Cabinas y Salas), sino desde su módulo propio Spa donde se controla el aforo por turnos de 60 minutos."
+    },
+    {
+      "id": 281,
+      "departamento": "Spa",
+      "categoria": "Spa y Servicios",
+      "nivel": "Intermedio",
+      "texto": "Al reservar un masaje de 60 minutos en la vista global del Planning de Ocupación de GEST-SPA, ¿cuántas casillas verdes seguidas (bloques de 15 min) se deben verificar como libres antes de hacer clic en el botón (+)?",
+      "A": "4 casillas verdes seguidas (exactamente los 60 minutos del tratamiento).",
+      "B": "6 casillas verdes seguidas, incluyendo 15 minutos de preparación previa y 15 minutos de cobro final.",
+      "C": "5 casillas verdes seguidas, que cubren los 60 minutos del servicio más 15 minutos adicionales obligatorios para limpieza.",
+      "D": "3 casillas verdes de 15 minutos si el cliente procede del hotel, ya que se le aplica un turno reducido.",
+      "correct_letter": "C",
+      "why": "El procedimiento paso a paso del Planning de Ocupación especifica que se deben comprobar casillas verdes seguidas suficientes para el servicio más 15 minutos de limpieza. Por ejemplo, para un masaje de 60 minutos se requieren 4 casillas de servicio + 1 casilla de limpieza = 5 casillas seguidas."
+    },
+    {
+      "id": 282,
+      "departamento": "Spa",
+      "categoria": "Spa y Servicios",
+      "nivel": "Intermedio",
+      "texto": "¿En qué situación operativa se debe emitir un 'Bono Regalo' desde la opción (+ Nueva Venta Local) de GEST-SPA en lugar de realizar una reserva directa?",
+      "A": "Siempre que el cliente acuda de manera presencial al mostrador a comprar un circuito o tratamiento.",
+      "B": "Únicamente cuando el cliente no conoce la fecha exacta en la que vendrá o desea regalar el servicio a otra persona.",
+      "C": "Cuando la venta incluya más de tres servicios combinados (alojamiento, restaurante y spa).",
+      "D": "Únicamente si la reserva se efectúa con más de un mes de antelación sobre la fecha deseada.",
+      "correct_letter": "B",
+      "why": "Según el apartado 4.2 del manual, un Bono Regalo se emite únicamente cuando el cliente no sabe la fecha en la que vendrá o quiere regalarlo (con validez máxima de 1 año). Si el cliente ya tiene fecha y hora concretas, no se debe hacer un bono, sino realizar la reserva directamente en la agenda de Ocupación o Spa."
+    },
+    {
+      "id": 283,
+      "departamento": "Spa",
+      "categoria": "Spa y Servicios",
+      "nivel": "Avanzado",
+      "texto": "Un empleado intenta marcar manualmente un bono como 'CANJEADO' modificando el número de 'Sesiones Usadas'. ¿Qué respuesta ofrece el sistema y cuál es el procedimiento correcto?",
+      "A": "El sistema lo permite pero exige introducir la contraseña del supervisor de turno para validar el historial.",
+      "B": "El sistema bloquea la edición porque 'Sesiones Usadas' es de solo lectura; para canjearlo se debe pulsar 'Reservar' en cada ítem o incluir el código completo en la agenda.",
+      "C": "El sistema cambia el estado a 'PARCIAL' y requiere enviar una solicitud por correo a la dirección del Spa.",
+      "D": "El campo se modifica libremente, pero no actualiza las ventas en el cierre de caja de la jornada.",
+      "correct_letter": "B",
+      "why": "El apartado 4.4 especifica que el campo 'Sesiones Usadas' es de solo lectura para evitar bonos marcados como canjeados sin reserva real. El flujo correcto para que pase a CANJEADO automáticamente es pulsar el botón 'Reservar' en cada ítem de ITEMS DE COMPRA o indicar el código completo exacto (ej. LOC-2026-6970) si se crea la cita directamente en la agenda."
+    },
+    {
+      "id": 284,
+      "departamento": "Spa",
+      "categoria": "Spa y Servicios",
+      "nivel": "Intermedio",
+      "texto": "Al tramitar un bono que contiene 'Alojamiento' y 'Menú de Restaurante' desde el bloque ITEMS DE COMPRA, ¿qué datos específicos requiere el sistema para registrar correctamente cada servicio?",
+      "A": "Para Alojamiento solicita la fecha e importe pagado; para Restaurante genera un número de comanda manual.",
+      "B": "Para Alojamiento pide la Fecha y el Nº de Reserva del PMS (consultado con Recepción del Hotel); para Restaurante abre Mesachef para seleccionar Fecha, Hora y Turno.",
+      "C": "Ambos servicios se registran automáticamente pulsando el botón 'Consumir' sin necesidad de consultar otros sistemas.",
+      "D": "Se requiere adjuntar copia en PDF del bono impreso y seleccionar el número de mesa asignado en la agenda.",
+      "correct_letter": "B",
+      "why": "Según el apartado 4.3, para el ítem de Alojamiento el sistema solicita la Fecha de Alojamiento y el Nº de Reserva de Hotel del PMS (previa consulta con Recepción). Para el Menú de Restaurante, al pulsar 'Reservar' se abre Mesachef con los datos cargados y solo se debe indicar Fecha, Hora y Turno (Almuerzo o Cena)."
+    },
+    {
+      "id": 285,
+      "departamento": "Spa",
+      "categoria": "Spa y Servicios",
+      "nivel": "Intermedio",
+      "texto": "Al registrar una baja médica, vacaciones o permiso de un empleado desde la opción 'Ausencia / Vacaciones' en GEST-SPA, ¿qué visualización o efecto automático genera el sistema en la agenda?",
+      "A": "Elimina de forma permanente la ficha del empleado del listado 'Fichas de Personal'.",
+      "B": "La columna del terapeuta pasa a mostrar automáticamente el estado '🚫 Terapeuta no disponible'.",
+      "C": "Bloquea el acceso al sistema ZENITH para el resto de terapeutas durante ese turno.",
+      "D": "Envía automáticamente un aviso PayGold de cancelación a los clientes agendados.",
+      "correct_letter": "B",
+      "why": "Según la sección 5.2 del manual, al registrar una baja, vacaciones o permiso en el botón 'Ausencia / Vacaciones', la columna del terapeuta mostrará automáticamente '🚫 Terapeuta no disponible'."
+    },
+    {
+      "id": 286,
+      "departamento": "Spa",
+      "categoria": "Spa y Servicios",
+      "nivel": "Intermedio",
+      "texto": "Dentro de la matriz 'Visión 15d' de GEST-SPA, ¿qué acciones directas permite realizar el sistema al hacer clic sobre una cita o hueco libre sin necesidad de abandonar dicha vista?",
+      "A": "Únicamente consultar los datos de contacto y teléfono del terapeuta asignado a la sala.",
+      "B": "Crear, eliminar o guardar reservas (con opciones como GUARDAR RESERVA o GUARDAR Y ABRIR PAYGOLD).",
+      "C": "Modificar la jornada laboral del terapeuta y reasignar sus permisos en Fichas de Personal.",
+      "D": "Generar automáticamente la liquidación de comisiones del equipo de masajistas.",
+      "correct_letter": "B",
+      "why": "El apartado 5.3 indica expresamente que haciendo clic en cualquier cita o hueco libre de la matriz de 15 días se pueden crear, guardar (GUARDAR RESERVA / GUARDAR Y ABRIR PAYGOLD) o eliminar reservas directamente sin salir de esta vista."
     }
   ]
 };
