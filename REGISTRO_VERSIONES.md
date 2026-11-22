@@ -2,11 +2,29 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.4.3`** | **22/11/2026** | Producción |
+| **`v2.5.2`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.5.2] — 22/11/2026
+- **Módulos Afectados:** Panel Administrador, Portada
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Añadidos filtros por nota y paginación (10/20/50 por página) al historial de sesiones y corregido cálculo de nota cuando total=0 en filas históricas
+
+### [v2.5.1] — 22/11/2026
+- **Módulos Afectados:** Panel Administrador, Portada
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Corregido cálculo de porcentajes >100% cuando Google Sheets guarda el porcentaje en la columna de aciertos y acotado seguro a 0-100%
+
+### [v2.5.0] — 22/11/2026
+- **Módulos Afectados:** Privacidad, Portada, Integración Turnos-new
+- **Tipo de Cambio:** Nueva Característica / Mejora
+- **Detalle de Cambios:**
+  - Protección por privacidad con Nº de empleado (id_interno de Turnos-new) para desbloquear Sesiones, Tu media e historial personal en portada
 
 ### [v2.4.3] — 22/11/2026
 - **Módulos Afectados:** Integración Turnos-new, Panel Administrador

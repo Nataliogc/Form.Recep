@@ -51,6 +51,13 @@
   const missedQuestionsList = $("#missedQuestionsList");
   const rowsCountTag = $("#rowsCountTag");
   const sessionsTableBody = $("#sessionsTableBody");
+  const histScoreFilter = $("#histScoreFilter");
+  const histPageSize = $("#histPageSize");
+  const histPager = $("#histPager");
+  const btnHistPrev = $("#btnHistPrev");
+  const btnHistNext = $("#btnHistNext");
+  const histPageInfo = $("#histPageInfo");
+  let histPage = 1;
 
   const sourceModal = $("#sourceModal");
   const btnCloseSourceModal = $("#btnCloseSourceModal");
@@ -224,10 +231,27 @@
         const modulo = String(pick(o, ["modulo", "módulo", "categoria", "categoría"])).trim() || "General";
         const nivel = String(pick(o, ["nivel", "level"])).trim() || "Todos";
         const total = Number(pick(o, ["total", "preguntas", "total_preguntas"])) || 0;
-        const aciertos = Number(pick(o, ["aciertos", "ok", "correctas"])) || 0;
-        const fallos = Number(pick(o, ["fallos", "ko", "errores", "num_fallos"])) || Math.max(0, total - aciertos);
-        const pctRaw = pick(o, ["pct", "porcentaje", "nota", "score", "acierto"]);
-        const pct = pctRaw !== "" ? Math.round(Number(String(pctRaw).replace("%", "").replace(",", "."))) : total ? Math.round((aciertos / total) * 100) : 0;
+        let aciertos = Number(pick(o, ["aciertos", "ok", "correctas"])) || 0;
+        let fallos = Number(pick(o, ["fallos", "ko", "errores", "num_fallos"])) || Math.max(0, total - aciertos);
+        const pctRaw = pick(o, ["pct", "porcentaje", "nota", "score", "acierto", "porcentaje_acierto"]);
+        let pct;
+        if (pctRaw !== "") {
+          let pNum = Number(String(pctRaw).replace("%", "").replace(",", "."));
+          if (pNum > 0 && pNum <= 1 && !String(pctRaw).includes("%")) pNum = pNum * 100;
+          pct = Math.round(pNum);
+        } else if ((total === 0 || aciertos > total) && aciertos > 0 && aciertos <= 100) {
+          // Si la columna traía el porcentaje (ej. 90 con total=0 o 90 sobre 30)
+          pct = Math.round(aciertos);
+          aciertos = total > 0 ? Math.round((pct / 100) * total) : 0;
+          fallos = total > 0 ? Math.max(0, total - aciertos) : 0;
+        } else {
+          pct = total ? Math.round((aciertos / total) * 100) : 0;
+        }
+        if (total > 0 && aciertos > total) {
+          aciertos = Math.round((Math.min(100, Math.max(0, pct)) / 100) * total);
+          fallos = Math.max(0, total - aciertos);
+        }
+        pct = Math.max(0, Math.min(100, Number.isFinite(pct) ? pct : 0));
         const dur = Number(pick(o, ["duracion_seg", "duración_seg", "duracion", "tiempo", "segundos"])) || 0;
         const date = parseFlexibleDate(pick(o, ["fecha", "timestamp", "date", "marca_temporal", "marca temporal", "created_at", "fecha_hora"]));
 
@@ -1038,14 +1062,36 @@
   }
 
   function renderSessionsTable(list) {
-    rowsCountTag.textContent = `${list.length} registros`;
-    if (!list.length) {
+    const scoreFilter = histScoreFilter ? histScoreFilter.value : "";
+    const filtered = list.filter((r) => {
+      if (scoreFilter === "ok") return r.pct >= 90;
+      if (scoreFilter === "warn") return r.pct >= 60 && r.pct < 90;
+      if (scoreFilter === "ko") return r.pct < 60;
+      return true;
+    });
+
+    const pageSize = Number(histPageSize?.value) || 10;
+    const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+    if (histPage > totalPages) histPage = totalPages;
+    if (histPage < 1) histPage = 1;
+
+    const start = (histPage - 1) * pageSize;
+    const pageRows = filtered.slice(start, start + pageSize);
+
+    rowsCountTag.textContent = `${filtered.length} registros`;
+    if (histPager) {
+      histPager.classList.toggle("hidden", filtered.length <= pageSize);
+      histPageInfo.textContent = `Página ${histPage} / ${totalPages}`;
+      btnHistPrev.disabled = histPage <= 1;
+      btnHistNext.disabled = histPage >= totalPages;
+    }
+
+    if (!pageRows.length) {
       sessionsTableBody.innerHTML = '<tr><td colspan="8" class="empty-state">No hay sesiones registradas para mostrar.</td></tr>';
       return;
     }
 
-    sessionsTableBody.innerHTML = list
-      .slice(0, 150)
+    sessionsTableBody.innerHTML = pageRows
       .map(
         (r) => `
         <tr>
@@ -1054,7 +1100,7 @@
           <td>${esc(r.dto)}</td>
           <td>${esc(r.modulo)}</td>
           <td>${esc(r.nivel)}</td>
-          <td>${r.aciertos}/${r.total}</td>
+          <td>${r.total > 0 ? `${r.aciertos}/${r.total}` : "—"}</td>
           <td><span class="score-badge ${badgeClass(r.pct)}">${r.pct}%</span></td>
           <td>${formatTime(r.duracion_seg)}</td>
         </tr>`
@@ -1124,7 +1170,39 @@
 
   // ===== Events =====
   btnTheme.onclick = () => applyTheme(document.body.classList.contains("dark-mode") ? "light" : "dark");
-  [fSearch, fDept, fMod, fRange].forEach((el) => (el.oninput = el.onchange = renderAll));
+  [fSearch, fDept, fMod, fRange].forEach(
+    (el) =>
+      (el.oninput = el.onchange = () => {
+        histPage = 1;
+        renderAll();
+      })
+  );
+  if (histScoreFilter) {
+    histScoreFilter.onchange = () => {
+      histPage = 1;
+      renderSessionsTable(getFilteredResults());
+    };
+  }
+  if (histPageSize) {
+    histPageSize.onchange = () => {
+      histPage = 1;
+      renderSessionsTable(getFilteredResults());
+    };
+  }
+  if (btnHistPrev) {
+    btnHistPrev.onclick = () => {
+      if (histPage > 1) {
+        histPage--;
+        renderSessionsTable(getFilteredResults());
+      }
+    };
+  }
+  if (btnHistNext) {
+    btnHistNext.onclick = () => {
+      histPage++;
+      renderSessionsTable(getFilteredResults());
+    };
+  }
   btnRefreshResults.onclick = loadResultsFromRemote;
   btnExportCsv.onclick = exportFilteredCsv;
   btnPrintReport.onclick = () => window.print();

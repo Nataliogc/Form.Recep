@@ -46,7 +46,11 @@
   const whoSelect = $("#whoSelect");
   const staffSyncHint = $("#staffSyncHint");
   const practiceNameInput = $("#practiceName");
+  const empPinWrap = $("#empPinWrap");
+  const empPinInput = $("#empPinInput");
+  const empPinStatus = $("#empPinStatus");
   const PRACTICE_VALUE = "__PRACTICAS__";
+  let STAFF_BY_NAME = new Map();
   const deptPills = $("#deptPills");
   const modSelect = $("#mod");
   const modCountHint = $("#modCountHint");
@@ -159,9 +163,32 @@
   }
 
   function syncPracticeInputVisibility() {
-    const isPractice = whoSelect.value === PRACTICE_VALUE;
+    const val = whoSelect.value;
+    const isPractice = val === PRACTICE_VALUE;
+    const isActiveStaff = Boolean(val) && !isPractice;
     practiceNameInput.classList.toggle("hidden", !isPractice);
+    empPinWrap.classList.toggle("hidden", !isActiveStaff);
+    empPinInput.value = "";
     if (isPractice) practiceNameInput.focus();
+  }
+
+  function isStatsUnlockedFor(selectedName) {
+    if (!selectedName || whoSelect.value === PRACTICE_VALUE) return false;
+    const emp = STAFF_BY_NAME.get(selectedName.toLowerCase());
+    if (!emp) return false;
+    const typed = (empPinInput.value || "").trim().toUpperCase();
+    if (!typed) return false;
+
+    const candidates = [emp.id_interno, emp.id]
+      .map((v) => String(v || "").trim().toUpperCase())
+      .filter(Boolean);
+
+    const typedDigits = typed.replace(/^EMP-?/, "").replace(/^0+/, "");
+    return candidates.some((c) => {
+      if (c === typed) return true;
+      const cDigits = c.replace(/^EMP-?/, "").replace(/^0+/, "");
+      return Boolean(typedDigits) && Boolean(cDigits) && cDigits === typedDigits;
+    });
   }
 
   function formatHotelLabel(hotelId) {
@@ -175,12 +202,14 @@
   function populateStaffSelect(staffList) {
     const groups = new Map();
     const seenNames = new Set();
+    STAFF_BY_NAME = new Map();
     (Array.isArray(staffList) ? staffList : []).forEach((emp) => {
       const name = String(emp.nombre || "").trim();
       if (!name) return;
       const low = name.toLowerCase();
       if (seenNames.has(low)) return;
       seenNames.add(low);
+      STAFF_BY_NAME.set(low, { id: emp.id || "", id_interno: emp.id_interno || "" });
       const hotelLabel = formatHotelLabel(emp.hotel_id);
       if (!groups.has(hotelLabel)) groups.set(hotelLabel, []);
       groups.get(hotelLabel).push(name);
@@ -220,6 +249,8 @@
     } catch (_) {}
 
     practiceNameInput.classList.toggle("hidden", whoSelect.value !== PRACTICE_VALUE);
+    empPinWrap.classList.toggle("hidden", !whoSelect.value || whoSelect.value === PRACTICE_VALUE);
+    empPinInput.value = "";
   }
 
   async function loadTurnosStaff() {
@@ -231,7 +262,7 @@
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), 6000);
         const res = await fetch(
-          `${url}/rest/v1/empleados?select=id,nombre,hotel_id,activo,estado_empresa,fecha_baja,orden&order=orden.asc,nombre.asc`,
+          `${url}/rest/v1/empleados?select=id,nombre,hotel_id,id_interno,activo,estado_empresa,fecha_baja,orden&order=orden.asc,nombre.asc`,
           {
             headers: { apikey: key, Authorization: `Bearer ${key}` },
             cache: "no-store",
@@ -409,9 +440,23 @@
         .map((r) => {
           const nombre = pick(r, ["nombre", "empleado", "usuario", "recepcionista", "name"]);
           const total = Number(pick(r, ["total", "preguntas"])) || 0;
-          const aciertos = Number(pick(r, ["aciertos", "ok", "correctas"])) || 0;
-          const pctRaw = pick(r, ["pct", "porcentaje", "nota", "score"]);
-          const pct = pctRaw !== "" ? Math.round(Number(pctRaw.replace("%", "").replace(",", "."))) : total ? Math.round((aciertos / total) * 100) : 0;
+          let aciertos = Number(pick(r, ["aciertos", "ok", "correctas"])) || 0;
+          const pctRaw = pick(r, ["pct", "porcentaje", "nota", "score", "acierto"]);
+          let pct;
+          if (pctRaw !== "") {
+            let pNum = Number(String(pctRaw).replace("%", "").replace(",", "."));
+            if (pNum > 0 && pNum <= 1 && !String(pctRaw).includes("%")) pNum = pNum * 100;
+            pct = Math.round(pNum);
+          } else if ((total === 0 || aciertos > total) && aciertos > 0 && aciertos <= 100) {
+            pct = Math.round(aciertos);
+            aciertos = total > 0 ? Math.round((pct / 100) * total) : 0;
+          } else {
+            pct = total ? Math.round((aciertos / total) * 100) : 0;
+          }
+          if (total > 0 && aciertos > total) {
+            aciertos = Math.round((Math.min(100, Math.max(0, pct)) / 100) * total);
+          }
+          pct = Math.max(0, Math.min(100, Number.isFinite(pct) ? pct : 0));
           return {
             nombre,
             nameKey: canonName(nombre),
@@ -424,7 +469,7 @@
             date: pick(r, ["fecha", "timestamp", "date", "marca temporal"]),
           };
         })
-        .filter((x) => x.nameKey && x.total > 0)
+        .filter((x) => x.nameKey && (x.total > 0 || x.pct > 0))
         .reverse();
       renderRecentAndHeroStats();
     } catch (_) {}
@@ -453,6 +498,23 @@
       heroAvg.textContent = "—";
       recentCard.classList.add("hidden");
       return;
+    }
+
+    // Por privacidad, para personal activo requiere su Nº de empleado (id_interno) para ver media e historial
+    const isPractice = whoSelect.value === PRACTICE_VALUE;
+    if (!isPractice) {
+      const unlocked = isStatsUnlockedFor(selectedName);
+      if (unlocked) {
+        empPinStatus.innerHTML = '<i class="fas fa-unlock" style="color:var(--accent-green)"></i> Verificado';
+      } else {
+        empPinStatus.innerHTML = empPinInput.value.trim()
+          ? '<i class="fas fa-times" style="color:var(--accent-red)"></i> Incorrecto'
+          : '<i class="fas fa-lock"></i> Privado';
+        heroSessions.innerHTML = '<i class="fas fa-lock" style="font-size:17px"></i>';
+        heroAvg.innerHTML = '<i class="fas fa-lock" style="font-size:17px"></i>';
+        recentCard.classList.add("hidden");
+        return;
+      }
     }
 
     const key = canonName(selectedName);
@@ -1012,6 +1074,7 @@
     renderRecentAndHeroStats();
     updateKPIs();
   };
+  empPinInput.oninput = renderRecentAndHeroStats;
   modSelect.onchange = () => {
     selectedMod = modSelect.value || "";
     renderLevelPills();

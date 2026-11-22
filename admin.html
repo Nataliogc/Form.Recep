@@ -27,7 +27,7 @@
         <div class="header-titles">
           <div class="header-title-row">
             <h1>PANEL ADMINISTRADOR · FORMACIÓN RECEPCIÓN</h1>
-            <span id="app-version-badge" class="version-badge">v2.4.3</span>
+            <span id="app-version-badge" class="version-badge">v2.5.2</span>
           </div>
           <div class="header-update">
             <i class="fas fa-chart-line"></i>
@@ -255,9 +255,22 @@
         <!-- Registro completo de sesiones -->
         <div class="card">
           <div class="card-body">
-            <div class="section-head">
+            <div class="section-head" style="flex-wrap:wrap">
               <h3><i class="fas fa-list-ul"></i> Historial de sesiones registradas</h3>
-              <span id="rowsCountTag" class="tag">0 registros</span>
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <select id="histScoreFilter" style="width:auto;padding:6px 10px;font-size:12.5px">
+                  <option value="">Todas las notas</option>
+                  <option value="ok">Excelente (≥90%)</option>
+                  <option value="warn">Mejorable (60–89%)</option>
+                  <option value="ko">Repasar (&lt;60%)</option>
+                </select>
+                <select id="histPageSize" style="width:auto;padding:6px 10px;font-size:12.5px">
+                  <option value="10" selected>10 por página</option>
+                  <option value="20">20 por página</option>
+                  <option value="50">50 por página</option>
+                </select>
+                <span id="rowsCountTag" class="tag">0 registros</span>
+              </div>
             </div>
             <div class="table-wrap">
               <table class="data-table">
@@ -275,6 +288,11 @@
                 </thead>
                 <tbody id="sessionsTableBody"></tbody>
               </table>
+            </div>
+            <div id="histPager" style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;padding-top:10px;border-top:1px solid var(--border)">
+              <button id="btnHistPrev" class="btn" type="button" style="padding:6px 12px;font-size:12.5px">← Anterior</button>
+              <span id="histPageInfo" style="font-size:12.5px;color:var(--text-muted);font-weight:600">Página 1 / 1</span>
+              <button id="btnHistNext" class="btn" type="button" style="padding:6px 12px;font-size:12.5px">Siguiente →</button>
             </div>
           </div>
         </div>
@@ -430,7 +448,7 @@
   </main>
 
   <footer class="app-footer">
-    © Panel de Administración · Sercotel Guadiana &amp; Cumbria Spa&amp;Hotel · <span id="footerMeta">v2.4.3</span>
+    © Panel de Administración · Sercotel Guadiana &amp; Cumbria Spa&amp;Hotel · <span id="footerMeta">v2.5.2</span>
   </footer>
 
   <!-- MODAL FICHA INDIVIDUAL DE RECEPCIONISTA -->
@@ -516,8 +534,8 @@
     </div>
   </div>
 
-  <script src="./js/config.js?v=2.4.3"></script>
-  <script src="./js/data-loader.js?v=2.4.3"></script>
-  <script src="./js/admin.js?v=2.4.3"></script>
+  <script src="./js/config.js?v=2.5.2"></script>
+  <script src="./js/data-loader.js?v=2.5.2"></script>
+  <script src="./js/admin.js?v=2.5.2"></script>
 </body>
 </html>

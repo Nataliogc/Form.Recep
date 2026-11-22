@@ -1,6 +1,6 @@
 {
   "name": "form-recep",
-  "version": "2.4.3",
+  "version": "2.5.2",
   "description": "Plataforma de Formación Recepción · Sercotel Guadiana & Cumbria Spa&Hotel (alineada con Protocolo-Recep)",
   "scripts": {
     "build:data": "python tools/build_data.py"

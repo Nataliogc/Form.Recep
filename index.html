@@ -27,7 +27,7 @@
         <div class="header-titles">
           <div class="header-title-row">
             <h1>FORMACIÓN RECEPCIÓN - GUADIANA &amp; CUMBRIA</h1>
-            <span id="app-version-badge" class="version-badge" title="Versión actual del sistema">v2.4.3</span>
+            <span id="app-version-badge" class="version-badge" title="Versión actual del sistema">v2.5.2</span>
           </div>
           <div class="header-update">
             <i class="far fa-clock"></i>
@@ -97,6 +97,10 @@
                   <option value="">Cargando plantilla activa…</option>
                 </select>
                 <input id="practiceName" class="hidden" type="text" style="margin-top:8px" placeholder="Nombre y apellidos (alumno en prácticas)" autocomplete="off" data-bwignore="true" data-lpignore="true">
+                <div id="empPinWrap" class="hidden" style="margin-top:8px;display:flex;align-items:center;gap:8px">
+                  <input id="empPinInput" type="password" style="padding:9px 12px;font-size:13.5px" placeholder="Nº empleado para ver tu media (ej. EMP-0006 o 0006)" autocomplete="off" data-bwignore="true" data-lpignore="true">
+                  <span id="empPinStatus" class="tag" style="white-space:nowrap"><i class="fas fa-lock"></i> Privado</span>
+                </div>
               </div>
 
               <div class="field-group">
@@ -317,11 +321,11 @@
   <footer class="app-footer">
     © Formación Interna · Sercotel Guadiana &amp; Cumbria Spa&amp;Hotel ·
     <a href="https://cumbriaspahotel.github.io/Protocolo-Recep/" target="_blank" rel="noopener">Portal Protocolo-Recep</a> ·
-    <span id="footerMeta">v2.4.3</span>
+    <span id="footerMeta">v2.5.2</span>
   </footer>
 
-  <script src="./js/config.js?v=2.4.3"></script>
-  <script src="./js/data-loader.js?v=2.4.3"></script>
-  <script src="./js/app.js?v=2.4.3"></script>
+  <script src="./js/config.js?v=2.5.2"></script>
+  <script src="./js/data-loader.js?v=2.5.2"></script>
+  <script src="./js/app.js?v=2.5.2"></script>
 </body>
 </html>

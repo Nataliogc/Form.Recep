@@ -1,4 +1,4 @@
-const CACHE_NAME = "form-recep-v2.4.3";
+const CACHE_NAME = "form-recep-v2.5.2";
 const APP_SHELL = [
   "./",
   "./index.html",
