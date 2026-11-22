@@ -1,8 +1,8 @@
 // Autogenerado a partir de data/plantilla_preguntas_unica.csv
-// Actualizado: 2026-11-22T20:50:12+00:00 (284 preguntas)
+// Actualizado: 2026-11-22T20:56:30+00:00 (282 preguntas)
 window.QUIZ = {
-  "count": 284,
-  "updated_at": "2026-11-22T20:50:12+00:00",
+  "count": 282,
+  "updated_at": "2026-11-22T20:56:30+00:00",
   "questions": [
     {
       "id": 1,
@@ -10,7 +10,7 @@ window.QUIZ = {
       "categoria": "Operativa Turnos",
       "nivel": "Avanzado",
       "texto": "¿A qué hora se recomienda que llegue el recepcionista para el turno de mañana?",
-      "A": "06:45:00",
+      "A": "06:45",
       "B": "Ninguna es correcta",
       "C": "07:00 en punto",
       "D": "06:50 – 06:55",
@@ -101,10 +101,10 @@ window.QUIZ = {
       "categoria": "Operativa Turnos",
       "nivel": "Básico",
       "texto": "¿A qué hora se revisan las llegadas pendientes en el turno de tarde?",
-      "A": "21:00:00",
-      "B": "20:00:00",
-      "C": "18:00:00",
-      "D": "22:00:00",
+      "A": "21:00",
+      "B": "20:00",
+      "C": "18:00",
+      "D": "22:00",
       "correct_letter": "A",
       "why": "A las 21:00 el turno de tarde revisa las llegadas pendientes para detectar no-shows y avisar a recepción noche."
     },
@@ -547,7 +547,7 @@ window.QUIZ = {
       "B": "Darles habitación igual",
       "C": "Anularlas según política",
       "D": "Ninguna de las anteriores es correcta",
-      "correct_letter": "D",
+      "correct_letter": "C",
       "why": "A las 21:00, Comprobar que todas las reservas estén: prepagadas, con tarjeta cargable, y activas en el channel * Cargar a la tarjeta de depósito las que no lleguen antes de las 22:00 h. * Contactar con cliente habituales para confirmar su llegada * Anular aquellas reservas que no cumplan los requisitos establecidos."
     },
     {
@@ -583,7 +583,7 @@ window.QUIZ = {
       "nivel": "Intermedio",
       "texto": "¿Qué se debe hacer con los no shows en el turno de noche?",
       "A": "No procede según protocolo",
-      "B": "No procede según protocolo",
+      "B": "Cancelar la reserva sin aplicar cargo ni avisar a la OTA",
       "C": "Darles habitación hasta las 2:00",
       "D": "Cargarlos antes del cierre según política de tarifa e informar en OTA si aplica",
       "correct_letter": "D",
@@ -661,7 +661,7 @@ window.QUIZ = {
       "nivel": "Avanzado",
       "texto": "¿Qué implica un error en el MR-HOSPE?",
       "A": "La imposibilidad de cumplir con la obligación legal de registrar y comunicar correctamente los datos de los viajeros según el Real Decreto 933/2021",
-      "B": "ue la comunicación automática con la Policía genere duplicados en las fichas de viajeros",
+      "B": "Que la comunicación automática con la Policía genere duplicados en las fichas de viajeros",
       "C": "Que el fichero XML se envíe sin incidencias pero quede bloqueado en el registro interno del PMS",
       "D": "Que las fechas de entrada y salida se sincronicen incorrectamente, provocando que el sistema marque huéspedes alojados como “no llegados”",
       "correct_letter": "A",
@@ -742,7 +742,7 @@ window.QUIZ = {
       "B": "Porque permite al equipo de mañana enfocarse en servicio desde el primer minuto sin perder tiempo en generación de informes",
       "C": "Por tradición",
       "D": "Porque el PMS no funciona por la mañana",
-      "correct_letter": "D",
+      "correct_letter": "B",
       "why": "Deja la operativa lista... así evitas retrasos y recepción de día puede enfocarse en el servicio desde el primer minuto."
     },
     {
@@ -794,7 +794,7 @@ window.QUIZ = {
       "B": "Exigir identificación válida (DNI/pasaporte) antes de entregar llave",
       "C": "Registrar con nombre y apellidos",
       "D": "Esperar a que traiga el DNI por la mañana",
-      "correct_letter": "A",
+      "correct_letter": "B",
       "why": "Por ley de extranjería y seguridad, se debe verificar identidad con documento oficial antes de alojar."
     },
     {
@@ -845,7 +845,7 @@ window.QUIZ = {
       "A": "Negarse y explicar que todos los servicios deben registrarse por ley y transparencia",
       "B": "No procede según protocolo",
       "C": "Acceder a la solicitud",
-      "D": "No procede según protocolo",
+      "D": "Cobrarlo en efectivo aparte y anotarlo solo en el parte de novedades",
       "correct_letter": "A",
       "why": "Por ley fiscal y política interna, todos los cargos deben registrarse; la discreción no exime del cumplimiento."
     },
@@ -1128,10 +1128,10 @@ window.QUIZ = {
       "categoria": "Reservas",
       "nivel": "Básico",
       "texto": "¿Cuál es la comisión habitual aplicada a las reservas de Traveltino?",
-      "A": "0.19",
-      "B": "0.2",
-      "C": "0.15",
-      "D": "0.18",
+      "A": "19%",
+      "B": "20%",
+      "C": "15%",
+      "D": "18%",
       "correct_letter": "A",
       "why": "El manual especifica que Traveltino opera con una comisión del 19% sobre el precio bruto."
     },
@@ -1171,7 +1171,7 @@ window.QUIZ = {
       "B": "Dejar la reserva sin email",
       "C": "Añadirlo manualmente en el PMS para que funcione SoulGuest",
       "D": "Esperar a que el cliente lo proporcione en el check-in",
-      "correct_letter": "D",
+      "correct_letter": "C",
       "why": "Sin email, SoulGuest no puede enviar confirmación ni enlace de pago; por eso se debe añadir manualmente en el PMS."
     },
     {
@@ -1262,7 +1262,7 @@ window.QUIZ = {
       "B": "Al departamento de contabilidad",
       "C": "Al hotel",
       "D": "A Traveltino",
-      "correct_letter": "B",
+      "correct_letter": "D",
       "why": "Las reservas de Traveltino se facturan a la agencia, no al cliente, y siempre con el bono adjunto."
     },
     {
@@ -1443,8 +1443,8 @@ window.QUIZ = {
       "A": "Esperar 24 horas para ver si el huésped llega",
       "B": "Todas las anteriores son correctas",
       "C": "Cobrar al número de tarjeta del huésped",
-      "D": "Ninguna de las anteriores es correcta",
-      "correct_letter": "A",
+      "D": "Solicitar el cobro por no-show directamente vía extranet de Booking.com",
+      "correct_letter": "D",
       "why": "Todas las reservas de Booking están garantizadas; si no se presenta, se debe solicitar el cobro por no-show vía extranet."
     },
     {
@@ -1453,10 +1453,10 @@ window.QUIZ = {
       "categoria": "Reservas",
       "nivel": "Intermedio",
       "texto": "¿Qué comisión se aplica a las reservas de Viajes El Corte Inglés marcadas como PYME?",
-      "A": "0.19",
-      "B": "0.2",
-      "C": "0.18",
-      "D": "0.15",
+      "A": "19%",
+      "B": "20%",
+      "C": "18%",
+      "D": "15%",
       "correct_letter": "D",
       "why": "Las tarifas PYME tienen comisión del 15%; las públicas, del 18%. El código de la reserva indica el tipo. (GUADIANA)"
     },
@@ -1847,7 +1847,7 @@ window.QUIZ = {
       "B": "Porque afecta a la comisión",
       "C": "Porque el PMS no permite otro régimen",
       "D": "Porque el bono original no cubre extras para noches adicionales",
-      "correct_letter": "A",
+      "correct_letter": "D",
       "why": "Las noches adicionales no forman parte del cofre; registrarlas con desayuno o spa generaría un servicio no pagado."
     },
     {
@@ -1978,19 +1978,6 @@ window.QUIZ = {
       "C": "Que la subagencia no reconozca la factura y no pague",
       "D": "Que el cliente se queje",
       "correct_letter": "C",
-      "why": "La factura debe ir al pagador real; si se emite a Serhs, la subagencia puede rechazarla, retrasando o impidiendo el cobro."
-    },
-    {
-      "id": 154,
-      "departamento": "Recepción",
-      "categoria": "Reservas",
-      "nivel": "Avanzado",
-      "texto": "¿Qué riesgo hay si se factura a nombre de “Serhs” en lugar de la subagencia real?",
-      "A": "Que la subagencia no reconozca la factura y no pague",
-      "B": "Que el cliente se queje",
-      "C": "Que el PMS se bloquee",
-      "D": "Que Housekeeping no limpie",
-      "correct_letter": "A",
       "why": "La factura debe ir al pagador real; si se emite a Serhs, la subagencia puede rechazarla, retrasando o impidiendo el cobro."
     },
     {
@@ -3184,7 +3171,7 @@ window.QUIZ = {
       "nivel": "Básico",
       "texto": "¿Cuál es la forma correcta de atender una llamada entrante al hotel?",
       "A": "¿Dígame?",
-      "B": "Hotel ¿?, buenos días/tardes, le atiende nombre del Recepcionista.",
+      "B": "Hotel [Nombre del hotel], buenos días/tardes, le atiende [nombre del recepcionista].",
       "C": "Recepción, ¿qué quiere?",
       "D": "Hola, habla el hotel.",
       "correct_letter": "B",
@@ -3507,19 +3494,6 @@ window.QUIZ = {
     },
     {
       "id": 271,
-      "departamento": "Recepción",
-      "categoria": "Operativa Turnos",
-      "nivel": "Avanzado",
-      "texto": "Si un viajero extranjero presenta un pasaporte que no incluye domicilio, ¿cómo debe proceder el recepcionista según el RD 933/2021?",
-      "A": "Solicitar al viajero su domicilio declarado y registrarlo manualmente en el MR-HOSPE, ya que es un dato obligatorio para la comunicación",
-      "B": "Usar la dirección del hotel como domicilio temporal para completar el registro",
-      "C": "Indicar “sin domicilio” porque el documento no lo aporta",
-      "D": "Registrar únicamente el país de origen, ya que es el único dato exigido para extranjeros",
-      "correct_letter": "A",
-      "why": "El RD 933/2021 exige registrar el domicilio declarado del viajero. Como el pasaporte no lo incorpora, el recepcionista debe pedirlo directamente al huésped y consignarlo manualmente en el MR-HOSPE. Sin este dato, el XML no puede validarse ni enviarse correctamente."
-    },
-    {
-      "id": 272,
       "departamento": "Recepción",
       "categoria": "Operativa Turnos",
       "nivel": "Avanzado",
