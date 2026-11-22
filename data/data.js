@@ -1,8 +1,8 @@
 // Autogenerado a partir de data/plantilla_preguntas_unica.csv
-// Actualizado: 2026-11-22T20:36:07+00:00 (284 preguntas)
+// Actualizado: 2026-11-22T20:50:12+00:00 (284 preguntas)
 window.QUIZ = {
   "count": 284,
-  "updated_at": "2026-11-22T20:36:07+00:00",
+  "updated_at": "2026-11-22T20:50:12+00:00",
   "questions": [
     {
       "id": 1,
@@ -3616,13 +3616,14 @@ window.QUIZ = {
       "departamento": "Spa",
       "categoria": "Errores Comunes",
       "nivel": "Intermedio",
-      "texto": "Al intentar enviar el recordatorio automático o enlace de pago por WhatsApp a un cliente desde la columna ACCIONES, un recepcionista observa que la opción no aparece. ¿A qué se debe esto según el manual?",
-      "A": "A que la cita está marcada en el sistema con el estado 'PAGADO'.",
+      "texto": "En el panel de Inicio de GEST-SPA, al intentar pulsar el botón 'Enviar WhatsApp' (recordatorio de cita) desde la columna ACCIONES, un recepcionista observa que el botón no aparece. ¿A qué se debe esto según el manual?",
+      "A": "A que la cita todavía no ha sido confirmada con el botón 'Confirmar Asistencia'.",
       "B": "A que la reserva corresponde a un cofre regalo externo (Smartbox o Wonderbox).",
       "C": "A que no se ha registrado ningún número de teléfono en la ficha del cliente.",
       "D": "A que han transcurrido más de 15 minutos de retraso sobre la hora reservada.",
       "correct_letter": "C",
-      "why": "El manual especifica explícitamente en la nota de la acción 'Enviar WhatsApp' que si el botón no aparece es debido a que la ficha del cliente no tiene teléfono."
+      "why": "El manual especifica explícitamente en la nota de la acción 'Enviar WhatsApp' que si el botón no aparece es porque la ficha del cliente no tiene teléfono registrado (nota: los enlaces de pago solo se envían aparte cuando existe saldo pendiente).",
+      "imagen": "protocolo:Imagenes/gest-spa/01-inicio-dashboard.png"
     },
     {
       "id": 280,

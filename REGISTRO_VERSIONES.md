@@ -2,11 +2,17 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.7.2`** | **22/11/2026** | Producción |
+| **`v2.7.3`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.7.3] — 22/11/2026
+- **Módulos Afectados:** Filtros Departamento, Banco CSV
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Separación estricta de Hoteles (Recepción) frente a Spa por defecto para que preguntas de Spa no salgan a recepcionistas de hotel; aclaración de enunciado/opciones y captura en pregunta #279 de GEST-SPA
 
 ### [v2.7.2] — 22/11/2026
 - **Módulos Afectados:** Panel Admin, CSS

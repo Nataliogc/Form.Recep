@@ -14,7 +14,8 @@
   let REMOTE_RESULTS = [];
   let LOAD_META = { source: "", sourceLabel: "", updatedAt: null, errors: [] };
 
-  let selectedDept = "";
+  const DEPT_HOTELS = "__HOTELES__";
+  let selectedDept = DEPT_HOTELS;
   let selectedMod = "";
   let selectedLevel = "";
   let selectedSize = CFG.DEFAULT_SESSION_SIZE || 30;
@@ -591,10 +592,19 @@
   }
 
   // ===== Filters & Setup UI =====
+  function isSpaDept(dto) {
+    return String(dto || "").trim().toLowerCase() === "spa";
+  }
+
+  function matchesDept(q, dept) {
+    if (!dept || dept === DEPT_HOTELS) return !isSpaDept(q.dto);
+    return q.dto === dept;
+  }
+
   function getFilteredBase() {
     return RAW.filter(
       (q) =>
-        (!selectedDept || q.dto === selectedDept) &&
+        matchesDept(q, selectedDept) &&
         (!selectedMod || q.mod === selectedMod) &&
         (!selectedLevel || q.nivel === selectedLevel)
     );
@@ -602,9 +612,19 @@
 
   function renderDeptPills() {
     const depts = uniq(RAW.map((q) => q.dto)).sort((a, b) => a.localeCompare(b, "es", { sensitivity: "base" }));
-    const items = [{ value: "", label: "Todos", count: RAW.length }].concat(
-      depts.map((d) => ({ value: d, label: d, count: RAW.filter((q) => q.dto === d).length }))
-    );
+    const hotelDepts = depts.filter((d) => !isSpaDept(d));
+    const spaDepts = depts.filter((d) => isSpaDept(d));
+    const hotelCount = RAW.filter((q) => !isSpaDept(q.dto)).length;
+
+    const items = [{ value: DEPT_HOTELS, label: "Hoteles (Recepción)", count: hotelCount }]
+      .concat(
+        hotelDepts
+          .filter((d) => d !== "Recepción")
+          .map((d) => ({ value: d, label: d, count: RAW.filter((q) => q.dto === d).length }))
+      )
+      .concat(
+        spaDepts.map((d) => ({ value: d, label: `${d} (solo Spa)`, count: RAW.filter((q) => q.dto === d).length }))
+      );
 
     deptPills.innerHTML = items
       .map(
@@ -617,7 +637,7 @@
 
     deptPills.querySelectorAll(".pill").forEach((btn) => {
       btn.onclick = () => {
-        selectedDept = btn.dataset.dept || "";
+        selectedDept = btn.dataset.dept || DEPT_HOTELS;
         selectedMod = "";
         renderDeptPills();
         renderModuleOptions();
@@ -628,7 +648,7 @@
   }
 
   function renderModuleOptions() {
-    const subset = RAW.filter((q) => !selectedDept || q.dto === selectedDept);
+    const subset = RAW.filter((q) => matchesDept(q, selectedDept));
     const counts = new Map();
     subset.forEach((q) => {
       if (!q.mod) return;
@@ -644,7 +664,7 @@
   }
 
   function renderLevelPills() {
-    const subset = RAW.filter((q) => (!selectedDept || q.dto === selectedDept) && (!selectedMod || q.mod === selectedMod));
+    const subset = RAW.filter((q) => matchesDept(q, selectedDept) && (!selectedMod || q.mod === selectedMod));
     const order = ["Básico", "Intermedio", "Avanzado"];
     const present = uniq(subset.map((q) => q.nivel)).sort((a, b) => {
       const ia = order.indexOf(a);
@@ -1040,11 +1060,12 @@
         sessionQuestions.map((q) => q.id)
       );
 
+      const dtoLabel = selectedDept === DEPT_HOTELS ? "Recepción" : selectedDept;
       const newEntry = {
         nombre: getSelectedUserName(),
         nameKey: canonName(getSelectedUserName()),
         date: new Date().toISOString(),
-        dto: selectedDept,
+        dto: dtoLabel,
         modulo: selectedMod,
         nivel: selectedLevel,
         total,
@@ -1057,7 +1078,7 @@
 
       const payload = {
         nombre: getSelectedUserName(),
-        dto: selectedDept,
+        dto: dtoLabel,
         modulo: selectedMod,
         nivel: selectedLevel,
         total,
