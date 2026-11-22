@@ -309,19 +309,22 @@
     updateKPIs();
   }
 
-  // ===== Puente vivo con Protocolo-Recep =====
+  // ===== Puente vivo con Protocolo-Recep (lee protocols_data de data.js) =====
   async function loadProtocoloUpdates() {
-    if (location.protocol === "file:" || !CFG.PROTOCOLO_DATA_JSON_URL) return;
+    if (location.protocol === "file:" || !CFG.PROTOCOLO_DATA_JS_URL) return;
     try {
       const controller = new AbortController();
-      const t = setTimeout(() => controller.abort(), 5000);
-      const res = await fetch(`${CFG.PROTOCOLO_DATA_JSON_URL}?_ts=${Date.now()}`, {
+      const t = setTimeout(() => controller.abort(), 7000);
+      const res = await fetch(`${CFG.PROTOCOLO_DATA_JS_URL}?_ts=${Date.now()}`, {
         cache: "no-store",
         signal: controller.signal,
       });
       clearTimeout(t);
       if (!res.ok) return;
-      const list = await res.json();
+      const jsText = await res.text();
+      const m = jsText.match(/(?:var|const|let)\s+protocols_data\s*=\s*(\[[\s\S]*?\])\s*;\s*(?:var|const|let)\s+/);
+      if (!m) return;
+      const list = JSON.parse(m[1]);
       if (!Array.isArray(list)) return;
 
       const valid = list

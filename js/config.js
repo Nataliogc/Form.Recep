@@ -3,13 +3,13 @@
  * Integrado con el sistema oficial Protocolo-Recep.
  */
 window.APP_CONFIG = {
-  version: "2.6.3",
+  version: "2.6.4",
   appName: "FORMACIÓN RECEPCIÓN - GUADIANA & CUMBRIA",
   hotelsLabel: "Sercotel Guadiana & Cumbria Spa&Hotel",
 
   // Enlace al portal hermano Protocolo-Recep (Manual Operativo vivo)
   PROTOCOLO_RECEP_URL: "https://cumbriaspahotel.github.io/Protocolo-Recep/",
-  PROTOCOLO_DATA_JSON_URL: "https://cumbriaspahotel.github.io/Protocolo-Recep/data.json",
+  PROTOCOLO_DATA_JS_URL: "https://cumbriaspahotel.github.io/Protocolo-Recep/data.js",
 
   // Endpoint de Google Apps Script donde se registran los resultados (conservado del original)
   RESULTS_ENDPOINT:

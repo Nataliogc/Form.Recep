@@ -357,7 +357,7 @@ REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
             method="POST",
         )
         try:
-            with urllib.request.urlopen(req, timeout=35) as resp:
+            with urllib.request.urlopen(req, timeout=65) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
             if not WORKING_ENDPOINT:
                 WORKING_ENDPOINT = (mdl, endpoint)
@@ -529,9 +529,10 @@ def main() -> int:
 
     for p, key, chash, clean, prev in batch:
         title = str(p.get("title") or "").strip()
-        print(f"→ Generando preguntas para: {title} ...")
+        target_q = 5 if len(clean) >= 3500 else args.questions_per_protocol
+        print(f"→ Generando hasta {target_q} preguntas para: {title} ...")
         try:
-            generated = call_gemini(api_key, p, clean, args.questions_per_protocol)
+            generated = call_gemini(api_key, p, clean, target_q)
         except urllib.error.HTTPError as exc:
             print(f"  ⚠ Error HTTP Gemini ({exc.code}) en '{title}': {exc.reason}")
             continue

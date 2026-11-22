@@ -2,11 +2,17 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.6.3`** | **22/11/2026** | Producción |
+| **`v2.6.4`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.6.4] — 22/11/2026
+- **Módulos Afectados:** Portada, Automatización IA
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Widget lateral conectado al data.js real de Protocolo-Recep, timeout ampliado a 65s para manuales largos (Onity) y 5 preguntas para manuales extensos
 
 ### [v2.6.3] — 22/11/2026
 - **Módulos Afectados:** Clasificación DTO, Automatización IA
