@@ -2,11 +2,59 @@
 
 | Versión Actual | Fecha | Estado |
 | :--- | :--- | :--- |
-| **`v2.2.2`** | **22/11/2026** | Producción |
+| **`v2.4.3`** | **22/11/2026** | Producción |
 
 ---
 
 ## 📝 Historial de Modificaciones del Sistema
+
+### [v2.4.3] — 22/11/2026
+- **Módulos Afectados:** Integración Turnos-new, Panel Administrador
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Filtrado estricto de personal activo de Turnos-new excluyendo 'Baja empresa' y empleados con fecha_baja vigente en portada y panel admin
+
+### [v2.4.2] — 22/11/2026
+- **Módulos Afectados:** Portada, Estadísticas Personales
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Corregido el cálculo de Sesiones, Tu media y Últimas sesiones en portada para filtrar exclusivamente por la persona seleccionada usando los datos reales de Google Sheets
+
+### [v2.4.1] — 22/11/2026
+- **Módulos Afectados:** Identificación, Integración Turnos-new
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Restringido el acceso al test exclusivamente al personal activo de Turnos-new más la opción Prácticas + Nombre (guardado como 'Prácticas - Nombre')
+
+### [v2.4.0] — 22/11/2026
+- **Módulos Afectados:** Panel Administrador
+- **Tipo de Cambio:** Nueva Característica / Mejora
+- **Detalle de Cambios:**
+  - Panel de Administrador ampliado a Centro de Control con 4 pestañas: Evolución mensual, Cumplimiento de plantilla Turnos-new con recordatorio WhatsApp, Ficha individual por empleado, Explorador del Banco de Preguntas y Accesos del ecosistema
+
+### [v2.3.0] — 22/11/2026
+- **Módulos Afectados:** Integración Turnos-new, Panel Administrador
+- **Tipo de Cambio:** Nueva Característica / Mejora
+- **Detalle de Cambios:**
+  - Vinculado selector cerrado de recepcionistas con la plantilla activa de Turnos-new (Supabase) y añadida combinación automática/manual y exclusión de participantes en el Panel de Administrador
+
+### [v2.2.5] — 22/11/2026
+- **Módulos Afectados:** Panel Administrador
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Eliminados los botones innecesarios Importar CSV y Datos de prueba del Panel de Administrador
+
+### [v2.2.4] — 22/11/2026
+- **Módulos Afectados:** Panel Administrador
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Detección flexible de cabeceras de columnas (con espacios, tildes o alias) para detalle_fallos en el Panel de Administrador
+
+### [v2.2.3] — 22/11/2026
+- **Módulos Afectados:** Automatización IA
+- **Tipo de Cambio:** Mejora / Corrección
+- **Detalle de Cambios:**
+  - Endurecidas las reglas de calidad de IA en auto_generate_questions.py para evitar preguntas obvias o de relleno y omitir documentos no operativos
 
 ### [v2.2.2] — 22/11/2026
 - **Módulos Afectados:** Panel Administrador

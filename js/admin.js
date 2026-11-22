@@ -5,11 +5,17 @@
   const SS_AUTH = "form_recep_admin_auth_v1";
   const LS_THEME = "form_recep_theme_v1";
   const LS_RESULTS_CSV = "form_recep_admin_results_csv_v1";
+  const LS_PEOPLE_RULES = "form_recep_admin_people_rules_v1";
 
   let ALL_RESULTS = [];
   let QUESTIONS_BY_ID = new Map();
+  let ALL_QUESTIONS = [];
+  let TURNOS_STAFF = [];
   let chartModules = null;
   let chartDist = null;
+  let chartTrend = null;
+  let mergeSourceKey = "";
+  let mergeSourceDisplay = "";
 
   // DOM
   const loginView = $("#loginView");
@@ -24,8 +30,6 @@
 
   const sourceBanner = $("#sourceBanner");
   const sourceBannerText = $("#sourceBannerText");
-  const csvFileInput = $("#csvFileInput");
-  const btnLoadDemo = $("#btnLoadDemo");
   const btnRefreshResults = $("#btnRefreshResults");
 
   const fSearch = $("#fSearch");
@@ -41,6 +45,7 @@
   const kpiPeople = $("#kpiPeople");
   const kpiTime = $("#kpiTime");
 
+  const btnManageRules = $("#btnManageRules");
   const peopleCountTag = $("#peopleCountTag");
   const peopleTableBody = $("#peopleTableBody");
   const missedQuestionsList = $("#missedQuestionsList");
@@ -52,6 +57,41 @@
   const resultsCsvUrlInput = $("#resultsCsvUrlInput");
   const btnClearSourceUrl = $("#btnClearSourceUrl");
   const btnSaveSourceUrl = $("#btnSaveSourceUrl");
+
+  const mergeModal = $("#mergeModal");
+  const btnCloseMergeModal = $("#btnCloseMergeModal");
+  const mergeSourceLabel = $("#mergeSourceLabel");
+  const mergeTargetSelect = $("#mergeTargetSelect");
+  const btnCancelMerge = $("#btnCancelMerge");
+  const btnConfirmMerge = $("#btnConfirmMerge");
+
+  const rulesModal = $("#rulesModal");
+  const btnCloseRulesModal = $("#btnCloseRulesModal");
+  const rulesListBox = $("#rulesListBox");
+  const btnResetAllRules = $("#btnResetAllRules");
+  const btnDoneRules = $("#btnDoneRules");
+
+  const tabPendingBadge = $("#tabPendingBadge");
+  const tabBankBadge = $("#tabBankBadge");
+  const compTotal = $("#compTotal");
+  const compUpToDate = $("#compUpToDate");
+  const compStale = $("#compStale");
+  const compNever = $("#compNever");
+  const compHotelFilter = $("#compHotelFilter");
+  const btnCopyReminder = $("#btnCopyReminder");
+  const complianceTableBody = $("#complianceTableBody");
+
+  const qbSearch = $("#qbSearch");
+  const qbMod = $("#qbMod");
+  const qbLevel = $("#qbLevel");
+  const qbCountTag = $("#qbCountTag");
+  const qbankList = $("#qbankList");
+
+  const btnOpenRulesFromSystem = $("#btnOpenRulesFromSystem");
+  const personModal = $("#personModal");
+  const btnClosePersonModal = $("#btnClosePersonModal");
+  const personModalTitle = $("#personModalTitle");
+  const personModalBody = $("#personModalBody");
 
   const esc = (s) =>
     String(s ?? "")
@@ -158,6 +198,14 @@
   }
 
   function normalizeResults(rawArr) {
+    const cleanKey = (k) =>
+      String(k || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]+/g, "_")
+        .replace(/^_|_$/g, "");
+
     const pick = (o, keys) => {
       for (const k of keys) {
         if (k in o && o[k] != null && String(o[k]).trim() !== "") return o[k];
@@ -167,19 +215,42 @@
     return (rawArr || [])
       .map((r) => {
         const o = {};
-        Object.keys(r || {}).forEach((k) => (o[k.toLowerCase().trim()] = r[k]));
-        const nombre = String(pick(o, ["nombre", "empleado", "usuario", "recepcionista", "name"])).trim();
+        Object.keys(r || {}).forEach((k) => {
+          o[k.toLowerCase().trim()] = r[k];
+          o[cleanKey(k)] = r[k];
+        });
+        const nombre = String(pick(o, ["nombre", "empleado", "usuario", "recepcionista", "name", "nombre_y_apellidos"])).trim();
         const dto = String(pick(o, ["dto", "departamento", "hotel"])).trim() || "Todos";
-        const modulo = String(pick(o, ["modulo", "módulo", "categoría", "categoria"])).trim() || "General";
+        const modulo = String(pick(o, ["modulo", "módulo", "categoria", "categoría"])).trim() || "General";
         const nivel = String(pick(o, ["nivel", "level"])).trim() || "Todos";
-        const total = Number(pick(o, ["total", "preguntas"])) || 0;
+        const total = Number(pick(o, ["total", "preguntas", "total_preguntas"])) || 0;
         const aciertos = Number(pick(o, ["aciertos", "ok", "correctas"])) || 0;
-        const fallos = Number(pick(o, ["fallos", "ko", "errores"])) || Math.max(0, total - aciertos);
-        const pctRaw = pick(o, ["pct", "porcentaje", "nota", "score"]);
+        const fallos = Number(pick(o, ["fallos", "ko", "errores", "num_fallos"])) || Math.max(0, total - aciertos);
+        const pctRaw = pick(o, ["pct", "porcentaje", "nota", "score", "acierto"]);
         const pct = pctRaw !== "" ? Math.round(Number(String(pctRaw).replace("%", "").replace(",", "."))) : total ? Math.round((aciertos / total) * 100) : 0;
         const dur = Number(pick(o, ["duracion_seg", "duración_seg", "duracion", "tiempo", "segundos"])) || 0;
-        const date = parseFlexibleDate(pick(o, ["fecha", "timestamp", "date", "marca temporal", "created_at"]));
-        const detalle_fallos = parseIdList(pick(o, ["detalle_fallos", "falladas", "ids_fallos", "errores_ids"]));
+        const date = parseFlexibleDate(pick(o, ["fecha", "timestamp", "date", "marca_temporal", "marca temporal", "created_at", "fecha_hora"]));
+
+        let rawFallos = pick(o, [
+          "detalle_fallos",
+          "detalle_de_fallos",
+          "fallos_detalle",
+          "falladas",
+          "preguntas_falladas",
+          "ids_fallos",
+          "ids_falladas",
+          "id_fallos",
+          "fallos_ids",
+          "errores_ids",
+          "detalle_errores",
+        ]);
+        if (!rawFallos) {
+          const fallbackKey = Object.keys(o).find(
+            (k) => (k.includes("fall") || k.includes("error")) && (k.includes("detall") || k.includes("id") || k.includes("preg"))
+          );
+          if (fallbackKey) rawFallos = o[fallbackKey];
+        }
+        const detalle_fallos = parseIdList(rawFallos);
         return { nombre, dto, modulo, nivel, total, aciertos, fallos, pct, duracion_seg: dur, date, detalle_fallos };
       })
       .filter((r) => r.nombre || r.total > 0)
@@ -205,8 +276,59 @@
   async function loadQuestionsIndex() {
     try {
       const res = await window.DataLoader.loadQuestions();
+      ALL_QUESTIONS = res.questions || [];
       QUESTIONS_BY_ID = new Map();
-      (res.questions || []).forEach((q) => QUESTIONS_BY_ID.set(String(q.id), q));
+      ALL_QUESTIONS.forEach((q) => QUESTIONS_BY_ID.set(String(q.id), q));
+      tabBankBadge.textContent = ALL_QUESTIONS.length;
+      const mods = [...new Set(ALL_QUESTIONS.map((q) => q.mod).filter(Boolean))].sort((a, b) => a.localeCompare(b, "es"));
+      qbMod.innerHTML = '<option value="">Todos</option>' + mods.map((m) => `<option>${esc(m)}</option>`).join("");
+      renderQuestionBank();
+    } catch (_) {}
+  }
+
+  function formatHotelLabel(hotelId) {
+    const h = String(hotelId || "").trim().toLowerCase();
+    if (!h) return "General";
+    if (h.includes("guadiana")) return "Sercotel Guadiana";
+    if (h.includes("cumbria")) return "Cumbria Spa&Hotel";
+    return String(hotelId).trim();
+  }
+
+  async function loadTurnosStaffForAdmin() {
+    const url = (CFG.TURNOS_SUPABASE_URL || "").replace(/\/+$/, "");
+    const key = (CFG.TURNOS_SUPABASE_ANON_KEY || "").trim();
+    if (!url || !key) return;
+    try {
+      const res = await fetch(
+        `${url}/rest/v1/empleados?select=id,nombre,hotel_id,activo,estado_empresa,fecha_baja,orden&order=orden.asc,nombre.asc`,
+        { headers: { apikey: key, Authorization: `Bearer ${key}` }, cache: "no-store" }
+      );
+      if (!res.ok) return;
+      const rows = await res.json();
+      const todayIso = new Date().toISOString().slice(0, 10);
+      const seen = new Set();
+      TURNOS_STAFF = (Array.isArray(rows) ? rows : [])
+        .filter((e) => {
+          const name = String(e.nombre || "").trim();
+          if (!name || /^(vacante|libre)\b/i.test(name)) return false;
+          if (e.activo === false) return false;
+          const st = String(e.estado_empresa || "").trim().toLowerCase();
+          if (st && (st.includes("baja") || st.includes("inactiv") || st.includes("cese") || st.includes("elimin"))) return false;
+          if (e.fecha_baja && String(e.fecha_baja).slice(0, 10) <= todayIso) return false;
+          const k = canonPersonKey(name);
+          if (seen.has(k)) return false;
+          seen.add(k);
+          return true;
+        })
+        .map((e) => ({
+          name: String(e.nombre).trim(),
+          key: canonPersonKey(e.nombre),
+          hotel: formatHotelLabel(e.hotel_id),
+        }));
+
+      const hotels = [...new Set(TURNOS_STAFF.map((s) => s.hotel))].sort((a, b) => a.localeCompare(b, "es"));
+      compHotelFilter.innerHTML = '<option value="">Todos los hoteles</option>' + hotels.map((h) => `<option>${esc(h)}</option>`).join("");
+      renderCompliance();
     } catch (_) {}
   }
 
@@ -308,6 +430,122 @@
     setBanner("warn", '<i class="fas fa-flask"></i> <b>Mostrando datos de prueba (24 sesiones simuladas).</b> Conecta tu Google Sheet en <i class="fas fa-database"></i> para ver los resultados reales.');
   }
 
+  // ===== Reglas de participantes (normalización, combinación y exclusión) =====
+  function canonPersonKey(name) {
+    return String(name || "")
+      .trim()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, " ");
+  }
+
+  function toTitleCase(name) {
+    return String(name || "")
+      .trim()
+      .replace(/\s+/g, " ")
+      .split(" ")
+      .map((w) => (w ? w[0].toUpperCase() + w.slice(1).toLowerCase() : ""))
+      .join(" ");
+  }
+
+  function loadPeopleRules() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(LS_PEOPLE_RULES) || "{}");
+      return {
+        aliases: parsed && typeof parsed.aliases === "object" && parsed.aliases ? parsed.aliases : {},
+        excluded: Array.isArray(parsed?.excluded) ? parsed.excluded : [],
+        excludedLabels: parsed && typeof parsed.excludedLabels === "object" && parsed.excludedLabels ? parsed.excludedLabels : {},
+      };
+    } catch (_) {
+      return { aliases: {}, excluded: [], excludedLabels: {} };
+    }
+  }
+
+  function savePeopleRules(rules) {
+    try {
+      localStorage.setItem(LS_PEOPLE_RULES, JSON.stringify(rules));
+    } catch (_) {}
+  }
+
+  function resolvePerson(rawName, rules) {
+    let key = canonPersonKey(rawName || "Sin nombre");
+    let display = toTitleCase(rawName || "Sin nombre");
+    const visited = new Set();
+    while (rules.aliases[key] && !visited.has(key)) {
+      visited.add(key);
+      display = rules.aliases[key];
+      key = canonPersonKey(display);
+    }
+    const isExcluded = rules.excluded.includes(key);
+    return { key, display, isExcluded };
+  }
+
+  function updateRulesBadge() {
+    const rules = loadPeopleRules();
+    const n = Object.keys(rules.aliases).length + rules.excluded.length;
+    if (n > 0) {
+      btnManageRules.textContent = `${n} ${n === 1 ? "regla activa" : "reglas activas"} · Gestionar`;
+      btnManageRules.classList.remove("hidden");
+    } else {
+      btnManageRules.classList.add("hidden");
+    }
+  }
+
+  function openMergeModal(sourceKey, sourceDisplay, allPeople) {
+    mergeSourceKey = sourceKey;
+    mergeSourceDisplay = sourceDisplay;
+    mergeSourceLabel.textContent = sourceDisplay;
+    const targets = allPeople.filter((p) => p.key !== sourceKey).sort((a, b) => a.name.localeCompare(b.name, "es"));
+    mergeTargetSelect.innerHTML = targets.map((p) => `<option value="${esc(p.name)}">${esc(p.name)} (${p.sessions} ses.)</option>`).join("");
+    btnConfirmMerge.disabled = targets.length === 0;
+    mergeModal.classList.remove("hidden");
+  }
+
+  function openRulesModal() {
+    const rules = loadPeopleRules();
+    const items = [];
+    Object.entries(rules.aliases).forEach(([srcKey, targetName]) => {
+      items.push(`
+        <div class="rule-row">
+          <span><i class="fas fa-compress-arrows-alt" style="color:var(--accent-blue)"></i> <b>${esc(toTitleCase(srcKey))}</b> → <b>${esc(targetName)}</b></span>
+          <button type="button" class="link-btn" data-unmerge="${esc(srcKey)}">Deshacer</button>
+        </div>`);
+    });
+    rules.excluded.forEach((exKey) => {
+      const lbl = rules.excludedLabels[exKey] || toTitleCase(exKey);
+      items.push(`
+        <div class="rule-row">
+          <span><i class="fas fa-eye-slash" style="color:var(--accent-red)"></i> Oculto: <b>${esc(lbl)}</b></span>
+          <button type="button" class="link-btn" data-restore="${esc(exKey)}">Restaurar</button>
+        </div>`);
+    });
+
+    rulesListBox.innerHTML = items.length ? items.join("") : '<div class="empty-state">No hay reglas activas.</div>';
+
+    rulesListBox.querySelectorAll("[data-unmerge]").forEach((btn) => {
+      btn.onclick = () => {
+        const r = loadPeopleRules();
+        delete r.aliases[btn.dataset.unmerge];
+        savePeopleRules(r);
+        openRulesModal();
+        renderAll();
+      };
+    });
+    rulesListBox.querySelectorAll("[data-restore]").forEach((btn) => {
+      btn.onclick = () => {
+        const r = loadPeopleRules();
+        r.excluded = r.excluded.filter((k) => k !== btn.dataset.restore);
+        delete r.excludedLabels[btn.dataset.restore];
+        savePeopleRules(r);
+        openRulesModal();
+        renderAll();
+      };
+    });
+
+    rulesModal.classList.remove("hidden");
+  }
+
   // ===== Filters =====
   function populateFilterOptions() {
     const depts = [...new Set(ALL_RESULTS.map((r) => r.dto).filter(Boolean))].sort((a, b) => a.localeCompare(b, "es"));
@@ -322,14 +560,19 @@
     const m = fMod.value;
     const days = fRange.value === "all" ? null : Number(fRange.value);
     const cutoff = days ? Date.now() - days * 86400 * 1000 : null;
+    const rules = loadPeopleRules();
 
-    return ALL_RESULTS.filter((r) => {
-      if (q && !r.nombre.toLowerCase().includes(q)) return false;
-      if (d && r.dto !== d) return false;
-      if (m && r.modulo !== m) return false;
-      if (cutoff && r.date && r.date.getTime() < cutoff) return false;
-      return true;
-    });
+    const out = [];
+    for (const r of ALL_RESULTS) {
+      const person = resolvePerson(r.nombre, rules);
+      if (person.isExcluded) continue;
+      if (q && !person.display.toLowerCase().includes(q) && !r.nombre.toLowerCase().includes(q)) continue;
+      if (d && r.dto !== d) continue;
+      if (m && r.modulo !== m) continue;
+      if (cutoff && r.date && r.date.getTime() < cutoff) continue;
+      out.push({ ...r, nombre: person.display, personKey: person.key });
+    }
+    return out;
   }
 
   // ===== Render Dashboard =====
@@ -359,9 +602,264 @@
     }
 
     renderCharts(list);
+    renderTrendChart(list);
     renderPeopleTable(list);
     renderMissedQuestions(list);
     renderSessionsTable(list);
+    renderCompliance();
+  }
+
+  function renderTrendChart(list) {
+    const isDark = document.body.classList.contains("dark-mode");
+    const textColor = isDark ? "#cbd5e1" : "#334155";
+    const gridColor = isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.07)";
+
+    const byMonth = new Map();
+    list.forEach((r) => {
+      if (!r.date) return;
+      const ym = `${r.date.getFullYear()}-${String(r.date.getMonth() + 1).padStart(2, "0")}`;
+      if (!byMonth.has(ym)) byMonth.set(ym, { sum: 0, n: 0 });
+      const e = byMonth.get(ym);
+      e.sum += r.pct;
+      e.n++;
+    });
+
+    const entries = [...byMonth.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+    const labels = entries.map(([ym]) => {
+      const [y, m] = ym.split("-");
+      return new Date(Number(y), Number(m) - 1, 1).toLocaleDateString("es-ES", { month: "short", year: "2-digit" });
+    });
+
+    if (chartTrend) chartTrend.destroy();
+    chartTrend = new Chart($("#chartTrend"), {
+      data: {
+        labels,
+        datasets: [
+          {
+            type: "line",
+            label: "Nota media (%)",
+            data: entries.map(([, v]) => Math.round(v.sum / v.n)),
+            borderColor: "#0a6aa1",
+            backgroundColor: "rgba(10, 106, 161, 0.14)",
+            tension: 0.3,
+            fill: true,
+            yAxisID: "y",
+          },
+          {
+            type: "bar",
+            label: "Sesiones",
+            data: entries.map(([, v]) => v.n),
+            backgroundColor: "rgba(165, 140, 95, 0.55)",
+            borderRadius: 6,
+            yAxisID: "y1",
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: textColor } } },
+        scales: {
+          x: { ticks: { color: textColor }, grid: { display: false } },
+          y: { min: 0, max: 100, position: "left", ticks: { color: textColor }, grid: { color: gridColor } },
+          y1: { min: 0, position: "right", ticks: { color: textColor, precision: 0 }, grid: { display: false } },
+        },
+      },
+    });
+  }
+
+  function openPersonModal(personName, personKey) {
+    const rules = loadPeopleRules();
+    const sessions = ALL_RESULTS.map((r) => {
+      const p = resolvePerson(r.nombre, rules);
+      return { ...r, nombre: p.display, personKey: p.key };
+    }).filter((r) => r.personKey === personKey);
+
+    personModalTitle.innerHTML = `<i class="fas fa-user-circle" style="color:var(--accent-blue)"></i> ${esc(personName)}`;
+
+    if (!sessions.length) {
+      personModalBody.innerHTML = '<div class="empty-state">Este recepcionista aún no tiene sesiones registradas.</div>';
+      personModal.classList.remove("hidden");
+      return;
+    }
+
+    const avg = Math.round(sessions.reduce((s, x) => s + x.pct, 0) / sessions.length);
+    const best = Math.max(...sessions.map((x) => x.pct));
+    const modMap = new Map();
+    sessions.forEach((s) => {
+      const m = s.modulo || "General";
+      if (!modMap.has(m)) modMap.set(m, { sum: 0, n: 0 });
+      const e = modMap.get(m);
+      e.sum += s.pct;
+      e.n++;
+    });
+
+    const modHtml = [...modMap.entries()]
+      .map(([m, v]) => {
+        const ma = Math.round(v.sum / v.n);
+        return `<div class="rule-row"><span>${esc(m)} (${v.n} ses.)</span><span class="score-badge ${badgeClass(ma)}">${ma}%</span></div>`;
+      })
+      .join("");
+
+    const histHtml = sessions
+      .slice(0, 12)
+      .map(
+        (s) => `
+        <tr>
+          <td style="font-size:12px;color:var(--text-muted)">${esc(formatDate(s.date))}</td>
+          <td>${esc(s.modulo)}</td>
+          <td>${s.aciertos}/${s.total}</td>
+          <td><span class="score-badge ${badgeClass(s.pct)}">${s.pct}%</span></td>
+        </tr>`
+      )
+      .join("");
+
+    personModalBody.innerHTML = `
+      <div class="summary-kpis" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px">
+        <div class="stat-tile"><strong>${sessions.length}</strong><span>Sesiones</span></div>
+        <div class="stat-tile ok"><strong>${avg}%</strong><span>Media</span></div>
+        <div class="stat-tile"><strong>${best}%</strong><span>Mejor nota</span></div>
+      </div>
+      <div class="field-label" style="margin-bottom:6px">Rendimiento por módulo</div>
+      <div class="rules-list" style="margin-bottom:14px;max-height:150px">${modHtml}</div>
+      <div class="field-label" style="margin-bottom:6px">Últimas sesiones</div>
+      <div class="table-wrap" style="max-height:200px;overflow-y:auto">
+        <table class="data-table">
+          <thead><tr><th>Fecha</th><th>Módulo</th><th>Aciertos</th><th>Nota</th></tr></thead>
+          <tbody>${histHtml}</tbody>
+        </table>
+      </div>`;
+    personModal.classList.remove("hidden");
+  }
+
+  function renderCompliance() {
+    if (!TURNOS_STAFF.length) {
+      complianceTableBody.innerHTML = '<tr><td colspan="6" class="empty-state">Cargando plantilla desde Turnos-new…</td></tr>';
+      return;
+    }
+
+    const rules = loadPeopleRules();
+    const resolvedSessions = ALL_RESULTS.map((r) => {
+      const p = resolvePerson(r.nombre, rules);
+      return { ...r, nombre: p.display, personKey: p.key, isExcluded: p.isExcluded };
+    }).filter((r) => !r.isExcluded);
+
+    const byKey = new Map();
+    resolvedSessions.forEach((r) => {
+      if (!byKey.has(r.personKey)) byKey.set(r.personKey, { sessions: 0, sum: 0, last: null });
+      const e = byKey.get(r.personKey);
+      e.sessions++;
+      e.sum += r.pct;
+      if (r.date && (!e.last || r.date > e.last)) e.last = r.date;
+    });
+
+    const hotelFilter = compHotelFilter.value;
+    const cutoff30 = Date.now() - 30 * 86400 * 1000;
+
+    const rows = TURNOS_STAFF.filter((s) => !hotelFilter || s.hotel === hotelFilter).map((s) => {
+      const st = byKey.get(s.key) || { sessions: 0, sum: 0, last: null };
+      const avg = st.sessions ? Math.round(st.sum / st.sessions) : null;
+      let status = "never";
+      if (st.sessions > 0) status = st.last && st.last.getTime() >= cutoff30 ? "ok" : "stale";
+      return { ...s, sessions: st.sessions, avg, last: st.last, status };
+    });
+
+    const nOk = rows.filter((r) => r.status === "ok").length;
+    const nStale = rows.filter((r) => r.status === "stale").length;
+    const nNever = rows.filter((r) => r.status === "never").length;
+
+    compTotal.textContent = rows.length;
+    compUpToDate.textContent = nOk;
+    compStale.textContent = nStale;
+    compNever.textContent = nNever;
+    tabPendingBadge.textContent = nStale + nNever;
+
+    const order = { never: 0, stale: 1, ok: 2 };
+    rows.sort((a, b) => order[a.status] - order[b.status] || a.name.localeCompare(b.name, "es"));
+
+    complianceTableBody.innerHTML = rows
+      .map((r) => {
+        const statusBadge =
+          r.status === "ok"
+            ? '<span class="score-badge ok">Al día</span>'
+            : r.status === "stale"
+            ? '<span class="score-badge warn">&gt;30 días</span>'
+            : '<span class="score-badge ko">Sin iniciar</span>';
+        return `
+          <tr>
+            <td><button type="button" class="person-link" data-person-key="${esc(r.key)}" data-person-name="${esc(r.name)}">${esc(r.name)}</button></td>
+            <td>${esc(r.hotel)}</td>
+            <td>${statusBadge}</td>
+            <td>${r.sessions}</td>
+            <td>${r.avg !== null ? `<span class="score-badge ${badgeClass(r.avg)}">${r.avg}%</span>` : "—"}</td>
+            <td style="color:var(--text-muted);font-size:12.5px">${r.last ? esc(r.last.toLocaleDateString("es-ES")) : "Nunca"}</td>
+          </tr>`;
+      })
+      .join("");
+
+    complianceTableBody.querySelectorAll("[data-person-key]").forEach((btn) => {
+      btn.onclick = () => openPersonModal(btn.dataset.personName, btn.dataset.personKey);
+    });
+
+    btnCopyReminder.onclick = () => {
+      const pending = rows.filter((r) => r.status !== "ok").map((r) => `• ${r.name} (${r.hotel})`);
+      const msg = pending.length
+        ? `📋 Recordatorio · Formación Recepción (Guadiana & Cumbria)\n\nCompañeros pendientes de completar una sesión este mes:\n${pending.join("\n")}\n\n🔗 Acceso: https://nataliogc.github.io/Form.Recep/`
+        : "✅ ¡Todo el equipo está al día con la formación de este mes!";
+      navigator.clipboard?.writeText(msg).then(() => {
+        const old = btnCopyReminder.innerHTML;
+        btnCopyReminder.innerHTML = '<i class="fas fa-check"></i> ¡Copiado al portapapeles!';
+        setTimeout(() => (btnCopyReminder.innerHTML = old), 2200);
+      });
+    };
+  }
+
+  function renderQuestionBank() {
+    const q = (qbSearch.value || "").trim().toLowerCase();
+    const m = qbMod.value || "";
+    const lv = qbLevel.value || "";
+
+    const filtered = ALL_QUESTIONS.filter((item) => {
+      if (m && item.mod !== m) return false;
+      if (lv && item.nivel !== lv) return false;
+      if (q) {
+        const blob = [item.id, item.text, item.A, item.B, item.C, item.D, item.why, item.mod].join(" ").toLowerCase();
+        if (!blob.includes(q)) return false;
+      }
+      return true;
+    });
+
+    qbCountTag.textContent = `${filtered.length} preguntas`;
+    if (!filtered.length) {
+      qbankList.innerHTML = '<div class="empty-state">No hay preguntas que coincidan con el filtro.</div>';
+      return;
+    }
+
+    qbankList.innerHTML = filtered
+      .slice(0, 80)
+      .map(
+        (item) => `
+        <div class="qbank-item">
+          <div class="qbank-meta">
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <span class="tag">#${esc(item.id)}</span>
+              ${item.dto ? `<span class="tag">${esc(item.dto)}</span>` : ""}
+              ${item.mod ? `<span class="tag">${esc(item.mod)}</span>` : ""}
+              ${item.nivel ? `<span class="tag">${esc(item.nivel)}</span>` : ""}
+            </div>
+            <span class="score-badge ok">Correcta: ${esc(item.correct)}</span>
+          </div>
+          <h4>${esc(item.text)}</h4>
+          <div class="qbank-opts">
+            ${["A", "B", "C", "D"]
+              .filter((L) => item[L])
+              .map((L) => `<div class="${L === item.correct ? "is-corr" : ""}"><b>${L}.</b> ${esc(item[L])}</div>`)
+              .join("")}
+          </div>
+          ${item.why ? `<p class="qbank-why"><i class="fas fa-info-circle"></i> ${esc(item.why)}</p>` : ""}
+        </div>`
+      )
+      .join("");
   }
 
   function renderCharts(list) {
@@ -438,10 +936,11 @@
   }
 
   function renderPeopleTable(list) {
+    updateRulesBadge();
     const map = new Map();
     list.forEach((r) => {
-      const key = (r.nombre || "Sin nombre").trim();
-      if (!map.has(key)) map.set(key, { name: key, sessions: 0, sum: 0, best: 0, last: null });
+      const key = r.personKey || canonPersonKey(r.nombre || "Sin nombre");
+      if (!map.has(key)) map.set(key, { key, name: r.nombre || "Sin nombre", sessions: 0, sum: 0, best: 0, last: null });
       const p = map.get(key);
       p.sessions++;
       p.sum += r.pct;
@@ -455,7 +954,7 @@
 
     peopleCountTag.textContent = `${rows.length} personas`;
     if (!rows.length) {
-      peopleTableBody.innerHTML = '<tr><td colspan="5" class="empty-state">Sin datos para este filtro.</td></tr>';
+      peopleTableBody.innerHTML = '<tr><td colspan="6" class="empty-state">Sin datos para este filtro.</td></tr>';
       return;
     }
 
@@ -463,14 +962,45 @@
       .map(
         (p) => `
         <tr>
-          <td><strong>${esc(p.name)}</strong></td>
+          <td><button type="button" class="person-link" data-open-person="${esc(p.key)}" data-open-name="${esc(p.name)}">${esc(p.name)}</button></td>
           <td>${p.sessions}</td>
           <td><span class="score-badge ${badgeClass(p.avg)}">${p.avg}%</span></td>
           <td>${p.best}%</td>
           <td style="color:var(--text-muted);font-size:12.5px">${p.last ? esc(p.last.toLocaleDateString("es-ES")) : "—"}</td>
+          <td style="text-align:right">
+            <div class="row-actions">
+              <button type="button" class="mini-action" data-merge-key="${esc(p.key)}" data-merge-name="${esc(p.name)}" title="Combinar con otro participante">
+                <i class="fas fa-compress-arrows-alt"></i>
+              </button>
+              <button type="button" class="mini-action danger" data-hide-key="${esc(p.key)}" data-hide-name="${esc(p.name)}" title="Ocultar / eliminar del análisis">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </td>
         </tr>`
       )
       .join("");
+
+    peopleTableBody.querySelectorAll("[data-open-person]").forEach((btn) => {
+      btn.onclick = () => openPersonModal(btn.dataset.openName, btn.dataset.openPerson);
+    });
+
+    peopleTableBody.querySelectorAll("[data-merge-key]").forEach((btn) => {
+      btn.onclick = () => openMergeModal(btn.dataset.mergeKey, btn.dataset.mergeName, rows);
+    });
+
+    peopleTableBody.querySelectorAll("[data-hide-key]").forEach((btn) => {
+      btn.onclick = () => {
+        const key = btn.dataset.hideKey;
+        const name = btn.dataset.hideName;
+        if (!confirm(`¿Ocultar a "${name}" del panel y de las estadísticas? (Podrás restaurarlo cuando quieras desde "Gestionar").`)) return;
+        const rules = loadPeopleRules();
+        if (!rules.excluded.includes(key)) rules.excluded.push(key);
+        rules.excludedLabels[key] = name;
+        savePeopleRules(rules);
+        renderAll();
+      };
+    });
   }
 
   function renderMissedQuestions(list) {
@@ -567,7 +1097,7 @@
     dashboardView.classList.remove("hidden");
     btnLogout.classList.remove("hidden");
     btnSourceModal.classList.remove("hidden");
-    loadQuestionsIndex().then(loadResultsFromRemote);
+    Promise.all([loadQuestionsIndex(), loadTurnosStaffForAdmin()]).then(loadResultsFromRemote);
   }
 
   loginForm.onsubmit = (e) => {
@@ -596,20 +1126,8 @@
   btnTheme.onclick = () => applyTheme(document.body.classList.contains("dark-mode") ? "light" : "dark");
   [fSearch, fDept, fMod, fRange].forEach((el) => (el.oninput = el.onchange = renderAll));
   btnRefreshResults.onclick = loadResultsFromRemote;
-  btnLoadDemo.onclick = loadDemoData;
   btnExportCsv.onclick = exportFilteredCsv;
   btnPrintReport.onclick = () => window.print();
-
-  csvFileInput.onchange = async (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const text = await file.text();
-    ALL_RESULTS = normalizeResults(parseCSV(text));
-    populateFilterOptions();
-    renderAll();
-    setBanner("ok", `<i class="fas fa-file-csv"></i> <b>Archivo importado:</b> ${esc(file.name)} (${ALL_RESULTS.length} sesiones).`);
-    csvFileInput.value = "";
-  };
 
   btnSourceModal.onclick = () => {
     resultsCsvUrlInput.value = getConfiguredResultsCsvUrl();
@@ -635,6 +1153,53 @@
     resultsCsvUrlInput.value = "";
     sourceModal.classList.add("hidden");
     loadResultsFromRemote();
+  };
+
+  btnManageRules.onclick = openRulesModal;
+  btnCloseMergeModal.onclick = () => mergeModal.classList.add("hidden");
+  btnCancelMerge.onclick = () => mergeModal.classList.add("hidden");
+  mergeModal.onclick = (e) => {
+    if (e.target === mergeModal) mergeModal.classList.add("hidden");
+  };
+  btnConfirmMerge.onclick = () => {
+    const targetName = mergeTargetSelect.value;
+    if (!mergeSourceKey || !targetName) return;
+    const rules = loadPeopleRules();
+    rules.aliases[mergeSourceKey] = targetName;
+    savePeopleRules(rules);
+    mergeModal.classList.add("hidden");
+    renderAll();
+  };
+
+  btnCloseRulesModal.onclick = () => rulesModal.classList.add("hidden");
+  btnDoneRules.onclick = () => rulesModal.classList.add("hidden");
+  rulesModal.onclick = (e) => {
+    if (e.target === rulesModal) rulesModal.classList.add("hidden");
+  };
+  btnResetAllRules.onclick = () => {
+    if (!confirm("¿Restaurar todos los participantes combinados y ocultos?")) return;
+    savePeopleRules({ aliases: {}, excluded: [], excludedLabels: {} });
+    rulesModal.classList.add("hidden");
+    renderAll();
+  };
+
+  // Pestañas
+  document.querySelectorAll(".admin-tab").forEach((tab) => {
+    tab.onclick = () => {
+      document.querySelectorAll(".admin-tab").forEach((t) => t.classList.remove("active"));
+      document.querySelectorAll(".tab-panel").forEach((p) => p.classList.add("hidden"));
+      tab.classList.add("active");
+      const panel = $(`#tab-${tab.dataset.tab}`);
+      if (panel) panel.classList.remove("hidden");
+    };
+  });
+
+  compHotelFilter.onchange = renderCompliance;
+  [qbSearch, qbMod, qbLevel].forEach((el) => (el.oninput = el.onchange = renderQuestionBank));
+  btnOpenRulesFromSystem.onclick = openRulesModal;
+  btnClosePersonModal.onclick = () => personModal.classList.add("hidden");
+  personModal.onclick = (e) => {
+    if (e.target === personModal) personModal.classList.add("hidden");
   };
 
   // ===== Boot =====

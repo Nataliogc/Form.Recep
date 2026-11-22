@@ -171,10 +171,10 @@ def call_gemini(api_key: str, protocol: dict, clean_text: str, num_questions: in
     default_dto = infer_default_dto(title, clean_text)
 
     excerpt = clean_text[:6500]
-    prompt = f"""Eres el responsable de formación de recepción de Sercotel Guadiana y Cumbria Spa&Hotel.
-A partir EXCLUSIVAMENTE del siguiente protocolo operativo oficial, redacta exactamente {num_questions} preguntas tipo test prácticas, claras y útiles para el equipo de recepción.
+    prompt = f"""Eres el Director de Recepción y Calidad de Sercotel Guadiana y Cumbria Spa&Hotel.
+Evalúa el siguiente documento del manual interno y, SOLO si contiene procedimientos operativos reales, redacta entre 1 y {num_questions} preguntas tipo test de alto valor práctico para el equipo de recepción.
 
-PROTOCOLO:
+DOCUMENTO:
 - Título: {title}
 - Sección: {section or 'General'}
 - Contenido:
@@ -182,15 +182,17 @@ PROTOCOLO:
 {excerpt}
 \"\"\"
 
-REGLAS OBLIGATORIAS:
-1. Cada pregunta debe basarse estrictamente en hechos reales del texto anterior (no inventes horarios, importes ni reglas que no figuren en el texto).
-2. 4 opciones plausibles (A, B, C, D), solo UNA inequívocamente correcta.
-3. Incluye una explicación breve y clara ("why") citando el criterio del protocolo.
-4. "dto" debe ser uno de: {json.dumps(ALLOWED_DTOS, ensure_ascii=False)} (sugerido: "{default_dto}").
-5. "categoria" debe ser exactamente uno de: {json.dumps(ALLOWED_MODULES, ensure_ascii=False)} (sugerido: "{default_mod}").
-6. "nivel" debe ser uno de: {json.dumps(ALLOWED_LEVELS, ensure_ascii=False)}.
-7. Responde ÚNICAMENTE con un array JSON válido de objetos con estas claves exactas:
-   "dto", "categoria", "nivel", "texto", "A", "B", "C", "D", "correct_letter", "why".
+REGLAS ESTRICTAS DE CALIDAD (MUY IMPORTANTE):
+1. SI el documento es puramente turístico, cultural, institucional, un enlace sin procedimiento o no contiene reglas operativas evaluables (ej. "Trabaja con nosotros", agenda cultural, enlaces externos sin pasos), DEVUELVE UN ARRAY VACÍO: []. NUNCA inventes preguntas de relleno.
+2. PROHIBIDO hacer preguntas tontas, obvias o triviales (ej. "¿Es importante ser amable?", "¿De qué color es el botón?", preguntas sobre títulos o formato del documento).
+3. ENFÓCATE EN OPERATIVA REAL DE MOSTRADOR: pasos obligatorios en PMS/Channel/Onity, horarios límite, gestión de caja/facturación/garantías, políticas de cancelación/no-show, coordinación con pisos/dirección y prevención de errores reales.
+4. OPCIONES REALISTAS: las 4 opciones (A, B, C, D) deben ser verosímiles y de longitud similar (errores que cometería un recepcionista sin experiencia). PROHIBIDO poner opciones absurdas o ridículas que delaten la respuesta correcta.
+5. FIDELIDAD ABSOLUTA: cada pregunta y explicación ("why") debe basarse exclusivamente en hechos concretos del texto anterior (no inventes importes, horarios ni normas).
+6. "dto" debe ser uno de: {json.dumps(ALLOWED_DTOS, ensure_ascii=False)} (sugerido: "{default_dto}").
+7. "categoria" debe ser exactamente uno de: {json.dumps(ALLOWED_MODULES, ensure_ascii=False)} (sugerido: "{default_mod}").
+8. "nivel" debe ser uno de: {json.dumps(ALLOWED_LEVELS, ensure_ascii=False)}.
+9. Responde ÚNICAMENTE con un array JSON válido de objetos con estas claves exactas:
+   "dto", "categoria", "nivel", "texto", "A", "B", "C", "D", "correct_letter", "why" (o [] si no aplica).
 """
 
     endpoints = [
@@ -205,7 +207,7 @@ REGLAS OBLIGATORIAS:
         {
             "contents": [{"parts": [{"text": prompt}]}],
             "generationConfig": {
-                "temperature": 0.35,
+                "temperature": 0.2,
                 "responseMimeType": "application/json",
             },
         }
@@ -393,7 +395,15 @@ def main() -> int:
             continue
 
         if not generated:
-            print(f"  ⚠ Gemini no devolvió preguntas válidas para '{title}'.")
+            print(f"  ℹ Documento sin contenido operativo evaluable: '{title}' (omitido sin generar relleno).")
+            tracked[key] = {
+                "title": title,
+                "section": str(p.get("section") or "").strip(),
+                "updated": str(p.get("updated") or ""),
+                "hash": chash,
+                "question_ids": prev.get("question_ids", []) if prev else [],
+                "skipped_non_operational": True,
+            }
             continue
 
         # Desactivar preguntas antiguas de este protocolo si existían

@@ -27,7 +27,7 @@
         <div class="header-titles">
           <div class="header-title-row">
             <h1>FORMACIÓN RECEPCIÓN - GUADIANA &amp; CUMBRIA</h1>
-            <span id="app-version-badge" class="version-badge" title="Versión actual del sistema">v2.2.2</span>
+            <span id="app-version-badge" class="version-badge" title="Versión actual del sistema">v2.4.3</span>
           </div>
           <div class="header-update">
             <i class="far fa-clock"></i>
@@ -89,11 +89,14 @@
 
             <div class="form-row-2">
               <div class="field-group">
-                <label class="field-label" for="who">
-                  Nombre y apellidos
-                  <span class="hint">Obligatorio</span>
+                <label class="field-label" for="whoSelect">
+                  Recepcionista (Personal activo)
+                  <span id="staffSyncHint" class="hint">Obligatorio</span>
                 </label>
-                <input id="who" type="text" placeholder="Ej. Laura García" autocomplete="off" data-bwignore="true" data-lpignore="true">
+                <select id="whoSelect">
+                  <option value="">Cargando plantilla activa…</option>
+                </select>
+                <input id="practiceName" class="hidden" type="text" style="margin-top:8px" placeholder="Nombre y apellidos (alumno en prácticas)" autocomplete="off" data-bwignore="true" data-lpignore="true">
               </div>
 
               <div class="field-group">
@@ -314,11 +317,11 @@
   <footer class="app-footer">
     © Formación Interna · Sercotel Guadiana &amp; Cumbria Spa&amp;Hotel ·
     <a href="https://cumbriaspahotel.github.io/Protocolo-Recep/" target="_blank" rel="noopener">Portal Protocolo-Recep</a> ·
-    <span id="footerMeta">v2.2.2</span>
+    <span id="footerMeta">v2.4.3</span>
   </footer>
 
-  <script src="./js/config.js"></script>
-  <script src="./js/data-loader.js"></script>
-  <script src="./js/app.js"></script>
+  <script src="./js/config.js?v=2.4.3"></script>
+  <script src="./js/data-loader.js?v=2.4.3"></script>
+  <script src="./js/app.js?v=2.4.3"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
  * Integrado con el sistema oficial Protocolo-Recep.
  */
 window.APP_CONFIG = {
-  version: "2.2.2",
+  version: "2.4.3",
   appName: "FORMACIÓN RECEPCIÓN - GUADIANA & CUMBRIA",
   hotelsLabel: "Sercotel Guadiana & Cumbria Spa&Hotel",
 
@@ -21,6 +21,10 @@ window.APP_CONFIG = {
 
   // Clave de acceso al panel privado admin.html (puedes cambiarla aquí)
   ADMIN_PASSWORD: "guadiana2026",
+
+  // Conexión de solo lectura con la plantilla oficial de Turnos-new (Supabase)
+  TURNOS_SUPABASE_URL: "https://drvmxranbpumianmlzqr.supabase.co",
+  TURNOS_SUPABASE_ANON_KEY: "sb_publishable_MEpdfeO_ZGkMkg0_eKZKnQ_QCJxDrfZ",
 
   // (Opcional) URL pública CSV de Google Sheets para cargar preguntas en tiempo real
   LIVE_QUESTIONS_CSV_URL: "",

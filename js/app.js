@@ -7,9 +7,11 @@
   const LS_NAME = "form_recep_user_name_v1";
   const LS_THEME = "form_recep_theme_v1";
   const LS_RECENT = "form_recep_recent_sessions_v1";
+  const LS_STAFF_CACHE = "form_recep_turnos_staff_v1";
 
   // ===== State =====
   let RAW = [];
+  let REMOTE_RESULTS = [];
   let LOAD_META = { source: "", sourceLabel: "", updatedAt: null, errors: [] };
 
   let selectedDept = "";
@@ -41,7 +43,10 @@
   const heroSessions = $("#heroSessions");
   const heroAvg = $("#heroAvg");
 
-  const whoInput = $("#who");
+  const whoSelect = $("#whoSelect");
+  const staffSyncHint = $("#staffSyncHint");
+  const practiceNameInput = $("#practiceName");
+  const PRACTICE_VALUE = "__PRACTICAS__";
   const deptPills = $("#deptPills");
   const modSelect = $("#mod");
   const modCountHint = $("#modCountHint");
@@ -142,6 +147,137 @@
     applyTheme(saved);
   }
 
+  // ===== Plantilla oficial desde Turnos-new (Supabase) =====
+  function getSelectedUserName() {
+    const val = (whoSelect.value || "").trim();
+    if (!val) return "";
+    if (val === PRACTICE_VALUE) {
+      const pname = (practiceNameInput.value || "").trim().replace(/\s+/g, " ");
+      return pname.length >= 2 ? `Prácticas - ${pname}` : "";
+    }
+    return val;
+  }
+
+  function syncPracticeInputVisibility() {
+    const isPractice = whoSelect.value === PRACTICE_VALUE;
+    practiceNameInput.classList.toggle("hidden", !isPractice);
+    if (isPractice) practiceNameInput.focus();
+  }
+
+  function formatHotelLabel(hotelId) {
+    const h = String(hotelId || "").trim().toLowerCase();
+    if (!h) return "Equipo Recepción";
+    if (h.includes("guadiana")) return "Sercotel Guadiana";
+    if (h.includes("cumbria")) return "Cumbria Spa&Hotel";
+    return String(hotelId).trim();
+  }
+
+  function populateStaffSelect(staffList) {
+    const groups = new Map();
+    const seenNames = new Set();
+    (Array.isArray(staffList) ? staffList : []).forEach((emp) => {
+      const name = String(emp.nombre || "").trim();
+      if (!name) return;
+      const low = name.toLowerCase();
+      if (seenNames.has(low)) return;
+      seenNames.add(low);
+      const hotelLabel = formatHotelLabel(emp.hotel_id);
+      if (!groups.has(hotelLabel)) groups.set(hotelLabel, []);
+      groups.get(hotelLabel).push(name);
+    });
+
+    let html = '<option value="">— Selecciona tu nombre —</option>';
+    if (groups.size > 1) {
+      [...groups.entries()]
+        .sort((a, b) => a[0].localeCompare(b[0], "es"))
+        .forEach(([hotel, names]) => {
+          names.sort((a, b) => a.localeCompare(b, "es", { sensitivity: "base" }));
+          html += `<optgroup label="${esc(hotel)}">` + names.map((n) => `<option value="${esc(n)}">${esc(n)}</option>`).join("") + "</optgroup>";
+        });
+    } else if (groups.size === 1) {
+      const allNames = [...groups.values()].flat().sort((a, b) => a.localeCompare(b, "es", { sensitivity: "base" }));
+      html += allNames.map((n) => `<option value="${esc(n)}">${esc(n)}</option>`).join("");
+    }
+
+    html += `<optgroup label="Personal en formación"><option value="${PRACTICE_VALUE}">🎓 Prácticas (escribir nombre)</option></optgroup>`;
+
+    whoSelect.innerHTML = html;
+    staffSyncHint.textContent = seenNames.size
+      ? `Personal activo (${seenNames.size}) + Prácticas`
+      : "Sin conexión a Turnos (solo Prácticas)";
+
+    try {
+      const saved = (localStorage.getItem(LS_NAME) || "").trim();
+      if (saved) {
+        if (/^prácticas\s*-\s*/i.test(saved)) {
+          whoSelect.value = PRACTICE_VALUE;
+          practiceNameInput.value = saved.replace(/^prácticas\s*-\s*/i, "").trim();
+        } else {
+          const match = [...whoSelect.options].find((o) => o.value.toLowerCase() === saved.toLowerCase());
+          if (match) whoSelect.value = match.value;
+        }
+      }
+    } catch (_) {}
+
+    practiceNameInput.classList.toggle("hidden", whoSelect.value !== PRACTICE_VALUE);
+  }
+
+  async function loadTurnosStaff() {
+    const url = (CFG.TURNOS_SUPABASE_URL || "").replace(/\/+$/, "");
+    const key = (CFG.TURNOS_SUPABASE_ANON_KEY || "").trim();
+
+    if (url && key) {
+      try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 6000);
+        const res = await fetch(
+          `${url}/rest/v1/empleados?select=id,nombre,hotel_id,activo,estado_empresa,fecha_baja,orden&order=orden.asc,nombre.asc`,
+          {
+            headers: { apikey: key, Authorization: `Bearer ${key}` },
+            cache: "no-store",
+            signal: controller.signal,
+          }
+        );
+        clearTimeout(timer);
+        if (res.ok) {
+          const rows = await res.json();
+          const todayIso = new Date().toISOString().slice(0, 10);
+          const active = (Array.isArray(rows) ? rows : []).filter((e) => {
+            const name = String(e.nombre || "").trim();
+            if (!name || /^(vacante|libre)\b/i.test(name)) return false;
+            if (e.activo === false) return false;
+            const st = String(e.estado_empresa || "").trim().toLowerCase();
+            if (st && (st.includes("baja") || st.includes("inactiv") || st.includes("cese") || st.includes("elimin"))) return false;
+            if (e.fecha_baja && String(e.fecha_baja).slice(0, 10) <= todayIso) return false;
+            return true;
+          });
+          if (active.length) {
+            try {
+              localStorage.setItem(LS_STAFF_CACHE, JSON.stringify(active));
+            } catch (_) {}
+            populateStaffSelect(active);
+            updateKPIs();
+            return;
+          }
+        }
+      } catch (_) {}
+    }
+
+    // Fallback a caché local de Turnos si no hay red
+    try {
+      const cached = JSON.parse(localStorage.getItem(LS_STAFF_CACHE) || "[]");
+      if (Array.isArray(cached) && cached.length) {
+        populateStaffSelect(cached);
+        staffSyncHint.textContent = `Plantilla Turnos (caché · ${cached.length})`;
+        updateKPIs();
+        return;
+      }
+    } catch (_) {}
+
+    populateStaffSelect([]);
+    updateKPIs();
+  }
+
   // ===== Puente vivo con Protocolo-Recep =====
   async function loadProtocoloUpdates() {
     if (location.protocol === "file:" || !CFG.PROTOCOLO_DATA_JSON_URL) return;
@@ -216,7 +352,84 @@
     saveSeen(h);
   }
 
-  // ===== Recent local sessions =====
+  // ===== Recent & Remote per-person stats =====
+  function canonName(s) {
+    return String(s || "")
+      .trim()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, " ");
+  }
+
+  function parseSimpleCsv(text) {
+    const clean = text.replace(/^\uFEFF/, "");
+    const first = clean.split(/\r?\n/)[0] || "";
+    const delim = first.split(";").length > first.split(",").length ? ";" : ",";
+    const rows = [];
+    let row = [], cur = "", inQ = false;
+    for (let i = 0; i < clean.length; i++) {
+      const ch = clean[i], nx = clean[i + 1];
+      if (inQ) {
+        if (ch === '"' && nx === '"') { cur += '"'; i++; }
+        else if (ch === '"') inQ = false;
+        else cur += ch;
+      } else {
+        if (ch === '"') inQ = true;
+        else if (ch === delim) { row.push(cur); cur = ""; }
+        else if (ch === "\r" && nx === "\n") { row.push(cur); rows.push(row); row = []; cur = ""; i++; }
+        else if (ch === "\n" || ch === "\r") { row.push(cur); rows.push(row); row = []; cur = ""; }
+        else cur += ch;
+      }
+    }
+    if (cur.length || row.length) { row.push(cur); rows.push(row); }
+    const nonEmpty = rows.filter((r) => r.some((c) => String(c).trim() !== ""));
+    if (nonEmpty.length < 2) return [];
+    const heads = nonEmpty[0].map((h) => String(h).trim().toLowerCase());
+    return nonEmpty.slice(1).map((cols) => {
+      const o = {};
+      heads.forEach((h, i) => (o[h] = (cols[i] ?? "").trim()));
+      return o;
+    });
+  }
+
+  async function loadRemoteResultsForStats() {
+    const csvUrl = (CFG.RESULTS_CSV_URL || "").trim();
+    if (!csvUrl) return;
+    try {
+      const sep = csvUrl.includes("?") ? "&" : "?";
+      const res = await fetch(`${csvUrl}${sep}_ts=${Date.now()}`, { cache: "no-store" });
+      if (!res.ok) return;
+      const rows = parseSimpleCsv(await res.text());
+      const pick = (o, ks) => {
+        for (const k of ks) if (k in o && String(o[k]).trim() !== "") return String(o[k]).trim();
+        return "";
+      };
+      REMOTE_RESULTS = rows
+        .map((r) => {
+          const nombre = pick(r, ["nombre", "empleado", "usuario", "recepcionista", "name"]);
+          const total = Number(pick(r, ["total", "preguntas"])) || 0;
+          const aciertos = Number(pick(r, ["aciertos", "ok", "correctas"])) || 0;
+          const pctRaw = pick(r, ["pct", "porcentaje", "nota", "score"]);
+          const pct = pctRaw !== "" ? Math.round(Number(pctRaw.replace("%", "").replace(",", "."))) : total ? Math.round((aciertos / total) * 100) : 0;
+          return {
+            nombre,
+            nameKey: canonName(nombre),
+            dto: pick(r, ["dto", "departamento", "hotel"]),
+            modulo: pick(r, ["modulo", "módulo", "categoría", "categoria"]),
+            nivel: pick(r, ["nivel", "level"]),
+            total,
+            aciertos,
+            pct,
+            date: pick(r, ["fecha", "timestamp", "date", "marca temporal"]),
+          };
+        })
+        .filter((x) => x.nameKey && x.total > 0)
+        .reverse();
+      renderRecentAndHeroStats();
+    } catch (_) {}
+  }
+
   function loadRecent() {
     try {
       const list = JSON.parse(localStorage.getItem(LS_RECENT) || "[]");
@@ -229,12 +442,24 @@
     const list = loadRecent();
     list.unshift(entry);
     try {
-      localStorage.setItem(LS_RECENT, JSON.stringify(list.slice(0, 8)));
+      localStorage.setItem(LS_RECENT, JSON.stringify(list.slice(0, 20)));
     } catch (_) {}
   }
   function renderRecentAndHeroStats() {
     heroTotal.textContent = RAW.length;
-    const list = loadRecent();
+    const selectedName = getSelectedUserName();
+    if (!selectedName) {
+      heroSessions.textContent = "0";
+      heroAvg.textContent = "—";
+      recentCard.classList.add("hidden");
+      return;
+    }
+
+    const key = canonName(selectedName);
+    const remoteForPerson = REMOTE_RESULTS.filter((x) => x.nameKey === key);
+    const localForPerson = loadRecent().filter((x) => x.nombre && canonName(x.nombre) === key);
+    const list = remoteForPerson.length ? remoteForPerson : localForPerson;
+
     heroSessions.textContent = list.length;
     if (list.length) {
       const avg = Math.round(list.reduce((acc, x) => acc + (x.pct || 0), 0) / list.length);
@@ -245,7 +470,7 @@
         .map((item) => {
           const cls = item.pct >= 90 ? "ok" : item.pct >= 60 ? "warn" : "ko";
           const title = item.modulo || item.dto || "Sesión general";
-          const sub = [formatDateShort(item.date), `${item.aciertos}/${item.total}`, item.nivel].filter(Boolean).join(" · ");
+          const sub = [formatDateShort(item.date) || item.date || "", `${item.aciertos}/${item.total}`, item.nivel].filter(Boolean).join(" · ");
           return `
             <div class="history-item">
               <div>
@@ -398,10 +623,13 @@
 
     btnResetHistory.classList.toggle("hidden", unseen === base.length || base.length === 0);
 
-    const hasName = whoInput.value.trim().length >= 2;
+    const hasName = getSelectedUserName().length >= 2;
+    const waitingPractice = whoSelect.value === PRACTICE_VALUE && !hasName;
     btnStart.disabled = !(hasName && base.length > 0);
-    btnStart.innerHTML = !hasName
-      ? '<i class="fas fa-user"></i> Escribe tu nombre para empezar'
+    btnStart.innerHTML = waitingPractice
+      ? '<i class="fas fa-user-graduate"></i> Escribe tu nombre (Prácticas) para empezar'
+      : !hasName
+      ? '<i class="fas fa-user"></i> Selecciona tu nombre para empezar'
       : base.length === 0
       ? "Sin preguntas en este filtro"
       : `<i class="fas fa-play"></i> Comenzar sesión (${willTake} preguntas)`;
@@ -445,7 +673,7 @@
     bestStreak = 0;
 
     try {
-      localStorage.setItem(LS_NAME, whoInput.value.trim());
+      localStorage.setItem(LS_NAME, getSelectedUserName());
     } catch (_) {}
 
     showView("quiz");
@@ -653,7 +881,9 @@
         sessionQuestions.map((q) => q.id)
       );
 
-      pushRecent({
+      const newEntry = {
+        nombre: getSelectedUserName(),
+        nameKey: canonName(getSelectedUserName()),
         date: new Date().toISOString(),
         dto: selectedDept,
         modulo: selectedMod,
@@ -662,10 +892,12 @@
         aciertos: ok,
         fallos: ko,
         pct,
-      });
+      };
+      pushRecent(newEntry);
+      REMOTE_RESULTS.unshift(newEntry);
 
       const payload = {
-        nombre: whoInput.value.trim(),
+        nombre: getSelectedUserName(),
         dto: selectedDept,
         modulo: selectedMod,
         nivel: selectedLevel,
@@ -771,7 +1003,15 @@
     applyTheme(isDark ? "light" : "dark");
   };
 
-  whoInput.oninput = updateKPIs;
+  whoSelect.onchange = () => {
+    syncPracticeInputVisibility();
+    renderRecentAndHeroStats();
+    updateKPIs();
+  };
+  practiceNameInput.oninput = () => {
+    renderRecentAndHeroStats();
+    updateKPIs();
+  };
   modSelect.onchange = () => {
     selectedMod = modSelect.value || "";
     renderLevelPills();
@@ -834,12 +1074,9 @@
   // ===== Boot =====
   (async function boot() {
     initTheme();
-    try {
-      const savedName = localStorage.getItem(LS_NAME);
-      if (savedName) whoInput.value = savedName;
-    } catch (_) {}
-
-    await refreshData();
+    await Promise.all([refreshData(), loadTurnosStaff()]);
+    renderRecentAndHeroStats();
+    loadRemoteResultsForStats();
     loadProtocoloUpdates();
 
     if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
